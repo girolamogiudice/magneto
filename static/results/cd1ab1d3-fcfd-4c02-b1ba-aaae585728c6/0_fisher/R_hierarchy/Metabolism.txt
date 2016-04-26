@@ -1,0 +1,2 @@
+R-HSA-70370	0.00786984977718	Galactose catabolism	P36871
+ Q9UQK1

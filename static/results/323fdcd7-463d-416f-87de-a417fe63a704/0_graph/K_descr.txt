@@ -1,0 +1,20 @@
+hsa04620	Toll-like receptor signaling pathway
+hsa04071	Sphingolipid signaling pathway
+hsa05203	Viral carcinogenesis
+hsa05212	Pancreatic cancer
+hsa05145	Toxoplasmosis
+hsa04915	Estrogen signaling pathway
+hsa04380	Osteoclast differentiation
+hsa05200	Pathways in cancer
+hsa04622	RIG-I-like receptor signaling pathway
+hsa05152	Tuberculosis
+hsa04912	GnRH signaling pathway
+hsa04668	TNF signaling pathway
+hsa05168	Herpes simplex infection
+hsa05169	Epstein-Barr virus infection
+hsa04010	MAPK signaling pathway
+hsa05164	Influenza A
+hsa04064	NF-kappa B signaling pathway
+hsa05160	Hepatitis C
+hsa05161	Hepatitis B
+hsa04012	ErbB signaling pathway

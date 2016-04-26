@@ -1,0 +1,2 @@
+[[0, 0, 1, 1, 1], [0, 0, 1, 1, 1], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0]]
+{'P12931': {'description': 'SRC', 'id': 3, 'descr': 'S', 'name': 'P12931(SRC)'}, 'P00519': {'description': 'ABL1', 'id': 4, 'descr': 'A', 'name': 'P00519(ABL1)'}, 'D03658': {'description': 'Dasatinib (INN)', 'id': 0, 'name': 'D03658'}, 'P09619': {'description': 'PDGFRB', 'id': 2, 'descr': 'P', 'name': 'P09619(PDGFRB)'}, 'D06414': {'description': 'Dasatinib hydrate (JAN); Dasatinib (USAN); Sprycel (TN)', 'id': 1, 'name': 'D06414'}}

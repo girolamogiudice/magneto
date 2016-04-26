@@ -1,0 +1,72 @@
+hsa04550	Signaling pathways regulating pluripotency of stem cells
+hsa05219	Bladder cancer
+hsa04068	FoxO signaling pathway
+hsa05212	Pancreatic cancer
+hsa05213	Endometrial cancer
+hsa05210	Colorectal cancer
+hsa04010	MAPK signaling pathway
+hsa05218	Melanoma
+hsa04024	cAMP signaling pathway
+hsa04630	Jak-STAT signaling pathway
+hsa04668	TNF signaling pathway
+hsa04722	Neurotrophin signaling pathway
+hsa05230	Central carbon metabolism in cancer
+hsa05231	Choline metabolism in cancer
+hsa04510	Focal adhesion
+hsa04380	Osteoclast differentiation
+hsa04066	HIF-1 signaling pathway
+hsa04728	Dopaminergic synapse
+hsa04062	Chemokine signaling pathway
+hsa04922	Glucagon signaling pathway
+hsa04921	Oxytocin signaling pathway
+hsa04920	Adipocytokine signaling pathway
+hsa04370	VEGF signaling pathway
+hsa04012	ErbB signaling pathway
+hsa04931	Insulin resistance
+hsa05142	Chagas disease (American trypanosomiasis)
+hsa05031	Amphetamine addiction
+hsa05168	Herpes simplex infection
+hsa05169	Epstein-Barr virus infection
+hsa05145	Toxoplasmosis
+hsa05164	Influenza A
+hsa05166	HTLV-I infection
+hsa04933	AGE-RAGE signaling pathway in diabetic complications
+hsa05160	Hepatitis C
+hsa05161	Hepatitis B
+hsa05120	Epithelial cell signaling in Helicobacter pylori infection
+hsa03050	Proteasome
+hsa05211	Renal cell carcinoma
+hsa05100	Bacterial invasion of epithelial cells
+hsa05205	Proteoglycans in cancer
+hsa04110	Cell cycle
+hsa05206	MicroRNAs in cancer
+hsa05200	Pathways in cancer
+hsa04114	Oocyte meiosis
+hsa04912	GnRH signaling pathway
+hsa04211	Longevity regulating pathway - mammal
+hsa04910	Insulin signaling pathway
+hsa04014	Ras signaling pathway
+hsa04390	Hippo signaling pathway
+hsa04917	Prolactin signaling pathway
+hsa05221	Acute myeloid leukemia
+hsa04915	Estrogen signaling pathway
+hsa05203	Viral carcinogenesis
+hsa04919	Thyroid hormone signaling pathway
+hsa04152	AMPK signaling pathway
+hsa04213	Longevity regulating pathway - multiple species
+hsa04932	Non-alcoholic fatty liver disease (NAFLD)
+hsa04151	PI3K-Akt signaling pathway
+hsa04660	T cell receptor signaling pathway
+hsa05215	Prostate cancer
+hsa05220	Chronic myeloid leukemia
+hsa04310	Wnt signaling pathway
+hsa04662	B cell receptor signaling pathway
+hsa04916	Melanogenesis
+hsa04520	Adherens junction
+hsa04071	Sphingolipid signaling pathway
+hsa05152	Tuberculosis
+hsa05223	Non-small cell lung cancer
+hsa05214	Glioma
+hsa04664	Fc epsilon RI signaling pathway
+hsa04261	Adrenergic signaling in cardiomyocytes
+hsa05222	Small cell lung cancer

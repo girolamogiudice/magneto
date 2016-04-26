@@ -1,0 +1,19 @@
+GO:0043234	protein complex
+GO:0043235	receptor complex
+GO:0070062	extracellular exosome
+GO:0031234	extrinsic component of cytoplasmic side of plasma membrane
+GO:0016324	apical plasma membrane
+GO:0005829	cytosol
+GO:0045121	membrane raft
+GO:0005737	cytoplasm
+GO:0005739	mitochondrion
+GO:0005789	endoplasmic reticulum membrane
+GO:0016323	basolateral plasma membrane
+GO:0005938	cell cortex
+GO:0012506	vesicle membrane
+GO:0005886	plasma membrane
+GO:0048471	perinuclear region of cytoplasm
+GO:0000139	Golgi membrane
+GO:0005768	endosome
+GO:0009986	cell surface
+GO:0035631	CD40 receptor complex

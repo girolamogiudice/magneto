@@ -1,0 +1,1 @@
+[{"proteins involved": "3", "description": "ENDOMETRIAL CANCER", "proteins": ["P40692(MLH1)", "P60484(PTEN)", "P43246(MSH2)"], "common": 0, "p value": "6.4600234764e-05", "id": "608089"}, {"proteins involved": "3", "description": "OVARIAN CANCER", "proteins": ["P38398(BRCA1)", "P35222(CTNNB1)", "P04626(ERBB2)"], "common": 0, "p value": "0.000111797177444", "id": "167000"}]

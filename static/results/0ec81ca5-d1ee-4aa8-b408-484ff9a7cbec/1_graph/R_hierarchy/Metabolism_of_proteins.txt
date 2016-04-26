@@ -1,0 +1,1 @@
+R-HSA-6807878	0.0224753776387	COPI-mediated anterograde transport	Q14204 P63167

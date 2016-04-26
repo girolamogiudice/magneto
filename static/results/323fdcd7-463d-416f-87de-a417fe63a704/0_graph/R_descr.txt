@@ -1,0 +1,13 @@
+R-HSA-1059683	Interleukin-6 signaling
+R-HSA-5668541	TNFR2 non-canonical NF-kB pathway
+R-HSA-937072	TRAF6 mediated induction of TAK1 complex
+R-HSA-937041	IKK complex recruitment mediated by RIP1
+R-HSA-5602571	TRAF3 deficiency - HSE
+R-HSA-5357905	Regulation of TNFR1 signaling
+R-HSA-140534	Ligand-dependent caspase activation
+R-HSA-5357956	TNFR1-induced NFkappaB signaling pathway
+R-HSA-5675482	Regulation of necroptotic cell death
+R-HSA-1227986	Signaling by ERBB2
+R-HSA-75893	TNF signaling
+R-HSA-5357786	TNFR1-induced proapoptotic signaling
+R-HSA-936964	Activation of IRF3/IRF7 mediated by TBK1/IKK epsilon

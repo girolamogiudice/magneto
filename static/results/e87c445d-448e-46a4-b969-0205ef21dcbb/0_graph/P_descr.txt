@@ -1,0 +1,61 @@
+GO:1903351	cellular response to dopamine
+GO:0000186	activation of MAPKK activity
+GO:0048010	vascular endothelial growth factor receptor signaling pathway
+GO:0018105	peptidyl-serine phosphorylation
+GO:0071222	cellular response to lipopolysaccharide
+GO:0006921	cellular component disassembly involved in execution phase of apoptosis
+GO:0034605	cellular response to heat
+GO:0007596	blood coagulation
+GO:0038123	toll-like receptor TLR1
+GO:2000810	regulation of bicellular tight junction assembly
+GO:0038124	toll-like receptor TLR6
+GO:0048041	focal adhesion assembly
+GO:0051764	actin crosslink formation
+GO:0007411	axon guidance
+GO:0051028	mRNA transport
+GO:0035994	response to muscle stretch
+GO:0016032	viral process
+GO:0000122	negative regulation of transcription from RNA polymerase II promoter
+GO:0008543	fibroblast growth factor receptor signaling pathway
+GO:0007173	epidermal growth factor receptor signaling pathway
+GO:0000165	MAPK cascade
+GO:0071456	cellular response to hypoxia
+GO:0015758	glucose transport
+GO:0010467	gene expression
+GO:0043066	negative regulation of apoptotic process
+GO:2000172	regulation of branching morphogenesis of a nerve
+GO:0034134	toll-like receptor 2 signaling pathway
+GO:0006914	autophagy
+GO:0008286	insulin receptor signaling pathway
+GO:0000278	mitotic cell cycle
+GO:0045087	innate immune response
+GO:0034613	cellular protein localization
+GO:0006974	cellular response to DNA damage stimulus
+GO:0060070	canonical Wnt signaling pathway
+GO:0034146	toll-like receptor 5 signaling pathway
+GO:0051403	stress-activated MAPK cascade
+GO:0043393	regulation of protein binding
+GO:0071872	cellular response to epinephrine stimulus
+GO:0048011	neurotrophin TRK receptor signaling pathway
+GO:0007077	mitotic nuclear envelope disassembly
+GO:0007265	Ras protein signal transduction
+GO:0007264	small GTPase mediated signal transduction
+GO:0055117	regulation of cardiac muscle contraction
+GO:0030168	platelet activation
+GO:0038096	Fc-gamma receptor signaling pathway involved in phagocytosis
+GO:0034162	toll-like receptor 9 signaling pathway
+GO:0036120	cellular response to platelet-derived growth factor stimulus
+GO:0051090	regulation of sequence-specific DNA binding transcription factor activity
+GO:0060314	regulation of ryanodine-sensitive calcium-release channel activity
+GO:0048146	positive regulation of fibroblast proliferation
+GO:0051726	regulation of cell cycle
+GO:1900034	regulation of cellular response to heat
+GO:0034166	toll-like receptor 10 signaling pathway
+GO:0071560	cellular response to transforming growth factor beta stimulus
+GO:0061024	membrane organization
+GO:0010881	regulation of cardiac muscle contraction by regulation of the release of sequestered calcium ion
+GO:0010880	regulation of release of sequestered calcium ion into cytosol by sarcoplasmic reticulum
+GO:0043518	negative regulation of DNA damage response, signal transduction by p53 class mediator
+GO:0002576	platelet degranulation
+GO:0045892	negative regulation of transcription, DNA-templated
+GO:0045893	positive regulation of transcription, DNA-templated

@@ -1,0 +1,5 @@
+id	p_value	ic	proteins_involved	description	proteins
+D10155	0.00117785630153	1	Rigosertib sodium (USAN)	P53350(PLK1)
+D10154	0.00117785630153	1	Rigosertib (USAN)	P53350(PLK1)
+D10182	0.00117785630153	1	Volasertib (USAN)	P53350(PLK1)
+D10183	0.00117785630153	1	Volasertib hydrochloride (JAN); Volasertib trihydrochloride (USAN)	P53350(PLK1)

@@ -1,0 +1,418 @@
+{{extend 'layout.html'}}
+<script src="/magneto/static/js/linkurious/src/sigma.core.js"></script>
+<script src="/magneto/static/js/linkurious/src/conrad.js"></script>
+<script src="/magneto/static/js/linkurious/src/utils/sigma.utils.js"></script>
+<script src="/magneto/static/js/linkurious/src/utils/sigma.polyfills.js"></script>
+<script src="/magneto/static/js/linkurious/src/sigma.settings.js"></script>
+<script src="/magneto/static/js/linkurious/src/classes/sigma.classes.dispatcher.js"></script>
+<script src="/magneto/static/js/linkurious/src/classes/sigma.classes.configurable.js"></script>
+<script src="/magneto/static/js/linkurious/src/classes/sigma.classes.graph.js"></script>
+<script src="/magneto/static/js/linkurious/src/classes/sigma.classes.camera.js"></script>
+<script src="/magneto/static/js/linkurious/src/classes/sigma.classes.quad.js"></script>
+<script src="/magneto/static/js/linkurious/src/classes/sigma.classes.edgequad.js"></script>
+<script src="/magneto/static/js/linkurious/src/captors/sigma.captors.mouse.js"></script>
+<script src="/magneto/static/js/linkurious/src/captors/sigma.captors.touch.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/sigma.renderers.canvas.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/svg/sigma.svg.utils.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/svg/sigma.svg.nodes.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/svg/sigma.svg.edges.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/svg/sigma.svg.edges.curve.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/svg/sigma.svg.labels.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/renderers/svg/sigma.svg.hovers.def.js"></script>
+<script src="/magneto/static/js/linkurious/src/middlewares/sigma.middlewares.rescale.js"></script>
+<script src="/magneto/static/js/linkurious/src/middlewares/sigma.middlewares.copy.js"></script>
+<script src="/magneto/static/js/linkurious/src/misc/sigma.misc.animation.js"></script>
+<script src="/magneto/static/js/linkurious/src/misc/sigma.misc.bindEvents.js"></script>
+<script src="/magneto/static/js/linkurious/src/misc/sigma.misc.bindDOMEvents.js"></script>
+<script src="/magneto/static/js/linkurious/src/misc/sigma.misc.drawHovers.js"></script>
+<script src="/magneto/static/js/linkurious/plugins/sigma.plugins.filter/sigma.plugins.filter.js"></script>
+<script src="/magneto/static/js/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.def.js"></script>
+<script src="/magneto/static/js/linkurious/plugins/sigma.plugins.animate/sigma.plugins.animate.js"></script>
+<script src="/magneto/static/js/linkurious/plugins/sigma.layout.forceAtlas2/worker.js"></script>
+<script src="/magneto/static/js/linkurious/plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
+
+<script src="/magneto/static/js/linkurious/plugins/sigma.plugins.locate/sigma.plugins.locate.js"></script>
+<script src="/magneto/static/js/linkurious/plugins/sigma.plugins.tooltips/sigma.plugins.tooltips.js"></script>
+
+<script src="{{=URL('static','js/d3.min.js')}}"></script>
+<script src="{{=URL('static','js/logo.js')}}"></script>
+<script src="{{=URL('static','js/d3.layout.cloud.js')}}"></script>
+
+<script src="/magneto/static/js/mapper.js"></script>
+<script src="/magneto/static/js/underscore.js"></script>
+
+<style>
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code {
+    border-radius: 3px;
+}
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-default {
+    border-left-color: #777;
+}
+.bs-callout-default h4 {
+    color: #777;
+}
+.bs-callout-primary {
+    border-left-color: #428bca;
+}
+.bs-callout-primary h4 {
+    color: #428bca;
+}
+.bs-callout-success {
+    border-left-color: #5cb85c;
+}
+.bs-callout-success h4 {
+    color: #5cb85c;
+}
+.bs-callout-danger {
+    border-left-color: #d9534f;
+}
+.bs-callout-danger h4 {
+    color: #d9534f;
+}
+.bs-callout-warning {
+    border-left-color: #f0ad4e;
+}
+.bs-callout-warning h4 {
+    color: #f0ad4e;
+}
+.bs-callout-info {
+    border-left-color: #5bc0de;
+}
+.bs-callout-info h4 {
+    color: #5bc0de;
+}
+circle.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+line.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+    
+.disabledTab {
+    pointer-events: none;
+}
+    .sigma-scene{
+        position: auto;
+    }
+    
+    #graph-container 
+   {
+    text-align: left;
+    height: 10px;
+    margin-bottom: 300px;
+   }
+        .row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+    #legend{
+        visibility: hidden;
+    }
+        #network_panel{
+        visibility: hidden;
+    }
+            #results_panel{
+        visibility: hidden;
+    }
+            #stats_panel{
+        visibility: hidden;
+    }
+</style>
+{{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
+{{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
+  <ul class="nav nav-pills nav-justified" role="tablist">
+      <li role="presentation" class="dropdown" ><a href="#functional" aria-controls="functional" role="tab" data-toggle="dropdown" id="sample_sel">Select a sample</a>
+            <ul id="sample" class="dropdown-menu">
+                {{for i in mapping_column:}}
+                 <li id="sample_value" value="{{=i[0]}}" onclick ="return_value({{=i[0]}});change_text();$.web2py.component('{{=URL('default', 'load_stats.load',args=[request.args[0],i[0],sample_number])}};', 'stat');$.web2py.component('{{=URL('default', 'load_request.load',args=[request.args[0],i[0]])}};', 'graph-container');"><a class="sv" id="sv" value="{{=i[0]}}" href="#{{=i[0]}}" data-toggle="tab">{{=i[1]}}</a></li>
+                {{pass}}
+            </ul>
+          </li>
+    <li role="presentation" id="statistics" class="disabled disabledTab" ><a href="#Statistics" aria-controls="Statistics" role="tab" data-toggle="tab">Statistics</a></li>
+    <li role="presentation" id="network" class="disabled disabledTab"><a href="#network" aria-controls="network" role="tab" data-toggle="tab">Network</a></li>
+    <li  id="func_anal" role="presentation" class="dropdown disabled disabledTab"><a class="dropdown-toggle" href="#functional" aria-controls="functional" id="fa" role="tab" data-toggle="dropdown">Functional Analysis</a>
+            <ul id="fa" class="dropdown-menu">
+                <li><a class="dbfa" id="C" data-toggle="tab">GO Component</a></li>
+                <li><a class="dbfa" id="F" data-toggle="tab">GO Function</a></li>
+                <li><a class="dbfa" id="P" data-toggle="tab">GO Process</a></li>
+                <li><a class="dbfa" id="R" data-toggle="tab">Reactome</a></li>
+                <li><a class="dbfa" id="K" data-toggle="tab">Kegg</a></li>
+                <li><a class="dbfa" id="KDi" data-toggle="tab">Kegg disease</a></li>
+                <li><a class="dbfa" id="O" data-toggle="tab">Omim</a></li>
+                <li><a class="dbfa" id="Or" data-toggle="tab">Orphanet</a></li>
+                <li><a class="dbfa" id="KDr" data-toggle="tab">Kegg drug</a></li>
+                <li><a class="dbfa" id="DB" data-toggle="tab">Drug Bank</a></li>
+                <li><a class="dbfa" id="T" data-toggle="tab">Toxins</a></li>
+                <li><a class="dbfa" id="HPi" data-toggle="tab">Virus</a></li>
+
+            </ul>
+          </li>
+        
+    <li class="dropdown disabled disabledTab" id="plot"><a class="dropdown-toggle" href="#plot" aria-controls="plot" id="drawplot" role="tab" data-toggle="dropdown">Plot</a>
+       <ul class="dropdown-menu">
+        <li id="chord_plot"><a  href="#Chord" data-toggle="tab" onclick="chord_select();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord')">Chord Plot</a></li>
+        <li id="treemap_plot"><a href="#Treemap" data-toggle="tab" onclick="treemap_select();$.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap')">Treemap Plot</a></li>
+        <li id="bubble_plot"><a href="#bubble" data-toggle="tab" onclick="bubble_select();$.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble')">Bubble Plot</a></li>
+        <li id="wc_plot"><a href="#word" data-toggle="tab" onclick="word_cloud_select();$.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')">Word Cloud Plot</a></li>
+        <li class="divider"></li>
+        <li id="display_plot"><a onclick="select_all();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord');
+            $.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap');
+            $.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble');
+            $.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')">Display All Plots</a></li>
+            </ul>
+   </li>
+</ul>
+<br>
+  <div id="stats_panel" class="panel panel-primary" >
+      <div class="panel-heading">Statistics</div>
+      <div class="panel-body"><div id="stat"></div></div></div>
+
+   <div id="network_panel" class="panel panel-primary" >
+      <div class="panel-heading">Network</div>
+       <div class="panel-body"><div id="graph-container"></div>
+<br>
+<div id="legend" class="row row-centered">
+{{for i in databases:}}
+<div class="col-md-2 col-centered">
+   <div class="thumbnail">
+    <center> <h4> {{=i}}</h4></center> {{for j in databases[i]:}}
+      <p>
+          </p>
+       <svg width="30" height="30"> <circle cx="25" cy="25" r="5" fill="{{=alias_colors[j]}}" /><span>{{=alias_dict[j]}}</span></svg>
+          {{pass}}
+      </div>
+    </div>
+   {{pass}}
+</div>
+ </div></div>
+
+
+ 
+  <div id="results_panel" class="panel panel-primary" >
+      <div class="panel-heading">Functional Analysis</div>
+      <div class="panel-body">
+          <div id="results"><link rel="stylesheet" href="/magneto/static/js/bootstrap-table/dist/bootstrap-table.css"></div></div></div>
+
+<div id="chord"></div>
+<div id="treemap"></div>
+<div id="bubble"></div>
+<div id="word"></div>
+
+
+<script>
+    function loadScript(url)
+{
+    document.body.appendChild(document.createElement("script")).src = url;
+
+}
+
+value=""
+        function return_value(elem){
+     value=elem
+     document.getElementById("results").innerHTML=""
+}
+    var sample=""
+$(".sv").click(function(){
+    $("#legend").css("visibility", "visible");
+    $("#network_panel").css("visibility", "visible");
+    $("#stats_panel").css("visibility", "visible");
+    $("#results_panel").css("visibility", "hidden");
+    $("#func_anal").removeClass('disabled disabledTab');
+    $("#statistics").removeClass('disabled disabledTab');
+    $("#network").removeClass('disabled disabledTab');
+    $("#plot").addClass('disabled disabledTab');
+    $("#legend").css("visibility", "visible");
+   var selText = $(this).text();
+    sample=$(this).attr("value");
+    location.hash = sample;
+   $(this).parents('.dropdown').find('.dropdown-toggle').html(selText+"<span class='caret'></span>");
+ 
+    document.getElementById("chord").innerHTML=""
+    document.getElementById("treemap").innerHTML=""
+    document.getElementById("bubble").innerHTML=""
+    document.getElementById("word").innerHTML=""
+    document.getElementById("graph-container").style.height="800px";
+})
+
+mapping={{=XML(str(mapping))}}
+$('.stats').click(function(){
+    var db_fa=($(this).attr('id'))
+    location.hash = db_fa;
+})
+    //locate_cluster
+$('.dbfa').click(function(){
+    loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
+    //loadScript("/magneto/static/js/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js");
+    //loadScript("/magneto/static/js/tableExport.min.js");
+    values=mapping[document.getElementById("sample_sel").text]
+    var folder= "{{=request.args[0]}}"
+    var db_fa=($(this).attr('id'))
+    location.hash =sample+"#"+db_fa;
+    db_fa=db_fa+"fisher.json"
+    path= "/magneto/static/results/"+folder+"/"+values+"_graph/"+db_fa
+    $("#plot").removeClass('dropdown disabled disabledTab');
+    $('#fa').html($(this)[0].innerText+"<span class='caret'></span>");
+    $("#results_panel").css("visibility", "visible");
+document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="name" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="ic" data-align="left" data-sortable="true">I.C.</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+    if (document.getElementById("drawplot").text==="Chord") {
+        $.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord')
+   }
+       if (document.getElementById("drawplot").text==="Treemap") {
+        $.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap')
+   }
+       if (document.getElementById("drawplot").text==="Bubble") {
+        $.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble')
+   }
+       if (document.getElementById("drawplot").text==="Word Cloud") {
+        $.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')
+   }
+     if (document.getElementById("drawplot").text==="Plots") {
+        $.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord')
+        $.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap')
+        $.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble')
+        $.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')
+   }
+});
+
+function change_text() 
+    {
+    //document.getElementById("statistics").innerHTML="Statistics<span class='caret'></span>"
+    document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
+    document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
+    }
+
+function chord_select() 
+    {
+    $("#treemap_plot").removeClass('active')
+     $("#bubble_plot").removeClass('active')
+      $("#wc_plot").removeClass('active')
+      document.getElementById("treemap").innerHTML=""
+      document.getElementById("bubble").innerHTML=""
+      document.getElementById("word").innerHTML=""
+
+    document.getElementById("drawplot").innerHTML="Chord<span class='caret'></span>"
+    
+    }
+function treemap_select() 
+    {
+     $("#chord_plot").removeClass('active')
+     $("#bubble_plot").removeClass('active')
+     $("#wc_plot").removeClass('active')
+      document.getElementById("chord").innerHTML=""
+      document.getElementById("bubble").innerHTML=""
+      document.getElementById("word").innerHTML=""
+    document.getElementById("drawplot").innerHTML="Treemap<span class='caret'></span>"
+    }
+function bubble_select() 
+    {
+        
+     $("#chord_plot").removeClass('active')
+     $("#treemap_plot").removeClass('active')
+     $("#wc_plot").removeClass('active')
+      document.getElementById("chord").innerHTML=""
+      document.getElementById("treemap").innerHTML=""
+      document.getElementById("word").innerHTML=""
+    document.getElementById("drawplot").innerHTML="Bubble<span class='caret'></span>"
+    }
+function word_cloud_select() 
+    {
+      document.getElementById("chord").innerHTML=""
+      document.getElementById("treemap").innerHTML=""
+      document.getElementById("bubble").innerHTML=""
+     $("#chord_plot").removeClass('active')
+     $("#treemap_plot").removeClass('active')
+     $("#bubble_plot").removeClass('active')
+        loadScript("/magneto/static/js/d3.layout.cloud.js")
+    document.getElementById("drawplot").innerHTML="Word Cloud<span class='caret'></span>"
+    }
+function select_all() 
+    {
+          document.getElementById("chord").innerHTML=""
+      document.getElementById("treemap").innerHTML=""
+      document.getElementById("bubble").innerHTML=""
+      document.getElementById("word").innerHTML=""    
+     $("#chord_plot").removeClass('active')
+     $("#treemap_plot").removeClass('active')
+     $("#bubble_plot").removeClass('active')
+     $("#wc_plot").removeClass('active')
+
+      loadScript("/magneto/static/js/d3.layout.cloud.js")
+    document.getElementById("drawplot").innerHTML="Plots<span class='caret'></span>"
+    }    
+    function detailFormatter(index, row) {
+       starting_nodes={{=XML(str(starting_nodes))}}
+         values=mapping[document.getElementById("sample_sel").text]
+         protein=starting_nodes[values]
+        var html = ['<span><b> proteins involved: </b></span>'];
+        for (i = 0; i < row.proteins.length; i++) { 
+            var index= protein.indexOf(row.proteins[i].split("(")[0])
+
+            if (index!=-1)
+            {
+                html.push('<font color="red"> ' + row.proteins[i] + ' </font>');
+            }
+           
+            else
+            {
+                html.push(" "+row.proteins[i] );
+            }
+            
+        }
+        return html.join('');
+    }
+
+    function rowStyle(row) {
+        if (row.common == 1 ) { 
+            return {
+                classes: 'info'
+            };
+        }
+         if (row.common == 2 ) { 
+            return {
+                classes: 'danger'
+            };
+        }
+        return {};
+    }
+
+
+</script>

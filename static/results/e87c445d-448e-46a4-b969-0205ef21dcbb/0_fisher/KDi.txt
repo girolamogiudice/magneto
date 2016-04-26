@@ -1,0 +1,5 @@
+H01216	4.51712761501e-07	Left ventricular noncompaction (LVNC)	P45379 O75112 P12883
+H00703	0.00276570525483	Myosin storage myopathy (MSM); Hyaline body myopathy	P12883
+H00594	1.54321580704e-06	Distal muscular dystrophies, including: Welander distal myopathy (WDM); Tibial muscular dystrophy (TMD); Nonaka distal myopathy with rimmed vacuoles (DMRV); Miyoshi myopathy (MM); Laing myopathy (MPD1); Distal nebulin myopathy (DNM); Distal desminopathy (MFM1); alpha-B Crystallinopathy (MFM2); Distal myotilinopathy (MFM3); Distal zaspopathy (MFM4); Distal myopathy 3 (MPD2, VCPDM)	Q8WZ42 O75112 P12883
+H00294	4.43651083284e-11	Dilated cardiomyopathy (DCM)	Q8WZ42 P45379 O75112 Q5T481 Q0ZGT2 P12883
+H00292	4.65886242133e-06	Hypertrophic cardiomyopathy (HCM)	Q8WZ42 P45379 P12883

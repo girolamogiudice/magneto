@@ -1,0 +1,118 @@
+GO:0002376	1.70874409669e-05	immune system process	Q9NYK1 Q9NR97 Q9NR96 Q5VWK5 O00206
+GO:0051770	4.97372810684e-08	positive regulation of nitric-oxide synthase biosynthetic process	Q9NR96 P78556 O00206
+GO:0000187	4.13161327456e-05	activation of MAPK activity	P01584 P01375 O00206
+GO:0002548	1.70076739218e-06	monocyte chemotaxis	P08887 P05231 P78556
+GO:0045893	1.18599339777e-06	positive regulation of transcription, DNA-templated	P22301 P05231 P01584 P01137 P01375 Q9BZS1
+GO:0042493	1.72119102667e-06	response to drug	P22301 Q02127 P05231 P01584 P01137
+GO:0042517	8.5640979487e-07	positive regulation of tyrosine phosphorylation of Stat3 protein	P08887 P05231 Q5VWK5
+GO:0042742	6.21873470261e-10	defense response to bacterium	P22301 Q9NR96 P01375 P78556 P01574 O00206
+GO:0032689	7.76414511815e-07	negative regulation of interferon-gamma production	P22301 Q9BZS1 O00206
+GO:0045078	3.82738980743e-08	positive regulation of interferon-gamma biosynthetic process	Q9NYK1 Q9NR97 Q9NR96
+GO:0032700	3.82738980743e-08	negative regulation of interleukin-17 production	P01137 Q9BZS1 O00206
+GO:0007252	3.82738980743e-08	I-kappaB phosphorylation	Q9NYK1 Q9NR96 O00206
+GO:0071222	6.35966364471e-13	cellular response to lipopolysaccharide	P22301 P51681 P05231 P01584 P01375 P78556 O00206
+GO:0002513	9.8515975124e-07	tolerance induction to self antigen	P01137 Q9BZS1
+GO:0045066	9.8515975124e-07	regulatory T cell differentiation	P01137 Q9BZS1
+GO:0033092	9.8515975124e-07	positive regulation of immature T cell proliferation in thymus	P01584 Q9BZS1
+GO:0002439	9.8515975124e-07	chronic inflammatory response to antigenic stimulus	P01584 P01375
+GO:0032800	9.8515975124e-07	receptor biosynthetic process	P22301 P01375
+GO:0060559	9.8515975124e-07	positive regulation of calcidiol 1-monooxygenase activity	P01584 P01375
+GO:0046330	8.81032981697e-08	positive regulation of JNK cascade	P01584 Q9NR96 P01375 O00206
+GO:0045599	2.2764136094e-06	negative regulation of fat cell differentiation	P05231 P01137 P01375
+GO:0010888	1.1796812915e-05	negative regulation of lipid storage	P05231 P01375
+GO:0045080	1.1796812915e-05	positive regulation of chemokine biosynthetic process	P01584 P01375
+GO:0031622	1.1796812915e-05	positive regulation of fever generation	P01584 P01375
+GO:0045348	1.1796812915e-05	positive regulation of MHC class II biosynthetic process	P22301 O00206
+GO:0071223	1.1796812915e-05	cellular response to lipoteichoic acid	P78556 O00206
+GO:0070102	1.1796812915e-05	interleukin-6-mediated signaling pathway	P08887 P05231
+GO:0032693	2.16045173316e-05	negative regulation of interleukin-10 production	Q9BZS1 Q5VWK5
+GO:0051044	3.43343164323e-05	positive regulation of membrane protein ectodomain proteolysis	P01584 P01375
+GO:0002407	3.43343164323e-05	dendritic cell chemotaxis	P51681 P51684
+GO:0050830	3.57000705163e-06	defense response to Gram-positive bacterium	P08887 P05231 P01375
+GO:0042110	3.57000705163e-06	T cell activation	P05231 P01137 Q9BZS1
+GO:0007267	1.48313311717e-05	cell-cell signaling	P22301 P51681 P01584 P78556
+GO:0032757	3.34588457617e-12	positive regulation of interleukin-8 production	Q9NYK1 P01584 Q9NR96 P01375 O00206
+GO:0002690	4.99768688524e-05	positive regulation of leukocyte chemotaxis	P08887 P05231
+GO:0042832	4.99768688524e-05	defense response to protozoan	P22301 P05231
+GO:0002224	6.03001417599e-07	toll-like receptor signaling pathway	Q9NYK1 Q9NR97 Q9NR96 O00206
+GO:0070098	1.98485284231e-07	chemokine-mediated signaling pathway	P51681 O00421 P51684 P78556
+GO:0032725	2.08924455086e-08	positive regulation of granulocyte macrophage colony-stimulating factor production	P01584 Q9NR96 Q5VWK5
+GO:0045359	3.07238984352e-12	positive regulation of interferon-beta biosynthetic process	Q9NYK1 Q9NR97 Q9NR96 O00206
+GO:0032717	6.10053755955e-09	negative regulation of interleukin-8 production	P22301 P08887 Q9NR96
+GO:0033280	6.85228544088e-05	response to vitamin D	P01584 P01137
+GO:0006935	3.63193371835e-06	chemotaxis	P51681 O00421 P51684 P78556
+GO:0042130	1.45329084466e-06	negative regulation of T cell proliferation	P22301 P01137 Q9BZS1
+GO:0032715	1.39667807551e-12	negative regulation of interleukin-6 production	P22301 Q9NR96 P01375 Q9BZS1 O00206
+GO:0050707	1.18077974227e-07	regulation of cytokine secretion	Q9NR97 Q9NR96 O00206
+GO:0045356	6.97994636243e-10	positive regulation of interferon-alpha biosynthetic process	Q9NYK1 Q9NR97 Q9NR96
+GO:0032966	1.47407930335e-05	negative regulation of collagen biosynthetic process	P08887 P05231
+GO:0051607	4.39723814037e-06	defense response to virus	Q9NYK1 P05231 Q9NR97 P01574
+GO:0042060	4.19950928579e-07	wound healing	P05231 P01584 P01137 P78556
+GO:0043065	2.07750366622e-06	positive regulation of apoptotic process	Q02127 P05231 P01584 P01137 P01375
+GO:0010628	3.36899335815e-10	positive regulation of gene expression	P05231 P01584 P01137 Q9NR96 P01375 Q9BZS1 O00206
+GO:0043122	2.97669499446e-05	regulation of I-kappaB kinase/NF-kappaB signaling	P01584 P01375
+GO:0031000	2.97669499446e-05	response to caffeine	Q02127 P05231
+GO:0050777	2.97669499446e-05	negative regulation of immune response	P01137 Q9BZS1
+GO:0032740	2.97669499446e-05	positive regulation of interleukin-17 production	P01137 Q5VWK5
+GO:0050731	2.11973416418e-05	positive regulation of peptidyl-tyrosine phosphorylation	P08887 P05231 P01137
+GO:0007568	4.0437032655e-06	aging	P22301 P05231 P01584 P01137
+GO:0032735	5.05994525798e-07	positive regulation of interleukin-12 production	Q9NR96 Q5VWK5 O00206
+GO:0032496	1.31621702455e-07	response to lipopolysaccharide	P22301 P05231 P01584 Q5VWK5 O00206
+GO:0050710	2.55235682494e-05	negative regulation of cytokine secretion	P05231 Q9BZS1
+GO:0001774	2.55235682494e-05	microglial cell activation	Q9NYK1 Q9NR97
+GO:0032722	7.21201441355e-16	positive regulation of chemokine production	Q9NYK1 P08887 P05231 Q9NR96 P01375 O00206
+GO:0044130	4.44396212089e-05	negative regulation of growth of symbiont in host	P22301 P01375
+GO:0032729	1.06858575956e-08	positive regulation of interferon-gamma production	P01584 P01375 Q5VWK5 O00206
+GO:0006955	4.47554718885e-10	immune response	P22301 P51681 Q9NYK1 P51684 P05231 P01584 P01375 P78556 O00206
+GO:0007565	3.14874857965e-05	female pregnancy	Q02127 P01137 Q86V24
+GO:0031663	3.55670120904e-09	lipopolysaccharide-mediated signaling pathway	P01584 P01137 P01375 O00206
+GO:0000165	1.98303356115e-05	MAPK cascade	P51681 P01584 P01137 P01375
+GO:0034116	1.80101434248e-05	positive regulation of heterotypic cell-cell adhesion	P01584 P01375
+GO:0002262	1.80101434248e-05	myeloid cell homeostasis	P05231 Q9BZS1
+GO:0070723	1.80101434248e-05	response to cholesterol	P51681 P01137
+GO:0002446	1.80101434248e-05	neutrophil mediated immunity	P08887 P05231
+GO:0002384	3.28502960123e-07	hepatic immune response	P08887 P05231
+GO:0050995	3.92253220053e-05	negative regulation of lipid catabolic process	P01584 P01375
+GO:0043123	3.03882608001e-06	positive regulation of I-kappaB kinase/NF-kappaB signaling	P01584 Q9NR96 P01375 O00206
+GO:0071407	1.73137106325e-05	cellular response to organic cyclic compound	P01584 P01137 P01375
+GO:0001932	3.36127561478e-06	regulation of protein phosphorylation	Q9NYK1 Q9NR97 P01375
+GO:0032720	1.57380401343e-06	negative regulation of tumor necrosis factor production	P22301 Q9BZS1 O00206
+GO:0031334	6.20188299934e-05	positive regulation of protein complex assembly	P01137 P01375
+GO:0032874	6.20188299934e-05	positive regulation of stress-activated MAPK cascade	P01584 O00206
+GO:0032733	6.20188299934e-05	positive regulation of interleukin-10 production	Q9NR96 O00206
+GO:0002740	4.92056577279e-06	negative regulation of cytokine secretion involved in immune response	P22301 P01375
+GO:0060664	4.92056577279e-06	epithelial cell proliferation involved in salivary gland morphogenesis	P05231 P01375
+GO:1903140	4.92056577279e-06	regulation of establishment of endothelial barrier	P01584 P01375
+GO:0097191	3.65276753616e-08	extrinsic apoptotic signaling pathway	P08887 P01137 P01375 O00206
+GO:0045944	2.60781026622e-09	positive regulation of transcription from RNA polymerase II promoter	P22301 P05231 P01584 P01137 Q9NR96 P01375 Q9BZS1 P01574 O00206
+GO:0050729	1.24175191726e-05	positive regulation of inflammatory response	Q9NYK1 Q9NR96 O00206
+GO:0034162	1.19382263912e-05	toll-like receptor 9 signaling pathway	Q9NYK1 Q9NR97 Q9NR96
+GO:0051384	2.48048730026e-07	response to glucocorticoid	P22301 P05231 P01584 P01375
+GO:0051091	3.74186097085e-07	positive regulation of sequence-specific DNA binding transcription factor activity	P22301 P05231 P01584 P01375
+GO:0032755	7.72250255474e-16	positive regulation of interleukin-6 production	Q9NYK1 P08887 P05231 P01584 Q9NR96 P01375 O00206
+GO:0006954	1.00924523889e-20	inflammatory response	P22301 P51681 O00421 Q9NYK1 P05231 P01584 Q9NR97 P01137 Q9NR96 P01375 P78556 Q5VWK5 O00206
+GO:0071260	1.41991718511e-07	cellular response to mechanical stimulus	Q9NYK1 P01584 Q9NR97 O00206
+GO:0030730	1.96962150792e-06	sequestering of triglyceride	P01584 P01375
+GO:0014070	2.64360346773e-06	response to organic cyclic compound	Q02127 P05231 P01584 P01137
+GO:0048661	6.14647389929e-06	positive regulation of smooth muscle cell proliferation	P08887 P05231 P01375
+GO:0045429	1.17499708183e-08	positive regulation of nitric oxide biosynthetic process	P05231 P01584 P01375 O00206
+GO:0007165	2.00897685993e-05	signal transduction	P51681 O00421 Q9NYK1 P51684 P01584 Q9NR97 Q9NR96 P78556 O00206
+GO:0042346	1.09346029375e-12	positive regulation of NF-kappaB import into nucleus	Q9NYK1 P01584 Q9NR96 P01375 O00206
+GO:0033138	9.72430574369e-06	positive regulation of peptidyl-serine phosphorylation	P05231 P01137 P01375
+GO:0009615	7.1408176776e-07	response to virus	Q9NR97 P01375 Q9BZS1 P01574
+GO:0002755	2.58974505278e-07	MyD88-dependent toll-like receptor signaling pathway	Q9NYK1 Q9NR97 Q9NR96 O00206
+GO:0042102	6.45656809124e-06	positive regulation of T cell proliferation	P05231 P01584 Q5VWK5
+GO:0007204	6.09003305752e-05	positive regulation of cytosolic calcium ion concentration	P51681 P51684 P01584
+GO:0007249	5.84639541344e-06	I-kappaB kinase/NF-kappaB signaling	Q9NR97 P01375 O00206
+GO:0045416	6.14244223608e-12	positive regulation of interleukin-8 biosynthetic process	Q9NYK1 Q9NR97 P01375 O00206
+GO:0070374	4.51123993822e-08	positive regulation of ERK1 and ERK2 cascade	P05231 P01584 P01375 P78556 O00206
+GO:0006959	5.8134899896e-08	humoral immune response	P51684 P05231 P01375 P01574
+GO:0043507	1.12880157471e-06	positive regulation of JUN kinase activity	P01584 Q9NR96 P01375
+GO:0043491	1.12880157471e-06	protein kinase B signaling	P01584 P01137 P01375
+GO:0071549	5.66499903662e-07	cellular response to dexamethasone stimulus	P05231 P01137 P01574
+GO:0035066	1.97730114335e-07	positive regulation of histone acetylation	P01584 P01137 Q9BZS1
+GO:0045087	6.1007908801e-08	innate immune response	Q9NYK1 P51684 P01584 Q9NR97 Q9NR96 P01574 Q5VWK5 O00206
+GO:0050829	4.54758535923e-09	defense response to Gram-negative bacterium	P08887 P05231 Q5VWK5 O00206
+GO:0045591	6.8863518674e-06	positive regulation of regulatory T cell differentiation	P01137 Q9BZS1
+GO:0051897	1.67160540949e-05	positive regulation of protein kinase B signaling	P05231 P01137 P01375
+GO:0051092	2.42113244982e-08	positive regulation of NF-kappaB transcription factor activity	P01584 P01137 Q9NR96 P01375 O00206

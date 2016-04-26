@@ -1,0 +1,2 @@
+[[0, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
+{'P42336': {'description': 'PIK3CA', 'id': 1, 'descr': 'P', 'name': 'P42336(PIK3CA)'}, 'P27986': {'description': 'PIK3R1', 'id': 2, 'descr': 'P', 'name': 'P27986(PIK3R1)'}, 'P53350': {'description': 'PLK1', 'id': 3, 'descr': 'P', 'name': 'P53350(PLK1)'}, 'DB08059': {'description': '(1S,6BR,9AS,11R,11BR)-9A,11B-DIMETHYL-1-[(METHYLOXY)METHYL]-3,6,9-TRIOXO-1,6,6B,7,8,9,9A,10,11,11B-DECAHYDRO-3H-FURO[4,3,2-DE]INDENO[4,5-H][2]BENZOPYRAN-11-YL ACETATE', 'id': 0, 'name': 'DB08059'}}

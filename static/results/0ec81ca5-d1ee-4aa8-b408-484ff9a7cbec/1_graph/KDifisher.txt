@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+H00773	0.00126334035493	2	Autosomal dominant mental retardation	Q14204(DYNC1H1) Q13627(DYRK1A)

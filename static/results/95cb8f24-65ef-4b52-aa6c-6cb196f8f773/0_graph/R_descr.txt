@@ -1,0 +1,9 @@
+R-HSA-1059683	Interleukin-6 signaling
+R-HSA-5357786	TNFR1-induced proapoptotic signaling
+R-HSA-5602571	TRAF3 deficiency - HSE
+R-HSA-5357905	Regulation of TNFR1 signaling
+R-HSA-140534	Ligand-dependent caspase activation
+R-HSA-5357956	TNFR1-induced NFkappaB signaling pathway
+R-HSA-1227986	Signaling by ERBB2
+R-HSA-75893	TNF signaling
+R-HSA-5626978	TNFR1-mediated ceramide production

@@ -1,0 +1,43 @@
+{{left_sidebar_enabled=False}}
+{{right_sidebar_enabled=False}}
+{{extend 'layout.html'}}
+<style>
+circle.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+line.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+#input_net_topology_ranking
+    {
+            height: 114px;
+    }
+</style>
+{{=form}}
+
+<script>
+document.getElementById("input_net_topology_ranking").disabled = true;
+   console.log(document.getElementById("input_net_topology_ranking").value)
+var score={0:"bwmod",1:"degree",2:"bw",3:"pagerank"}
+function addtext() {
+    var values= parseInt(document.getElementById('input_net_score').value)
+    if (score[values]!==undefined )
+    {
+    document.getElementById("input_net_topology_ranking").value += score[values]+"\n";
+    document.getElementById('input_net_score').options[values+1].disabled=true;
+    document.getElementById('input_net_score').value="none";
+    }
+}
+function removetext() {
+document.getElementById('input_net_topology_ranking').value='';
+document.getElementById('input_net_score').options[0].disabled=false;
+document.getElementById('input_net_score').options[1].disabled=false;
+document.getElementById('input_net_score').options[2].disabled=false;
+document.getElementById('input_net_score').options[3].disabled=false;
+}
+</script>
+<script src="{{=URL('static','js/d3.min.js')}}"></script>
+<script src="{{=URL('static','js/logo.js')}}"></script>

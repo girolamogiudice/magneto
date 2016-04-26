@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+H00656	0.00030259768717	2	Scapuloperoneal myopathy (SPM)	Q13642(FHL1) P12883(MYH7)

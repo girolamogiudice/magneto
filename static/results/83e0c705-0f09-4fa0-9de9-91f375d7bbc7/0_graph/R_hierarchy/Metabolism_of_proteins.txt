@@ -1,0 +1,1 @@
+R-HSA-3232118	0.00236868350153	SUMOylation of transcription factors	Q12888 Q00987 P04637

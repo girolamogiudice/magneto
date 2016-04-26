@@ -1,0 +1,21 @@
+208293	Bovine papillomavirus type 1
+282329	Chikungunya virus
+568819	Human papillomavirus type 16
+568838	Human papillomavirus type 18
+23854	Adeno-associated virus 2
+374253	Dengue virus type 2
+440185	Epstein-Barr virus
+1079863	Shigella flexneri
+1045383	Saccharomyces cerevisiae
+568590	Human herpesvirus 1
+771931	Murid herpesvirus 4
+1083004	Simian immunodeficiency virus agm.grivet
+554407	Hepatitis C virus subtype 1b
+554356	Hepatitis C virus genotype 1b
+1128359	Streptococcus pyogenes serotype M1
+554359	Hepatitis C virus genotype 2a
+568652	Human immunodeficiency virus type 1 group M subtype D
+568650	Human immunodeficiency virus type 1 group M subtype B
+568611	Human immunodeficiency virus 1
+772043	Murine minute virus
+568696	Human mastadenovirus A

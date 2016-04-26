@@ -1,0 +1,1 @@
+[{'text': 'monohydrate', 'size': 3.7536476465637065}, {'text': 'saracatinib', 'size': 4.3322430923611357}, {'text': 'difumarate', 'size': 17.122210234112572}, {'text': 'bosutinib', 'size': 7.7769020016810515}, {'text': 'bosulif', 'size': 16.023691144207262}, {'text': 'hydrate', 'size': 8.4699618116719648}]

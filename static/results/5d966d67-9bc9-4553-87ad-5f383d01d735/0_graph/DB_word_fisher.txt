@@ -1,0 +1,1 @@
+[{'text': 'olomoucine', 'size': 3.0166974020175985}, {'text': "indirubin-3'-monoxime", 'size': 7.8862223759153194}]

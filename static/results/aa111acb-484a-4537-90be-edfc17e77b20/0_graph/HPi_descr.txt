@@ -1,0 +1,13 @@
+554329	Hepatitis B virus genotype D subtype ayw
+772089	Murine polyomavirus
+1084136	Sindbis virus
+602263	Influenza A virus
+1082987	Simian immunodeficiency virus
+568611	Human immunodeficiency virus 1
+446562	Escherichia coli
+970170	Pseudomonas aeruginosa
+568606	Human herpesvirus 8
+568609	Human herpesvirus 8 type P
+568819	Human papillomavirus type 16
+440185	Epstein-Barr virus
+1079863	Shigella flexneri

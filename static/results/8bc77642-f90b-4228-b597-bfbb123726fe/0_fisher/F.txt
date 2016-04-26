@@ -1,0 +1,1 @@
+GO:0004946	0.000500960165879	bombesin receptor activity	P28336

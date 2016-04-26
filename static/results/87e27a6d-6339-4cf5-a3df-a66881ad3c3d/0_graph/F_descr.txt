@@ -1,0 +1,89 @@
+GO:0050681	androgen receptor binding
+GO:0001077	transcriptional activator activity, RNA polymerase II core promoter proximal region sequence-specific binding
+GO:0044325	ion channel binding
+GO:0070840	dynein complex binding
+GO:0003714	transcription corepressor activity
+GO:0003713	transcription coactivator activity
+GO:0016740	transferase activity
+GO:0043125	ErbB-3 class receptor binding
+GO:0046872	metal ion binding
+GO:0046875	ephrin receptor binding
+GO:0051117	ATPase binding
+GO:0051059	NF-kappaB binding
+GO:0019901	protein kinase binding
+GO:0019900	kinase binding
+GO:0019903	protein phosphatase binding
+GO:0019904	protein domain specific binding
+GO:0050839	cell adhesion molecule binding
+GO:0044212	transcription regulatory region DNA binding
+GO:0030618	transforming growth factor beta receptor, pathway-specific cytoplasmic mediator activity
+GO:0001618	virus receptor activity
+GO:0043130	ubiquitin binding
+GO:0051787	misfolded protein binding
+GO:0042393	histone binding
+GO:0031072	heat shock protein binding
+GO:0048487	beta-tubulin binding
+GO:0043425	bHLH transcription factor binding
+GO:0043548	phosphatidylinositol 3-kinase binding
+GO:0030971	receptor tyrosine kinase binding
+GO:0042826	histone deacetylase binding
+GO:0008017	microtubule binding
+GO:0016301	kinase activity
+GO:0035257	nuclear hormone receptor binding
+GO:0035255	ionotropic glutamate receptor binding
+GO:0008013	beta-catenin binding
+GO:0001085	RNA polymerase II transcription factor binding
+GO:0030674	protein binding, bridging
+GO:0046332	SMAD binding
+GO:0048365	Rac GTPase binding
+GO:0000977	RNA polymerase II regulatory region sequence-specific DNA binding
+GO:0000978	RNA polymerase II core promoter proximal region sequence-specific DNA binding
+GO:0046982	protein heterodimerization activity
+GO:0008022	protein C-terminus binding
+GO:0033613	activating transcription factor binding
+GO:0032041	NAD-dependent histone deacetylase activity (H3-K14 specific)
+GO:0003954	NADH dehydrogenase activity
+GO:0001948	glycoprotein binding
+GO:0043560	insulin receptor substrate binding
+GO:0016829	lyase activity
+GO:0051087	chaperone binding
+GO:0051082	unfolded protein binding
+GO:0002020	protease binding
+GO:0005080	protein kinase C binding
+GO:0032403	protein complex binding
+GO:0003690	double-stranded DNA binding
+GO:0003697	single-stranded DNA binding
+GO:0042802	identical protein binding
+GO:0051019	mitogen-activated protein kinase binding
+GO:0008137	NADH dehydrogenase (ubiquinone) activity
+GO:0008134	transcription factor binding
+GO:0035326	enhancer binding
+GO:0001102	RNA polymerase II activating transcription factor binding
+GO:0001103	RNA polymerase II repressing transcription factor binding
+GO:0031625	ubiquitin protein ligase binding
+GO:0047485	protein N-terminus binding
+GO:0001228	transcriptional activator activity, RNA polymerase II transcription regulatory region sequence-specific binding
+GO:0016651	oxidoreductase activity, acting on NAD(P)H
+GO:0003682	chromatin binding
+GO:0002039	p53 binding
+GO:0003684	damaged DNA binding
+GO:0005168	neurotrophin TRKA receptor binding
+GO:0004175	endopeptidase activity
+GO:0008121	ubiquinol-cytochrome-c reductase activity
+GO:0008035	high-density lipoprotein particle binding
+GO:0017127	cholesterol transporter activity
+GO:0070491	repressing transcription factor binding
+GO:1990381	ubiquitin-specific protease binding
+GO:0004674	protein serine/threonine kinase activity
+GO:0070412	R-SMAD binding
+GO:0042162	telomeric DNA binding
+GO:0044822	poly(A) RNA binding
+GO:0005178	integrin binding
+GO:0019213	deacetylase activity
+GO:0031210	phosphatidylcholine binding
+GO:0001047	core promoter binding
+GO:0034185	apolipoprotein binding
+GO:0050998	nitric-oxide synthase binding
+GO:0031996	thioesterase binding
+GO:0070653	high-density lipoprotein particle receptor binding
+GO:0016504	peptidase activator activity

@@ -1,0 +1,1 @@
+[{'text': 'spastic', 'size': 5.4754754880205443}, {'text': 'syndrome', 'size': 3.0845166575727516}, {'text': 'intellectual', 'size': 6.4984496115707833}, {'text': 'pilomatrixoma', 'size': 3.0382646908160673}, {'text': 'severe', 'size': 7.1912619800132234}, {'text': 'spinocerebellar', 'size': 3.068849974693836}, {'text': 'ataxia', 'size': 3.7358965247043154}]

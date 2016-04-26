@@ -1,0 +1,8 @@
+R-HSA-5339716	0.00226371345461	Misspliced GSK3beta mutants stabilize beta-catenin	P25054 P49841
+R-HSA-5467340	0.00226371345461	AXIN missense mutants destabilize the destruction complex	P25054 P49841
+R-HSA-5467348	0.00226371345461	Truncations of AMER1 destabilize the destruction complex	P25054 P49841
+R-HSA-5467337	0.00226371345461	APC truncation mutants have impaired AXIN binding	P25054 P49841
+R-HSA-5358752	0.00260602066933	T41 mutants of beta-catenin aren't phosphorylated	P25054 P49841
+R-HSA-5358751	0.00260602066933	S45 mutants of beta-catenin aren't phosphorylated	P25054 P49841
+R-HSA-5358747	0.00260602066933	S33 mutants of beta-catenin aren't phosphorylated	P25054 P49841
+R-HSA-5358749	0.00260602066933	S37 mutants of beta-catenin aren't phosphorylated	P25054 P49841

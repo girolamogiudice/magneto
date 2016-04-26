@@ -1,0 +1,1 @@
+R-HSA-140534	0.00205686571516	Ligand-dependent caspase activation	O00206 Q86XR7 Q12933 Q14790

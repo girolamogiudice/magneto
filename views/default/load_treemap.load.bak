@@ -1,0 +1,160 @@
+<style>
+
+    #treemap{
+        text-align: -webkit-center;
+    }
+    .node {
+    border: solid 1px white;
+    line-height: 0.95;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 6px;
+    background-image: -webkit-linear-gradient(top, hsla(0,0%,100%,.3), hsla(0,0%,100%,0));
+    background-image:    -moz-linear-gradient(top, hsla(0,0%,100%,.3), hsla(0,0%,100%,0));
+    background-image:     -ms-linear-gradient(top, hsla(0,0%,100%,.3), hsla(0,0%,100%,0));
+    background-image:      -o-linear-gradient(top, hsla(0,0%,100%,.3), hsla(0,0%,100%,0));
+    background-image:         linear-gradient(top, hsla(0,0%,100%,.3), hsla(0,0%,100%,0)); 
+    text-shadow: -1px -1px 2px hsla(0,0%,100%,0.25),
+        -1px -1px 2px hsla(0,0%,100%,0.25),
+        -1px 1px 2px hsla(0,0%,100%,0.25),
+        1px -1px 2px hsla(0,0%,100%,0.25),
+        -1px 0px 2px hsla(0,0%,100%,0.25),
+        1px 0px 2px hsla(0,0%,100%,0.25);
+}
+
+
+</style>
+   <div class="panel panel-primary">
+      <div class="panel-heading">Treemap Plot</div>
+      <div class="panel-body">
+
+    <div id="chart">Order By:
+      <button id="Amount" class="first active btn-primary">IC</button>
+      <button id="Relative" class="last btn-primary">P value</button>
+      <button id="number" class="last btn-primary">Protein Involved</button><br><br>
+        <div id="_treemap">
+          
+          </div>
+    </div>
+       </div></div>
+<script>
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("color", "white")
+    .style("padding", "8px")
+    .style("background-color", "rgba(0, 0, 0, 0.75)")
+    .style("border-radius", "6px")
+    .style("font", "12px sans-serif")
+    .text("tooltip");
+    
+var margin = {top: 0, right: 0, bottom: 0, left: 0},
+    width = 900
+    height = 800
+
+var color = d3.scale.category10();
+
+var div = d3.select("#_treemap").append("div")
+    .style("position", "relative")
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
+
+var treemap = d3.layout.treemap()
+    .size([width, height])
+    .value(function(d) {return d.ic; });
+
+d3.tsv('{{=path}}', function(err, data) {
+
+  var root = { "id": "","ic":"" , "p_value":"","proteins_involved":"","color":"white","children": data,"description":"","proteins":""};
+   
+  var node = div.datum(root).selectAll(".node")
+      .data(treemap.nodes)
+    .enter().append("div")
+      .attr("class", "node")
+      .call(position) 
+       .style("background-color", function(d) {return  d.id == '' ? '#fff' : color(d.ic)})
+          .on("mouseover", function(d) { tooltip.html(d.id + ": " + d.description+"<br>protein involved: "+d.proteins);
+        tooltip.style("visibility", "visible");
+    })
+        .on("mousemove", function() {
+          return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+      })
+    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+    
+       node.selectAll("text").remove()
+        node.append("text")    .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
+      .html(function(d) { if (d.id!="") {return (d.id+"<br>"+"I.C.: " +d.ic.substring(0,5))}
+      
+        })
+                        
+
+             
+     
+    d3.select("#Amount").on("click", function() {
+    div.selectAll("div")
+     .data(treemap.value(function(d) { return  d.ic; }))
+      
+      .transition()
+        .duration(1500)
+        .call(position);
+       node.selectAll("text").remove()
+        node.append("text")
+         .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
+      .html(function(d) { if (d.id!="") {return (d.id+"<br>"+"I.C.: " +d.ic.substring(0,5))}})
+     
+        
+    d3.select("#Amount").classed("active", true);
+    d3.select("#Relative").classed("active", false);
+    d3.select("#number").classed("active", false);
+  });
+
+  d3.select("#Relative").on("click", function() {
+    div.selectAll("div")
+        .data(treemap.value(function(d) {return Math.abs(Math.log10(d.p_value)); }))
+      .transition()
+        .duration(1500)
+        .call(position);
+
+             node.selectAll("text").remove()
+        node.append("text")
+        .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
+      .html(function(d) { if (d.id!="") { console.log(d.p_value)
+            return (d.id+"<br>"+"P-Value: " +d.p_value.substring(-4))}})
+      
+    d3.select("#Amount").classed("active", false);
+    d3.select("#Relative").classed("active", true);
+    d3.select("#number").classed("active", false);
+  });
+     
+    d3.select("#number").on("click", function() {
+    div.selectAll("div")
+        .data(treemap.value(function(d)  {  return d.proteins_involved; }))
+      .transition()
+        .duration(1500)
+        .call(position);
+       node.selectAll("text").remove()
+        node.append("text")
+              .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
+      .html(function(d) {  if (d.id!="") {return (d.id+"<br>"+"Protein Involved: " +d.proteins_involved)}})
+
+        
+    d3.select("#Amount").classed("active", false);
+    d3.select("#Relative").classed("active", false);
+    d3.select("#number").classed("active", true);
+  });
+    
+
+
+});
+
+function position() {
+  this.style("left", function(d) { return d.x + "px"; })
+      .style("top", function(d) { return d.y + "px"; })
+      .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
+      .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
+}
+</script>

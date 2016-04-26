@@ -1,0 +1,1 @@
+R-HSA-381340	0.00356929967794	Transcriptional regulation of white adipocyte differentiation	P06858 Q07869 P37231

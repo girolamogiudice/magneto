@@ -1,0 +1,9 @@
+id	p_value	ic	proteins_involved	description	proteins
+R-HSA-5358752	9.75790858564e-06	3	T41 mutants of beta-catenin aren't phosphorylated	P25054(APC) P35222(CTNNB1) P49841(GSK3B)
+R-HSA-5358751	9.75790858564e-06	3	S45 mutants of beta-catenin aren't phosphorylated	P25054(APC) P35222(CTNNB1) P49841(GSK3B)
+R-HSA-182971	5.45899122747e-05	3	EGFR downregulation	P22681(CBL) Q15262(PTPRK) P0CG48(UBC)
+R-HSA-5358747	9.75790858564e-06	3	S33 mutants of beta-catenin aren't phosphorylated	P25054(APC) P35222(CTNNB1) P49841(GSK3B)
+R-HSA-5358749	9.75790858564e-06	3	S37 mutants of beta-catenin aren't phosphorylated	P25054(APC) P35222(CTNNB1) P49841(GSK3B)
+R-HSA-111465	1.73990015773e-05	3	Apoptotic cleavage of cellular proteins	P25054(APC) Q13490(BIRC2) P42574(CASP3)
+R-HSA-3769402	5.85625102755e-06	4	Deactivation of the beta-catenin transactivating complex	P25054(APC) P35222(CTNNB1) P0CG48(UBC) O14980(XPO1)
+R-HSA-4641262	9.3472812983e-05	3	Disassembly of the destruction complex and recruitment of AXIN to the membrane	P25054(APC) P35222(CTNNB1) P49841(GSK3B)

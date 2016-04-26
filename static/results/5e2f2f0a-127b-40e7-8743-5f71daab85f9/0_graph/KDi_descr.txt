@@ -1,0 +1,6 @@
+H00026	Endometrial Cancer
+H00042	Glioma
+H00013	Small cell lung cancer
+H00031	Breast cancer
+H00030	Cervical cancer
+H00048	Hepatocellular carcinoma

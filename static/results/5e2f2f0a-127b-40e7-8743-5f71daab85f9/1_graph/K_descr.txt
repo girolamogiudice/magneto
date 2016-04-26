@@ -1,0 +1,5 @@
+hsa05205	Proteoglycans in cancer
+hsa05213	Endometrial cancer
+hsa05210	Colorectal cancer
+hsa05200	Pathways in cancer
+hsa04510	Focal adhesion

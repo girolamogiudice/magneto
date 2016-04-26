@@ -1,0 +1,10 @@
+Name: intact
+Type: Graph
+Number of nodes: 14625
+Number of edges: 101068
+Average degree:  13.8213
+Name: Final Network
+Type: Graph
+Number of nodes: 116
+Number of edges: 348
+Average degree:   6.0000

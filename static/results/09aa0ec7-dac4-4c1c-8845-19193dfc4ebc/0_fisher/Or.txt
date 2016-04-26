@@ -1,0 +1,6 @@
+319269	0.00076266015863	Susceptibility/resistance to HIV infection	P51681
+1328	0.00152479679184	CAMURATI-ENGELMANN DISEASE	P01137
+117	3.6105876593e-06	Behcet disease	P22301 Q5VWK5 O00206
+37042	0.0022864102192	Immune dysregulation-polyendocrinopathy-enteropathy-X-linked syndrome	Q9BZS1
+246	0.00380806873301	Postaxial acrofacial dysostosis	Q02127
+93686	0.00380806873301	Multicentric Castleman disease	P08887

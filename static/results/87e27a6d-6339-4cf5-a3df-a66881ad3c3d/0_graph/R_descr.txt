@@ -1,0 +1,78 @@
+R-HSA-445144	Signal transduction by L1
+R-HSA-933542	TRAF6 mediated NF-kB activation
+R-HSA-418885	DCC mediated attractive signaling
+R-HSA-69601	Ubiquitin Mediated Degradation of Phosphorylated Cdc25A
+R-HSA-6804760	Regulation of TP53 Activity through Methylation
+R-HSA-174178	APC/C:Cdh1 mediated degradation of Cdc20 and other APC/C:Cdh1 targeted proteins in late mitosis/early G1
+R-HSA-114604	GPVI-mediated activation cascade
+R-HSA-512988	Interleukin-3, 5 and GM-CSF signaling
+R-HSA-3371511	HSF1 activation
+R-HSA-5674135	MAP2K and MAPK activation
+R-HSA-5357905	Regulation of TNFR1 signaling
+R-HSA-6804757	Regulation of TP53 Degradation
+R-HSA-75035	Chk1/Chk2(Cds1) mediated inactivation of Cyclin B:Cdk1 complex
+R-HSA-3769402	Deactivation of the beta-catenin transactivating complex
+R-HSA-380259	Loss of Nlp from mitotic centrosomes
+R-HSA-205043	NRIF signals cell death from the nucleus
+R-HSA-983231	Factors involved in megakaryocyte development and platelet production
+R-HSA-5673000	RAF activation
+R-HSA-380270	Recruitment of mitotic centrosome proteins and complexes
+R-HSA-5610783	Degradation of GLI2 by the proteasome
+R-HSA-912631	Regulation of signaling by CBL
+R-HSA-1295596	Spry regulation of FGF signaling
+R-HSA-1257604	PIP3 activates AKT signaling
+R-HSA-5610785	GLI3 is processed to GLI3R by the proteasome
+R-HSA-6799198	Complex I biogenesis
+R-HSA-156711	Polo-like kinase mediated events
+R-HSA-937041	IKK complex recruitment mediated by RIP1
+R-HSA-5685942	HDR through Homologous Recombination (HRR)
+R-HSA-69541	Stabilization of p53
+R-HSA-5637810	Constitutive Signaling by EGFRvIII
+R-HSA-380284	Loss of proteins required for interphase microtubule organization from the centrosome
+R-HSA-209560	NF-kB is activated and signals survival
+R-HSA-8852276	The role of GTSE1 in G2/M progression after G2 checkpoint
+R-HSA-5628897	TP53 Regulates Metabolic Genes
+R-HSA-4641258	Degradation of DVL
+R-HSA-8854518	AURKA Activation by TPX2
+R-HSA-2173795	Downregulation of SMAD2/3:SMAD4 transcriptional activity
+R-HSA-975144	IRAK1 recruits IKK complex upon TLR7/8 or 9 stimulation
+R-HSA-5684264	MAP3K8 (TPL2)-dependent MAPK1/3 activation
+R-HSA-4420097	VEGFA-VEGFR2 Pathway
+R-HSA-611105	Respiratory electron transport
+R-HSA-202424	Downstream TCR signaling
+R-HSA-6804758	Regulation of TP53 Activity through Acetylation
+R-HSA-5696395	Formation of Incision Complex in GG-NER
+R-HSA-450408	AUF1 (hnRNP D0) binds and destabilizes mRNA
+R-HSA-111447	Activation of BAD and translocation to mitochondria
+R-HSA-5687128	MAPK6/MAPK4 signaling
+R-HSA-6804756	Regulation of TP53 Activity through Phosphorylation
+R-HSA-168638	NOD1/2 Signaling Pathway
+R-HSA-1433557	Signaling by SCF-KIT
+R-HSA-110312	Translesion synthesis by REV1
+R-HSA-3371453	Regulation of HSF1-mediated heat shock response
+R-HSA-445989	TAK1 activates NFkB by phosphorylation and activation of IKKs complex
+R-HSA-5620912	Anchoring of the basal body to the plasma membrane
+R-HSA-5607764	CLEC7A (Dectin-1) signaling
+R-HSA-198323	AKT phosphorylates targets in the cytosol
+R-HSA-937039	IRAK1 recruits IKK complex
+R-HSA-1236382	Constitutive Signaling by Ligand-Responsive EGFR Cancer Variants
+R-HSA-1169091	Activation of NF-kappaB in B cells
+R-HSA-349425	Autodegradation of the E3 ubiquitin ligase COP1
+R-HSA-5696394	DNA Damage Recognition in GG-NER
+R-HSA-5675221	Negative regulation of MAPK pathway
+R-HSA-174154	APC/C:Cdc20 mediated degradation of Securin
+R-HSA-1358803	Downregulation of ERBB2:ERBB3 signaling
+R-HSA-2565942	Regulation of PLK1 Activity at G2/M Transition
+R-HSA-195253	Degradation of beta-catenin by the destruction complex
+R-HSA-174048	APC/C:Cdc20 mediated degradation of Cyclin B
+R-HSA-354192	Integrin alphaIIb beta3 signaling
+R-HSA-2644606	Constitutive Signaling by NOTCH1 PEST Domain Mutants
+R-HSA-5621575	CD209 (DC-SIGN) signaling
+R-HSA-201688	WNT mediated activation of DVL
+R-HSA-5655291	Signaling by FGFR4 in disease
+R-HSA-140837	Intrinsic Pathway of Fibrin Clot Formation
+R-HSA-1227986	Signaling by ERBB2
+R-HSA-2122947	NOTCH1 Intracellular Domain Regulates Transcription
+R-HSA-2894862	Constitutive Signaling by NOTCH1 HD+PEST Domain Mutants
+R-HSA-174084	Autodegradation of Cdh1 by Cdh1:APC/C
+R-HSA-186763	Downstream signal transduction

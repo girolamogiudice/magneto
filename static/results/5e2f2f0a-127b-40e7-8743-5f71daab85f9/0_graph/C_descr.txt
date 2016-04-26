@@ -1,0 +1,77 @@
+GO:0015629	actin cytoskeleton
+GO:0005794	Golgi apparatus
+GO:0042470	melanosome
+GO:0055037	recycling endosome
+GO:0030426	growth cone
+GO:0030425	dendrite
+GO:0030424	axon
+GO:0031594	neuromuscular junction
+GO:0000783	nuclear telomere cap complex
+GO:0000785	chromatin
+GO:0014701	junctional sarcoplasmic reticulum membrane
+GO:0045202	synapse
+GO:0005925	focal adhesion
+GO:0072357	PTW/PP1 phosphatase complex
+GO:0030054	cell junction
+GO:0010008	endosome membrane
+GO:0005856	cytoskeleton
+GO:0033017	sarcoplasmic reticulum membrane
+GO:0016605	PML body
+GO:0042995	cell projection
+GO:0043204	perikaryon
+GO:0070187	telosome
+GO:0043209	myelin sheath
+GO:0005615	extracellular space
+GO:0005634	nucleus
+GO:0031410	cytoplasmic vesicle
+GO:0005739	mitochondrion
+GO:0005654	nucleoplasm
+GO:0031674	I band
+GO:0044798	nuclear transcription factor complex
+GO:0030877	beta-catenin destruction complex
+GO:0005905	coated pit
+GO:0005677	chromatin silencing complex
+GO:0043005	neuron projection
+GO:0070688	MLL5-L complex
+GO:0048471	perinuclear region of cytoplasm
+GO:0097481	neuronal postsynaptic density
+GO:0043025	neuronal cell body
+GO:0031982	vesicle
+GO:0005737	cytoplasm
+GO:0016328	lateral plasma membrane
+GO:0005730	nucleolus
+GO:0030659	cytoplasmic vesicle membrane
+GO:0031253	cell projection membrane
+GO:0045177	apical part of cell
+GO:0031252	cell leading edge
+GO:0005881	cytoplasmic microtubule
+GO:0045211	postsynaptic membrane
+GO:0000790	nuclear chromatin
+GO:0030666	endocytic vesicle membrane
+GO:0014069	postsynaptic density
+GO:0005938	cell cortex
+GO:0005911	cell-cell junction
+GO:0005886	plasma membrane
+GO:0031461	cullin-RING ubiquitin ligase complex
+GO:0016323	basolateral plasma membrane
+GO:0031464	Cul4A-RING E3 ubiquitin ligase complex
+GO:0031465	Cul4B-RING E3 ubiquitin ligase complex
+GO:0070062	extracellular exosome
+GO:0043234	protein complex
+GO:0043235	receptor complex
+GO:0043231	intracellular membrane-bounded organelle
+GO:0043197	dendritic spine
+GO:0033553	rDNA heterochromatin
+GO:0043198	dendritic shaft
+GO:0005829	cytosol
+GO:0045121	membrane raft
+GO:0016023	cytoplasmic, membrane-bounded vesicle
+GO:0016529	sarcoplasmic reticulum
+GO:0030018	Z disc
+GO:0019005	SCF ubiquitin ligase complex
+GO:0005667	transcription factor complex
+GO:0005813	centrosome
+GO:1990909	Wnt signalosome
+GO:0005768	endosome
+GO:0005769	early endosome
+GO:0000784	nuclear chromosome, telomeric region

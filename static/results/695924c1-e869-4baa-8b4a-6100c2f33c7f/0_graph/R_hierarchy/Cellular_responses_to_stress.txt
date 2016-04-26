@@ -1,0 +1,1 @@
+R-HSA-1234176	0.00429817151746	Oxygen-dependent proline hydroxylation of Hypoxia-inducible Factor Alpha	P51668 P62979 P61077 P0CG48 P62837

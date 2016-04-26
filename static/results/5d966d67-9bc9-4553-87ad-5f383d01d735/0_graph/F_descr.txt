@@ -1,0 +1,69 @@
+GO:0008022	protein C-terminus binding
+GO:0001102	RNA polymerase II activating transcription factor binding
+GO:0048306	calcium-dependent protein binding
+GO:0019901	protein kinase binding
+GO:0031072	heat shock protein binding
+GO:0005518	collagen binding
+GO:0050681	androgen receptor binding
+GO:0019899	enzyme binding
+GO:0008017	microtubule binding
+GO:0005080	protein kinase C binding
+GO:0004693	cyclin-dependent protein serine/threonine kinase activity
+GO:0044325	ion channel binding
+GO:0035326	enhancer binding
+GO:0005487	nucleocytoplasmic transporter activity
+GO:0003713	transcription coactivator activity
+GO:0001948	glycoprotein binding
+GO:0019900	kinase binding
+GO:0030544	Hsp70 protein binding
+GO:0016874	ligase activity
+GO:0051087	chaperone binding
+GO:0030971	receptor tyrosine kinase binding
+GO:0000166	nucleotide binding
+GO:0004674	protein serine/threonine kinase activity
+GO:0016740	transferase activity
+GO:0042802	identical protein binding
+GO:0000979	RNA polymerase II core promoter sequence-specific DNA binding
+GO:0002020	protease binding
+GO:0004672	protein kinase activity
+GO:0043021	ribonucleoprotein complex binding
+GO:0097110	scaffold protein binding
+GO:0003690	double-stranded DNA binding
+GO:0003725	double-stranded RNA binding
+GO:0042826	histone deacetylase binding
+GO:0044822	poly(A) RNA binding
+GO:0005524	ATP binding
+GO:0003682	chromatin binding
+GO:0016301	kinase activity
+GO:0030331	estrogen receptor binding
+GO:0042162	telomeric DNA binding
+GO:0008134	transcription factor binding
+GO:0030235	nitric-oxide synthase regulator activity
+GO:0008013	beta-catenin binding
+GO:0030374	ligand-dependent nuclear receptor transcription coactivator activity
+GO:0046332	SMAD binding
+GO:0032403	protein complex binding
+GO:0019903	protein phosphatase binding
+GO:0019902	phosphatase binding
+GO:0043274	phospholipase binding
+GO:0019904	protein domain specific binding
+GO:0001047	core promoter binding
+GO:0061630	ubiquitin protein ligase activity
+GO:0043539	protein serine/threonine kinase activator activity
+GO:0001085	RNA polymerase II transcription factor binding
+GO:0044212	transcription regulatory region DNA binding
+GO:0005178	integrin binding
+GO:0031625	ubiquitin protein ligase binding
+GO:0031996	thioesterase binding
+GO:0047485	protein N-terminus binding
+GO:0044548	S100 protein binding
+GO:0051879	Hsp90 protein binding
+GO:0051219	phosphoprotein binding
+GO:0004707	MAP kinase activity
+GO:0043130	ubiquitin binding
+GO:0051787	misfolded protein binding
+GO:0003723	RNA binding
+GO:0005102	receptor binding
+GO:0046982	protein heterodimerization activity
+GO:0004708	MAP kinase kinase activity
+GO:0023026	MHC class II protein complex binding

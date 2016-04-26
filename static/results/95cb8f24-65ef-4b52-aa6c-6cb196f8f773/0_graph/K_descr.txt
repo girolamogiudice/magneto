@@ -1,0 +1,15 @@
+hsa04380	Osteoclast differentiation
+hsa05145	Toxoplasmosis
+hsa04620	Toll-like receptor signaling pathway
+hsa05200	Pathways in cancer
+hsa04622	RIG-I-like receptor signaling pathway
+hsa04668	TNF signaling pathway
+hsa05168	Herpes simplex infection
+hsa05169	Epstein-Barr virus infection
+hsa04915	Estrogen signaling pathway
+hsa05203	Viral carcinogenesis
+hsa04064	NF-kappa B signaling pathway
+hsa05160	Hepatitis C
+hsa05161	Hepatitis B
+hsa04932	Non-alcoholic fatty liver disease (NAFLD)
+hsa04920	Adipocytokine signaling pathway

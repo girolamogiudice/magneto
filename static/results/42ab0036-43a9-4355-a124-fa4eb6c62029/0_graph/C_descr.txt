@@ -1,0 +1,66 @@
+GO:0030426	growth cone
+GO:0030425	dendrite
+GO:0005789	endoplasmic reticulum membrane
+GO:0035267	NuA4 histone acetyltransferase complex
+GO:0036488	CHOP-C/EBP complex
+GO:0030054	cell junction
+GO:0008180	COP9 signalosome
+GO:0031982	vesicle
+GO:0005776	autophagosome
+GO:0005791	rough endoplasmic reticulum
+GO:0031965	nuclear membrane
+GO:0031966	mitochondrial membrane
+GO:0000790	nuclear chromatin
+GO:0042995	cell projection
+GO:0097481	neuronal postsynaptic density
+GO:0043234	protein complex
+GO:0016363	nuclear matrix
+GO:0005829	cytosol
+GO:0034684	integrin alphav-beta5 complex
+GO:0034683	integrin alphav-beta3 complex
+GO:0005667	transcription factor complex
+GO:0009898	cytoplasmic side of plasma membrane
+GO:0005925	focal adhesion
+GO:0005856	cytoskeleton
+GO:0072563	endothelial microparticle
+GO:0005654	nucleoplasm
+GO:0030877	beta-catenin destruction complex
+GO:0033256	I-kappaB/NF-kappaB complex
+GO:0043025	neuronal cell body
+GO:0045335	phagocytic vesicle
+GO:0005938	cell cortex
+GO:0005641	nuclear envelope lumen
+GO:0035631	CD40 receptor complex
+GO:0031012	extracellular matrix
+GO:0005905	coated pit
+GO:0030018	Z disc
+GO:0010008	endosome membrane
+GO:0005737	cytoplasm
+GO:0030666	endocytic vesicle membrane
+GO:0031093	platelet alpha granule lumen
+GO:0005730	nucleolus
+GO:0031410	cytoplasmic vesicle
+GO:0005634	nucleus
+GO:0005739	mitochondrion
+GO:0070765	gamma-secretase complex
+GO:0043005	neuron projection
+GO:0042470	melanosome
+GO:0016323	basolateral plasma membrane
+GO:0030659	cytoplasmic vesicle membrane
+GO:0014069	postsynaptic density
+GO:0005911	cell-cell junction
+GO:0032587	ruffle membrane
+GO:1990909	Wnt signalosome
+GO:0000812	Swr1 complex
+GO:0032044	DSIF complex
+GO:0030139	endocytic vesicle
+GO:0030424	axon
+GO:0030027	lamellipodium
+GO:0016604	nuclear body
+GO:0005884	actin filament
+GO:0032993	protein-DNA complex
+GO:0043198	dendritic shaft
+GO:0045121	membrane raft
+GO:0071144	SMAD2-SMAD3 protein complex
+GO:0005768	endosome
+GO:0071141	SMAD protein complex

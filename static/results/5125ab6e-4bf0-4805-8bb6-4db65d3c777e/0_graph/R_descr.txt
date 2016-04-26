@@ -1,0 +1,6 @@
+R-HSA-400253	Circadian Clock
+R-HSA-195253	Degradation of beta-catenin by the destruction complex
+R-HSA-174113	SCF-beta-TrCP mediated degradation of Emi1
+R-HSA-201688	WNT mediated activation of DVL
+R-HSA-4641258	Degradation of DVL
+R-HSA-187577	SCF(Skp2)-mediated degradation of p27/p21

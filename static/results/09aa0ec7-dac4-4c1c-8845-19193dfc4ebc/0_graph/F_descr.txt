@@ -1,0 +1,31 @@
+GO:0050681	androgen receptor binding
+GO:0019899	enzyme binding
+GO:0031730	CCR5 chemokine receptor binding
+GO:0004871	signal transducer activity
+GO:0044325	ion channel binding
+GO:0070513	death domain binding
+GO:0032564	dATP binding
+GO:0032403	protein complex binding
+GO:0003690	double-stranded DNA binding
+GO:0043120	tumor necrosis factor binding
+GO:0042802	identical protein binding
+GO:0042803	protein homodimerization activity
+GO:0050998	nitric-oxide synthase binding
+GO:0008134	transcription factor binding
+GO:0030235	nitric-oxide synthase regulator activity
+GO:0005138	interleukin-6 receptor binding
+GO:0019901	protein kinase binding
+GO:0019900	kinase binding
+GO:0019903	protein phosphatase binding
+GO:0019904	protein domain specific binding
+GO:0005164	tumor necrosis factor receptor binding
+GO:0001103	RNA polymerase II repressing transcription factor binding
+GO:0044212	transcription regulatory region DNA binding
+GO:0031625	ubiquitin protein ligase binding
+GO:0047485	protein N-terminus binding
+GO:0031996	thioesterase binding
+GO:0070851	growth factor receptor binding
+GO:0042826	histone deacetylase binding
+GO:0000175	3'-5'-exoribonuclease activity
+GO:0005515	protein binding
+GO:0005102	receptor binding

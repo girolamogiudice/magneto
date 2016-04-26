@@ -1,0 +1,31 @@
+GO:0035631	CD40 receptor complex
+GO:0005783	endoplasmic reticulum
+GO:0033116	endoplasmic reticulum-Golgi intermediate compartment membrane
+GO:0005789	endoplasmic reticulum membrane
+GO:0005901	caveola
+GO:0045323	interleukin-1 receptor complex
+GO:0005925	focal adhesion
+GO:0005737	cytoplasm
+GO:0070062	extracellular exosome
+GO:0031093	platelet alpha granule lumen
+GO:0031410	cytoplasmic vesicle
+GO:0005634	nucleus
+GO:0005739	mitochondrion
+GO:0005654	nucleoplasm
+GO:0097470	ribbon synapse
+GO:0048471	perinuclear region of cytoplasm
+GO:0005794	Golgi apparatus
+GO:0005793	endoplasmic reticulum-Golgi intermediate compartment
+GO:0016323	basolateral plasma membrane
+GO:0012506	vesicle membrane
+GO:0072536	interleukin-23 receptor complex
+GO:0031234	extrinsic component of cytoplasmic side of plasma membrane
+GO:0043234	protein complex
+GO:0043235	receptor complex
+GO:0000178	exosome (RNase complex)
+GO:0005829	cytosol
+GO:0045121	membrane raft
+GO:0000176	nuclear exosome (RNase complex)
+GO:0005764	lysosome
+GO:0005768	endosome
+GO:0070110	ciliary neurotrophic factor receptor complex

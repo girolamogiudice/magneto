@@ -1,0 +1,5 @@
+217023	0.00152532031726	Atypical hemolytic uremic syndrome with thrombomodulin anomaly	P07204
+391665	9.87439162018e-05	Homozygous familial hypercholesterolemia	P01130 P04114
+70470	7.90674768242e-05	Hyperlipoproteinemia type 5	P06858 Q6Q788
+425	2.20437659028e-05	APOLIPOPROTEIN A-I DEFICIENCY	P02647 O95477
+97369	0.000229350530779	Renal tubular dysgenesis of genetic origin	P01019 P30556

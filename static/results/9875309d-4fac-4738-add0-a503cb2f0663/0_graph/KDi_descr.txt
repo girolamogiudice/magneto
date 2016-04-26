@@ -1,0 +1,15 @@
+H00028	Choriocarcinoma
+H00018	Gastric cancer
+H00020	Colorectal cancer
+H00017	Esophageal cancer
+H00016	Oral cancer
+H00013	Small cell lung cancer
+H00027	Ovarian cancer
+H00042	Glioma
+H00036	Osteosarcoma
+H00055	Laryngeal cancer
+H00026	Endometrial Cancer
+H00031	Breast cancer
+H00030	Cervical cancer
+H00048	Hepatocellular carcinoma
+H00022	Bladder cancer

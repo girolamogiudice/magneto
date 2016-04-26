@@ -1,0 +1,1 @@
+[{'text': 'hydrochloride', 'size': 5.3583546217291094}, {'text': 'sodium', 'size': 8.0644967035623267}, {'text': 'trihydrochloride', 'size': 8.0644967035623267}, {'text': 'rigosertib', 'size': 6.4556179580106656}, {'text': 'volasertib', 'size': 16.246741496783216}, {'text': 'marizomib', 'size': 15.148292311705056}, {'text': 'delanzomib', 'size': 8.0644967035623267}]

@@ -1,0 +1,6 @@
+H00813	0.00158009067014	Laryngo onycho cutaneous syndrome	Q16787
+H01025	0.00158009067014	Familial adenomatous polyposis	P25054
+H00585	0.00236966750633	Epidermolysis bullosa, hemidesmosomal, including: Epidermolysis bullosa, generalized atrophic benign (GABEB); Epidermolysis bullosa simplex with pyloric atresia (EBS-PA); Epidermolysis bullosa simplex with muscular dystrophy (EBS-MD); Epidermolysis bullosa simplex, Ogna type (EBS-Ogna)	Q16787
+H00044	0.00236966750633	Cancer of the anal canal	P25054
+H00047	0.00315893200986	Gallbladder cancer	P25054
+H00586	0.00552485152489	Epidermolysis bullosa, junctional, including: Epidermolysis bullosa, junctional, Herlitz type (JEB-H); Epidermolysis bullosa, junctional, non-Herlitz type (JEB-nH); Epidermolysis bullosa, junctional, with pyloric atresia (JEB-PA)	Q16787

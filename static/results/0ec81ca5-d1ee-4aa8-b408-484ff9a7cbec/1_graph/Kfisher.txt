@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+hsa05213	0.00042134559939	3	Endometrial cancer	P25054(APC) P62993(GRB2) P49841(GSK3B)

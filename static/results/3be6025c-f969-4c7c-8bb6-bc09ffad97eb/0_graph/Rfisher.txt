@@ -1,0 +1,3 @@
+id	p_value	ic	proteins_involved	description	proteins
+R-HSA-201688	0.000143741198807	2	WNT mediated activation of DVL	P68400(CSNK2A1) O14641(DVL2)
+R-HSA-4641258	0.000278663073725	3	Degradation of DVL	P20618(PSMB1) P25788(PSMA3) O14641(DVL2)

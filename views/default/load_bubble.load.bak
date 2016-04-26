@@ -1,0 +1,247 @@
+<style>
+text {
+  font: 24px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  pointer-events: none;
+}
+    .node {
+    text-shadow: -1px -1px 2px hsla(0,0%,100%,0.25),
+        -1px -1px 2px hsla(0,0%,100%,0.25),
+        -1px 1px 2px hsla(0,0%,100%,0.25),
+        1px -1px 2px hsla(0,0%,100%,0.25),
+        -1px 0px 2px hsla(0,0%,100%,0.25),
+        1px 0px 2px hsla(0,0%,100%,0.25);
+}
+
+
+</style>
+   <div class="panel panel-primary">
+      <div class="panel-heading">Bubble Plot</div><br>
+       <div id="chart_bubble">Order By:
+      <button id="Amount_bubble" class="first active btn-primary">IC</button>
+      <button id="Relative_bubble" class="last btn-primary">P value</button>
+      <button id="number_bubble" class="last btn-primary">Protein Involved</button>
+      <div class="panel-body"><div id="_bubble">          </div>
+    </div>
+       </div></div>
+
+
+<script>
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("color", "white")
+    .style("padding", "8px")
+    .style("background-color", "rgba(0, 0, 0, 0.75)")
+    .style("border-radius", "6px")
+    .style("font", "12px sans-serif")
+    .text("tooltip");
+    
+var diameter = 960,
+    format = d3.format(",d"),
+    color = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(function(a, b) {return -(a.value - b.value)}) 
+    .size([diameter, diameter])
+   
+var svg = d3.select("#_bubble").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
+
+d3.tsv("{{=path}}", function(error, data) {
+  var node = svg.selectAll(".node")
+    .data(bubble.nodes(classes(data))
+         
+    .filter(function(d) { return !d.children; }))
+    .enter().append("g")
+    .attr("class", "node")
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+    .on("mouseover", function(d) { 
+        tooltip
+            .style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px")
+            .html(d.className + ": " + d.descr+"<br>protein involved: "+d.proteins)
+       
+        //tooltip.text(d.proteins);
+
+        tooltip.style("visibility", "visible");
+    })
+    .on("mousemove", function() {
+          return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+      })
+    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+    
+    node.append("title")
+    
+      .text(function(d) { 
+        return d.className + ": " + d.value; });
+   
+  node.append("circle")
+      .attr("r", function(d) { console.log(d)
+  return (d.r); })
+      .style("fill", function(d) { return color(d.value); })
+      .style("stroke-width",0)
+      .style("background-color", function(d) {return color(d.value)})
+
+
+  //node.append("text").text(function(d) { return d.className; })
+    //  .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; })
+     // .attr("dy", ".35em")
+      //.attr("dy", ".2em")
+      //.style("text-anchor", "middle")
+   node.selectAll("text").remove()
+  node.append("text")
+      .text(function(d) { return (d.className) ; })
+       .style("text-anchor", "middle")
+      .style("font-size", function(d) { if (d.value==0.01){return "1px"}
+                                       else {
+      return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; }})
+      .attr("dy", ".10em");
+ node.append("text")
+      .text(function(d) { return ("I.C.: " +d.value) ; })
+      .style("text-anchor", "middle")
+      .style("font-size", function(d) { if (d.value==0.01){return "1px"}
+                                       else {
+     return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 20) + "px"; }})
+      .attr("dy", "0.90em");
+
+//saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+d3.select("#number_bubble").on("click", function() {
+   node
+    .data(bubble.nodes(classes(data))
+    .filter(function(d) { return !d.children; }))
+   
+   node.select("circle")
+       .transition().duration(1000)
+       .attr("r", function(d) {  return (d.r); })
+       .style("fill", function(d) { return color(d.value); });
+    
+   node.transition()
+      .duration(1000)
+      .attr("transform",function(d){return "translate("+d.x+","+d.y+")"; })
+      .selectAll("circle")
+      .attr("r",function(d){return d.r;});
+   
+   
+    d3.select("#Amount_bubble").classed("active", false);
+    d3.select("#Relative_bubble").classed("active", false);
+    d3.select("#number_bubble").classed("active", true);
+    node.selectAll("text").remove()
+      node.append("text")
+      .text(function(d) { return d.className })
+      .style("text-anchor", "middle")
+      .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; })
+      .attr("dy", ".10em");
+     node.append("text")
+      .text(function(d) { return ("Protein Involved: "+d.value) ; })
+     .style("text-anchor", "middle")
+      .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 20) + "px"; })
+      .attr("dy", "0.90em");
+   function classes(data) {
+      var classes = [];
+      data.forEach(function(d) { 
+      classes.push ({className: d.id,packageName: "Component",value:parseFloat(d.proteins_involved), descr:d.description,proteins:d.proteins})
+      })
+      return {children:classes}
+    }
+  });
+
+d3.select("#Relative_bubble").on("click", function() {
+    bubble.sort(function(a, b) {return -(Math.log(a.value) - Math.log(b.value))}) 
+     node
+    .data(bubble.nodes(classes(data))
+    .filter(function(d) { return !d.children; }))
+   
+   node.select("circle")
+      .transition().duration(1000)
+      .attr("r", function(d) {  return (d.r); })
+      .style("fill", function(d) { return color(d.value); });
+    
+   node.transition()
+      .duration(1000)
+      .attr("transform",function(d){return "translate("+d.x+","+d.y+")"; })
+      .selectAll("circle")
+      .attr("r",function(d){return d.r;});
+     node.selectAll("text").remove()
+     node.append("text")
+      .text(function(d) { return d.className })
+     .style("text-anchor", "middle")
+      .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; })
+      .attr("dy", ".10em");
+     node.append("text")
+      .text(function(d) { console.log(d)
+         return ("P Value: "+d.pvalue) ; })
+     .style("text-anchor", "middle")
+      .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 10) / this.getComputedTextLength() * 20) + "px"; })
+      .attr("dy", "1.10em");
+    
+    d3.select("#Amount_bubble").classed("active", false);
+    d3.select("#Relative_bubble").classed("active", true);
+    d3.select("#number_bubble").classed("active", false);
+    
+   function classes(data) {
+  var classes = [];
+  data.forEach(function(d) {
+      classes.push ({className: d.id,packageName: "Component",pvalue:d.p_value,value:parseFloat(Math.abs(Math.log10(d.p_value)).toFixed(3)), descr:d.description,proteins:d.proteins})
+  }
+  )
+  return {children:classes}
+}
+  });
+    
+  d3.select("#Amount_bubble").on("click", function() {
+    node
+    .data(bubble.nodes(classes(data))
+    .filter(function(d) { return !d.children; }))
+   
+   node.select("circle")
+       .transition().duration(1000)
+      .attr("r", function(d) {  return (d.r); })
+      .style("fill", function(d) { return color(d.value); });
+    
+   node.transition()
+      .duration(1000)
+      .attr("transform",function(d){return "translate("+d.x+","+d.y+")"; })
+      .selectAll("circle")
+      .attr("r",function(d){return d.r;});
+      node.selectAll("text").remove()
+      node.append("text")
+      .text(function(d) { return d.className; })
+      .style("text-anchor", "middle")
+      .style("font-size", function(d) { { if (d.value==0.01){return "1px"}
+                                       else {
+          return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; }})
+      .attr("dy", ".10em");
+       node.append("text")
+      .text(function(d) { return ("I.C.: "+d.value) ; })
+       .style("text-anchor", "middle")
+      .style("font-size", function(d) {  if (d.value==0.01){return "1px"}
+                                       else {return Math.min(2 * d.r, (2 * d.r - 12) / this.getComputedTextLength() * 20) + "px"; }})
+      .attr("dy", "0.90em");
+    d3.select("#Amount_bubble").classed("active", true);
+    d3.select("#Relative_bubble").classed("active", false);
+    d3.select("#number_bubble").classed("active", false);
+   function classes(data) {
+  var classes = [];
+  data.forEach(function(d) { 
+      classes.push ({className: d.id,packageName: "Component",value:parseFloat(d.ic).toFixed(3), descr:d.description,proteins:d.proteins})
+  }
+  )
+  return {children:classes}
+}
+  });
+
+  });
+function classes(data) {
+  var classes = [];
+  data.forEach(function(d) {
+      classes.push ({className: d.id,packageName: "Component",value:parseFloat(d.ic).toFixed(3), descr:d.description,proteins:d.proteins})
+  }
+  )
+  return {children:classes}
+}
+d3.select(self.frameElement).style("height", diameter + "px");
+</script>

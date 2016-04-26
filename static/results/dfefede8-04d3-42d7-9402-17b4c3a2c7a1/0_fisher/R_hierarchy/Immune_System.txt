@@ -1,0 +1,6 @@
+R-HSA-975110	8.51726073321e-05	TRAF6 mediated IRF7 activation in TLR7/8 or 9 signaling	Q9NYK1 Q9NR97 Q9NR96
+R-HSA-1059683	0.00162983648358	Interleukin-6 signaling	P08887 P05231
+R-HSA-168181	3.724720155e-05	Toll Like Receptor 7/8 (TLR7/8) Cascade	Q9NYK1 Q9NR97
+R-HSA-975138	1.60587898887e-05	TRAF6 mediated induction of NFkB and MAP kinases upon TLR7/8 or 9 activation	Q9NYK1 Q9NR97 Q9NR96
+R-HSA-1679131	5.39143416827e-05	Trafficking and processing of endosomal TLR	Q9NYK1 Q9NR97 Q9NR96
+R-HSA-975155	1.07434679713e-05	MyD88 dependent cascade initiated on endosome	Q9NYK1 Q9NR97 Q9NR96

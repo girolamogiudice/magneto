@@ -1,0 +1,5 @@
+T3D0240	Dichlorvos
+T3D0007	Cadmium
+T3D3755	Emodin
+T3D0805	4-(4-Chloro-2-methylphenoxy)butanoic acid
+T3D0371	Cadmium chloride

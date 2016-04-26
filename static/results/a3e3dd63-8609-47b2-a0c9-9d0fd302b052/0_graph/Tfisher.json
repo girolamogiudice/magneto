@@ -1,0 +1,1 @@
+[{"proteins involved": "3", "description": "Mancozeb", "proteins": ["P68400(CSNK2A1)", "Q9Y463(DYRK1B)", "Q96EB6(SIRT1)"], "common": 0, "p value": "0.000279668251237", "id": "T3D3872"}, {"proteins involved": "2", "description": "Emodin", "proteins": ["P68400(CSNK2A1)", "P05412(JUN)"], "common": 0, "p value": "0.000475255491312", "id": "T3D3755"}]

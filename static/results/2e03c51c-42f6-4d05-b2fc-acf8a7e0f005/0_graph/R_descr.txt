@@ -1,0 +1,37 @@
+R-HSA-2559585	Oncogene Induced Senescence
+R-HSA-400253	Circadian Clock
+R-HSA-399954	Sema3A PAK dependent Axon repulsion
+R-HSA-5674135	MAP2K and MAPK activation
+R-HSA-6804757	Regulation of TP53 Degradation
+R-HSA-75035	Chk1/Chk2(Cds1) mediated inactivation of Cyclin B:Cdk1 complex
+R-HSA-380259	Loss of Nlp from mitotic centrosomes
+R-HSA-5627123	RHO GTPases activate PAKs
+R-HSA-5625740	RHO GTPases activate PKNs
+R-HSA-72649	Translation initiation complex formation
+R-HSA-111447	Activation of BAD and translocation to mitochondria
+R-HSA-5674400	Constitutive Signaling by AKT1 E17K in Cancer
+R-HSA-69541	Stabilization of p53
+R-HSA-2122947	NOTCH1 Intracellular Domain Regulates Transcription
+R-HSA-72702	Ribosomal scanning and start codon recognition
+R-HSA-2894862	Constitutive Signaling by NOTCH1 HD+PEST Domain Mutants
+R-HSA-2173795	Downregulation of SMAD2/3:SMAD4 transcriptional activity
+R-HSA-2173796	SMAD2/SMAD3:SMAD4 heterotrimer regulates transcription
+R-HSA-933542	TRAF6 mediated NF-kB activation
+R-HSA-8852276	The role of GTSE1 in G2/M progression after G2 checkpoint
+R-HSA-380284	Loss of proteins required for interphase microtubule organization from the centrosome
+R-HSA-5687128	MAPK6/MAPK4 signaling
+R-HSA-3371453	Regulation of HSF1-mediated heat shock response
+R-HSA-445989	TAK1 activates NFkB by phosphorylation and activation of IKKs complex
+R-HSA-1445148	Translocation of GLUT4 to the plasma membrane
+R-HSA-72695	Formation of the ternary complex, and subsequently, the 43S complex
+R-HSA-2565942	Regulation of PLK1 Activity at G2/M Transition
+R-HSA-1912408	Pre-NOTCH Transcription and Translation
+R-HSA-2644606	Constitutive Signaling by NOTCH1 PEST Domain Mutants
+R-HSA-5621575	CD209 (DC-SIGN) signaling
+R-HSA-5626467	RHO GTPases activate IQGAPs
+R-HSA-2173788	Downregulation of TGF-beta receptor signaling
+R-HSA-1227986	Signaling by ERBB2
+R-HSA-5607764	CLEC7A (Dectin-1) signaling
+R-HSA-5218920	VEGFR2 mediated vascular permeability
+R-HSA-209560	NF-kB is activated and signals survival
+R-HSA-373753	Nephrin interactions

@@ -1,0 +1,2 @@
+[[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+{'DB05744': {'description': 'CRx-139', 'id': 3, 'name': 'DB05744'}, 'DB05250': {'description': '681323', 'id': 1, 'name': 'DB05250'}, 'DB05066': {'description': 'AV411', 'id': 0, 'name': 'DB05066'}, 'DB05475': {'description': 'SCV-07', 'id': 4, 'name': 'DB05475'}, 'DB05767': {'description': 'HMPL-004', 'id': 2, 'name': 'DB05767'}, 'DB05470': {'description': 'VX-702', 'id': 5, 'name': 'DB05470'}}

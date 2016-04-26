@@ -1,0 +1,2 @@
+[[0, 0, 1, 1, 1], [0, 0, 1, 1, 1], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0]]
+{'P05106': {'description': 'ITGB3', 'id': 4, 'descr': 'I', 'name': 'P05106(ITGB3)'}, 'D09903': {'description': 'Fluciclatide F 18 (USAN/INN)', 'id': 1, 'name': 'D09903'}, 'P06756': {'description': 'ITGAV', 'id': 3, 'descr': 'I', 'name': 'P06756(ITGAV)'}, 'P18084': {'description': 'ITGB5', 'id': 2, 'descr': 'I', 'name': 'P18084(ITGB5)'}, 'D03497': {'description': 'Cilengitide (USAN/INN)', 'id': 0, 'name': 'D03497'}}

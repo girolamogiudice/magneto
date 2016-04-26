@@ -1,0 +1,3 @@
+H00028	Choriocarcinoma
+H00031	Breast cancer
+H00027	Ovarian cancer

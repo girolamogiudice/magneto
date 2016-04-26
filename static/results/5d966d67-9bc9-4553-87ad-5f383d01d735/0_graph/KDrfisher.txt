@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+D09604	0.000190193012848	3	Dinaciclib (USAN/INN)	Q00535(CDK5) P24941(CDK2) P50750(CDK9)

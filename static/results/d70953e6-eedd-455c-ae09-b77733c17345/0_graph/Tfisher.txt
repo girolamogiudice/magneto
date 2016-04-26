@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+T3D3755	1.37743356895e-05	6	Emodin	P31749(AKT1) P19838(NFKB1) Q05397(PTK2) P05412(JUN) Q92731(ESR2) Q00653(NFKB2)

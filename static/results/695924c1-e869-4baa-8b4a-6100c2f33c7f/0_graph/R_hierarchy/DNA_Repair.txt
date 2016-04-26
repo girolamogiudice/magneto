@@ -1,0 +1,1 @@
+R-HSA-5693565	0.00108967142984	Recruitment and ATM-mediated phosphorylation of repair and signaling proteins at DNA double strand breaks	Q14676 P61088 P62979 O76064 P63279 P0CG48

@@ -1,0 +1,6 @@
+H00018	Gastric cancer
+H00020	Colorectal cancer
+H00026	Endometrial Cancer
+H00845	Familial amyloidosis
+H00031	Breast cancer
+H00027	Ovarian cancer

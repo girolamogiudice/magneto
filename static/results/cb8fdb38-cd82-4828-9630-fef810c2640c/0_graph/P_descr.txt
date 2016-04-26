@@ -1,0 +1,21 @@
+GO:0008284	positive regulation of cell proliferation
+GO:0090090	negative regulation of canonical Wnt signaling pathway
+GO:0006915	apoptotic process
+GO:0070914	UV-damage excision repair
+GO:0000278	mitotic cell cycle
+GO:0042127	regulation of cell proliferation
+GO:0012501	programmed cell death
+GO:0090263	positive regulation of canonical Wnt signaling pathway
+GO:0016055	Wnt signaling pathway
+GO:0031145	anaphase-promoting complex-dependent proteasomal ubiquitin-dependent protein catabolic process
+GO:0007091	metaphase/anaphase transition of mitotic cell cycle
+GO:0043065	positive regulation of apoptotic process
+GO:0048511	rhythmic process
+GO:0043066	negative regulation of apoptotic process
+GO:0051439	regulation of ubiquitin-protein ligase activity involved in mitotic cell cycle
+GO:0000381	regulation of alternative mRNA splicing, via spliceosome
+GO:0016032	viral process
+GO:0051726	regulation of cell cycle
+GO:0051437	positive regulation of ubiquitin-protein ligase activity involved in regulation of mitotic cell cycle transition
+GO:0030178	negative regulation of Wnt signaling pathway
+GO:0043518	negative regulation of DNA damage response, signal transduction by p53 class mediator

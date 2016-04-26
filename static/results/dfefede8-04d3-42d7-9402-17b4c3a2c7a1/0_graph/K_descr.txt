@@ -1,0 +1,16 @@
+hsa05132	Salmonella infection
+hsa05130	Pathogenic Escherichia coli infection
+hsa05212	Pancreatic cancer
+hsa04066	HIF-1 signaling pathway
+hsa05410	Hypertrophic cardiomyopathy (HCM)
+hsa04064	NF-kappa B signaling pathway
+hsa04920	Adipocytokine signaling pathway
+hsa05169	Epstein-Barr virus infection
+hsa05160	Hepatitis C
+hsa04210	Apoptosis
+hsa05205	Proteoglycans in cancer
+hsa05203	Viral carcinogenesis
+hsa05200	Pathways in cancer
+hsa04012	ErbB signaling pathway
+hsa05220	Chronic myeloid leukemia
+hsa04919	Thyroid hormone signaling pathway

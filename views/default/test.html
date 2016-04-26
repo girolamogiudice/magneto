@@ -1,0 +1,41 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+
+<style>
+circle.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+line.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+</style>
+<script src="{{=URL('static','js/d3.min.js')}}"></script>
+<script src="{{=URL('static','js/logo.js')}}"></script>
+<h1>Questo è il template default/test.html</h1>
+
+
+<table style="width:100%">
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>		
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>		
+    <td>94</td>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>Doe</td>		
+    <td>80</td>
+  </tr>
+</table>
+
+<ul>
+    <li><a href="https://sourceforge.net/projects/finesplice/">Finesplice </a>Enhanced splice junction detection and estimation from RNA-Seq data (<a href="http://nar.oxfordjournals.org/content/42/8/e71">Article </a>)</li>
+    <li><a href="https://sourceforge.net/projects/finesplice/"><font color="#fc0082">ATtR</font><font color="#3399cc">ACT</font></a><font color="#fc0082">A</font> da<font color="#fc0082">T</font>abase  of <font color="#fc0082">R</font>NA binding proteins and <font color="#3399cc">A</font>sso<font color="#3399cc">C</font>iated mo<font color="#3399cc">T</font>ifs (<a href="http://database.oxfordjournals.org/content/2016/baw035.full">Article </a>)</li>
+</ul>

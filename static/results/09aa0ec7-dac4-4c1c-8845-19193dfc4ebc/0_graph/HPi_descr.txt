@@ -1,0 +1,5 @@
+554329	Hepatitis B virus genotype D subtype ayw
+568402	Human cytomegalovirus
+1246768	Vaccinia virus
+440185	Epstein-Barr virus
+771929	Murid herpesvirus 1

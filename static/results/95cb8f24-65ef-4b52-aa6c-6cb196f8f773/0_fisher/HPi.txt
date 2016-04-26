@@ -1,0 +1,2 @@
+1281976	0.00135851092132	Yaba-like disease virus	P01375
+568900	0.0013194475784	Human papillomavirus type 6	P03905 P00846

@@ -1,0 +1,4 @@
+D09728	Bosutinib hydrate (JAN); Bosutinib monohydrate; Bosulif (TN)
+D03252	Bosutinib (USAN)
+D09665	Saracatinib difumarate (USAN)
+D09664	Saracatinib (USAN/INN)

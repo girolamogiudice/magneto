@@ -1,0 +1,6 @@
+id	p_value	ic	proteins_involved	description	proteins
+353281	0.00228623592363	1	Rubinstein-Taybi syndrome due to 16p13.3 microdeletion	Q92793(CREBBP)
+79022	0.00137226481339	1	SIMPSON-GOLABI-BEHMEL SYNDROME TYPE 2	O75665(OFD1)
+229	0.000915017681865	1	Familial aortic dissection	P35749(MYH11)
+2750	0.00137226481339	1	Orofaciodigital syndrome type 1	O75665(OFD1)
+353277	0.00228623592363	1	Rubinstein-Taybi syndrome due to CREBBP mutations	Q92793(CREBBP)

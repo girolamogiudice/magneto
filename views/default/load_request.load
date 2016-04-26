@@ -1,0 +1,177 @@
+<style>
+.selection {
+display:flex;
+}
+
+.node circle {
+  stroke: #333;
+}
+
+.link {
+  fill: none;
+  stroke: #333;
+  stroke-width: 1px;
+    stroke-opacity:0.3;
+}
+
+.link.active {
+  stroke: red;
+  stroke-width: 2px;
+  stroke-opacity:1;
+}
+
+.node circle.active {
+  stroke: red;
+  stroke-width: 3px;
+}
+
+</style>
+{{if len(not_present)>1:}}
+<div class="bs-callout bs-callout-warning">
+  <h4>Nodes not preset because absent in the network</h4>
+{{=not_present}}<br>{{pass}}
+</div>
+
+
+<div id=button  style="text-align: center;"><button type="button" class="btn btn-primary" onclick="sigma.layouts.startForceAtlas2(s, {worker: true});">
+  <span class=" icon-play" aria-hidden="true"></span>start
+</button>
+<button type="button" class="btn btn-primary" onclick="sigma.layouts.stopForceAtlas2();">
+  <span class=" icon-pause" aria-hidden="true"></span>pause
+</button>
+<button type="button" class="btn btn-primary" onclick="filter.undo().apply();locate.center(1);restore()";>
+  <span class="icon-backward" aria-hidden="true"></span>restore
+    </button></div>
+<br>
+<br>
+{{alias=["Component","Function","Process","Kegg","Reactome","Omim","Kegg Disease","Kegg Drug","Drug bank","Orphanet","Toxins","Virus"]}}
+{{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
+{{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
+<div id="sel" class="selection">
+<select id="locate_cluster" class="form-control" onclick="rem()">
+<option value="0" placeholder="Select a cluster">Select a cluster</option>
+    {{for i in files_id:}}
+    {{if len(clusterid[i])>0:}}
+    <option id="db" value="{{=i}}" disabled>{{=alias_dict[i]}}</option>
+    {{for j in clusterid[i]:}}
+    <option value="{{=i}} {{=j}}">{{=j}} : {{=descr[i][j]}}</option>
+    {{pass}}
+  {{pass}}
+    {{pass}}
+</select>
+<select id="locate_prot" placeholder="Localize a protein" class="form-control" onclick="search_nodes()">
+ <option value="0">Localize a protein</option>
+
+  {{for i in sorted(neigh):}}
+    <option value="{{=i}}">{{=i}}({{=protein_descr[i]}})</option>
+  {{pass}}
+</select>
+
+<select id="neigh"  placeholder="Show neighbor" class="form-control" onclick="neigh()">
+    <option value="0">Show Neighbors</option>
+  {{for i in sorted(neigh):}}
+    <option value="{{=i}}">{{=i}}({{=protein_descr[i]}})</option>
+  {{pass}}
+</select>
+</div>
+<br>
+<br>
+
+<script>
+   // console.log(document.getElementById("sel")) 
+    cluster_id={{=XML(clusterid)}}
+
+    s = new sigma({ 
+        graph: {{=XML(data)}},
+    renderer: {
+      container: document.getElementById('graph-container'),
+      type: 'canvas'
+      
+    },
+    settings: {
+  edgeColor: 'default',
+  defaultEdgeColor: 'grey',
+  labelColor:"node",
+  labelThreshold: 0
+    }
+})
+// Refresh the graph to see the changes:
+    sigma.renderers.def = sigma.renderers.canvas
+    //sigma.layouts.startForceAtlas2(s, {worker: true});
+var filter;
+filter = new sigma.plugins.filter(s);
+    //n=s.graph.nodes()
+function rem() {
+    var value=($("#locate_cluster").val())
+    if (value!="0") {
+     filter
+         .undo("cluster_id")
+          
+         .nodesBy(function(n) { 
+       return cluster_id[$("#locate_cluster").val().split(" ")[0]][$("#locate_cluster").val().split(" ")[1]].indexOf(n.id)>=0;},"cluster_id").apply();
+    }
+    else {
+    filter.undo().apply()
+    restore()
+    }
+}
+function neigh(){
+    console.log($("#neigh").val())
+    if ($("#neigh").val() === "0") {
+        filter.undo().apply()
+        restore()
+       locate.center(1);
+    }
+    else 
+    {
+        filter.undo().apply()
+        filter.neighborsOf($("#neigh").val()).apply()
+    }
+}
+    // Start the ForceAtlas2 algorithm:
+//sigma.layouts.startForceAtlas2(s, {worker: true});
+
+var conf = {
+    animation: {
+      node: {
+        duration: 800
+      },
+      edge: {
+        duration: 800
+      },
+      center: {
+        duration: 300
+      }
+    },
+    //focusOut: true,
+    zoomDef: 5500
+  };
+  var locate = sigma.plugins.locate(s, conf);
+  if (!s.settings('autoRescale'))
+    sigma.utils.zoomTo(s.camera, 3, 3, conf.zoomDef);
+    
+function search_nodes() {
+   if ($("#locate_prot").val() === "0") {
+        filter.undo().apply()
+        restore()
+       locate.center(1);
+    }
+    else{
+locate.nodes(($("#locate_prot").val())).id
+locate.center(10);}
+}
+function clear_graph() {
+    s.graph.clear();
+    s.graph.kill();
+};
+
+function restore() {
+    $('#locate_cluster').prop('selectedIndex',0);
+    $('#neigh').prop('selectedIndex',0);
+    $('#locate_prot').prop('selectedIndex',0);
+};
+
+
+    
+
+</script>

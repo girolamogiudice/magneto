@@ -1,0 +1,1 @@
+[{'text': 'gastric', 'size': 6.6231055262523464}, {'text': 'endometrial', 'size': 6.9770481054874836}, {'text': 'cancer', 'size': 6.9770481054874836}, {'text': 'ovarian', 'size': 26.049956016603147}, {'text': 'breast', 'size': 5.5919786983601174}, {'text': 'colorectal', 'size': 6.9770481054874836}, {'text': 'familial', 'size': 6.284309266758318}]

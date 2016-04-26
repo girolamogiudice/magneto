@@ -1,0 +1,9 @@
+GO:0008022	protein C-terminus binding
+GO:0005515	protein binding
+GO:0035257	nuclear hormone receptor binding
+GO:0008134	transcription factor binding
+GO:0045294	alpha-catenin binding
+GO:0045295	gamma-catenin binding
+GO:0035255	ionotropic glutamate receptor binding
+GO:0019901	protein kinase binding
+GO:0002020	protease binding

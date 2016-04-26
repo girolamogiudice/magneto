@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+<script src="/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="/magneto/static/js/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js"></script>
+<script src="/magneto/static/js/tableExport.min.js"></script>
+<link rel="stylesheet" href="/magneto/static/js/bootstrap-table/dist/bootstrap-table.css">
+kjjkjkj
+{{=ids}}

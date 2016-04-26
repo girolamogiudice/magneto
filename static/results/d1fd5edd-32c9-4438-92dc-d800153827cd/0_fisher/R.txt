@@ -1,0 +1,1 @@
+R-HSA-5467333	0.000583566760047	APC truncation mutants are not K63 polyubiquitinated	P25054

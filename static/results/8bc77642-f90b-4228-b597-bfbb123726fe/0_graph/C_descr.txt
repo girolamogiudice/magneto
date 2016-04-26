@@ -1,0 +1,8 @@
+GO:0005737	cytoplasm
+GO:1990909	Wnt signalosome
+GO:0005719	nuclear euchromatin
+GO:0005829	cytosol
+GO:0031253	cell projection membrane
+GO:0000922	spindle pole
+GO:0030877	beta-catenin destruction complex
+GO:0016342	catenin complex

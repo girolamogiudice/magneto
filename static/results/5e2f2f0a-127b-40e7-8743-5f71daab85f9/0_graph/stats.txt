@@ -1,0 +1,10 @@
+Name: biogrid
+Type: Graph
+Number of nodes: 15201
+Number of edges: 204927
+Average degree:  26.9623
+Name: Final Network
+Type: Graph
+Number of nodes: 240
+Number of edges: 1952
+Average degree:  16.2667

@@ -1,0 +1,2 @@
+[[0, 0, 0, 0, 1], [0, 0, 0, 0, 1], [0, 0, 0, 0, 1], [0, 0, 0, 0, 1], [1, 1, 1, 1, 0]]
+{'D10182': {'description': 'Volasertib (USAN)', 'id': 0, 'name': 'D10182'}, 'D10183': {'description': 'Volasertib hydrochloride (JAN); Volasertib trihydrochloride (USAN)', 'id': 1, 'name': 'D10183'}, 'D10154': {'description': 'Rigosertib (USAN)', 'id': 3, 'name': 'D10154'}, 'P53350': {'description': 'PLK1', 'id': 4, 'descr': 'P', 'name': 'P53350(PLK1)'}, 'D10155': {'description': 'Rigosertib sodium (USAN)', 'id': 2, 'name': 'D10155'}}

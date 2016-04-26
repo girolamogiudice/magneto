@@ -1,0 +1,1 @@
+R-HSA-5607761	0.00190369618132	Dectin-1 mediated noncanonical NF-kB signaling	Q92530 Q13616 O14818

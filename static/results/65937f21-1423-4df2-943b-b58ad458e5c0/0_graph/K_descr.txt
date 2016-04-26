@@ -1,0 +1,41 @@
+hsa05133	Pertussis
+hsa05219	Bladder cancer
+hsa05221	Acute myeloid leukemia
+hsa05212	Pancreatic cancer
+hsa05213	Endometrial cancer
+hsa05210	Colorectal cancer
+hsa04010	MAPK signaling pathway
+hsa05214	Glioma
+hsa05215	Prostate cancer
+hsa04530	Tight junction
+hsa04722	Neurotrophin signaling pathway
+hsa04510	Focal adhesion
+hsa04933	AGE-RAGE signaling pathway in diabetic complications
+hsa04068	FoxO signaling pathway
+hsa04062	Chemokine signaling pathway
+hsa05168	Herpes simplex infection
+hsa05169	Epstein-Barr virus infection
+hsa05145	Toxoplasmosis
+hsa04211	Longevity regulating pathway - mammal
+hsa04210	Apoptosis
+hsa05166	HTLV-I infection
+hsa04810	Regulation of actin cytoskeleton
+hsa05160	Hepatitis C
+hsa05161	Hepatitis B
+hsa05220	Chronic myeloid leukemia
+hsa05211	Renal cell carcinoma
+hsa05205	Proteoglycans in cancer
+hsa04110	Cell cycle
+hsa05206	MicroRNAs in cancer
+hsa05200	Pathways in cancer
+hsa05203	Viral carcinogenesis
+hsa04660	T cell receptor signaling pathway
+hsa04520	Adherens junction
+hsa05223	Non-small cell lung cancer
+hsa04917	Prolactin signaling pathway
+hsa04915	Estrogen signaling pathway
+hsa04668	TNF signaling pathway
+hsa04919	Thyroid hormone signaling pathway
+hsa04151	PI3K-Akt signaling pathway
+hsa05152	Tuberculosis
+hsa04012	ErbB signaling pathway

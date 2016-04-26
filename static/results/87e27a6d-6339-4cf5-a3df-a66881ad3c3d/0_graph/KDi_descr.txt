@@ -1,0 +1,5 @@
+H00020	Colorectal cancer
+H00022	Bladder cancer
+H00473	Mitochondrial respiratory chain deficiencies (MRCD), including: Mitochondrial complex I deficiency (MT-C1D); Complex II deficiency (MT-C2D); Complex III deficiency (MT-C3D); Leigh syndrome (LS) [DS:H01354]; Leber Hereditary Optic Neuropathy (LHON) [DS:H00068]; Leber Optic Atrophy and Dystonia (LDYT) [DS:H01365]; MELAS Syndrome [DS:H01347]; Kearns-Sayre Syndrome (KSS) [DS:H01355]; GRACILE Syndrome
+H00027	Ovarian cancer
+H00031	Breast cancer

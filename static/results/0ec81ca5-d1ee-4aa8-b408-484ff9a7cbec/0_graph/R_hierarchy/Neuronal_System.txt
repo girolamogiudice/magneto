@@ -1,0 +1,2 @@
+R-HSA-442729	0.000273245310685	CREB phosphorylation through the activation of CaMKII	P16220 Q99996 Q13554 P62158
+R-HSA-442717	0.00376899397384	CREB phosphorylation through the activation of CaMKK	P16220 P62158

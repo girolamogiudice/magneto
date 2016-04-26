@@ -1,0 +1,93 @@
+GO:0005783	endoplasmic reticulum
+GO:0030426	growth cone
+GO:0005788	endoplasmic reticulum lumen
+GO:0030424	axon
+GO:0030529	intracellular ribonucleoprotein complex
+GO:0030054	cell junction
+GO:0005770	late endosome
+GO:0000922	spindle pole
+GO:0005794	Golgi apparatus
+GO:0031965	nuclear membrane
+GO:0032154	cleavage furrow
+GO:0000790	nuclear chromatin
+GO:0030425	dendrite
+GO:0000502	proteasome complex
+GO:0042995	cell projection
+GO:0043234	protein complex
+GO:0043231	intracellular membrane-bounded organelle
+GO:0000151	ubiquitin ligase complex
+GO:0005667	transcription factor complex
+GO:0043034	costamere
+GO:0030175	filopodium
+GO:0036464	cytoplasmic ribonucleoprotein granule
+GO:0016607	nuclear speck
+GO:0016605	PML body
+GO:0043679	axon terminus
+GO:0016600	flotillin complex
+GO:0005654	nucleoplasm
+GO:0048471	perinuclear region of cytoplasm
+GO:0016363	nuclear matrix
+GO:0043025	neuronal cell body
+GO:0031941	filamentous actin
+GO:0042383	sarcolemma
+GO:0031253	cell projection membrane
+GO:0051233	spindle midzone
+GO:0043204	perikaryon
+GO:0030863	cortical cytoskeleton
+GO:0019897	extrinsic component of plasma membrane
+GO:0005901	caveola
+GO:0005902	microvillus
+GO:0005903	brush border
+GO:0005874	microtubule
+GO:0030018	Z disc
+GO:0010008	endosome membrane
+GO:0045177	apical part of cell
+GO:0002102	podosome
+GO:0031093	platelet alpha granule lumen
+GO:0005730	nucleolus
+GO:0031410	cytoplasmic vesicle
+GO:0005634	nucleus
+GO:0005739	mitochondrion
+GO:0043005	neuron projection
+GO:0008385	IkappaB kinase complex
+GO:0016328	lateral plasma membrane
+GO:0016324	apical plasma membrane
+GO:0009986	cell surface
+GO:0016323	basolateral plasma membrane
+GO:0005913	cell-cell adherens junction
+GO:0005911	cell-cell junction
+GO:0032587	ruffle membrane
+GO:1990909	Wnt signalosome
+GO:0030496	midbody
+GO:0005741	mitochondrial outer membrane
+GO:0000784	nuclear chromosome, telomeric region
+GO:0016234	inclusion body
+GO:0071944	cell periphery
+GO:0045202	synapse
+GO:0001725	stress fiber
+GO:0001726	ruffle
+GO:0072686	mitotic spindle
+GO:0005813	centrosome
+GO:0005814	centriole
+GO:0005815	microtubule organizing center
+GO:0031143	pseudopodium
+GO:0005694	chromosome
+GO:0071013	catalytic step 2 spliceosome
+GO:0015630	microtubule cytoskeleton
+GO:0030027	lamellipodium
+GO:0044297	cell body
+GO:0005881	cytoplasmic microtubule
+GO:0005819	spindle
+GO:0005886	plasma membrane
+GO:0000775	chromosome, centromeric region
+GO:0000776	kinetochore
+GO:0000777	condensed chromosome kinetochore
+GO:0042470	melanosome
+GO:0005604	basement membrane
+GO:0043195	terminal bouton
+GO:0043197	dendritic spine
+GO:0045121	membrane raft
+GO:0001931	uropod
+GO:0005768	endosome
+GO:0005769	early endosome
+GO:0005681	spliceosomal complex

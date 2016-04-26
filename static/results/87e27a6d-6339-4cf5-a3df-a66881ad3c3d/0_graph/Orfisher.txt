@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+2609	6.01610230095e-05	8	Isolated NADH-CoQ reductase deficiency	P03891(MT-ND2) P49821(NDUFV1) P03886(MT-ND1) P19404(NDUFV2) O75489(NDUFS3) O75306(NDUFS2) O00217(NDUFS8) Q86Y39(NDUFA11)

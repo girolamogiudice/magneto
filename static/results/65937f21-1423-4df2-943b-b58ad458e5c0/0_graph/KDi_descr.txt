@@ -1,0 +1,6 @@
+H00019	Pancreatic cancer
+H00020	Colorectal cancer
+H00016	Oral cancer
+H00026	Endometrial Cancer
+H00027	Ovarian cancer
+H01354	Leigh syndrome, including: Leigh syndrome, French-Canadian type (LSFC); X-linked Leigh syndrome

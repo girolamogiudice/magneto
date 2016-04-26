@@ -1,0 +1,5 @@
+353281	Rubinstein-Taybi syndrome due to 16p13.3 microdeletion
+79022	SIMPSON-GOLABI-BEHMEL SYNDROME TYPE 2
+229	Familial aortic dissection
+2750	Orofaciodigital syndrome type 1
+353277	Rubinstein-Taybi syndrome due to CREBBP mutations

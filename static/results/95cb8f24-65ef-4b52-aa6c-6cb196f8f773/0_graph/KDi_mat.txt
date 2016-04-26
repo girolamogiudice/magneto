@@ -1,0 +1,2 @@
+[[0, 0], [0, 0]]
+{'H01355': {'description': 'Kearns-Sayre Syndrome', 'id': 1, 'name': 'H01355'}, 'H00068': {'description': 'Leber optic atrophy; Leber hereditary optic atrophy (LHON)', 'id': 0, 'name': 'H00068'}}

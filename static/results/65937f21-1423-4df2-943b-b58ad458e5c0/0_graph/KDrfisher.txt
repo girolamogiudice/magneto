@@ -1,0 +1,3 @@
+id	p_value	ic	proteins_involved	description	proteins
+D03658	0.000191802611855	3	Dasatinib (INN)	P09619(PDGFRB) P12931(SRC) P00519(ABL1)
+D06414	0.000191802611855	3	Dasatinib hydrate (JAN); Dasatinib (USAN); Sprycel (TN)	P09619(PDGFRB) P12931(SRC) P00519(ABL1)

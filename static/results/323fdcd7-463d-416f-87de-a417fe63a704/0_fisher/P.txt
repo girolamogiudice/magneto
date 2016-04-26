@@ -1,0 +1,18 @@
+GO:0043065	8.8851891665e-05	positive regulation of apoptotic process	O15455 Q02127 P01375
+GO:0032757	1.97020927135e-05	positive regulation of interleukin-8 production	O15455 P01375
+GO:0050830	7.13435492314e-05	defense response to Gram-positive bacterium	P08887 P01375
+GO:0048661	0.000102265372984	positive regulation of smooth muscle cell proliferation	P08887 P01375
+GO:0045080	2.02548103114e-06	positive regulation of chemokine biosynthetic process	O15455 P01375
+GO:0071346	7.70868579111e-05	cellular response to interferon-gamma	O15455 P78556
+GO:0071222	3.53350221464e-06	cellular response to lipopolysaccharide	P51681 P01375 P78556
+GO:0032722	1.25417810405e-08	positive regulation of chemokine production	O15455 P08887 P01375
+GO:0032755	2.14817569862e-07	positive regulation of interleukin-6 production	O15455 P08887 P01375
+GO:0007249	9.89253249229e-05	I-kappaB kinase/NF-kappaB signaling	O15455 P01375
+GO:0006954	2.11116654026e-06	inflammatory response	O15455 P51681 P01375 P78556
+GO:0001819	2.78229674982e-05	positive regulation of cytokine production	O15455 P01375
+GO:0042346	1.29748003917e-05	positive regulation of NF-kappaB import into nucleus	O15455 P01375
+GO:0042742	9.31102924527e-06	defense response to bacterium	O15455 P01375 P78556
+GO:0046330	0.000142631229546	positive regulation of JNK cascade	O15455 P01375
+GO:0097527	8.44280975464e-07	necroptotic signaling pathway	O15455 P01375
+GO:0097191	3.37843630107e-07	extrinsic apoptotic signaling pathway	O15455 P08887 P01375
+GO:0002548	4.37081886646e-05	monocyte chemotaxis	P08887 P78556

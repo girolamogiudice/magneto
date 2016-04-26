@@ -1,0 +1,6 @@
+H00028	Choriocarcinoma
+H00030	Cervical cancer
+H00016	Oral cancer
+H00027	Ovarian cancer
+H00031	Breast cancer
+H00056	Alzheimer's disease (AD)

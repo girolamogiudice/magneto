@@ -1,0 +1,61 @@
+<style>
+    #word {
+        font-family:"Lucida Grande","Droid Sans",Arial,Helvetica,sans-serif;
+        font: 12px sans-serif;
+    }
+    .bld {
+        font-weight: bold;
+    }
+</style>
+   <div class="panel panel-primary">
+      <div class="panel-heading">Word Cloud Plot</div>
+      <div  class="panel-body"><div id="_word">
+          
+          </div>
+</div>
+</div>
+<script>
+
+    var frequency_list = {{=XML(word_cloud)}}
+    width=1170
+    heigh=600
+    half_heigh=300
+    var color =d3.scale.category10()
+    var zoom = d3.behavior.zoom()
+    .scaleExtent([0.1, 10])
+    .on("zoom", zoomed);
+     var svg=   d3.select("#_word").append("svg")
+                .attr("width", width)
+                .attr("height", heigh)
+                .attr("class", "wordcloud").call(zoom);
+                
+    var container = svg.append("g");
+    
+    d3.layout.cloud().size([width, heigh])
+            .words(frequency_list)
+            .rotate(0)
+            .fontSize(function(d) { return Math.min(8 * d.size, half_heigh ); })
+            .on("end", draw)
+            .start();
+
+
+    function draw(words) {
+        container.append("g")
+                // without the transform, words words would get cutoff to the left and top, they would
+                // appear outside of the SVG area
+                .attr("transform", "translate(350,250)")
+                .selectAll("text")
+                .data(words)
+                .enter().append("text")
+              
+                .style("font-size", function(d) { return d.size + "px"; })
+                .style("fill", function(d, i) { return color(i); })
+                .attr("transform", function(d) {
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+                .text(function(d) { return d.text; });
+    }
+ function zoomed() {
+  container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+</script>

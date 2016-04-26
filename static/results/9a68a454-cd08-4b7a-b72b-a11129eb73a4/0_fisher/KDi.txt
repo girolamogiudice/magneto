@@ -1,0 +1,4 @@
+H00699	0.00197550375345	Central core disease	P21817
+H01471	0.00197550375345	Lymphangioma	P35916
+H01025	0.00394788418081	Familial adenomatous polyposis	P25054
+H01310	0.00394788418081	Multi-minicore disease (MmD); Multicore myopathy with external ophthalmoplegia	P21817

@@ -1,0 +1,3 @@
+H00222	0.000377713494444	Afibrinogenemia; Dysfibrinogenemia	P02675 P02679
+H00165	0.000377713494444	Tyrosinemia; Tyrosinemia, type I; Tyrosinemia, type II; Tyrosinemia, type III; Hawkinsinuria	P17735 P16930
+H00223	2.56725625006e-07	Inherited thrombophilia	P04196 P01008 P02675 P02679 P00734

@@ -1,0 +1,10 @@
+H00294	1.66580034925e-08	Dilated cardiomyopathy (DCM)	P63316 O15273 P19429 P12883 P68032 P17661 P50461 P26678
+H01347	2.4249311121e-06	MELAS Syndrome; Mitochondrial myopathy, Encephalopathy, Lactic Acidosis, Stroke-like episodes	P03886 P03915 P03923
+H00473	9.94212963504e-14	Mitochondrial respiratory chain deficiencies (MRCD), including: Mitochondrial complex I deficiency (MT-C1D); Complex II deficiency (MT-C2D); Complex III deficiency (MT-C3D); Leigh syndrome (LS) [DS:H01354]; Leber Hereditary Optic Neuropathy (LHON) [DS:H00068]; Leber Optic Atrophy and Dystonia (LDYT) [DS:H01365]; MELAS Syndrome [DS:H01347]; Kearns-Sayre Syndrome (KSS) [DS:H01355]; GRACILE Syndrome	P03886 O00217 P00156 P03905 P03901 P03891 P03897 P03915 P03923 O15239 O14949
+H00656	0.00055266384528	Scapuloperoneal myopathy (SPM)	P12883 P17661
+H01368	4.96329582433e-05	Cytochrome c oxidase (COX) deficiency, including: Mitochondrial complex IV deficiency (MT-C4D); Fatal infantile cardioencephalomyopathy (CEMCOX) [DS:H01200]; Leigh syndrome (LS) [DS:H01354]; Kearns-Sayre Syndrome (KSS) [DS:H01355]; Leber Hereditary Optic Neuropathy (LHON) [DS:H00068]	P14854 P00395 P00403 P00414
+H01219	9.60763845678e-06	Restrictive cardiomyopathy (RCM)	P19429 P68032 P17661
+H00292	1.64637819884e-10	Hypertrophic cardiomyopathy (HCM)	P63316 P19429 P12883 P68032 P50461 P10916 P08590
+H01365	3.06953305328e-08	Leber hereditary optic neuropathy and dystonia (LDYT)	P03886 P03905 P03897 P03923
+H01355	6.09773412994e-18	Kearns-Sayre Syndrome	P00414 P00156 P03905 P03901 P03897 P03915 P00846 P03923 P03928
+H00068	6.28632384531e-20	Leber optic atrophy; Leber hereditary optic atrophy (LHON)	P00395 P03886 P00414 P00156 P03905 P03901 P03891 P03915 P00846 P03923

@@ -1,0 +1,1 @@
+[{'text': 'rigosertib', 'size': 4.9534796582227596}, {'text': 'volasertib', 'size': 17.52767534222221}, {'text': 'sodium', 'size': 16.429132951814346}]

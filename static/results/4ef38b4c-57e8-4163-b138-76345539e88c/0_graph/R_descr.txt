@@ -1,0 +1,2 @@
+R-HSA-1251932	PLCG1 events in ERBB2 signaling
+R-HSA-8852276	The role of GTSE1 in G2/M progression after G2 checkpoint

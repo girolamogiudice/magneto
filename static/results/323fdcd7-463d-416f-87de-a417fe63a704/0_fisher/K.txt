@@ -1,0 +1,1 @@
+hsa04060	0.000237511486401	Cytokine-cytokine receptor interaction	P08887 P51681 P01375 P78556

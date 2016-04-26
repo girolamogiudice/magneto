@@ -1,0 +1,63 @@
+hsa05131	Shigellosis
+hsa05130	Pathogenic Escherichia coli infection
+hsa04510	Focal adhesion
+hsa05222	Small cell lung cancer
+hsa05212	Pancreatic cancer
+hsa05213	Endometrial cancer
+hsa05210	Colorectal cancer
+hsa04915	Estrogen signaling pathway
+hsa05216	Thyroid cancer
+hsa05218	Melanoma
+hsa05214	Glioma
+hsa05215	Prostate cancer
+hsa04720	Long-term potentiation
+hsa04722	Neurotrophin signaling pathway
+hsa05230	Central carbon metabolism in cancer
+hsa05231	Choline metabolism in cancer
+hsa04068	FoxO signaling pathway
+hsa04380	Osteoclast differentiation
+hsa04066	HIF-1 signaling pathway
+hsa04062	Chemokine signaling pathway
+hsa04933	AGE-RAGE signaling pathway in diabetic complications
+hsa04114	Oocyte meiosis
+hsa04370	VEGF signaling pathway
+hsa05142	Chagas disease (American trypanosomiasis)
+hsa05168	Herpes simplex infection
+hsa05169	Epstein-Barr virus infection
+hsa05145	Toxoplasmosis
+hsa05164	Influenza A
+hsa04210	Apoptosis
+hsa05166	HTLV-I infection
+hsa04810	Regulation of actin cytoskeleton
+hsa05160	Hepatitis C
+hsa05161	Hepatitis B
+hsa05162	Measles
+hsa05120	Epithelial cell signaling in Helicobacter pylori infection
+hsa05220	Chronic myeloid leukemia
+hsa05211	Renal cell carcinoma
+hsa05100	Bacterial invasion of epithelial cells
+hsa05205	Proteoglycans in cancer
+hsa05206	MicroRNAs in cancer
+hsa04620	Toll-like receptor signaling pathway
+hsa04621	NOD-like receptor signaling pathway
+hsa04622	RIG-I-like receptor signaling pathway
+hsa05200	Pathways in cancer
+hsa04912	GnRH signaling pathway
+hsa04666	Fc gamma R-mediated phagocytosis
+hsa04662	B cell receptor signaling pathway
+hsa04014	Ras signaling pathway
+hsa05223	Non-small cell lung cancer
+hsa04012	ErbB signaling pathway
+hsa05221	Acute myeloid leukemia
+hsa04010	MAPK signaling pathway
+hsa05203	Viral carcinogenesis
+hsa04919	Thyroid hormone signaling pathway
+hsa04151	PI3K-Akt signaling pathway
+hsa04660	T cell receptor signaling pathway
+hsa04910	Insulin signaling pathway
+hsa04520	Adherens junction
+hsa04071	Sphingolipid signaling pathway
+hsa04916	Melanogenesis
+hsa05219	Bladder cancer
+hsa04668	TNF signaling pathway
+hsa04917	Prolactin signaling pathway

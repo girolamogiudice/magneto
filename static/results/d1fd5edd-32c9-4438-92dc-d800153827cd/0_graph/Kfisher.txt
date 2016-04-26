@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+hsa04310	2.18584372385e-06	6	Wnt signaling pathway	Q92793(CREBBP) P25054(APC) P68400(CSNK2A1) O14641(DVL2) P05412(JUN) Q13616(CUL1)

@@ -1,0 +1,27 @@
+GO:0060002	plus-end directed microfilament motor activity
+GO:0005080	protein kinase C binding
+GO:0008022	protein C-terminus binding
+GO:0019899	enzyme binding
+GO:0048487	beta-tubulin binding
+GO:0034237	protein kinase A regulatory subunit binding
+GO:0044325	ion channel binding
+GO:0030957	Tat protein binding
+GO:0031432	titin binding
+GO:0000149	SNARE binding
+GO:0032403	protein complex binding
+GO:0003774	motor activity
+GO:0042802	identical protein binding
+GO:0005178	integrin binding
+GO:0044822	poly(A) RNA binding
+GO:0030235	nitric-oxide synthase regulator activity
+GO:0008134	transcription factor binding
+GO:0030898	actin-dependent ATPase activity
+GO:0019901	protein kinase binding
+GO:0051015	actin filament binding
+GO:0008179	adenylate cyclase binding
+GO:0050998	nitric-oxide synthase binding
+GO:0031625	ubiquitin protein ligase binding
+GO:0047485	protein N-terminus binding
+GO:0043495	protein anchor
+GO:0003682	chromatin binding
+GO:0019904	protein domain specific binding

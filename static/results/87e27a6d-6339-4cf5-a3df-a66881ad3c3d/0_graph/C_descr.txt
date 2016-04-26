@@ -1,0 +1,95 @@
+GO:0000242	pericentriolar material
+GO:0030426	growth cone
+GO:0005788	endoplasmic reticulum lumen
+GO:0031594	neuromuscular junction
+GO:0044853	plasma membrane raft
+GO:0030529	intracellular ribonucleoprotein complex
+GO:0042995	cell projection
+GO:0031982	vesicle
+GO:0043209	myelin sheath
+GO:0005770	late endosome
+GO:0005776	autophagosome
+GO:0000922	spindle pole
+GO:0032444	activin responsive factor complex
+GO:0005790	smooth endoplasmic reticulum
+GO:0044297	cell body
+GO:0031966	mitochondrial membrane
+GO:0000790	nuclear chromatin
+GO:0030425	dendrite
+GO:0000502	proteasome complex
+GO:0030424	axon
+GO:0043234	protein complex
+GO:0043235	receptor complex
+GO:0005662	DNA replication factor A complex
+GO:0005667	transcription factor complex
+GO:0009897	external side of plasma membrane
+GO:0000781	chromosome, telomeric region
+GO:0000783	nuclear telomere cap complex
+GO:0000785	chromatin
+GO:0000784	nuclear chromosome, telomeric region
+GO:0005925	focal adhesion
+GO:0005856	cytoskeleton
+GO:0036064	ciliary basal body
+GO:0016605	PML body
+GO:0070187	telosome
+GO:0005654	nucleoplasm
+GO:0030877	beta-catenin destruction complex
+GO:0048471	perinuclear region of cytoplasm
+GO:0033256	I-kappaB/NF-kappaB complex
+GO:0043025	neuronal cell body
+GO:0031252	cell leading edge
+GO:0005938	cell cortex
+GO:0012506	vesicle membrane
+GO:0051233	spindle midzone
+GO:0000139	Golgi membrane
+GO:0005901	caveola
+GO:0000800	lateral element
+GO:0005874	microtubule
+GO:0010008	endosome membrane
+GO:0005737	cytoplasm
+GO:0045177	apical part of cell
+GO:0030666	endocytic vesicle membrane
+GO:0031091	platelet alpha granule
+GO:0005730	nucleolus
+GO:0031410	cytoplasmic vesicle
+GO:0005634	nucleus
+GO:0043005	neuron projection
+GO:0097539	ciliary transition fiber
+GO:0016324	apical plasma membrane
+GO:0009986	cell surface
+GO:0016323	basolateral plasma membrane
+GO:0030659	cytoplasmic vesicle membrane
+GO:0005913	cell-cell adherens junction
+GO:0005911	cell-cell junction
+GO:0032587	ruffle membrane
+GO:1990909	Wnt signalosome
+GO:0000421	autophagosome membrane
+GO:0030496	midbody
+GO:0005743	mitochondrial inner membrane
+GO:0005747	mitochondrial respiratory chain complex I
+GO:0070469	respiratory chain
+GO:0015629	actin cytoskeleton
+GO:0005794	Golgi apparatus
+GO:0016234	inclusion body
+GO:0071944	cell periphery
+GO:0001726	ruffle
+GO:0072686	mitotic spindle
+GO:0005813	centrosome
+GO:0005814	centriole
+GO:0005815	microtubule organizing center
+GO:0005750	mitochondrial respiratory chain complex III
+GO:0005759	mitochondrial matrix
+GO:0034451	centriolar satellite
+GO:0016342	catenin complex
+GO:0030027	lamellipodium
+GO:0031965	nuclear membrane
+GO:0005819	spindle
+GO:0005886	plasma membrane
+GO:1903561	extracellular vesicle
+GO:0042470	melanosome
+GO:0032993	protein-DNA complex
+GO:0043198	dendritic shaft
+GO:0045121	membrane raft
+GO:0005768	endosome
+GO:0005769	early endosome
+GO:0071141	SMAD protein complex

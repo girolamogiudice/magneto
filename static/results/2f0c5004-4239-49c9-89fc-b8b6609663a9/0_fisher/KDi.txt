@@ -1,0 +1,10 @@
+H01365	5.93681459713e-08	Leber hereditary optic neuropathy and dystonia (LDYT)	P03886 P03905 P03897 P03923
+H00292	5.42387787655e-10	Hypertrophic cardiomyopathy (HCM)	P63316 P19429 P12883 P50461 P68032 P10916 P08590
+H00656	0.000760439130686	Scapuloperoneal myopathy (SPM)	P12883 P17661
+H01355	3.02560368763e-17	Kearns-Sayre Syndrome	P00414 P00156 P03905 P03901 P03897 P03915 P00846 P03923 P03928
+H00473	2.74170009624e-11	Mitochondrial respiratory chain deficiencies (MRCD), including: Mitochondrial complex I deficiency (MT-C1D); Complex II deficiency (MT-C2D); Complex III deficiency (MT-C3D); Leigh syndrome (LS) [DS:H01354]; Leber Hereditary Optic Neuropathy (LHON) [DS:H00068]; Leber Optic Atrophy and Dystonia (LDYT) [DS:H01365]; MELAS Syndrome [DS:H01347]; Kearns-Sayre Syndrome (KSS) [DS:H01355]; GRACILE Syndrome	P03886 P00156 P03905 P03901 P03891 P03897 P03915 O15239 P03923 O14949
+H00294	6.35591465346e-08	Dilated cardiomyopathy (DCM)	P63316 O15273 P19429 P12883 P17661 P50461 P26678 P68032
+H01347	3.94954402675e-06	MELAS Syndrome; Mitochondrial myopathy, Encephalopathy, Lactic Acidosis, Stroke-like episodes	P03886 P03915 P03923
+H01219	1.5620071669e-05	Restrictive cardiomyopathy (RCM)	P19429 P17661 P68032
+H00068	3.83898961159e-19	Leber optic atrophy; Leber hereditary optic atrophy (LHON)	P00395 P03886 P00414 P00156 P03905 P03901 P03891 P03915 P00846 P03923
+H01369	7.63504834604e-05	ATP synthase deficiency, including: Mitochondrial respiratory chain complex V deficiency nuclear type (MC5DN); Mitochondrial respiratory chain complex V deficiency mitochondrial type (MC5DM); Mitochondrial encephalo-cardio-myopathy due to mitochondrial respiratory chain complex V deficiency; NARP syndrome [DS:H01363]; Mitochondrial infantile bilateral striatal necrosis (MIBSN)	P00846 P03928 P56381

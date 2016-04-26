@@ -1,0 +1,60 @@
+GO:0008022	protein C-terminus binding
+GO:0033613	activating transcription factor binding
+GO:0005178	integrin binding
+GO:0019901	protein kinase binding
+GO:0051219	phosphoprotein binding
+GO:0005518	collagen binding
+GO:0001012	RNA polymerase II regulatory region DNA binding
+GO:0031490	chromatin DNA binding
+GO:0001077	transcriptional activator activity, RNA polymerase II core promoter proximal region sequence-specific binding
+GO:0031593	polyubiquitin binding
+GO:0044325	ion channel binding
+GO:0034191	apolipoprotein A-I receptor binding
+GO:0043422	protein kinase B binding
+GO:0031701	angiotensin receptor binding
+GO:0031691	alpha-1A adrenergic receptor binding
+GO:0031435	mitogen-activated protein kinase kinase kinase binding
+GO:0003713	transcription coactivator activity
+GO:0016740	transferase activity
+GO:0004715	non-membrane spanning protein tyrosine kinase activity
+GO:0070412	R-SMAD binding
+GO:0002020	protease binding
+GO:0032403	protein complex binding
+GO:0003682	chromatin binding
+GO:0003690	double-stranded DNA binding
+GO:0046872	metal ion binding
+GO:0042826	histone deacetylase binding
+GO:0008134	transcription factor binding
+GO:0001948	glycoprotein binding
+GO:0016301	kinase activity
+GO:0031762	follicle-stimulating hormone receptor binding
+GO:0030331	estrogen receptor binding
+GO:0050998	nitric-oxide synthase binding
+GO:0050681	androgen receptor binding
+GO:0044822	poly(A) RNA binding
+GO:0030235	nitric-oxide synthase regulator activity
+GO:0035257	nuclear hormone receptor binding
+GO:0030374	ligand-dependent nuclear receptor transcription coactivator activity
+GO:0046332	SMAD binding
+GO:0019900	kinase binding
+GO:0019903	protein phosphatase binding
+GO:0001102	RNA polymerase II activating transcription factor binding
+GO:0004842	ubiquitin-protein transferase activity
+GO:0061631	ubiquitin conjugating enzyme activity
+GO:0001085	RNA polymerase II transcription factor binding
+GO:0044212	transcription regulatory region DNA binding
+GO:0031625	ubiquitin protein ligase binding
+GO:0031996	thioesterase binding
+GO:0047485	protein N-terminus binding
+GO:0070851	growth factor receptor binding
+GO:0046875	ephrin receptor binding
+GO:0005102	receptor binding
+GO:0005080	protein kinase C binding
+GO:0000987	core promoter proximal region sequence-specific DNA binding
+GO:0000977	RNA polymerase II regulatory region sequence-specific DNA binding
+GO:0016504	peptidase activator activity
+GO:0042975	peroxisome proliferator activated receptor binding
+GO:0000978	RNA polymerase II core promoter proximal region sequence-specific DNA binding
+GO:0046982	protein heterodimerization activity
+GO:0002039	p53 binding
+GO:0019904	protein domain specific binding

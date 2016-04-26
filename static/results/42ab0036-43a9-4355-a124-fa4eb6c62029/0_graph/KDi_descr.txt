@@ -1,0 +1,3 @@
+H00007	Hodgkin lymphoma
+H00056	Alzheimer's disease (AD)
+H00223	Inherited thrombophilia

@@ -1,0 +1,18 @@
+{{left_sidebar_enabled=False}}
+{{right_sidebar_enabled=False}}
+{{extend 'layout.html'}}
+<style>
+  
+circle.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+line.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+</style>
+<script src="{{=URL('static','js/d3.min.js')}}"></script>
+<script src="{{=URL('static','js/logo.js')}}"></script>
+{{=form}}

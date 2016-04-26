@@ -1,0 +1,2 @@
+[[0, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
+{'Q00535': {'description': 'CDK5', 'id': 1, 'descr': 'C', 'name': 'Q00535(CDK5)'}, 'D09604': {'description': 'Dinaciclib (USAN/INN)', 'id': 0, 'name': 'D09604'}, 'P24941': {'description': 'CDK2', 'id': 2, 'descr': 'C', 'name': 'P24941(CDK2)'}, 'P50750': {'description': 'CDK9', 'id': 3, 'descr': 'C', 'name': 'P50750(CDK9)'}}

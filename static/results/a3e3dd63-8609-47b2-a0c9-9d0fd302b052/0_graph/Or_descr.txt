@@ -1,0 +1,3 @@
+353281	Rubinstein-Taybi syndrome due to 16p13.3 microdeletion
+229	Familial aortic dissection
+353277	Rubinstein-Taybi syndrome due to CREBBP mutations

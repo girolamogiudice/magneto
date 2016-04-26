@@ -1,0 +1,295 @@
+GO:2001234	negative regulation of apoptotic signaling pathway
+GO:2001237	negative regulation of extrinsic apoptotic signaling pathway
+GO:0032436	positive regulation of proteasomal ubiquitin-dependent protein catabolic process
+GO:0019221	cytokine-mediated signaling pathway
+GO:1902166	negative regulation of intrinsic apoptotic signaling pathway in response to DNA damage by p53 class mediator
+GO:0000086	G2/M transition of mitotic cell cycle
+GO:0002479	antigen processing and presentation of exogenous peptide antigen via MHC class I, TAP-dependent
+GO:0034605	cellular response to heat
+GO:0007596	blood coagulation
+GO:0000082	G1/S transition of mitotic cell cycle
+GO:0006476	protein deacetylation
+GO:0007160	cell-matrix adhesion
+GO:0061024	membrane organization
+GO:0046777	protein autophosphorylation
+GO:0044281	small molecule metabolic process
+GO:0007166	cell surface receptor signaling pathway
+GO:0008380	RNA splicing
+GO:0043200	response to amino acid
+GO:0007219	Notch signaling pathway
+GO:0006302	double-strand break repair
+GO:0070842	aggresome assembly
+GO:0051496	positive regulation of stress fiber assembly
+GO:0051493	regulation of cytoskeleton organization
+GO:0009611	response to wounding
+GO:0009612	response to mechanical stimulus
+GO:0075733	intracellular transport of virus
+GO:0048511	rhythmic process
+GO:0019058	viral life cycle
+GO:0030168	platelet activation
+GO:0030855	epithelial cell differentiation
+GO:0035666	TRIF-dependent toll-like receptor signaling pathway
+GO:0021697	cerebellar cortex formation
+GO:0007411	axon guidance
+GO:0043123	positive regulation of I-kappaB kinase/NF-kappaB signaling
+GO:0042127	regulation of cell proliferation
+GO:0006283	transcription-coupled nucleotide-excision repair
+GO:0006936	muscle contraction
+GO:0006281	DNA repair
+GO:0042493	response to drug
+GO:0014823	response to activity
+GO:0051291	protein heterooligomerization
+GO:0006289	nucleotide-excision repair
+GO:0034162	toll-like receptor 9 signaling pathway
+GO:0042752	regulation of circadian rhythm
+GO:0008360	regulation of cell shape
+GO:0034166	toll-like receptor 10 signaling pathway
+GO:0001934	positive regulation of protein phosphorylation
+GO:0010975	regulation of neuron projection development
+GO:0070527	platelet aggregation
+GO:0007077	mitotic nuclear envelope disassembly
+GO:0010800	positive regulation of peptidyl-threonine phosphorylation
+GO:0030512	negative regulation of transforming growth factor beta receptor signaling pathway
+GO:0007179	transforming growth factor beta receptor signaling pathway
+GO:0007569	cell aging
+GO:0022614	membrane to membrane docking
+GO:0016477	cell migration
+GO:0048873	homeostasis of number of cells within a tissue
+GO:0071285	cellular response to lithium ion
+GO:0010632	regulation of epithelial cell migration
+GO:0043406	positive regulation of MAP kinase activity
+GO:0050731	positive regulation of peptidyl-tyrosine phosphorylation
+GO:0071222	cellular response to lipopolysaccharide
+GO:0016055	Wnt signaling pathway
+GO:0070423	nucleotide-binding oligomerization domain containing signaling pathway
+GO:0000398	mRNA splicing, via spliceosome
+GO:0070987	error-free translesion synthesis
+GO:0030198	extracellular matrix organization
+GO:0071407	cellular response to organic cyclic compound
+GO:0051000	positive regulation of nitric-oxide synthase activity
+GO:0035924	cellular response to vascular endothelial growth factor stimulus
+GO:0043525	positive regulation of neuron apoptotic process
+GO:0045931	positive regulation of mitotic cell cycle
+GO:0006297	nucleotide-excision repair, DNA gap filling
+GO:0009615	response to virus
+GO:0006921	cellular component disassembly involved in execution phase of apoptosis
+GO:0031647	regulation of protein stability
+GO:0090263	positive regulation of canonical Wnt signaling pathway
+GO:0071333	cellular response to glucose stimulus
+GO:0038061	NIK/NF-kappaB signaling
+GO:0038066	p38MAPK cascade
+GO:0050821	protein stabilization
+GO:0000724	double-strand break repair via homologous recombination
+GO:0010629	negative regulation of gene expression
+GO:0010628	positive regulation of gene expression
+GO:0070911	global genome nucleotide-excision repair
+GO:0031175	neuron projection development
+GO:0071902	positive regulation of protein serine/threonine kinase activity
+GO:0032496	response to lipopolysaccharide
+GO:0000715	nucleotide-excision repair, DNA damage recognition
+GO:0061418	regulation of transcription from RNA polymerase II promoter in response to hypoxia
+GO:0010803	regulation of tumor necrosis factor-mediated signaling pathway
+GO:0032091	negative regulation of protein binding
+GO:0032092	positive regulation of protein binding
+GO:0001666	response to hypoxia
+GO:0048661	positive regulation of smooth muscle cell proliferation
+GO:0071353	cellular response to interleukin-4
+GO:0000209	protein polyubiquitination
+GO:1900041	negative regulation of interleukin-2 secretion
+GO:0006367	transcription initiation from RNA polymerase II promoter
+GO:0071456	cellular response to hypoxia
+GO:0044267	cellular protein metabolic process
+GO:0045727	positive regulation of translation
+GO:0030878	thyroid gland development
+GO:0045087	innate immune response
+GO:0019985	translesion synthesis
+GO:0006461	protein complex assembly
+GO:0034097	response to cytokine
+GO:0030335	positive regulation of cell migration
+GO:0007049	cell cycle
+GO:0016310	phosphorylation
+GO:0007126	meiotic nuclear division
+GO:0042060	wound healing
+GO:0007050	cell cycle arrest
+GO:0012501	programmed cell death
+GO:0034146	toll-like receptor 5 signaling pathway
+GO:0006986	response to unfolded protein
+GO:0034142	toll-like receptor 4 signaling pathway
+GO:0032956	regulation of actin cytoskeleton organization
+GO:0048011	neurotrophin TRK receptor signaling pathway
+GO:0048010	vascular endothelial growth factor receptor signaling pathway
+GO:0048013	ephrin receptor signaling pathway
+GO:1901215	negative regulation of neuron death
+GO:0060765	regulation of androgen receptor signaling pathway
+GO:0010918	positive regulation of mitochondrial membrane potential
+GO:0002755	MyD88-dependent toll-like receptor signaling pathway
+GO:0002756	MyD88-independent toll-like receptor signaling pathway
+GO:0038095	Fc-epsilon receptor signaling pathway
+GO:0006897	endocytosis
+GO:0006417	regulation of translation
+GO:0060070	canonical Wnt signaling pathway
+GO:0043488	regulation of mRNA stability
+GO:0009651	response to salt stress
+GO:0032481	positive regulation of type I interferon production
+GO:0070059	intrinsic apoptotic signaling pathway in response to endoplasmic reticulum stress
+GO:0043154	negative regulation of cysteine-type endopeptidase activity involved in apoptotic process
+GO:0006357	regulation of transcription from RNA polymerase II promoter
+GO:0006351	transcription, DNA-templated
+GO:0051085	chaperone mediated protein folding requiring cofactor
+GO:0097300	programmed necrotic cell death
+GO:0070849	response to epidermal growth factor
+GO:1903351	cellular response to dopamine
+GO:0007568	aging
+GO:0048255	mRNA stabilization
+GO:0030308	negative regulation of cell growth
+GO:0000186	activation of MAPKK activity
+GO:0048147	negative regulation of fibroblast proliferation
+GO:0048146	positive regulation of fibroblast proliferation
+GO:0019068	virion assembly
+GO:0033209	tumor necrosis factor-mediated signaling pathway
+GO:0090200	positive regulation of release of cytochrome c from mitochondria
+GO:0043433	negative regulation of sequence-specific DNA binding transcription factor activity
+GO:0038123	toll-like receptor TLR1
+GO:0051384	response to glucocorticoid
+GO:0021762	substantia nigra development
+GO:0038127	ERBB signaling pathway
+GO:0038124	toll-like receptor TLR6
+GO:0034644	cellular response to UV
+GO:0032886	regulation of microtubule-based process
+GO:0051090	regulation of sequence-specific DNA binding transcription factor activity
+GO:0008543	fibroblast growth factor receptor signaling pathway
+GO:0008542	visual learning
+GO:0014070	response to organic cyclic compound
+GO:0034138	toll-like receptor 3 signaling pathway
+GO:0007254	JNK cascade
+GO:0001701	in utero embryonic development
+GO:0042276	error-prone translesion synthesis
+GO:0000122	negative regulation of transcription from RNA polymerase II promoter
+GO:1900026	positive regulation of substrate adhesion-dependent cell spreading
+GO:0043161	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0035872	nucleotide-binding domain, leucine rich repeat containing receptor signaling pathway
+GO:0060440	trachea formation
+GO:0006611	protein export from nucleus
+GO:0031398	positive regulation of protein ubiquitination
+GO:0002224	toll-like receptor signaling pathway
+GO:2001244	positive regulation of intrinsic apoptotic signaling pathway
+GO:2001241	positive regulation of extrinsic apoptotic signaling pathway in absence of ligand
+GO:0019082	viral protein processing
+GO:0002223	stimulatory C-type lectin receptor signaling pathway
+GO:0008284	positive regulation of cell proliferation
+GO:0008285	negative regulation of cell proliferation
+GO:0008286	insulin receptor signaling pathway
+GO:0070266	necroptotic process
+GO:0045740	positive regulation of DNA replication
+GO:0010939	regulation of necrotic cell death
+GO:0008283	cell proliferation
+GO:0016236	macroautophagy
+GO:0043687	post-translational protein modification
+GO:0007084	mitotic nuclear envelope reassembly
+GO:0031145	anaphase-promoting complex-dependent proteasomal ubiquitin-dependent protein catabolic process
+GO:0006974	cellular response to DNA damage stimulus
+GO:0043124	negative regulation of I-kappaB kinase/NF-kappaB signaling
+GO:0032743	positive regulation of interleukin-2 production
+GO:0006977	DNA damage response, signal transduction by p53 class mediator resulting in cell cycle arrest
+GO:0045892	negative regulation of transcription, DNA-templated
+GO:0045893	positive regulation of transcription, DNA-templated
+GO:0016925	protein sumoylation
+GO:0060020	Bergmann glial cell differentiation
+GO:0007420	brain development
+GO:0051092	positive regulation of NF-kappaB transcription factor activity
+GO:0051091	positive regulation of sequence-specific DNA binding transcription factor activity
+GO:0071364	cellular response to epidermal growth factor stimulus
+GO:0071363	cellular response to growth factor stimulus
+GO:0031623	receptor internalization
+GO:0000423	macromitophagy
+GO:1900034	regulation of cellular response to heat
+GO:0042542	response to hydrogen peroxide
+GO:0007249	I-kappaB kinase/NF-kappaB signaling
+GO:0050900	leukocyte migration
+GO:0006950	response to stress
+GO:0010718	positive regulation of epithelial to mesenchymal transition
+GO:0090170	regulation of Golgi inheritance
+GO:0045944	positive regulation of transcription from RNA polymerase II promoter
+GO:0001525	angiogenesis
+GO:0001889	liver development
+GO:0006006	glucose metabolic process
+GO:0070374	positive regulation of ERK1 and ERK2 cascade
+GO:0034976	response to endoplasmic reticulum stress
+GO:0000187	activation of MAPK activity
+GO:0018107	peptidyl-threonine phosphorylation
+GO:0018105	peptidyl-serine phosphorylation
+GO:0033138	positive regulation of peptidyl-serine phosphorylation
+GO:0031281	positive regulation of cyclase activity
+GO:0030030	cell projection organization
+GO:0034134	toll-like receptor 2 signaling pathway
+GO:0097190	apoptotic signaling pathway
+GO:0097191	extrinsic apoptotic signaling pathway
+GO:0000189	MAPK import into nucleus
+GO:0097193	intrinsic apoptotic signaling pathway
+GO:0042590	antigen processing and presentation of exogenous peptide antigen via MHC class I
+GO:0051439	regulation of ubiquitin-protein ligase activity involved in mitotic cell cycle
+GO:0042059	negative regulation of epidermal growth factor receptor signaling pathway
+GO:0051146	striated muscle cell differentiation
+GO:0032869	cellular response to insulin stimulus
+GO:0032868	response to insulin
+GO:0051437	positive regulation of ubiquitin-protein ligase activity involved in regulation of mitotic cell cycle transition
+GO:0001837	epithelial to mesenchymal transition
+GO:0051028	mRNA transport
+GO:0051301	cell division
+GO:0032355	response to estradiol
+GO:0051436	negative regulation of ubiquitin-protein ligase activity involved in mitotic cell cycle
+GO:0000165	MAPK cascade
+GO:0030521	androgen receptor signaling pathway
+GO:0031532	actin cytoskeleton reorganization
+GO:0042981	regulation of apoptotic process
+GO:0002576	platelet degranulation
+GO:0031100	organ regeneration
+GO:0009636	response to toxic substance
+GO:0043065	positive regulation of apoptotic process
+GO:0010467	gene expression
+GO:0006511	ubiquitin-dependent protein catabolic process
+GO:0050852	T cell receptor signaling pathway
+GO:0001649	osteoblast differentiation
+GO:0048538	thymus development
+GO:0046686	response to cadmium ion
+GO:0042787	protein ubiquitination involved in ubiquitin-dependent protein catabolic process
+GO:0097284	hepatocyte apoptotic process
+GO:0043068	positive regulation of programmed cell death
+GO:0010033	response to organic substance
+GO:0090090	negative regulation of canonical Wnt signaling pathway
+GO:0045930	negative regulation of mitotic cell cycle
+GO:0006468	protein phosphorylation
+GO:0070301	cellular response to hydrogen peroxide
+GO:0048015	phosphatidylinositol-mediated signaling
+GO:0000278	mitotic cell cycle
+GO:0006919	activation of cysteine-type endopeptidase activity involved in apoptotic process
+GO:0007584	response to nutrient
+GO:0006915	apoptotic process
+GO:0030307	positive regulation of cell growth
+GO:0043066	negative regulation of apoptotic process
+GO:0032872	regulation of stress-activated MAPK cascade
+GO:0045471	response to ethanol
+GO:0051402	neuron apoptotic process
+GO:0051403	stress-activated MAPK cascade
+GO:0043518	negative regulation of DNA damage response, signal transduction by p53 class mediator
+GO:0060334	regulation of interferon-gamma-mediated signaling pathway
+GO:0043627	response to estrogen
+GO:0007265	Ras protein signal transduction
+GO:0007264	small GTPase mediated signal transduction
+GO:0042771	intrinsic apoptotic signaling pathway in response to DNA damage by p53 class mediator
+GO:0006996	organelle organization
+GO:0007507	heart development
+GO:0001932	regulation of protein phosphorylation
+GO:0007399	nervous system development
+GO:0051726	regulation of cell cycle
+GO:0090398	cellular senescence
+GO:0045773	positive regulation of axon extension
+GO:0009749	response to glucose
+GO:0071260	cellular response to mechanical stimulus
+GO:0016032	viral process
+GO:0015031	protein transport
+GO:0007173	epidermal growth factor receptor signaling pathway
+GO:0001933	negative regulation of protein phosphorylation
+GO:0022617	extracellular matrix disassembly
+GO:0070555	response to interleukin-1
+GO:0006397	mRNA processing

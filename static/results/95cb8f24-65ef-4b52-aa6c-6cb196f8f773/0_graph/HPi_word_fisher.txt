@@ -1,0 +1,1 @@
+[{'text': 'human', 'size': 3.6195257671811856}, {'text': 'subtype', 'size': 4.3065190821662327}, {'text': 'immunodeficiency', 'size': 3.6195257671811856}, {'text': 'papillomavirus', 'size': 4.3065190821662327}, {'text': 'cerevisiae', 'size': 3.1007807184518055}]

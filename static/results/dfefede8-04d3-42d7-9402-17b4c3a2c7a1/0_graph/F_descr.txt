@@ -1,0 +1,29 @@
+GO:0008022	protein C-terminus binding
+GO:0019899	enzyme binding
+GO:0043422	protein kinase B binding
+GO:0001948	glycoprotein binding
+GO:0004715	non-membrane spanning protein tyrosine kinase activity
+GO:0004713	protein tyrosine kinase activity
+GO:0002020	protease binding
+GO:0043125	ErbB-3 class receptor binding
+GO:0005114	type II transforming growth factor beta receptor binding
+GO:0043120	tumor necrosis factor binding
+GO:0042802	identical protein binding
+GO:0042803	protein homodimerization activity
+GO:0005131	growth hormone receptor binding
+GO:0005138	interleukin-6 receptor binding
+GO:0019901	protein kinase binding
+GO:0019900	kinase binding
+GO:0019903	protein phosphatase binding
+GO:0019904	protein domain specific binding
+GO:0005164	tumor necrosis factor receptor binding
+GO:0043621	protein self-association
+GO:0050998	nitric-oxide synthase binding
+GO:0031625	ubiquitin protein ligase binding
+GO:0047485	protein N-terminus binding
+GO:0034714	type III transforming growth factor beta receptor binding
+GO:0015026	coreceptor activity
+GO:0001618	virus receptor activity
+GO:0005515	protein binding
+GO:0005102	receptor binding
+GO:0046982	protein heterodimerization activity

@@ -1,0 +1,182 @@
+<br>
+<div class="row">
+  <div class="col-md-6 span4"> <div class="thumbnail">
+    <center> <h4> {{=stats[0][5:]}}</h4></center>
+       <p> </p><center>{{=stats[2]}}</center>
+        <p></p><center>{{=stats[3]}}</center>
+         <p></p><center>{{=stats[4]}}</center>   
+      </div>
+    </div>
+         <div class="col-md-6 span4"> <div class="thumbnail">
+    <center> <h4> {{=stats[5][5:]}}</h4></center>
+       <p> </p><center>{{=stats[7]}}</center>
+        <p></p><center>{{=stats[8]}}</center>
+         <p></p><center>{{=stats[9]}}</center>   
+      </div>
+    </div>
+</div>
+<br><br>
+
+    
+</div>
+<style>
+    .label {
+  font: 28px "PT Sans", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+    }
+   
+#circle_packing .node {
+  cursor: pointer;
+}
+
+#circle_packing .node:hover {
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+
+
+.label,.node--root {
+  pointer-events: none;
+}
+
+</style>
+{{=type(sample_number)}}
+<div id="circle_packing">
+<script>
+    var color = d3.scale.category10();
+    var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("color", "white")
+    .style("padding", "8px")
+    .style("background-color", "rgba(0, 0, 0, 0.75)")
+    .style("border-radius", "6px")
+    .style("font", "12px sans-serif");
+var margin = 0,
+    diameter = 960;
+circle_colors={"Component":"#d5f0f4","Process":"#2171b5","Function":"#6baed6","Reactome":"#abe16c","Kegg Pathway":"#5f8726","Omim":"#7d6396",
+            "Kegg Drug":"#b23131","Kegg Disease":"#ffcdff","Drugbank":"#ff0000","Orphanet":"#c19bce","Virus":"#A9A9A9","Toxins":"#b56b19"}
+
+var pack = d3.layout.pack()
+    .padding(2)
+    .size([diameter - margin, diameter - margin])
+    .value(function(d) { return d.size; })
+
+var svg = d3.select("#circle_packing").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+  .append("g")
+    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
+
+
+d3.json("{{=path}}", function(error, root) {
+  if (error) throw error;
+
+  var focus = root;
+	var nodes = pack.nodes(root);
+	var	view;
+
+	var circle = svg.selectAll("circle")
+			.data(nodes)
+		.enter().append("circle")
+			.attr("class", function(d) { return d.parent ? d.children ? "node" : "leaf" : "node node--root"; })
+			.attr("id", "asdf")
+			.attr("fill",  function(d) {if (d.depth==3){ return circle_colors[d.parent.name] }
+                if (d.depth==2){ 
+                    return "#f0f5f5" }
+                if (d.depth==1){ 
+                    return "#e0ebeb"}
+                if (d.depth==0){return "#d1e0e0"}})
+            .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+            .on("mouseover", mouseover)
+            .on("mousemove", function() {return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+            .on("click", function(d) {if (d.depth!=3){ 
+                if (focus !== d) zoom(d), d3.event.stopPropagation(); }})
+
+            
+	      function mouseover(d) { if (d.depth==3) { 
+           tooltip
+               .style("visibility", "visible")
+               .html(d.name+" : "+d.description+"<br> Proteins Involved: "+d.proteins+"<br> Sample Involved: "+d.sample)
+               .style("top", function () { return (d3.event.pageY - 30)+"px"})
+               .style("left", function () { return (d3.event.pageX - 80)+"px";})
+          }
+          }
+
+	var name = svg.selectAll(".name")
+		.data(nodes)
+		.enter().append("text")
+		.attr("class", "label name")
+		.style("fill-opacity", function(d) { return d.parent === root ? 0.6 : 0; })
+        .style('fill',function(d) { if (d.depth==3) {
+            return 'darkOrange'}})
+		.style("display", function(d) { if (d.depth==3){return d.parent === root ? null : "none"; }})
+        .style("font-size", function(d) {if (d.depth==3) {return Math.max( d.r, (d.r - 24) / this.getComputedTextLength() * 24) + "px";
+                                    }  else{
+                                        var len = d.name.substring(0, d.r / 3).length;
+                                        var size = d.r/3;
+                                        size *= 10 / len;
+                                        size += 1;
+                                        return Math.round(size)+'px';}})
+
+		.text(function(d) { return d.name })
+
+
+	var title = svg.selectAll(".title")
+		.data(nodes)
+		.enter().append("text")
+		.attr("class", "label title")
+		.attr("dy", 43)
+		.style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
+		.style("display", function(d) { return d.parent === root ? null : "none"; })
+		.text(function(d) { return d.title })
+        
+
+	var node = svg.selectAll("circle,text,image")
+
+	d3.select("#circle_packing")
+			.on("click", function() { zoom(root); });
+
+
+// ZOOM
+	zoomTo([root.x, root.y, root.r * 2 + margin]);
+
+	function zoom(d) {
+		var focus0 = focus; focus = d;
+
+		var transition = d3.transition()
+				.duration(d3.event.altKey ? 7500 : 750)
+        
+				.tween("zoom", function(d) {
+					var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
+					return function(t) { zoomTo(i(t)); };
+				});
+
+		transition.selectAll("text")
+			.filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
+				.style("fill-opacity", function(d) { return d.parent === focus ? 0.6 : 0; })
+                //.style("display", function(d) {return d.parent === root ? null : "none"; })
+				.each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
+				.each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; })   
+
+        
+
+
+	}
+
+	function zoomTo(v) {
+		var k = diameter / v[2]; view = v;
+		node.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
+		circle.attr("r", function(d) { return d.r * k; });
+		
+	}
+ });
+
+		d3.select(self.frameElement).style("height", diameter + "px");
+
+
+
+</script>

@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+608089	6.37171624841e-05	3	ENDOMETRIAL CANCER	P40692(MLH1) P60484(PTEN) P43246(MSH2)

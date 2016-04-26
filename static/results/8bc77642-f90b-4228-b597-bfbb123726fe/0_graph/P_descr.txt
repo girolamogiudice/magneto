@@ -1,0 +1,15 @@
+GO:0008284	positive regulation of cell proliferation
+GO:0042326	negative regulation of phosphorylation
+GO:0031648	protein destabilization
+GO:0048511	rhythmic process
+GO:0000122	negative regulation of transcription from RNA polymerase II promoter
+GO:0016055	Wnt signaling pathway
+GO:0060070	canonical Wnt signaling pathway
+GO:0045667	regulation of osteoblast differentiation
+GO:0043066	negative regulation of apoptotic process
+GO:0030856	regulation of epithelial cell differentiation
+GO:0045862	positive regulation of proteolysis
+GO:0045892	negative regulation of transcription, DNA-templated
+GO:0030858	positive regulation of epithelial cell differentiation
+GO:0007091	metaphase/anaphase transition of mitotic cell cycle
+GO:0044336	canonical Wnt signaling pathway involved in negative regulation of apoptotic process

@@ -1,0 +1,42 @@
+R-HSA-2559580	Oxidative Stress Induced Senescence
+R-HSA-2559582	Senescence-Associated Secretory Phenotype (SASP)
+R-HSA-937042	IRAK2 mediated activation of TAK1 complex
+R-HSA-114604	GPVI-mediated activation cascade
+R-HSA-203615	eNOS activation
+R-HSA-5674135	MAP2K and MAPK activation
+R-HSA-75035	Chk1/Chk2(Cds1) mediated inactivation of Cyclin B:Cdk1 complex
+R-HSA-111447	Activation of BAD and translocation to mitochondria
+R-HSA-975144	IRAK1 recruits IKK complex upon TLR7/8 or 9 stimulation
+R-HSA-450321	JNK (c-Jun kinases) phosphorylation and  activation mediated by activated human TAK1
+R-HSA-937041	IKK complex recruitment mediated by RIP1
+R-HSA-8852276	The role of GTSE1 in G2/M progression after G2 checkpoint
+R-HSA-5654726	Negative regulation of FGFR1 signaling
+R-HSA-5654727	Negative regulation of FGFR2 signaling
+R-HSA-975163	IRAK2 mediated activation of TAK1 complex upon TLR7/8 or 9 stimulation
+R-HSA-209543	p75NTR recruits signalling complexes
+R-HSA-2173795	Downregulation of SMAD2/3:SMAD4 transcriptional activity
+R-HSA-446652	Interleukin-1 signaling
+R-HSA-933542	TRAF6 mediated NF-kB activation
+R-HSA-450302	activated TAK1 mediates p38 MAPK activation
+R-HSA-937072	TRAF6 mediated induction of TAK1 complex
+R-HSA-5687128	MAPK6/MAPK4 signaling
+R-HSA-168638	NOD1/2 Signaling Pathway
+R-HSA-450341	Activation of the AP-1 family of transcription factors
+R-HSA-1234176	Oxygen-dependent proline hydroxylation of Hypoxia-inducible Factor Alpha
+R-HSA-445989	TAK1 activates NFkB by phosphorylation and activation of IKKs complex
+R-HSA-5607764	CLEC7A (Dectin-1) signaling
+R-HSA-5675482	Regulation of necroptotic cell death
+R-HSA-937039	IRAK1 recruits IKK complex
+R-HSA-1236382	Constitutive Signaling by Ligand-Responsive EGFR Cancer Variants
+R-HSA-3134973	LRR FLII-interacting protein 1 (LRRFIP1) activates type I IFN production
+R-HSA-182971	EGFR downregulation
+R-HSA-5654733	Negative regulation of FGFR4 signaling
+R-HSA-5654732	Negative regulation of FGFR3 signaling
+R-HSA-203641	NOSTRIN mediated eNOS trafficking
+R-HSA-5621575	CD209 (DC-SIGN) signaling
+R-HSA-5357956	TNFR1-induced NFkappaB signaling pathway
+R-HSA-1227986	Signaling by ERBB2
+R-HSA-936440	Negative regulators of RIG-I/MDA5 signaling
+R-HSA-5218920	VEGFR2 mediated vascular permeability
+R-HSA-209560	NF-kB is activated and signals survival
+R-HSA-373753	Nephrin interactions

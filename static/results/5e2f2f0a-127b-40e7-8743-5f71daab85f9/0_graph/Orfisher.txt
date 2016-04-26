@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+3286	0.000115386503891	3	Catecholaminergic polymorphic ventricular tachycardia ?	Q92736(RYR2) Q13061(TRDN) P62158(CALM3)

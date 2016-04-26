@@ -1,0 +1,13 @@
+T3D0286	Copper(II) arsenite
+T3D0288	Copper arsenate
+T3D0289	Copper arsenate hydroxide
+T3D0224	Arsenic trioxide
+T3D1311	Methyldichloroarsine
+T3D1310	Lewisite
+T3D1312	Phenyldichloroarsine
+T3D1307	Diphenylchlorarsine
+T3D1308	Diphenylcyanoarsine
+T3D1309	Ethyldichloroarsine
+T3D1219	Copper(II) acetoarsenite
+T3D1185	Chromated copper arsenate
+T3D0294	Manganese arsenate

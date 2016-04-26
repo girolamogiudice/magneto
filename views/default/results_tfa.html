@@ -1,0 +1,41 @@
+{{extend 'layout.html'}}
+<style>
+circle.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+line.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+.nav {
+    display: inline-block;
+    float: none;
+}
+
+.nav {
+    text-align: center;
+}
+
+</style>
+<script src="{{=URL('static','js/d3.min.js')}}"></script>
+<script src="{{=URL('static','js/logo.js')}}"></script>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li type="button" role="presentation" onclick ="$.web2py.component('{{=URL('default', 'load_request.load',args=['sample1'])}}', 'sample1');"><a href="#sample1" role="tab" data-toggle="tab">sample1</a></li>
+    <li type="button" role="presentation" onclick ="$.web2py.component('{{=URL('default', 'load_request.load',args=['sample2'])}}', 'sample2');"><a href="#sample2" role="tab" data-toggle="tab">sample2</a></li>
+    <li type="submit" role="presentation" onclick ="$.web2py.component('{{=URL('default', 'load_request.load',args=['sample3'])}}', 'sample3');"><a href="#sample3" role="tab" data-toggle="tab">sample3</a></li>
+    <li type="submit" role="presentation" onclick ="$.web2py.component('{{=URL('default', 'load_request.load',args=['sample4'])}}', 'sample4');"><a href="#sample4" role="tab" data-toggle="tab">sample4</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade" id="sample1"><div id="sample1"></div>1</div>
+    <div role="tabpanel" class="tab-pane fade" id="sample2"><div id="sample2"></div>2</div>
+    <div role="tabpanel" class="tab-pane fade" id="sample3"><div id="sample3"></div>3</div>
+    <div role="tabpanel" class="tab-pane fade" id="sample4"><div id="sample4"></div>4</div>
+  </div>
+
+</div>

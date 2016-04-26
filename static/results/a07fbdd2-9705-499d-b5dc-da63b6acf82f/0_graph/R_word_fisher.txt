@@ -1,0 +1,1 @@
+[{'text': 'dvl', 'size': 5.1277432478147222}, {'text': 'activation', 'size': 14.515900347410934}, {'text': 'wnt', 'size': 3.070706714526739}, {'text': 'degradation', 'size': 5.2024379747148108}]

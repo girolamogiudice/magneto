@@ -1,0 +1,15 @@
+R-HSA-937041	IKK complex recruitment mediated by RIP1
+R-HSA-166016	Toll Like Receptor 4 (TLR4) Cascade
+R-HSA-5357905	Regulation of TNFR1 signaling
+R-HSA-140534	Ligand-dependent caspase activation
+R-HSA-173107	Binding and entry of HIV virion
+R-HSA-5357786	TNFR1-induced proapoptotic signaling
+R-HSA-446652	Interleukin-1 signaling
+R-HSA-933542	TRAF6 mediated NF-kB activation
+R-HSA-168638	NOD1/2 Signaling Pathway
+R-HSA-445989	TAK1 activates NFkB by phosphorylation and activation of IKKs complex
+R-HSA-5357956	TNFR1-induced NFkappaB signaling pathway
+R-HSA-75893	TNF signaling
+R-HSA-5660668	CLEC7A/inflammasome pathway
+R-HSA-975871	MyD88 cascade initiated on plasma membrane
+R-HSA-166058	MyD88:Mal cascade initiated on plasma membrane

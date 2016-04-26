@@ -1,0 +1,17 @@
+1045383	Saccharomyces cerevisiae
+567547	Human adenovirus C serotype 5
+567546	Human adenovirus C serotype 2
+602263	Influenza A virus
+554348	Hepatitis C virus
+1084136	Sindbis virus
+568650	Human immunodeficiency virus type 1 group M subtype B
+1064300	Schizosaccharomyces pombe
+1083058	Simian virus 40
+568590	Human herpesvirus 1
+568611	Human immunodeficiency virus 1
+772043	Murine minute virus
+970170	Pseudomonas aeruginosa
+568606	Human herpesvirus 8
+568819	Human papillomavirus type 16
+440185	Epstein-Barr virus
+772089	Murine polyomavirus

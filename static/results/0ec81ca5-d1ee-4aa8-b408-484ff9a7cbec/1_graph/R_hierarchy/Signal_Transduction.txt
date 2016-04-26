@@ -1,0 +1,3 @@
+R-HSA-195253	0.000392088987372	Degradation of beta-catenin by the destruction complex	Q92530 P25054 P49841 O14818
+R-HSA-4641262	0.000607266224458	Disassembly of the destruction complex and recruitment of AXIN to the membrane	P25054 O14641 P49841
+R-HSA-201688	0.000832139666849	WNT mediated activation of DVL	P68400 O14641

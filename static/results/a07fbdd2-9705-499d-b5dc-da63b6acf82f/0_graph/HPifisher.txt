@@ -1,0 +1,2 @@
+id	p_value	ic	proteins_involved	description	proteins
+568402	0.000123807671525	4	Human cytomegalovirus	P25788(PSMA3) P68400(CSNK2A1) Q16531(DDB1) P63167(DYNLL1)

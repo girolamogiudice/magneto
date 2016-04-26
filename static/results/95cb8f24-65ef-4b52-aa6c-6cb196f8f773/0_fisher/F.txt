@@ -1,0 +1,7 @@
+GO:0071791	0.000667891112042	chemokine (C-C motif) ligand 5 binding	P51681
+GO:0048039	0.000890434728283	ubiquinone binding	Q02127
+GO:0004152	0.000890434728283	dihydroorotate dehydrogenase activity	Q02127
+GO:0019957	0.00111293497936	C-C chemokine binding	P51681
+GO:0050512	0.00022267375511	lactosylceramide 4-alpha-galactosyltransferase activity	Q9NPC4
+GO:0019981	0.00022267375511	interleukin-6 binding	P08887
+GO:0070119	0.00022267375511	ciliary neurotrophic factor binding	P08887

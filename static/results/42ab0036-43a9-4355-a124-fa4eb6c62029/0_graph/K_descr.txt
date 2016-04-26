@@ -1,0 +1,56 @@
+hsa04611	Platelet activation
+hsa04068	FoxO signaling pathway
+hsa05212	Pancreatic cancer
+hsa05213	Endometrial cancer
+hsa05210	Colorectal cancer
+hsa04010	MAPK signaling pathway
+hsa05214	Glioma
+hsa05215	Prostate cancer
+hsa04720	Long-term potentiation
+hsa04670	Leukocyte transendothelial migration
+hsa04512	ECM-receptor interaction
+hsa04510	Focal adhesion
+hsa04380	Osteoclast differentiation
+hsa04066	HIF-1 signaling pathway
+hsa04728	Dopaminergic synapse
+hsa04925	Aldosterone synthesis and secretion
+hsa04062	Chemokine signaling pathway
+hsa04922	Glucagon signaling pathway
+hsa05142	Chagas disease (American trypanosomiasis)
+hsa05169	Epstein-Barr virus infection
+hsa05145	Toxoplasmosis
+hsa04211	Longevity regulating pathway - mammal
+hsa04210	Apoptosis
+hsa05166	HTLV-I infection
+hsa04933	AGE-RAGE signaling pathway in diabetic complications
+hsa04310	Wnt signaling pathway
+hsa05161	Hepatitis B
+hsa05120	Epithelial cell signaling in Helicobacter pylori infection
+hsa05220	Chronic myeloid leukemia
+hsa05211	Renal cell carcinoma
+hsa04370	VEGF signaling pathway
+hsa05205	Proteoglycans in cancer
+hsa05206	MicroRNAs in cancer
+hsa04621	NOD-like receptor signaling pathway
+hsa05203	Viral carcinogenesis
+hsa05200	Pathways in cancer
+hsa04912	GnRH signaling pathway
+hsa04662	B cell receptor signaling pathway
+hsa04014	Ras signaling pathway
+hsa04012	ErbB signaling pathway
+hsa05221	Acute myeloid leukemia
+hsa04915	Estrogen signaling pathway
+hsa04668	TNF signaling pathway
+hsa04919	Thyroid hormone signaling pathway
+hsa04931	Insulin resistance
+hsa04932	Non-alcoholic fatty liver disease (NAFLD)
+hsa04151	PI3K-Akt signaling pathway
+hsa04660	T cell receptor signaling pathway
+hsa05160	Hepatitis C
+hsa04015	Rap1 signaling pathway
+hsa04722	Neurotrophin signaling pathway
+hsa04520	Adherens junction
+hsa04917	Prolactin signaling pathway
+hsa05010	Alzheimer's disease
+hsa04064	NF-kappa B signaling pathway
+hsa05222	Small cell lung cancer

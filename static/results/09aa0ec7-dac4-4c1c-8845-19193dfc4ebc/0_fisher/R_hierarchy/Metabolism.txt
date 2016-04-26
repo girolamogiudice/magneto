@@ -1,0 +1,2 @@
+R-HSA-163680	0.0125718814333	AMPK inhibits chREBP transcriptional activation activity	Q86V24
+R-HSA-500753	0.00786984977718	Pyrimidine biosynthesis	Q02127

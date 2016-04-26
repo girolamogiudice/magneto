@@ -1,0 +1,1 @@
+R-HSA-350562	0.00199856363338	Regulation of ornithine decarboxylase (ODC)	Q92530 O14818

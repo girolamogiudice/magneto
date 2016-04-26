@@ -1,0 +1,9 @@
+873	0.00228675891662	Desmoid tumor somatic	P25054
+3258	0.00152479679182	Cenani-Lenz syndrome	P25054
+2407	0.00152479679182	LOC syndrome	Q16787
+79404	0.00213438975947	Junctional epidermolysis bullosa Herlitz type	Q16787
+79402	0.0032007295477	Generalized junctional epidermolysis bullosa non-Herlitz type	Q16787
+247806	0.00121993050466	APC-related attenuated familial adenomatous polyposis	P25054
+261584	0.00121993050466	Familial adenomatous polyposis due to 5q22.2 microdeletion	P25054
+79665	0.00121993050466	GARDNER SYNDROME	P25054
+99818	0.00121993050466	Turcot syndrome with polyposis	P25054

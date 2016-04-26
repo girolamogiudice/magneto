@@ -1,0 +1,4 @@
+id	p_value	ic	proteins_involved	description	proteins
+R-HSA-4641262	5.97626740935e-05	3	Disassembly of the destruction complex and recruitment of AXIN to the membrane	P25054(APC) O14641(DVL2) P49841(GSK3B)
+R-HSA-201688	0.000168061993763	2	WNT mediated activation of DVL	P68400(CSNK2A1) O14641(DVL2)
+R-HSA-195253	1.98062506718e-05	4	Degradation of beta-catenin by the destruction complex	Q92530(PSMF1) P25054(APC) P49841(GSK3B) O14818(PSMA7)

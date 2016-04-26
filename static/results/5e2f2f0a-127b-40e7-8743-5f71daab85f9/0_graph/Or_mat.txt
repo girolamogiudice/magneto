@@ -1,0 +1,2 @@
+[[0, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
+{'3286': {'description': 'Catecholaminergic polymorphic ventricular tachycardia ?', 'id': 0, 'name': '3286'}, 'P62158': {'description': 'CALM3', 'id': 3, 'descr': 'C', 'name': 'P62158(CALM3)'}, 'Q13061': {'description': 'TRDN', 'id': 2, 'descr': 'T', 'name': 'Q13061(TRDN)'}, 'Q92736': {'description': 'RYR2', 'id': 1, 'descr': 'R', 'name': 'Q92736(RYR2)'}}
