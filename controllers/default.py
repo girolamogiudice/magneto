@@ -251,8 +251,8 @@ def wait_tsfa():
                             'Anxiolytics', 'Antimigraine_Agents', 'Skeletal_Muscle_Relaxants', 'Ophthalmic_Agents', 'Antidepressants'],
                      "KDi":['Respiratory_diseases', 'Digestive_system_diseases', 'Congenital_disorders_of_metabolism', 'Urinary_system_diseases', 'Musculoskeletal_diseases', 'Cardiovascular_diseases',
                             'Immune_system_diseases', 'Cancers', 'Endocrine_and_metabolic_diseases', 'Reproductive_system_diseases', 'Skin_diseases', 'Nervous_system_diseases', 'Other_congenital_disorders'],
-                     "DB":['DB_approved.txt', 'DB_small_molecule.txt', 'DB_experimental.txt', 'DB_nutraceutical.txt', 'DB_illicit.txt', 'DB_withdrawn.txt', 'DB_investigational.txt', 'DB_biotech.txt'],
-                     'Or':['Rare_neurological_diseases', 'Rare_abdominal_surgical_diseases', 'Rare_odontological_diseases', 'Rare_systemic_and_rhumatological_diseases', 'Rare_urogenital_diseases',
+                     "DB":['DB_approved', 'DB_small_molecule', 'DB_experimental', 'DB_nutraceutical', 'DB_illicit', 'DB_withdrawn', 'DB_investigational', 'DB_biotech'],
+                     "Or":['Rare_neurological_diseases', 'Rare_abdominal_surgical_diseases', 'Rare_odontological_diseases', 'Rare_systemic_and_rhumatological_diseases', 'Rare_urogenital_diseases',
                            'Rare_cardiac_diseases','Rare_genetic_diseases', 'Rare_hepatic_diseases', 'Rare_intoxications', 'Rare_respiratory_diseases', 'Developmental_anomalies_during_embryogenesis',
                            'Rare_renal_diseases', 'Rare_immunological_diseases', 'Rare_haematological_diseases', 'Rare_gastroenterological_diseases', 'Rare_tumors', 'Rare_allergic_disease',
                            'Inborn_errors_of_metabolism','Teratologic_disorders', 'Rare_infectious_diseases', 'Rare_skin_diseases', 'Rare_endocrine_diseases', 'Rare_infertility_disorders',
@@ -271,7 +271,7 @@ def wait_tsfa():
             fisher_annotation[i]=[]
             domain_db[i]=[]
             count_annotation[i]={}
-        for i in ["R"]:
+        for i in ["R","DB","K","KDi","KDr","Or"]:
             fisher_annotation_hierarchy[i]={}
             
         nodes_in_the_graph={}
@@ -291,6 +291,7 @@ def wait_tsfa():
         temp=[]
         not_annotated={}
         proteome_annotated={}
+        db_background=request.args[3] 
         while(seq!=""):
             seq=seq.strip().split("\t")
             fisher_alone[seq[0]]={}
@@ -302,7 +303,7 @@ def wait_tsfa():
             fisher_alone[seq[0]]=fisher_standalone.load(request.args[1],seq[1:],float(request.args[2]),["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"],request.folder,
                                request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation)
             fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:],float(request.args[2]),db_hierarchy,request.folder,
-                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation_hierarchy)
+                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation_hierarchy,db_background)
             
             seq=f1.readline()
         f1=open(request.folder+"static/results/"+request.args[1]+"/nodes_graph.txt","r")
@@ -345,13 +346,13 @@ def wait_tsfa():
                             request.args[3],request.folder,start_nodes[seq[0]],domain_db,protein_descr,count_annotation,root_second_level,fisher_alone[seq[0]],sample,sample_number)
             
             fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:]+proteome_annotated[seq[0]],float(request.args[2]),db_hierarchy,request.folder,
-                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_annotation_hierarchy)
-            print fisher_alone_hierarchy[seq[0]]
+                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_annotation_hierarchy,db_background)
+            
+            print fisher_alone_hierarchy[seq[0]].keys()
             
             nodes_graph[seq[0]]=seq[1:]
             graph_mcn=nx.read_gpickle(request.folder+"static/results/"+request.args[1]+"/"+seq[0]+"_graph/graph_mcn.gpickle")
             number_of_nodes=graph_mcn.number_of_nodes()
-            #betweenness=nx.betweenness_centrality(graph_mcn,endpoints=True)
             count=0
             nodes=[]
             edges=[]

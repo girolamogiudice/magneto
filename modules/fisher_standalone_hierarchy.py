@@ -3,7 +3,7 @@
 from gluon import *
 from scipy.stats import fisher_exact
 import sys,os
-def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotation):
+def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotation,db_background):
     for ii in comp_list:
         if not os.path.exists(res_folder+"/"+ii+"_hierarchy"):
             os.makedirs(res_folder+"/"+ii+"_hierarchy")
@@ -16,9 +16,8 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
             seq=f1.readline()
         f1.close()
         for jj in comp_list[ii]:
-            
             prot_fisher=[]
-            f1=open(path+ii+"_hierarchy/"+jj+".txt","r")
+            f1=open(path+ii+"_hierarchy_"+db_background+"/"+jj+".txt","r")
             seq=f1.readline()
             fisher={}
             fisher_count={}
@@ -29,14 +28,14 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                 proteins_annotated[seq[0]]=""
                 seq=f1.readline()
             f1.close()
-            f1=open(path+ii+"_hierarchy/"+jj+"_count.txt","r")
+            f1=open(path+ii+"_hierarchy_"+db_background+"/"+jj+"_count.txt","r")
             seq=f1.readline()
             while(seq!=""):
                 seq=seq.strip().split("\t")
                 fisher_count[seq[0]]=int(seq[1])
                 seq=f1.readline()
             f1.close()
-    
+
             fisherset={}
             fisherset_count=[]
             annotation={}
