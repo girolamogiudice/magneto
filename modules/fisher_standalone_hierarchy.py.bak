@@ -5,8 +5,8 @@ from scipy.stats import fisher_exact
 import sys,os
 def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotation):
     for ii in comp_list:
-        if not os.path.exists(res_folder+"/R_hierarchy"):
-            os.makedirs(res_folder+"/R_hierarchy")
+        if not os.path.exists(res_folder+"/"+ii+"_hierarchy"):
+            os.makedirs(res_folder+"/"+ii+"_hierarchy")
         descr={}
         f1=open(path+ii+"_descr.txt","r")
         seq=f1.readline()
@@ -80,6 +80,5 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                 for i in fisher_value:
                     if len(fisher_value)>0:
                         for j in fisher_value[i]:
-                            print j+"\t"+str(i)+"\t"+descr[j]+"\t"+" ".join(annotation[j]),jj
                             f2.write(j+"\t"+str(i)+"\t"+descr[j]+"\t"+" ".join(annotation[j])+"\n")
     return fisher_annotation

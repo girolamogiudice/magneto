@@ -229,7 +229,35 @@ def wait_tsfa():
         count_protein={}
         db_hierarchy={"R":["Cell_Cell_communication","Cell_Cycle","Cellular_responses_to_stress","Chromatin_organization","Circadian_Clock","DNA_Repair","DNA_Replication","Developmental_Biology",
                             "Disease","Extracellular_matrix_organization","Gene_Expression","Hemostasis","Immune_System","Metabolism","Metabolism_of_proteins","Mitophagy","Muscle_contraction","Neuronal_System",
-                            "Organelle_biogenesis_and_maintenance","Programmed_Cell_Death","Reproduction","Signal_Transduction","Transmembrane_transport_of_small_molecules","Vesicle_mediated_transport"]}
+                            "Organelle_biogenesis_and_maintenance","Programmed_Cell_Death","Reproduction","Signal_Transduction","Transmembrane_transport_of_small_molecules","Vesicle_mediated_transport"],
+                     "K":['Aging', 'Target-based_classification__G_protein-coupled_receptors', 'Cancers__Specific_types', 'Endocrine_system', 'Transcription', 'Energy_metabolism', 
+                          'Cellular_community', 'Substance_dependence','Sensory_system', 'Chemical_structure_transformation_maps', 'Structure-based_classification', 'Nervous_system', 'Circulatory_system',
+                          'Signaling_molecules_and_interaction', 'Nucleotide_metabolism','Metabolism_of_terpenoids_and_polyketides', 'Chronology__Other_drugs', 'Skeleton-based_classification',
+                          'Infectious_diseases__Bacterial', 'Amino_acid_metabolism', 'Immune_diseases','Transport_and_catabolism', 'Translation', 'Chronology__Nervous_system_agents', 'Cell_motility',
+                          'Replication_and_repair', 'Endocrine_and_metabolic_diseases', 'Development','Drug_resistance', 'Digestive_system', 'Cell_growth_and_death', 'Signal_transduction', 'Cancers__Overview',
+                          'Cardiovascular_diseases', 'Xenobiotics_biodegradation_and_metabolism','Environmental_adaptation', 'Chronology__Antiinfectives', 'Target-based_classification__Transporters',
+                          'Carbohydrate_metabolism', 'Biosynthesis_of_other_secondary_metabolites','Target-based_classification__Enzymes', 'Glycan_biosynthesis_and_metabolism', 'Lipid_metabolism',
+                          'Excretory_system', 'Metabolism_of_other_amino_acids','Metabolism_of_cofactors_and_vitamins','Target-based_classification__Ion_channels', 'Membrane_transport', 
+                          'Target-based_classification__Nuclear_receptors','Infectious_diseases__Viral', 'Neurodegenerative_diseases','Folding__sorting_and_degradation', 'Immune_system', 
+                          'Global_and_overview_maps', 'Chronology__Antineoplastics', 'Infectious_diseases__Parasitic'],
+                     "KDr":['Hormonal_Agents__Suppressant__Parathyroid_', 'Antiparkinson_Agents', 'Therapeutic_Nutrients_Minerals_Electrolytes', 'Sleep_Disorder_Agents', 'Antifungals', 'Analgesics',
+                            'Hormonal_Agents__Stimulant-Replacement-Modifying__Adrenal_', 'Central_Nervous_System_Agents', 'Anti-inflammatory_Agents', 'Bipolar_Agents', 'Metabolic_Bone_Disease_Agents',
+                            'Dental_and_Oral_Agents', 'Antidementia_Agents', 'Gastrointestinal_Agents', 'Antimyasthenic_Agents', 'Antivirals', 'Otic_Agents', 'Antispasticity_Agents',
+                            'Hormonal_Agents__Stimulant-Replacement-Modifying__Pituitary_', 'Genitourinary_Agents', 'Blood_Products-Modifiers-Volume_Expanders', 'Antigout_Agents', 'Respiratory_Tract-Pulmonary_Agents',
+                            'Hormonal_Agents__Stimulant-Replacement-Modifying__Prostaglandins_', 'Hormonal_Agents__Suppressant__Thyroid_', 'Hormonal_Agents__Stimulant-Replacement-Modifying__Thyroid_',
+                            'Hormonal_Agents__Stimulant-Replacement-Modifying__Sex_Hormones_Modifiers_', 'Antiemetics', 'Cardiovascular_Agents', 'Anesthetics', 'Anticonvulsants', 'Immunological_Agents',
+                            'Antibacterials', 'Inflammatory_Bowel_Disease_Agents', 'Dermatological_Agents', 'Anti-Addiction-Substance_Abuse_Treatment_Agents', 'Hormonal_Agents__Suppressant__Pituitary_',
+                            'Hormonal_Agents__Suppressant__Adrenal_', 'Antimycobacterials', 'Antipsychotics', 'Antineoplastics', 'Enzyme_Replacement_Modifiers', 'Blood_Glucose_Regulators', 'Antiparasitics',
+                            'Anxiolytics', 'Antimigraine_Agents', 'Skeletal_Muscle_Relaxants', 'Ophthalmic_Agents', 'Antidepressants'],
+                     "KDi":['Respiratory_diseases', 'Digestive_system_diseases', 'Congenital_disorders_of_metabolism', 'Urinary_system_diseases', 'Musculoskeletal_diseases', 'Cardiovascular_diseases',
+                            'Immune_system_diseases', 'Cancers', 'Endocrine_and_metabolic_diseases', 'Reproductive_system_diseases', 'Skin_diseases', 'Nervous_system_diseases', 'Other_congenital_disorders'],
+                     "DB":['DB_approved.txt', 'DB_small_molecule.txt', 'DB_experimental.txt', 'DB_nutraceutical.txt', 'DB_illicit.txt', 'DB_withdrawn.txt', 'DB_investigational.txt', 'DB_biotech.txt'],
+                     'Or':['Rare_neurological_diseases', 'Rare_abdominal_surgical_diseases', 'Rare_odontological_diseases', 'Rare_systemic_and_rhumatological_diseases', 'Rare_urogenital_diseases',
+                           'Rare_cardiac_diseases','Rare_genetic_diseases', 'Rare_hepatic_diseases', 'Rare_intoxications', 'Rare_respiratory_diseases', 'Developmental_anomalies_during_embryogenesis',
+                           'Rare_renal_diseases', 'Rare_immunological_diseases', 'Rare_haematological_diseases', 'Rare_gastroenterological_diseases', 'Rare_tumors', 'Rare_allergic_disease',
+                           'Inborn_errors_of_metabolism','Teratologic_disorders', 'Rare_infectious_diseases', 'Rare_skin_diseases', 'Rare_endocrine_diseases', 'Rare_infertility_disorders',
+                           'Rare_cardiac_malformations','Rare_surgical_maxillo-facial_diseases', 'Rare_otorhinolaryngological_diseases', 'Rare_bone_diseases', 'Rare_eye_diseases',
+                           'Rare_circulatory_system_diseases','Rare_gynaecological_and_obstetric_diseases', 'Rare_surgical_thoracic_diseases']}
 
         fisher_annotation={}
         fisher_annotation_hierarchy={}
@@ -275,7 +303,7 @@ def wait_tsfa():
                                request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation)
             fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:],float(request.args[2]),db_hierarchy,request.folder,
                                request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation_hierarchy)
-            print fisher_alone_hierarchy[seq[0]]
+            
             seq=f1.readline()
         f1=open(request.folder+"static/results/"+request.args[1]+"/nodes_graph.txt","r")
         nodes_graph={}
@@ -315,11 +343,11 @@ def wait_tsfa():
             col,nmap,domain_db,count_annotation,root_second_level=fishertest.load(request.args[1],seq[0],seq[1:]+proteome_annotated[seq[0]],
                                                                                        float(request.args[2]),["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"],
                             request.args[3],request.folder,start_nodes[seq[0]],domain_db,protein_descr,count_annotation,root_second_level,fisher_alone[seq[0]],sample,sample_number)
-            print "kffkfk"
+            
             fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:]+proteome_annotated[seq[0]],float(request.args[2]),db_hierarchy,request.folder,
                                request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_annotation_hierarchy)
             print fisher_alone_hierarchy[seq[0]]
-            print "fkfkkf"
+            
             nodes_graph[seq[0]]=seq[1:]
             graph_mcn=nx.read_gpickle(request.folder+"static/results/"+request.args[1]+"/"+seq[0]+"_graph/graph_mcn.gpickle")
             number_of_nodes=graph_mcn.number_of_nodes()
