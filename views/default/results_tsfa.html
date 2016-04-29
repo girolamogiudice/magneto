@@ -54,53 +54,15 @@
 
 <style>
 
-.dropdown-menu {  width: auto; }
-
 .dropdown-submenu {
-    position:static;
-    width: 100%;
-}
-.level2 {  width: 100%; }
-
-.dropdown-submenu>.dropdown-menu {
-    top:0;
-    left:100%;
-    margin-top:-1px;
-    margin-left:0px;
-    -webkit-border-radius:0 6px 6px 6px;
-    -moz-border-radius:0 6px 6px 6px;
-    border-radius:0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-    display:block;
-}
-.dropdown-submenu>a:after {
-    display:block;
-    content:" ";
-    float:right;
-    width:0;
-    height:0;
-    border-color:transparent;
-    border-style:solid;
-    border-width:5px 0 5px 5px;
-    border-left-color:#cccccc;
-    margin-top:5px;
-    margin-right:-10px;
-}
-.dropdown-submenu:hover>a:after {
-    border-left-color:#ffffff;
-}
-.dropdown-submenu.pull-right {
-    float:none;
-}
-.dropdown-submenu.pull-right>.dropdown-menu {
-    left:100%;
-    margin-left:10px;
-    -webkit-border-radius:6px 0 6px 6px;
-    -moz-border-radius:6px 0 6px 6px;
-    border-radius:6px 0 6px 6px;
+    position: relative;
 }
 
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
     .bs-callout {
     padding: 20px;
     margin: 20px 0;
@@ -203,42 +165,22 @@ line.link {
             #stats_panel{
         visibility: hidden;
     }
-    
+
 </style>
-<div class="dropdown">
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block;">
-            <li class="dropdown-submenu">
-                <a tabindex="-1" href="#" >More options</a>
-                <ul class="dropdown-menu level2">
-                    <li><a href="#" >2rd level 1</a></li>
-                    <li><a href="#" >2rd level 2</a></li>
-                </ul>
-            </li>
-            <li class="divider"></li>
-            <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">More options2</a>
-                <ul class="dropdown-menu level2">
-                    <li><a tabindex="-1" href="#">Second level</a></li>
-                    <li><a href="#">Second level</a></li>
-                    <li><a href="#">Second level</a></li>
-                    <li><a href="#">3rd level</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+
 {{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
 {{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
   <ul class="nav nav-pills nav-justified" role="tablist">
       <li role="presentation" class="dropdown" ><a href="#functional" aria-controls="functional" role="tab" data-toggle="dropdown" id="sample_sel">Select a sample</a>
             <ul id="sample" class="dropdown-menu">
                 {{for i in mapping_column:}}
-                 <li id="sample_value" value="{{=i[0]}}" onclick ="return_value({{=i[0]}});change_text();$.web2py.component('{{=URL('default', 'load_stats.load',args=[request.args[0],i[0],sample_number])}};', 'stat');$.web2py.component('{{=URL('default', 'load_request.load',args=[request.args[0],i[0]])}};', 'graph-container');"><a class="sv" id="sv" value="{{=i[0]}}" href="#{{=i[0]}}" data-toggle="tab">{{=i[1]}}</a></li>
-                {{pass}}
+                 <li id="sample_value" value="{{=i[0]}}" onclick ="return_value({{=i[0]}});change_text();$.web2py.component('{{=URL('default', 'load_stats.load',args=[request.args[0],i[0],sample_number])}};', 'stat');$.web2py.component('{{=URL('default', 'load_request.load',args=[request.args[0],i[0]])}};', 'graph-container');">
+                     <a class="sv" id="sv" value="{{=i[0]}}" href="#{{=i[0]}}" data-toggle="tab">{{=i[1]}}</a></li>{{pass}}
             </ul>
           </li>
     <li role="presentation" id="statistics" class="disabled disabledTab" ><a href="#Statistics" aria-controls="Statistics" role="tab" data-toggle="tab">Statistics</a></li>
     <li role="presentation" id="network" class="disabled disabledTab"><a href="#network" aria-controls="network" role="tab" data-toggle="tab">Network</a></li>
-    <li  id="func_anal" role="presentation" class="dropdown disabled disabledTab"><a class="dropdown-toggle" href="#functional" aria-controls="functional" id="fa" role="tab" data-toggle="dropdown">Functional Analysis</a>
+    <li id="func_anal" role="presentation" class="dropdown disabled disabledTab"><a class="dropdown-toggle" href="#functional" aria-controls="functional" id="fa" role="tab" data-toggle="dropdown">Functional Analysis</a>
             <ul id="fa" class="dropdown-menu">
                 <li><a class="dbfa" id="C" data-toggle="tab">GO Component</a></li>
                 <li><a class="dbfa" id="F" data-toggle="tab">GO Function</a></li>
@@ -252,17 +194,36 @@ line.link {
                 <li><a class="dbfa" id="DB" data-toggle="tab">Drug Bank</a></li>
                 <li><a class="dbfa" id="T" data-toggle="tab">Toxins</a></li>
                 <li><a class="dbfa" id="HPi" data-toggle="tab">Virus</a></li>
-                  <li class="divider">Hierarchical enrichment</li>
-                    <li id="fa2" class="dropdown-submenu">
-                        <a  href="#" class="disabled">Reactome</a>
-                        <ul  id="fa3" class="dropdown-menu level2">
-                            <li><a href="#" >2rd level 1</a></li>
-                            <li><a href="#" >2rd level 2</a></li>
-                        </ul>
-                    </li>
+                 <li class="divider">Hierarchy enrichment</li>
+                <li id="sub" class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#">Reactome hierarchy<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="reactome" style="display: none;left:100%;top:0px;margin-top: -1px;">
+                
+                    </ul>
+                    <a class="test" tabindex="-1" href="#">Kegg hierarchy<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="Kegg" style="display: none;left:100%;top:0px;margin-top: -1px;">
+                
+                    </ul>
+                    <a class="test" tabindex="-1" href="#">Kegg drugs hierarchy<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="Kegg drugs" style="display: none;left:100%;top:0px;margin-top: -1px;">
+                
+                    </ul>
+                    <a class="test" tabindex="-1" href="#">DrugBank hierarchy<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="Drug bank" style="display: none;left:100%;top:0px;margin-top: -1px;">
+                
+                    </ul>
+                    <a class="test" tabindex="-1" href="#">Kegg disease hierarchy<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="Kegg disease" style="display: none;left:100%;top:0px;margin-top: -1px;">
+                
+                    </ul>
+                    <a class="test" tabindex="-1" href="#">Orphanet hierarchy<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="Orphanet" style="display: none;left:100%;top:0px;margin-top: -1px;">
+                
+                    </ul>
+                </li>
+              </li>
             </ul>
           </li>
-        
     <li class="dropdown disabled disabledTab" id="plot"><a class="dropdown-toggle" href="#plot" aria-controls="plot" id="drawplot" role="tab" data-toggle="dropdown">Plot</a>
        <ul class="dropdown-menu">
         <li id="chord_plot"><a  href="#Chord" data-toggle="tab" onclick="chord_select();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord')">Chord Plot</a></li>
@@ -315,6 +276,25 @@ line.link {
 
 
 <script>
+
+ $(document).ready(function(){
+  $('.dropdown-submenu a.test').mouseenter(function(e){
+    $(this).next('ul').toggle();
+       $(this).next('ul').css("display", "block");
+      $(this).next('ul').next('ul').css("display", "block");
+    e.stopPropagation();
+    e.preventDefault();
+  });
+     $('.dropdown-submenu a.test').mouseout(function(e){
+    $(this).next('ul').toggle();
+       $(this).next('ul').css("display", "none");
+      $(this).next('ul').next('ul').css("display", "none");
+    e.stopPropagation();
+    e.preventDefault();
+
+     })
+});
+    
     function loadScript(url)
 {
     document.body.appendChild(document.createElement("script")).src = url;
@@ -340,7 +320,7 @@ $(".sv").click(function(){
    var selText = $(this).text();
     sample=$(this).attr("value");
     location.hash = sample;
-   $(this).parents('.dropdown').find('.dropdown-toggle').html(selText+"<span class='caret'></span>");
+   $(this).parents('.dropdown').find('.dropdown-toggle').html(selText+" ");
  
     document.getElementById("chord").innerHTML=""
     document.getElementById("treemap").innerHTML=""
@@ -350,6 +330,8 @@ $(".sv").click(function(){
 })
 
 mapping={{=XML(str(mapping))}}
+menu_list={{=XML(menu_list)}}
+
 $('.stats').click(function(){
     var db_fa=($(this).attr('id'))
     location.hash = db_fa;
@@ -359,14 +341,14 @@ $('.dbfa').click(function(){
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
     //loadScript("/magneto/static/js/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js");
     //loadScript("/magneto/static/js/tableExport.min.js");
-    values=mapping[document.getElementById("sample_sel").text]
+    values=mapping[document.getElementById("sample_sel").innerHTML.trim()]
     var folder= "{{=request.args[0]}}"
     var db_fa=($(this).attr('id'))
     location.hash =sample+"#"+db_fa;
     db_fa=db_fa+"fisher.json"
     path= "/magneto/static/results/"+folder+"/"+values+"_graph/"+db_fa
     $("#plot").removeClass('dropdown disabled disabledTab');
-    $('#fa').html($(this)[0].innerText+"<span class='caret'></span>");
+    $('#fa').html($(this)[0].innerText+" ");
     $("#results_panel").css("visibility", "visible");
 document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="name" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
     if (document.getElementById("drawplot").text==="Chord") {
@@ -394,6 +376,14 @@ function change_text()
     //document.getElementById("statistics").innerHTML="Statistics<span class='caret'></span>"
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
+    value=location.hash.substring(1)
+    console.log(menu_list[value]["KDr"])
+    document.getElementById("reactome").innerHTML=menu_list[value]["R"]
+    document.getElementById("Kegg").innerHTML=menu_list[value]["K"]
+    document.getElementById("Kegg drugs").innerHTML=menu_list[value]["KDr"]
+    document.getElementById("Kegg disease").innerHTML=menu_list[value]["KDi"]
+    document.getElementById("Drug bank").innerHTML=menu_list[value]["DB"]
+    document.getElementById("Orphanet").innerHTML=menu_list[value]["Or"]
     }
 
 function chord_select() 

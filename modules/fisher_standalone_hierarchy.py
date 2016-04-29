@@ -2,12 +2,19 @@
 # -*- coding: utf-8 -*-
 from gluon import *
 from scipy.stats import fisher_exact
-import sys,os
+import sys,os,json
 def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotation,db_background):
+    databases=[]
+    alias_dict={"K":"Kegg Pathway","R":"Reactome","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet"}
     for ii in comp_list:
+        json_tree={}
+        json_tree[ii]={"name":alias_dict[ii],"children":[]}
         if not os.path.exists(res_folder+"/"+ii+"_hierarchy"):
             os.makedirs(res_folder+"/"+ii+"_hierarchy")
         descr={}
+        sub_categories={}
+        sub_categories[ii]=""
+        
         f1=open(path+ii+"_descr.txt","r")
         seq=f1.readline()
         while (seq!=""):
@@ -76,8 +83,27 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                         fisher_value[fisher[i]].append(i)
             if flag==1:
                 f2=open(res_folder+"/"+ii+"_hierarchy/"+jj+".txt","w")
+                databases.append(ii)
+                sub_categories[ii]=sub_categories[ii]+jj+"\t"
+                temp=[]
                 for i in fisher_value:
                     if len(fisher_value)>0:
+                        
+                        #.append({"children":[{"name":jj}]})
                         for j in fisher_value[i]:
+                            temp.append({"name":j,"description":descr[j],"value":str(i),"proteins involved":" ".join(annotation[j])})
+                            #json_tree[-1]["children"].append({"children": [{"name":j,"description":descr[j]}]})
                             f2.write(j+"\t"+str(i)+"\t"+descr[j]+"\t"+" ".join(annotation[j])+"\n")
+                json_tree[ii]["children"].append({"name":jj,"children":temp})
+                f2.close()
+        if len(json_tree[ii]["children"])>0:
+
+            json.dump(json_tree[ii],open(res_folder+"/"+ii+"_hierarchy/json.txt","w"))
+                
+        f2=open(res_folder+"/"+ii+"_hierarchy/files_domain.txt","w")
+        f2.write(sub_categories[ii].strip())
+        f2.close()
+        f2=open(res_folder+"/hierarchy_databases.txt","w")
+        f2.write("\t".join(list(set(databases))))
+        f2.close()
     return fisher_annotation

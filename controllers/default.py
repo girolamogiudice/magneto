@@ -347,9 +347,7 @@ def wait_tsfa():
             
             fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:]+proteome_annotated[seq[0]],float(request.args[2]),db_hierarchy,request.folder,
                                request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_annotation_hierarchy,db_background)
-            
-            print fisher_alone_hierarchy[seq[0]].keys()
-            
+                        
             nodes_graph[seq[0]]=seq[1:]
             graph_mcn=nx.read_gpickle(request.folder+"static/results/"+request.args[1]+"/"+seq[0]+"_graph/graph_mcn.gpickle")
             number_of_nodes=graph_mcn.number_of_nodes()
@@ -418,7 +416,7 @@ def results_tsfa():
     while(seq!=""):
         seq=seq.strip().split("\t")
         mapping_column.append((seq[0],seq[1].strip()))
-        mapping[seq[1]]=seq[0]
+        mapping[seq[1].strip()]=seq[0]
         seq=f1.readline()
     sample_number=len(mapping)
 
@@ -431,13 +429,27 @@ def results_tsfa():
         starting_nodes[seq[0]]=seq[1:]
         seq=f1.readline()
     f1.close()
-    
+    menu_list={}
 
-    databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet",
                 "T":"Toxins","HPi":"Virus"}
+    for i in mapping_column:
+        menu_list[i[0]]={}
+        for j in ["R","K","KDr","KDi","Or","DB"]:
+            f1=open(request.folder+"static/results/"+request.args[0]+"/"+i[0]+"_graph/"+j+"_hierarchy/files_domain.txt","r")
+            seq=f1.readline()
+            menu_list[i[0]][j]=""
+            seq=seq.strip().split("\t")
+            if len(seq)==1:
+                pass
+            else:
+                #<li><a class="dbfa" id="HPi" data-toggle="tab">Virus</a></li>
+                for k in seq:
+                    menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li><a class="test disabled" tabindex="-1" href="#">'+k+'</a><li>'
+    databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
+
     alias_colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396","KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
-    return dict(mapping_column=mapping_column,mapping=mapping,starting_nodes=starting_nodes,databases=databases,alias_colors=alias_colors,alias_dict=alias_dict,sample_number=sample_number)
+    return dict(mapping_column=mapping_column,mapping=mapping,starting_nodes=starting_nodes,databases=databases,alias_colors=alias_colors,alias_dict=alias_dict,sample_number=sample_number,menu_list=menu_list)
 
 def load_request():
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet","T":"Toxins","HPi":"Virus"}
