@@ -441,11 +441,10 @@ def results_tsfa():
             menu_list[i[0]][j]=""
             seq=seq.strip().split("\t")
             if len(seq)==1:
-                menu_list[i[0]][j]= menu_list[i[0]][j]
-            else:
-                #<li><a class="dbfa" id="HPi" data-toggle="tab">Virus</a></li>
-                for k in seq:
-                    menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li><a class="test disabled" tabindex="-1" href="#">'+k+'</a><li>'
+                 menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="disabled"><a class="test" tabindex="-1" href="#"></a><li>'
+            for k in seq:
+                
+                menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li><a class="test" tabindex="-1" href="#">'+k+'</a><li>'
     databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
 
     alias_colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396","KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
