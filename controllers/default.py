@@ -227,37 +227,40 @@ def wait_tsfa():
         root_second_level={}
         count_annotation={}
         count_protein={}
-        db_hierarchy={"R":["Cell_Cell_communication","Cell_Cycle","Cellular_responses_to_stress","Chromatin_organization","Circadian_Clock","DNA_Repair","DNA_Replication","Developmental_Biology",
-                            "Disease","Extracellular_matrix_organization","Gene_Expression","Hemostasis","Immune_System","Metabolism","Metabolism_of_proteins","Mitophagy","Muscle_contraction","Neuronal_System",
-                            "Organelle_biogenesis_and_maintenance","Programmed_Cell_Death","Reproduction","Signal_Transduction","Transmembrane_transport_of_small_molecules","Vesicle_mediated_transport"],
-                     "K":['Aging', 'Target-based_classification__G_protein-coupled_receptors', 'Cancers__Specific_types', 'Endocrine_system', 'Transcription', 'Energy_metabolism', 
-                          'Cellular_community', 'Substance_dependence','Sensory_system', 'Chemical_structure_transformation_maps', 'Structure-based_classification', 'Nervous_system', 'Circulatory_system',
-                          'Signaling_molecules_and_interaction', 'Nucleotide_metabolism','Metabolism_of_terpenoids_and_polyketides', 'Chronology__Other_drugs', 'Skeleton-based_classification',
-                          'Infectious_diseases__Bacterial', 'Amino_acid_metabolism', 'Immune_diseases','Transport_and_catabolism', 'Translation', 'Chronology__Nervous_system_agents', 'Cell_motility',
-                          'Replication_and_repair', 'Endocrine_and_metabolic_diseases', 'Development','Drug_resistance', 'Digestive_system', 'Cell_growth_and_death', 'Signal_transduction', 'Cancers__Overview',
-                          'Cardiovascular_diseases', 'Xenobiotics_biodegradation_and_metabolism','Environmental_adaptation', 'Chronology__Antiinfectives', 'Target-based_classification__Transporters',
-                          'Carbohydrate_metabolism', 'Biosynthesis_of_other_secondary_metabolites','Target-based_classification__Enzymes', 'Glycan_biosynthesis_and_metabolism', 'Lipid_metabolism',
-                          'Excretory_system', 'Metabolism_of_other_amino_acids','Metabolism_of_cofactors_and_vitamins','Target-based_classification__Ion_channels', 'Membrane_transport', 
-                          'Target-based_classification__Nuclear_receptors','Infectious_diseases__Viral', 'Neurodegenerative_diseases','Folding__sorting_and_degradation', 'Immune_system', 
-                          'Global_and_overview_maps', 'Chronology__Antineoplastics', 'Infectious_diseases__Parasitic'],
-                     "KDr":['Hormonal_Agents__Suppressant__Parathyroid_', 'Antiparkinson_Agents', 'Therapeutic_Nutrients_Minerals_Electrolytes', 'Sleep_Disorder_Agents', 'Antifungals', 'Analgesics',
-                            'Hormonal_Agents__Stimulant-Replacement-Modifying__Adrenal_', 'Central_Nervous_System_Agents', 'Anti-inflammatory_Agents', 'Bipolar_Agents', 'Metabolic_Bone_Disease_Agents',
-                            'Dental_and_Oral_Agents', 'Antidementia_Agents', 'Gastrointestinal_Agents', 'Antimyasthenic_Agents', 'Antivirals', 'Otic_Agents', 'Antispasticity_Agents',
-                            'Hormonal_Agents__Stimulant-Replacement-Modifying__Pituitary_', 'Genitourinary_Agents', 'Blood_Products-Modifiers-Volume_Expanders', 'Antigout_Agents', 'Respiratory_Tract-Pulmonary_Agents',
-                            'Hormonal_Agents__Stimulant-Replacement-Modifying__Prostaglandins_', 'Hormonal_Agents__Suppressant__Thyroid_', 'Hormonal_Agents__Stimulant-Replacement-Modifying__Thyroid_',
-                            'Hormonal_Agents__Stimulant-Replacement-Modifying__Sex_Hormones_Modifiers_', 'Antiemetics', 'Cardiovascular_Agents', 'Anesthetics', 'Anticonvulsants', 'Immunological_Agents',
-                            'Antibacterials', 'Inflammatory_Bowel_Disease_Agents', 'Dermatological_Agents', 'Anti-Addiction-Substance_Abuse_Treatment_Agents', 'Hormonal_Agents__Suppressant__Pituitary_',
-                            'Hormonal_Agents__Suppressant__Adrenal_', 'Antimycobacterials', 'Antipsychotics', 'Antineoplastics', 'Enzyme_Replacement_Modifiers', 'Blood_Glucose_Regulators', 'Antiparasitics',
-                            'Anxiolytics', 'Antimigraine_Agents', 'Skeletal_Muscle_Relaxants', 'Ophthalmic_Agents', 'Antidepressants'],
-                     "KDi":['Respiratory_diseases', 'Digestive_system_diseases', 'Congenital_disorders_of_metabolism', 'Urinary_system_diseases', 'Musculoskeletal_diseases', 'Cardiovascular_diseases',
-                            'Immune_system_diseases', 'Cancers', 'Endocrine_and_metabolic_diseases', 'Reproductive_system_diseases', 'Skin_diseases', 'Nervous_system_diseases', 'Other_congenital_disorders'],
-                     "DB":['DB_approved', 'DB_small_molecule', 'DB_experimental', 'DB_nutraceutical', 'DB_illicit', 'DB_withdrawn', 'DB_investigational', 'DB_biotech'],
-                     "Or":['Rare_neurological_diseases', 'Rare_abdominal_surgical_diseases', 'Rare_odontological_diseases', 'Rare_systemic_and_rhumatological_diseases', 'Rare_urogenital_diseases',
-                           'Rare_cardiac_diseases','Rare_genetic_diseases', 'Rare_hepatic_diseases', 'Rare_intoxications', 'Rare_respiratory_diseases', 'Developmental_anomalies_during_embryogenesis',
-                           'Rare_renal_diseases', 'Rare_immunological_diseases', 'Rare_haematological_diseases', 'Rare_gastroenterological_diseases', 'Rare_tumors', 'Rare_allergic_disease',
-                           'Inborn_errors_of_metabolism','Teratologic_disorders', 'Rare_infectious_diseases', 'Rare_skin_diseases', 'Rare_endocrine_diseases', 'Rare_infertility_disorders',
-                           'Rare_cardiac_malformations','Rare_surgical_maxillo-facial_diseases', 'Rare_otorhinolaryngological_diseases', 'Rare_bone_diseases', 'Rare_eye_diseases',
-                           'Rare_circulatory_system_diseases','Rare_gynaecological_and_obstetric_diseases', 'Rare_surgical_thoracic_diseases']}
+        db_hierarchy={'DB':['Approved', 'Small_molecule', 'Experimental', 'Nutraceutical', 'Illicit', 'Withdrawn', 'Investigational', 'Biotech'],
+                      'KDi':['Respiratory_diseases', 'Digestive_system_diseases', 'Congenital_disorders_of_metabolism', 'Urinary_system_diseases', 'Musculoskeletal_diseases', 'Cardiovascular_diseases',
+                             'Immune_system_diseases', 'Cancers', 'Endocrine_and_metabolic_diseases', 'Reproductive_system_diseases', 'Skin_diseases', 'Nervous_system_diseases', 'Other_congenital_disorders'],
+                      'KDr':['Hormonal_Agents_Suppressant_(Parathyroid)', 'Antiparkinson_Agents', 'Therapeutic_Nutrients_Minerals_Electrolytes', 'Sleep_Disorder_Agents', 'Antifungals', 'Analgesics',
+                             'Hormonal_Agents_Stimulant_Replacement_Modifying_(Adrenal)', 'Central_Nervous_System_Agents', 'Anti_inflammatory_Agents', 'Bipolar_Agents', 'Metabolic_Bone_Disease_Agents',
+                             'Dental_and_Oral_Agents', 'Antidementia_Agents', 'Gastrointestinal_Agents', 'Antimyasthenic_Agents', 'Antivirals', 'Otic_Agents', 'Antispasticity_Agents',
+                             'Hormonal_Agents_Stimulant_Replacement_Modifying_(Pituitary)', 'Genitourinary_Agents', 'Blood_Products_Modifiers_Volume_Expanders', 'Antigout_Agents', 
+                             'Respiratory_Tract_Pulmonary_Agents', 'Hormonal_Agents_Stimulant_Replacement_Modifying_(Prostaglandins)', 'Hormonal_Agents_Suppressant_(Thyroid)',
+                             'Hormonal_Agents_Stimulant_Replacement_Modifying_(Thyroid)', 'Hormonal_Agents_Stimulant_Replacement_Modifying_(Sex_Hormones_Modifiers)', 'Antiemetics', 'Cardiovascular_Agents',
+                             'Anesthetics', 'Anticonvulsants', 'Immunological_Agents', 'Antibacterials', 'Inflammatory_Bowel_Disease_Agents', 'Dermatological_Agents',
+                             'Anti_Addiction_Substance_Abuse_Treatment_Agents', 'Hormonal_Agents_Suppressant_(Pituitary)', 'Hormonal_Agents_Suppressant_(Adrenal)',
+                             'Antimycobacterials', 'Antipsychotics', 'Antineoplastics', 'Enzyme_Replacement_Modifiers', 'Blood_Glucose_Regulators', 'Antiparasitics',
+                             'Anxiolytics', 'Antimigraine_Agents', 'Skeletal_Muscle_Relaxants', 'Ophthalmic_Agents', 'Antidepressants'],
+                      'K':['Aging', 'Target_based_classification_G_protein_coupled_receptors', 'Cancers_Specific_types', 'Endocrine_system', 'Transcription', 'Energy_metabolism', 'Cellular_community',
+                           'Substance_dependence', 'Sensory_system', 'Chemical_structure_transformation_maps', 'Structure_based_classification', 'Nervous_system', 'Circulatory_system',
+                           'Signaling_molecules_and_interaction', 'Nucleotide_metabolism', 'Metabolism_of_terpenoids_and_polyketides', 'Chronology_Other_drugs', 'Skeleton_based_classification',
+                           'Infectious_diseases_Bacterial', 'Amino_acid_metabolism', 'Immune_diseases', 'Transport_and_catabolism', 'Translation', 'Chronology_Nervous_system_agents', 'Cell_motility',
+                           'Replication_and_repair', 'Endocrine_and_metabolic_diseases', 'Development', 'Drug_resistance','Digestive_system', 'Cell_growth_and_death', 'Signal_transduction', 'Cancers_Overview',
+                           'Cardiovascular_diseases', 'Xenobiotics_biodegradation_and_metabolism', 'Environmental_adaptation', 'Chronology_Antiinfectives', 'Target_based_classification_Transporters',
+                           'Carbohydrate_metabolism', 'Biosynthesis_of_other_secondary_metabolites', 'Target_based_classification_Enzymes', 'Glycan_biosynthesis_and_metabolism', 'Lipid_metabolism',
+                           'Excretory_system', 'Metabolism_of_other_amino_acids', 'Metabolism_of_cofactors_and_vitamins', 'Target_based_classification_Ion_channels', 'Membrane_transport',
+                           'Target_based_classification_Nuclear_receptors', 'Infectious_diseases_Viral', 'Neurodegenerative_diseases', 'Folding_sorting_and_degradation', 'Immune_system',
+                           'Global_and_overview_maps', 'Chronology_Antineoplastics', 'Infectious_diseases_Parasitic'],
+                      'Or':['Rare_neurological_diseases', 'Rare_abdominal_surgical_diseases', 'Rare_odontological_diseases', 'Rare_systemic_and_rhumatological_diseases', 'Rare_urogenital_diseases',
+                            'Rare_cardiac_diseases', 'Rare_genetic_diseases', 'Rare_hepatic_diseases', 'Rare_intoxications', 'Rare_respiratory_diseases', 'Developmental_anomalies_during_embryogenesis',
+                            'Rare_renal_diseases', 'Rare_immunological_diseases', 'Rare_haematological_diseases', 'Rare_gastroenterological_diseases', 'Rare_tumors', 'Rare_allergic_disease',
+                            'Inborn_errors_of_metabolism', 'Teratologic_disorders', 'Rare_infectious_diseases', 'Rare_skin_diseases', 'Rare_endocrine_diseases', 'Rare_infertility_disorders',
+                            'Rare_cardiac_malformations', 'Rare_surgical_maxillo-facial_diseases', 'Rare_otorhinolaryngological_diseases', 'Rare_bone_diseases', 'Rare_eye_diseases',
+                            'Rare_circulatory_system_diseases', 'Rare_gynaecological_and_obstetric_diseases', 'Rare_surgical_thoracic_diseases'],
+                      'R':['Cell_Cell_communication', 'Cell_Cycle', 'Cellular_responses_to_stress', 'Chromatin_organization', 'Circadian_Clock', 'DNA_Repair', 'DNA_Replication', 'Developmental_Biology',
+                           'Disease', 'Extracellular_matrix_organization', 'Gene_Expression', 'Hemostasis', 'Immune_System', 'Metabolism', 'Metabolism_of_proteins', 'Mitophagy', 'Muscle_contraction',
+                           'Neuronal_System', 'Organelle_biogenesis_and_maintenance', 'Programmed_Cell_Death', 'Reproduction', 'Signal_Transduction', 'Transmembrane_transport_of_small_molecules',
+                           'Vesicle_mediated_transport']}
+
 
         fisher_annotation={}
         fisher_annotation_hierarchy={}
@@ -419,7 +422,6 @@ def results_tsfa():
         mapping[seq[1].strip()]=seq[0]
         seq=f1.readline()
     sample_number=len(mapping)
-
     f1.close()
     f1=open(request.folder+"static/results/"+request.args[0]+"/nodes.txt","r")
     starting_nodes={}
@@ -434,26 +436,29 @@ def results_tsfa():
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet",
                 "T":"Toxins","HPi":"Virus"}
 
-    menu_mapping={"R":("Reactome","R_h"),"K":("Kegg","K_h"),"KDr":("Kegg_drugs","KDr_h"),"KDi":("Kegg_disease","KDi_h"),"Or":("Orphanet","Or_h"),"DB":("Drug_bank","Db_h")}
+    menu_mapping={}
     for i in mapping_column:
         menu_list[i[0]]={}
-        
+        menu_mapping[i[0]]={}
         for j in ["R","K","KDr","KDi","Or","DB"]:
-            
+            menu_mapping[i[0]][j]={}
             f1=open(request.folder+"static/results/"+request.args[0]+"/"+i[0]+"_graph/"+j+"_hierarchy/files_domain.txt","r")
             seq=f1.readline()
             menu_list[i[0]][j]=""
-            
+            #<ul class="dropdown-menu dm" id="Reactome" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">  </ul>
             seq=seq.strip().split("\t")
             if len(seq)==1:
                 continue
+            count=0
             for k in seq:
-                menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li><a class="test" tabindex="-1" href="#">'+k+'</a><li>'
-
+                menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="test" id="'+k+'"><a tabindex="-1" href="#">'+k.replace("_"," ")+'</a><li>'
+                menu_mapping[i[0]][j][k]=str(count)
+                count=count+1
     databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
 
     alias_colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396","KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
-    return dict(mapping_column=mapping_column,mapping=mapping,starting_nodes=starting_nodes,databases=databases,alias_colors=alias_colors,alias_dict=alias_dict,sample_number=sample_number,menu_list=menu_list)
+    return dict(mapping_column=mapping_column,mapping=mapping,starting_nodes=starting_nodes,databases=databases,alias_colors=alias_colors,alias_dict=alias_dict,sample_number=sample_number,menu_list=menu_list,
+               menu_mapping=menu_mapping)
 
 def load_request():
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet","T":"Toxins","HPi":"Virus"}

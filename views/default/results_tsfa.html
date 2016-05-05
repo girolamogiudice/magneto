@@ -193,24 +193,29 @@ line.link {
                 <li><a class="dbfa" id="T" data-toggle="tab">Toxins</a></li>
                 <li><a class="dbfa" id="HPi" data-toggle="tab">Virus</a></li>
                  <li class="divider">Hierarchy enrichment</li>
-                <li id="sub" class="dropdown-submenu">
+                <li  id="sub" class="dropdown-submenu">
                     <a tabindex="-1" id="R_h" href="#">Reactome hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Reactome" style="position:absolute;display: none;left:100%;top:-100px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
+                        <ul class="dropdown-menu dm" id="Reactome" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
-                    <a class="test" id="K_h" tabindex="-1" href="#">Kegg hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Kegg" style="position:absolute;display: none;left:100%;top:-10px;margin-top: -1px;margin:0; padding:0;">
+
+                    <a id="K_h" tabindex="-1" href="#">Kegg hierarchy<span class="caret"></span></a>
+                       <ul class="dropdown-menu dm" id="Kegg" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
-                    <a class="test" id="KDr_h" tabindex="-1" href="#">Kegg drugs hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Kegg_drugs" style="position:absolute;display: none;left:100%;top:-10px;margin-top: -1px;margin:0; padding:0;">
+                    
+                    <a id="KDr_h" tabindex="-1" href="#">Kegg drugs hierarchy<span class="caret"></span></a>
+                      <ul class="dropdown-menu dm" id="Kegg_drugs" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
-                    <a class="test" id="DB_h" tabindex="-1" href="#">DrugBank hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Drug_bank" style="position:absolute;display: none;left:100%;top:0px;margin-top: -1px;margin:0; padding:0;">
+                    
+                    <a id="DB_h" tabindex="-1" href="#">DrugBank hierarchy<span class="caret"></span></a>
+                      <ul class="dropdown-menu dm" id="Drug_bank" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
-                    <a class="test" id="KDi_h" tabindex="-1" href="#">Kegg disease hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Kegg_disease" style="position:absolute;display: none;left:100%;top:0px;margin-top: -1px;margin:0; padding:0;">
+                    
+                    <a id="KDi_h" tabindex="-1" href="#">Kegg disease hierarchy<span class="caret"></span></a>
+                     <ul class="dropdown-menu dm" id="Kegg_disease" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
-                    <a class="test" id="Or_h" tabindex="-1" href="#">Orphanet hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Orphanet" style="position:absolute;display: none;left:100%;top:0px;margin-top: -1px;margin:0; padding:0;">
+                    
+                    <a id="Or_h" tabindex="-1" href="#">Orphanet hierarchy<span class="caret"></span></a>
+                   <ul class="dropdown-menu dm" id="Orphanet" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
                 </li>
               </li>
@@ -254,8 +259,6 @@ line.link {
 </div>
  </div></div>
 
-
- 
   <div id="results_panel" class="panel panel-primary" >
       <div class="panel-heading">Functional Analysis</div>
       <div class="panel-body">
@@ -269,7 +272,7 @@ line.link {
 
 <script>
 menu_list={{=XML(menu_list)}}
-
+menu_mapping={{=XML(menu_mapping)}}
 $(document).ready(function(){
     
 $('.dropdown-submenu a')
@@ -279,7 +282,13 @@ $('.dropdown-submenu a')
 
 $("#R_h")
 .mouseover(function() {
-        $("#Reactome").next('ul').show()
+        if (menu_list[value]["R"].length==0)
+        {
+            $("#Reactome").css("display","none")
+        }
+    else{
+            $("#Reactome").next('ul').show()
+        }
         $("#Kegg").css("display","none")
          $("#Kegg_drugs").css("display","none")
           $("#Kegg_disease").css("display","none")
@@ -288,7 +297,13 @@ $("#R_h")
     })
 $("#K_h")
 .mouseover(function() {
-        $("#Kegg").next('ul').show()
+    if (menu_list[value]["K"].length==0)
+        {
+            $("#Kegg").css("display","none")
+        }
+    else{
+            $("#Kegg").next('ul').show()
+        }
         $("#Reactome").css("display","none")
          $("#Kegg_drugs").css("display","none")
           $("#Kegg_disease").css("display","none")
@@ -298,7 +313,14 @@ $("#K_h")
 
 $("#KDr_h")
 .mouseover(function() {
-        $("#Kegg_drugs").next('ul').show()
+        if (menu_list[value]["KDr"].length==0)
+        {
+            $("#Kegg_drugs").css("display","none")
+        }
+    else
+        {
+            $("#Kegg_drugs").next('ul').show()
+        }
         $("#Reactome").css("display","none")
          $("#Kegg").css("display","none")
           $("#Kegg_disease").css("display","none")
@@ -307,7 +329,14 @@ $("#KDr_h")
     })
 $("#DB_h")
 .mouseover(function() {
-        $("#Drug_bank").next('ul').show()
+    if (menu_list[value]["DB"].length==0)
+        {
+            $("#Drug_bank").css("display","none")
+        }
+    else{
+            $("#Drug_bank").next('ul').show()
+        }
+
         $("#Reactome").css("display","none")
          $("#Kegg_drugs").css("display","none")
           $("#Kegg_disease").css("display","none")
@@ -316,7 +345,14 @@ $("#DB_h")
     })
 $("#Or_h")
 .mouseover(function() {
-        $("#Orphanet").next('ul').show()
+        if (menu_list[value]["Or"].length==0)
+        {
+            $("#Orphanet").css("display","none")
+        }
+        else
+        {
+            $("#Orphanet").next('ul').show()
+        }
         $("#Reactome").css("display","none")
          $("#Kegg_drugs").css("display","none")
           $("#Kegg_disease").css("display","none")
@@ -325,7 +361,14 @@ $("#Or_h")
     })
 $("#KDi_h")
 .mouseover(function() {
-        $("#Kegg_disease").next('ul').show()
+            if (menu_list[value]["KDi"].length==0)
+        {
+            $("#Kegg_disease").css("display","none")
+        }
+        else
+        {
+            $("#Kegg_disease").next('ul').show()
+        }
         $("#Reactome").css("display","none")
          $("#Kegg_drugs").css("display","none")
           $("#Orphanet").css("display","none")
@@ -348,8 +391,6 @@ $('#sub')
 
 })
 
-    
-    
     function loadScript(url)
 {
     document.body.appendChild(document.createElement("script")).src = url;
@@ -357,7 +398,7 @@ $('#sub')
 }
 
 value=""
-        function return_value(elem){
+function return_value(elem){
      value=elem
      document.getElementById("results").innerHTML=""
 }
@@ -384,6 +425,7 @@ $(".sv").click(function(){
     document.getElementById("graph-container").style.height="800px";
 })
 
+
 mapping={{=XML(str(mapping))}}
 
 $('.stats').click(function(){
@@ -396,11 +438,13 @@ $('.dbfa').click(function(){
     //loadScript("/magneto/static/js/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js");
     //loadScript("/magneto/static/js/tableExport.min.js");
     values=mapping[document.getElementById("sample_sel").innerHTML.trim()]
+    
     var folder= "{{=request.args[0]}}"
     var db_fa=($(this).attr('id'))
     location.hash =sample+"#"+db_fa;
     db_fa=db_fa+"fisher.json"
     path= "/magneto/static/results/"+folder+"/"+values+"_graph/"+db_fa
+   
     $("#plot").removeClass('dropdown disabled disabledTab');
     $('#fa').html($(this)[0].innerText+" ");
     $("#results_panel").css("visibility", "visible");
@@ -427,6 +471,12 @@ document.getElementById("results").innerHTML = '<table id="table" class="table t
 
 function change_text() 
     {
+    document.getElementById("DB_h").className=""
+    document.getElementById("K_h").className=""
+    document.getElementById("KDi_h").className=""
+    document.getElementById("KDr_h").className=""
+    document.getElementById("Or_h").className=""
+    document.getElementById("R_h").className=""
     //document.getElementById("statistics").innerHTML="Statistics<span class='caret'></span>"
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
@@ -437,7 +487,8 @@ function change_text()
     }
     else{
         d=document.getElementById("R_h")
-        d.className += " disabled";
+        d.className += "disabled";
+       
     }
      
     if (menu_list[value]["K"].length!=0){
@@ -445,7 +496,7 @@ function change_text()
     }
     else{
         d=document.getElementById("K_h")
-        d.className += " disabled";
+        d.className += "disabled";
     }
      
     if (menu_list[value]["KDr"].length!=0)
@@ -454,7 +505,7 @@ function change_text()
     }
     else{
     d=document.getElementById("KDr_h")
-        d.className += " disabled";
+        d.className += "disabled";
     }
      
     if (menu_list[value]["KDi"].length!=0){
@@ -462,7 +513,7 @@ function change_text()
     }
     else{
         d=document.getElementById("KDi_h")
-        d.className += " disabled";
+        d.className += "disabled";
     }
      
     if (menu_list[value]["DB"].length!=0){
@@ -470,7 +521,7 @@ function change_text()
     }
     else{
         d=document.getElementById("DB_h")
-        d.className += " disabled";
+        d.className += "disabled";
     }
      
     if (menu_list[value]["Or"].length!=0){
@@ -478,11 +529,41 @@ function change_text()
     }
     else{
         d=document.getElementById("Or_h")
-        d.className += " disabled";
+        d.className += "disabled";
     }
      
     }
+$('#Reactome').on('click','.test',function(event) { 
+    event.preventDefault();
+    location.hash =sample+"#R_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["R"][$(this).attr('id')];
+});
 
+$('#Orphanet').on('click','.test',function(event) { 
+    event.preventDefault();
+    location.hash =sample+"#Or_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["Or"][$(this).attr('id')];
+});
+    
+    
+$('#Kegg').on('click','.test',function(event) { 
+    event.preventDefault();
+    location.hash =sample+"#K_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["K"][$(this).attr('id')];
+});
+    
+$('#Kegg_disease').on('click','.test',function(event) { 
+    event.preventDefault();
+    location.hash =sample+"#KDi_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["KDi"][$(this).attr('id')];
+});
+    
+$('#Kegg_drugs').on('click','.test',function(event) { 
+    event.preventDefault();
+    location.hash =sample+"#KDr_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["KDr"][$(this).attr('id')];
+});
+    
+$('#Drug_bank').on('click','.test',function(event) { 
+    event.preventDefault();
+    location.hash =sample+"#DB_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["DB"][$(this).attr('id')];
+});
+    
 function chord_select() 
     {
     $("#treemap_plot").removeClass('active')
