@@ -41,14 +41,11 @@
 <script src="/magneto/static/js/linkurious/plugins/sigma.plugins.animate/sigma.plugins.animate.js"></script>
 <script src="/magneto/static/js/linkurious/plugins/sigma.layout.forceAtlas2/worker.js"></script>
 <script src="/magneto/static/js/linkurious/plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
-
 <script src="/magneto/static/js/linkurious/plugins/sigma.plugins.locate/sigma.plugins.locate.js"></script>
 <script src="/magneto/static/js/linkurious/plugins/sigma.plugins.tooltips/sigma.plugins.tooltips.js"></script>
-
 <script src="{{=URL('static','js/d3.min.js')}}"></script>
 <script src="{{=URL('static','js/logo.js')}}"></script>
 <script src="{{=URL('static','js/d3.layout.cloud.js')}}"></script>
-
 <script src="/magneto/static/js/mapper.js"></script>
 <script src="/magneto/static/js/underscore.js"></script>
 
@@ -201,28 +198,21 @@ line.link {
                 <li id="sub" class="dropdown-submenu">
                     <a tabindex="-1" id="R_h" href="#">Reactome hierarchy<span class="caret"></span></a>
                     <ul class="dropdown-menu dm" id="Reactome" style="position:absolute;display: none;left:100%;top:-100px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
-                    
-
                     </ul>
                     <a class="test" id="K_h" tabindex="-1" href="#">Kegg hierarchy<span class="caret"></span></a>
                     <ul class="dropdown-menu dm" id="Kegg" style="position:absolute;display: none;left:100%;top:-10px;margin-top: -1px;margin:0; padding:0;">
-                
                     </ul>
                     <a class="test" id="KDr_h" tabindex="-1" href="#">Kegg drugs hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Kegg drugs" style="position:absolute;display: none;left:100%;top:-10px;margin-top: -1px;margin:0; padding:0;">
-                
+                    <ul class="dropdown-menu dm" id="Kegg_drugs" style="position:absolute;display: none;left:100%;top:-10px;margin-top: -1px;margin:0; padding:0;">
                     </ul>
                     <a class="test" id="DB_h" tabindex="-1" href="#">DrugBank hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Drug bank" style="position:absolute;display: none;left:100%;top:0px;margin-top: -1px;margin:0; padding:0;">
-                
+                    <ul class="dropdown-menu dm" id="Drug_bank" style="position:absolute;display: none;left:100%;top:0px;margin-top: -1px;margin:0; padding:0;">
                     </ul>
                     <a class="test" id="KDi_h" tabindex="-1" href="#">Kegg disease hierarchy<span class="caret"></span></a>
-                    <ul class="dropdown-menu dm" id="Kegg disease" style="position:absolute;display: none;left:100%;top:0px;margin-top: -1px;margin:0; padding:0;">
-                
+                    <ul class="dropdown-menu dm" id="Kegg_disease" style="position:absolute;display: none;left:100%;top:0px;margin-top: -1px;margin:0; padding:0;">
                     </ul>
                     <a class="test" id="Or_h" tabindex="-1" href="#">Orphanet hierarchy<span class="caret"></span></a>
                     <ul class="dropdown-menu dm" id="Orphanet" style="position:absolute;display: none;left:100%;top:0px;margin-top: -1px;margin:0; padding:0;">
-                
                     </ul>
                 </li>
               </li>
@@ -288,14 +278,71 @@ $('.dropdown-submenu a')
 .mouseover(function() {
         $(this).next('ul').show()
     })
+
+$("#R_h")
+.mouseover(function() {
+        $("#Reactome").next('ul').show()
+        $("#Kegg").css("display","none")
+         $("#Kegg_drugs").css("display","none")
+          $("#Kegg_disease").css("display","none")
+           $("#Orphanet").css("display","none")
+            $("#Drug_bank").css("display","none")
+    })
+$("#K_h")
+.mouseover(function() {
+        $("#Kegg").next('ul').show()
+        $("#Reactome").css("display","none")
+         $("#Kegg_drugs").css("display","none")
+          $("#Kegg_disease").css("display","none")
+           $("#Orphanet").css("display","none")
+            $("#Drug_bank").css("display","none")
+    })
+
+$("#KDr_h")
+.mouseover(function() {
+        $("#Kegg_drugs").next('ul').show()
+        $("#Reactome").css("display","none")
+         $("#Kegg").css("display","none")
+          $("#Kegg_disease").css("display","none")
+           $("#Orphanet").css("display","none")
+            $("#Drug_bank").css("display","none")
+    })
+$("#DB_h")
+.mouseover(function() {
+        $("#Drug_bank").next('ul').show()
+        $("#Reactome").css("display","none")
+         $("#Kegg_drugs").css("display","none")
+          $("#Kegg_disease").css("display","none")
+           $("#Orphanet").css("display","none")
+            $("#kegg").css("display","none")
+    })
+$("#Or_h")
+.mouseover(function() {
+        $("#Orphanet").next('ul').show()
+        $("#Reactome").css("display","none")
+         $("#Kegg_drugs").css("display","none")
+          $("#Kegg_disease").css("display","none")
+           $("#Kegg").css("display","none")
+            $("#Drug_bank").css("display","none")
+    })
+$("#KDi_h")
+.mouseover(function() {
+        $("#Kegg_disease").next('ul').show()
+        $("#Reactome").css("display","none")
+         $("#Kegg_drugs").css("display","none")
+          $("#Orphanet").css("display","none")
+           $("#Kegg").css("display","none")
+            $("#Drug_bank").css("display","none")
+    })
+
+
 $('#sub')
-     .mouseout(function(event){
-      console.log($(this))
+     .mouseleave(function(event){
       $("#Reactome").hide()
       $("#Kegg").hide()
-      $("#Kegg disease").hide()
-      $("#Kegg drug").hide()
-      $("#Drug bank").hide()
+      $("#Kegg_disease").hide()
+      $("#Kegg_drug").hide()
+      $("#Drug_bank").hide()
       $("#Orphanet").hide()
     });
 				
@@ -386,7 +433,6 @@ function change_text()
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
     value=location.hash.substring(1)
-    
     if (menu_list[value]["R"].length!=0)
     {
         document.getElementById("Reactome").innerHTML=menu_list[value]["R"]
@@ -406,7 +452,7 @@ function change_text()
      
     if (menu_list[value]["KDr"].length!=0)
     {
-        document.getElementById("Kegg drugs").innerHTML=menu_list[value]["KDr"]
+        document.getElementById("Kegg_drugs").innerHTML=menu_list[value]["KDr"]
     }
     else{
     d=document.getElementById("KDr_h")
@@ -414,7 +460,7 @@ function change_text()
     }
      
     if (menu_list[value]["KDi"].length!=0){
-    document.getElementById("Kegg disease").innerHTML=menu_list[value]["KDi"]
+    document.getElementById("Kegg_disease").innerHTML=menu_list[value]["KDi"]
     }
     else{
         d=document.getElementById("KDi_h")
@@ -422,7 +468,7 @@ function change_text()
     }
      
     if (menu_list[value]["DB"].length!=0){
-    document.getElementById("Drug bank").innerHTML=menu_list[value]["DB"]
+    document.getElementById("Drug_bank").innerHTML=menu_list[value]["DB"]
     }
     else{
         d=document.getElementById("DB_h")

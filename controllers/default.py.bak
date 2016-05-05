@@ -433,18 +433,24 @@ def results_tsfa():
 
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet",
                 "T":"Toxins","HPi":"Virus"}
+    menu=""
+    menu='<li id="sub" class="dropdown-submenu">'
+    menu_mapping={"R":("Reactome","R_h"),"K":("Kegg","K_h"),"KDr":("Kegg_drugs","KDr_h"),"KDi":("Kegg_disease","KDi_h"),"Or":("Orphanet","Or_h"),"DB":("Drug_bank","Db_h")}
     for i in mapping_column:
         menu_list[i[0]]={}
+        
         for j in ["R","K","KDr","KDi","Or","DB"]:
+            
             f1=open(request.folder+"static/results/"+request.args[0]+"/"+i[0]+"_graph/"+j+"_hierarchy/files_domain.txt","r")
             seq=f1.readline()
             menu_list[i[0]][j]=""
+            
             seq=seq.strip().split("\t")
             if len(seq)==1:
-                 menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="disabled"><a class="test" tabindex="-1" href="#"></a><li>'
+                continue
             for k in seq:
-                
                 menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li><a class="test" tabindex="-1" href="#">'+k+'</a><li>'
+
     databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
 
     alias_colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396","KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
