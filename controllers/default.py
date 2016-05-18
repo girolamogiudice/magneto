@@ -179,7 +179,7 @@ def tsfa():
     return dict(form = form)
 def wait_tsfa():
     import networkx as nx
-    import fishertest,fisher_standalone_hierarchy
+    import fishertest,fisher_standalone_hierarchy,fisher_hierarchy
     
     import json
     net_db={"0":"intact","1":"intact_high_confidence","2":"biogrid"}
@@ -289,6 +289,7 @@ def wait_tsfa():
         seq=f1.readline()
         fisher_alone={}
         fisher_alone_hierarchy={}
+        fisher_h={}
         start_nodes={}
         protein_stats={}
         temp=[]
@@ -299,6 +300,7 @@ def wait_tsfa():
             seq=seq.strip().split("\t")
             fisher_alone[seq[0]]={}
             fisher_alone_hierarchy[seq[0]]={}
+            fisher_h[seq[0]]={}
             start_nodes[seq[0]]=seq[1:]
             not_annotated[seq[0]]=[]
             proteome_annotated[seq[0]]=[]
@@ -320,7 +322,7 @@ def wait_tsfa():
             not_present_in_network=f2.readline().strip().split("\t")
             f2.close()
             seq=seq.strip().split("\t")
-            
+
             for j in seq[1:]:
                 if proteome_descr.has_key(j):
                     protein_descr[j]=proteome_descr[j]
@@ -348,9 +350,9 @@ def wait_tsfa():
                                                                                        float(request.args[2]),["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"],
                             request.args[3],request.folder,start_nodes[seq[0]],domain_db,protein_descr,count_annotation,root_second_level,fisher_alone[seq[0]],sample,sample_number)
             
-            fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:]+proteome_annotated[seq[0]],float(request.args[2]),db_hierarchy,request.folder,
-                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_annotation_hierarchy,db_background)
-                        
+            fisher_h[seq[0]]=fisher_hierarchy.load(request.args[1],seq[1:]+proteome_annotated[seq[0]],float(request.args[2]),db_hierarchy,request.folder,
+                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_alone_hierarchy[seq[0]],db_background)
+            
             nodes_graph[seq[0]]=seq[1:]
             graph_mcn=nx.read_gpickle(request.folder+"static/results/"+request.args[1]+"/"+seq[0]+"_graph/graph_mcn.gpickle")
             number_of_nodes=graph_mcn.number_of_nodes()
@@ -376,6 +378,7 @@ def wait_tsfa():
                 count=count+1
             for i in nodes_in_the_graph[seq[0]]:
                 graph_mcn.node[i]['color']=['#FF0000']
+            
             count=0
             f2.close()
             for i in graph_mcn.edges():

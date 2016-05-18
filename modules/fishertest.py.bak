@@ -143,13 +143,13 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
                 f2.write(i+"\t"+str(fisher_value[i])+"\t"+str(len(annotation[i]))+"\t"+descr[i]+"\t"+" ".join(annotation_gene[i])+"\n")
                 f6.write(i+"\t"+descr[i]+"\n")
                 
-                """
+                
                 for k in words[i]:
                     if words_count_enriched.has_key(k):
                         words_count_enriched[k]=words_count_enriched[k]+1
                     else:
                         words_count_enriched[k]=1
-                """
+               
                 for k in annotation[i]:
                     prot_fisher.append(k)
                     if clusterid.has_key(i):

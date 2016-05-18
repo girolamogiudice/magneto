@@ -194,27 +194,27 @@ line.link {
                 <li><a class="dbfa" id="HPi" data-toggle="tab">Virus</a></li>
                  <li class="divider">Hierarchy enrichment</li>
                 <li  id="sub" class="dropdown-submenu">
-                    <a tabindex="-1" id="R_h" href="#">Reactome hierarchy<span class="caret"></span></a>
+                    <a class="dbfa" tabindex="-1" id="R_h" href="#">Reactome hierarchy<span class="caret"></span></a>
                         <ul class="dropdown-menu dm" id="Reactome" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
 
-                    <a id="K_h" tabindex="-1" href="#">Kegg hierarchy<span class="caret"></span></a>
+                    <a class="dbfa" id="K_h" tabindex="-1" href="#">Kegg hierarchy<span class="caret"></span></a>
                        <ul class="dropdown-menu dm" id="Kegg" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
                     
-                    <a id="KDr_h" tabindex="-1" href="#">Kegg drugs hierarchy<span class="caret"></span></a>
+                    <a class="dbfa" id="KDr_h" tabindex="-1" href="#">Kegg drugs hierarchy<span class="caret"></span></a>
                       <ul class="dropdown-menu dm" id="Kegg_drugs" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
                     
-                    <a id="DB_h" tabindex="-1" href="#">DrugBank hierarchy<span class="caret"></span></a>
+                    <a class="dbfa" id="DB_h" tabindex="-1" href="#">DrugBank hierarchy<span class="caret"></span></a>
                       <ul class="dropdown-menu dm" id="Drug_bank" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
                     
-                    <a id="KDi_h" tabindex="-1" href="#">Kegg disease hierarchy<span class="caret"></span></a>
+                    <a class="dbfa" id="KDi_h" tabindex="-1" href="#">Kegg disease hierarchy<span class="caret"></span></a>
                      <ul class="dropdown-menu dm" id="Kegg_disease" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
                     
-                    <a id="Or_h" tabindex="-1" href="#">Orphanet hierarchy<span class="caret"></span></a>
+                    <a class="dbfa" id="Or_h" tabindex="-1" href="#">Orphanet hierarchy<span class="caret"></span></a>
                    <ul class="dropdown-menu dm" id="Orphanet" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
                 </li>
@@ -444,7 +444,6 @@ $('.dbfa').click(function(){
     location.hash =sample+"#"+db_fa;
     db_fa=db_fa+"fisher.json"
     path= "/magneto/static/results/"+folder+"/"+values+"_graph/"+db_fa
-   
     $("#plot").removeClass('dropdown disabled disabledTab');
     $('#fa').html($(this)[0].innerText+" ");
     $("#results_panel").css("visibility", "visible");
@@ -547,6 +546,7 @@ $('#Orphanet').on('click','.test',function(event) {
 $('#Kegg').on('click','.test',function(event) { 
     event.preventDefault();
     location.hash =sample+"#K_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["K"][$(this).attr('id')];
+    console.log(location.hash)
 });
     
 $('#Kegg_disease').on('click','.test',function(event) { 
@@ -624,8 +624,11 @@ function select_all()
     }    
     function detailFormatter(index, row) {
        starting_nodes={{=XML(str(starting_nodes))}}
-         values=mapping[document.getElementById("sample_sel").text]
+         values=mapping[document.getElementById("sample_sel").text.trim()]
+             console.log(values)
+
          protein=starting_nodes[values]
+         
         var html = ['<span><b> proteins involved: </b></span>'];
         for (i = 0; i < row.proteins.length; i++) { 
             var index= protein.indexOf(row.proteins[i].split("(")[0])

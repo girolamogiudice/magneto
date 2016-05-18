@@ -76,7 +76,12 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                 fisher[i]=fisher_exact(table,alternative ="greater")[1]
                 if fisher[i]<(threshold/lenfisherset):
                     flag=1
-                    fisher_annotation[ii][i]=""
+                    
+                    if fisher_annotation[ii].has_key(jj):
+                        fisher_annotation[ii][jj][i]=[]
+                    else:
+                        fisher_annotation[ii][jj]={}
+                        fisher_annotation[ii][jj][i]=[]
                     if fisher_value.has_key(fisher[i]):
                         fisher_value[fisher[i]].append(i)
                     else:
@@ -90,26 +95,15 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                 for i in fisher_value:
                     if len(fisher_value)>0:
                         for j in fisher_value[i]:
-                            temp.append({"name":j,"description":descr[j],"value":str(i),"proteins involved":" ".join(annotation[j])})
-                            #json_tree[-1]["children"].append({"children": [{"name":j,"description":descr[j]}]})
                             f2.write(j+"\t"+str(i)+"\t"+descr[j]+"\t"+" ".join(annotation[j])+"\n")
-                json_tree[ii]["children"].append({"name":jj,"children":temp})
                 f2.close()
-        if len(json_tree[ii]["children"])>0:
-            json.dump(json_tree[ii],open(res_folder+"/"+ii+"_hierarchy/json.txt","w"))
-            
-        for i in fisher_hierarchy[ii]:
-            if fisher_annotation[ii].has_key(i):
-                fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":1})
-            elif not fisher_value.has_key(i):
-                fisher_json.append({"id":i,"p value":"-1","proteins involved":str(len(fisher_annotation[ii][i])),"description":descr[i],"common":2})
-            else:
-                fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":0})
-        json.dump(fisher_json,open(res_folder+"/"+ii+"_hierarchy/"+jj+"fisher.json","w"))    
+
+
         f2=open(res_folder+"/"+ii+"_hierarchy/files_domain.txt","w")
         f2.write(sub_categories[ii].strip())
         f2.close()
         f2=open(res_folder+"/hierarchy_databases.txt","w")
         f2.write("\t".join(list(set(databases))))
         f2.close()
+    print fisher_annotation
     return fisher_annotation

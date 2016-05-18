@@ -132,7 +132,7 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
                 fisher_value[i]=fisher[i]
 
         f2=open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_graph/"+ii+"fisher.txt","w")
-        f2.write("id\tp_value\tic\tproteins_involved\tdescription\tproteins\n")
+        f2.write("id\tp_value\tproteins_involved\tdescription\tproteins\n")
         
         for i in fisher_value:
             if fisher_annotation[ii].has_key(i):
