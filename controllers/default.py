@@ -445,6 +445,7 @@ def results_tsfa():
         menu_mapping[i[0]]={}
         for j in ["R","K","KDr","KDi","Or","DB"]:
             menu_mapping[i[0]][j]={}
+           
             f1=open(request.folder+"static/results/"+request.args[0]+"/"+i[0]+"_graph/"+j+"_hierarchy/files_domain.txt","r")
             seq=f1.readline()
             menu_list[i[0]][j]=""
@@ -568,7 +569,14 @@ def load_word_cloud():
     word_cloud={}
     word_cloud=f1.readline()
     return dict(word_cloud=word_cloud)
-    
+
+def load_hierarchy():
+    #values=request.env.http_web2py_component_location.split("#")
+    #ids=values[1]
+    #path=request.folder+"static/results/"+request.args[0][0:-1]+"/"+ids+"_graph/"+values[2]+"ierarchy/json.txt"
+    path="/magneto/static/results/e6bcf189-88a0-4d47-9b46-80d49ea2147b/0_graph/R_hierarchy/json.txt"
+    return dict(path=path)
+
 def tfa():
     import types,os
     from types import NoneType
