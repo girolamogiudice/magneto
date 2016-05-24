@@ -220,13 +220,14 @@ def wait_tsfa():
             proteome_descr[seq[0]]=seq[1]
             seq=f1.readline()
         f1.close()
-        
         protein_descr={}
         root={}
         root = {"name": "database","children": []}
         root_second_level={}
         count_annotation={}
         count_protein={}
+        controls={}
+        controls_h={}
         db_hierarchy={'DB':['Approved', 'Small_molecule', 'Experimental', 'Nutraceutical', 'Illicit', 'Withdrawn', 'Investigational', 'Biotech'],
                       'KDi':['Respiratory_diseases', 'Digestive_system_diseases', 'Congenital_disorders_of_metabolism', 'Urinary_system_diseases', 'Musculoskeletal_diseases', 'Cardiovascular_diseases',
                              'Immune_system_diseases', 'Cancers', 'Endocrine_and_metabolic_diseases', 'Reproductive_system_diseases', 'Skin_diseases', 'Nervous_system_diseases', 'Other_congenital_disorders'],
@@ -271,12 +272,13 @@ def wait_tsfa():
                     "HPi":"Virus","T":"toxins"}
         databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
         for i in ["C","P","F","R","K","O","KDr","KDi","DB","Or","HPi","T"]:
+            controls[i]={}
             fisher_annotation[i]=[]
             domain_db[i]=[]
             count_annotation[i]={}
         for i in ["R","DB","K","KDi","KDr","Or"]:
             fisher_annotation_hierarchy[i]={}
-            
+            controls_h[i]={}
         nodes_in_the_graph={}
         f1=open(request.folder+"static/results/"+request.args[1]+"/nodes_present_in_graph.txt","r")
         seq=f1.readline()
@@ -309,7 +311,6 @@ def wait_tsfa():
                                request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation)
             fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:],float(request.args[2]),db_hierarchy,request.folder,
                                request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation_hierarchy,db_background)
-            
             seq=f1.readline()
         f1=open(request.folder+"static/results/"+request.args[1]+"/nodes_graph.txt","r")
         nodes_graph={}
@@ -345,13 +346,18 @@ def wait_tsfa():
                 else:
                     protein_stats[seq[0]][j]=[]
                     protein_stats[seq[0]][j].append(sample)
-            #devo controllare il fisher test e sbagliato check the path        
-            col,nmap,domain_db,count_annotation,root_second_level=fishertest.load(request.args[1],seq[0],seq[1:]+proteome_annotated[seq[0]],
-                                                                                       float(request.args[2]),["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"],
-                            request.args[3],request.folder,start_nodes[seq[0]],domain_db,protein_descr,count_annotation,root_second_level,fisher_alone[seq[0]],sample,sample_number)
+            #devo controllare il fisher test e sbagliato check the path
+            if mapping[seq[0]][-1]=="*":
+                control=True
+            else:
+                control=False
             
-            fisher_h[seq[0]]=fisher_hierarchy.load(request.args[1],seq[1:]+proteome_annotated[seq[0]],float(request.args[2]),db_hierarchy,request.folder,
-                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_alone_hierarchy[seq[0]],db_background)
+            col,nmap,domain_db,count_annotation,root_second_level,controls=fishertest.load(request.args[1],seq[0],seq[1:]+proteome_annotated[seq[0]],
+                                                                                       float(request.args[2]),["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"],
+                            request.args[3],request.folder,start_nodes[seq[0]],domain_db,protein_descr,count_annotation,root_second_level,fisher_alone[seq[0]],sample,sample_number,control,controls)
+
+            fisher_h[seq[0]],controls_h=fisher_hierarchy.load(request.args[1],seq[1:]+proteome_annotated[seq[0]],float(request.args[2]),db_hierarchy,request.folder,
+                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_alone_hierarchy[seq[0]],db_background,control,controls_h)
             nodes_graph[seq[0]]=seq[1:]
             graph_mcn=nx.read_gpickle(request.folder+"static/results/"+request.args[1]+"/"+seq[0]+"_graph/graph_mcn.gpickle")
             number_of_nodes=graph_mcn.number_of_nodes()
@@ -412,11 +418,17 @@ def wait_tsfa():
 
             json.dump(root,open(request.folder+"static/results/"+request.args[1]+"/stats.json",'w'))
 
-
+        f3=open(request.folder+"/static/results/"+request.args[1]+"/controls.txt","w")
         for i in ["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"]:
+            f3.write(">"+i+"\t"+"\t".join(controls[i].keys())+"\n")
             f2=open(request.folder+"/static/results/"+request.args[1]+"/"+i+"_domain.txt","w")
             f2.write(str(list(set(domain_db[i]))))
             f2.close()
+        f3.close()
+        f3=open(request.folder+"/static/results/"+request.args[1]+"/controls_h.txt","w")
+        for i in ["R","DB","K","KDi","KDr","Or"]:
+            f3.write(">"+i+"\t"+"\t".join(controls[i].keys())+"\n")
+        f3.close()
         return dict(sched_var=sched_var)
        
     return dict(sched_var=sched_var)
@@ -465,7 +477,7 @@ def results_tsfa():
             for k in seq:
                 if k[-1]=="*":
                     k=k[0:-1]
-                    menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="testl ist-group-item-danger" id="'+k+'"><a class="danger" tabindex="-1" href="#">'+k.replace("_"," ")+'</a><li>'
+                    menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="test list-group-item-danger" id="'+k+'"><a class="danger" tabindex="-1" href="#">'+k.replace("_"," ")+'</a><li>'
                 else:
                     menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="test" id="'+k+'"><a tabindex="-1" href="#">'+k.replace("_"," ")+'</a><li>'
                 menu_mapping[i[0]][j][k]=str(count)

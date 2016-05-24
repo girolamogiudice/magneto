@@ -440,7 +440,6 @@ $('.dbfa').click(function(){
     //loadScript("/magneto/static/js/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js");
     //loadScript("/magneto/static/js/tableExport.min.js");
     values=mapping[document.getElementById("sample_sel").innerHTML.trim()]
-    
     var folder= "{{=request.args[0]}}"
     var db_fa=($(this).attr('id'))
     temp=db_fa.endsWith("_h")
@@ -457,8 +456,12 @@ $('.dbfa').click(function(){
     $("#wc_plot").removeClass('disabled');
     $("#treemap_plot").removeClass('disabled');
     $("#display_plot").removeClass('disabled');
-    
     $("#results_panel").css("visibility", "visible");
+    document.getElementById("chord").innerHTML=""
+    document.getElementById("treemap").innerHTML=""
+    document.getElementById("bubble").innerHTML=""
+    document.getElementById("word").innerHTML=""
+    document.getElementById("hierarchy_tree").innerHTML=""
     if (!temp)
     { 
         $('#fa').html($(this)[0].innerText+" ");
@@ -493,6 +496,7 @@ function change_text()
     document.getElementById("KDr_h").className=""
     document.getElementById("Or_h").className=""
     document.getElementById("R_h").className=""
+    
     //document.getElementById("statistics").innerHTML="Statistics<span class='caret'></span>"
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
@@ -557,6 +561,8 @@ $('#Reactome').on('click','.test',function(event) {
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
+    $("#hierarchy_plot").removeClass('active');
+
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
     $("#wc_plot").addClass('disabled');
@@ -567,7 +573,11 @@ $('#Reactome').on('click','.test',function(event) {
     $("#wc_plot").removeClass('active');
     $("#treemap_plot").removeClass('active');
     $("#display_plot").removeClass('active');
-    
+    document.getElementById("chord").innerHTML=""
+    document.getElementById("treemap").innerHTML=""
+    document.getElementById("bubble").innerHTML=""
+    document.getElementById("word").innerHTML=""
+    document.getElementById("hierarchy_tree").innerHTML=""    
     location.hash =sample+"#R_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["R"][$(this).attr('id')];
     path= "/magneto/static/results/"+folder+"/"+sample+"_graph/R_hierarchy/"+$(this).attr('id')+"fisher.json"
      $('#fa').html("Reactome: "+$(this)[0].innerText+" ");
@@ -585,8 +595,14 @@ $('#Orphanet').on('click','.test',function(event) {
     $('#fa').html("Orphanet: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
    document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
-
+    document.getElementById("chord").innerHTML=""
+    document.getElementById("treemap").innerHTML=""
+    document.getElementById("bubble").innerHTML=""
+    document.getElementById("word").innerHTML=""
+    document.getElementById("hierarchy_tree").innerHTML=""
     $("#hierarchy_plot").removeClass('disabled');
+        $("#hierarchy_plot").removeClass('active');
+
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
     $("#wc_plot").addClass('disabled');
@@ -610,9 +626,16 @@ $('#Kegg').on('click','.test',function(event) {
         path= "/magneto/static/results/"+folder+"/"+sample+"_graph/K_hierarchy/"+$(this).attr('id')+"fisher.json"
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
         $('#fa li.active').removeClass('active')
+            document.getElementById("chord").innerHTML=""
+    document.getElementById("treemap").innerHTML=""
+    document.getElementById("bubble").innerHTML=""
+    document.getElementById("word").innerHTML=""
+    document.getElementById("hierarchy_tree").innerHTML=""
     $('#fa').html("Kegg: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
     $("#hierarchy_plot").removeClass('disabled');
+        $("#hierarchy_plot").removeClass('active');
+
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
     $("#wc_plot").addClass('disabled');
@@ -631,11 +654,18 @@ $('#Kegg').on('click','.test',function(event) {
 $('#Kegg_disease').on('click','.test',function(event) { 
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
     var folder= "{{=request.args[0]}}"    
+        document.getElementById("chord").innerHTML=""
+    document.getElementById("treemap").innerHTML=""
+    document.getElementById("bubble").innerHTML=""
+    document.getElementById("word").innerHTML=""
+    document.getElementById("hierarchy_tree").innerHTML=""
     $('#fa').html("Kegg Disease: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
+        $("#hierarchy_plot").removeClass('active');
+
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
     $("#wc_plot").addClass('disabled');
@@ -658,11 +688,18 @@ $('#Kegg_drugs').on('click','.test',function(event) {
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
     var folder= "{{=request.args[0]}}"    
     event.preventDefault();
+        document.getElementById("chord").innerHTML=""
+    document.getElementById("treemap").innerHTML=""
+    document.getElementById("bubble").innerHTML=""
+    document.getElementById("word").innerHTML=""
+    document.getElementById("hierarchy_tree").innerHTML=""
      $('#fa').html("Kegg Drugs: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
+        $("#hierarchy_plot").removeClass('active');
+
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
     $("#wc_plot").addClass('disabled');
@@ -686,9 +723,16 @@ $('#Drug_bank').on('click','.test',function(event) {
     event.preventDefault();
     $('#fa').html("DrugBank: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
+        document.getElementById("chord").innerHTML=""
+    document.getElementById("treemap").innerHTML=""
+    document.getElementById("bubble").innerHTML=""
+    document.getElementById("word").innerHTML=""
+    document.getElementById("hierarchy_tree").innerHTML=""
    document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
+        $("#hierarchy_plot").removeClass('active');
+
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
     $("#wc_plot").addClass('disabled');
@@ -769,29 +813,23 @@ function select_all()
     }    
     function detailFormatter(index, row) {
        starting_nodes={{=XML(str(starting_nodes))}}
-         values=mapping[document.getElementById("sample_sel").text.trim()]
-             
-
-         protein=starting_nodes[values]
-         
-        var html = ['<span><b> proteins involved: </b></span>'];
-        for (i = 0; i < row.proteins.length; i++) { 
+       values=mapping[document.getElementById("sample_sel").text.trim()]
+       protein=starting_nodes[values]
+       var html = ['<span><b> proteins involved: </b></span>'];
+       for (i = 0; i < row.proteins.length; i++) { 
             var index= protein.indexOf(row.proteins[i].split("(")[0])
-
             if (index!=-1)
             {
                 html.push('<font color="red"> ' + row.proteins[i] + ' </font>');
             }
-           
             else
             {
                 html.push(" "+row.proteins[i] );
             }
-            
         }
         return html.join('');
     }
-
+    
     function rowStyle(row) {
         if (row.common == 1 ) { 
             return {

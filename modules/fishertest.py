@@ -5,7 +5,7 @@ import json
 from scipy.stats import fisher_exact
 import networkx as nx
 import sys,os,math
-def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_db,protein_descr,count_annotation,root_second_level,fisher_annotation,sample,sample_number):
+def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_db,protein_descr,count_annotation,root_second_level,fisher_annotation,sample,sample_number,control,controls):
     bg={"0":"proteome","1":"uniprot"}
     colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396",
             "KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
@@ -118,6 +118,8 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
             table=[[a,b],[c,d]]
             fisher[i]=fisher_exact(table,alternative ="greater")[1]
             if fisher[i]<(threshold/lenfisherset):
+                if control:
+                    controls[ii][i]=""
                 root_second_level[ii]={"name":databases[ii],"children":[{"name":alias_dict[ii],"children":[]}]}
                 if sample_number>1:
                     if count_annotation[ii].has_key(i):
@@ -133,8 +135,10 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
 
         f2=open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_graph/"+ii+"fisher.txt","w")
         f2.write("id\tp_value\tproteins_involved\tdescription\tproteins\n")
-        
+      
         for i in fisher_value:
+            
+                
             if fisher_annotation[ii].has_key(i):
                 fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":1})
             else:
@@ -217,4 +221,4 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
     f5.close()
     f6.close()
     f7.close()
-    return col,nmap,domain_db,count_annotation,root_second_level
+    return col,nmap,domain_db,count_annotation,root_second_level,controls
