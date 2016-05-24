@@ -272,17 +272,15 @@ def tsfa(uid,file,graph,threshold,db,tissue,coexpression,root_folder,c_w,f_w,p_w
         if not os.path.exists(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/"):
             os.makedirs(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph")
         f1.write(str(i)+"\t"+"\t".join(start_nodes[i])+"\n")
-        
         nodes=list(set(start_nodes[i]).intersection(set(graph_nodes)))
-        f2.write(str(i)+"\t"+"\t".join(nodes)+"\n")
-		# se il numero di nodi e uguale a uno non procedere
-    
+
+
+#dovrebbe comparire un avviso 
         if len(nodes)>1:
-           
             #aggiungi i nodi iniziali.
             nodes_graph[i]=mcn(nodes,graph.nodes(),graph,tissue_expr,graph_net,coexpression,root_folder,db_values,annotation)
             graph_mcn=graph.subgraph(nodes_graph[i])
-    
+            f2.write(str(i)+"\t"+"\t".join(list(set(start_nodes[i]).intersection(set(graph_mcn.nodes()))))+"\n")
     f1=open(root_folder+"static/results/"+uid+"/nodes_graph.txt","w")
     for i in nodes_graph:
         stats=""

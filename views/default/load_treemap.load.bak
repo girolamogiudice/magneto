@@ -38,7 +38,7 @@
     </div>
        </div></div>
 <script>
-var tooltip = d3.select("body")
+var tooltip = d3.select("hierarchy_tree")
     .append("div")
     .style("position", "absolute")
     .style("z-index", "10")
@@ -121,8 +121,8 @@ d3.tsv('{{=path}}', function(err, data) {
 
              node.selectAll("text").remove()
         node.append("text")
-        .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
-      .html(function(d) { if (d.id!="") { console.log(d.p_value)
+        .style("font-size",function(d) { return Math.min(d.dx/10,d.dy/2)+"px"})
+      .html(function(d) { if (d.id!="") { 
             return (d.id+"<br>"+"P-Value: " +d.p_value.substring(-4))}})
       
     d3.select("#Amount").classed("active", false);

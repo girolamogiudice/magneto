@@ -78,10 +78,10 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                     flag=1
                     
                     if fisher_annotation[ii].has_key(jj):
-                        fisher_annotation[ii][jj][i]=[]
+                        fisher_annotation[ii][jj][i]="0"
                     else:
                         fisher_annotation[ii][jj]={}
-                        fisher_annotation[ii][jj][i]=[]
+                        fisher_annotation[ii][jj][i]="0"
                     if fisher_value.has_key(fisher[i]):
                         fisher_value[fisher[i]].append(i)
                     else:

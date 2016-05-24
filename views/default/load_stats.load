@@ -43,7 +43,6 @@
 </style>
 {{if int(sample_number)>1:}}
 
-<div id="circle_packing">
 
 <script>
     var color = d3.scale.category10();
@@ -182,4 +181,6 @@ d3.json("{{=path}}", function(error, root) {
 
 
 </script>
+
 {{pass}}
+<div id="circle_packing"></div>

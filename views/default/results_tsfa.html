@@ -172,7 +172,7 @@ line.link {
       <li role="presentation" class="dropdown" ><a href="#functional" aria-controls="functional" role="tab" data-toggle="dropdown" id="sample_sel">Select a sample</a>
             <ul id="sample" class="dropdown-menu">
                 {{for i in mapping_column:}}
-                 <li id="sample_value" value="{{=i[0]}}" onclick ="return_value({{=i[0]}});change_text();$.web2py.component('{{=URL('default', 'load_stats.load',args=[request.args[0],i[0],sample_number])}};', 'stat');$.web2py.component('{{=URL('default', 'load_request.load',args=[request.args[0],i[0]])}};', 'graph-container');">
+                 <li id="sample_value" value="{{=i[0]}}" onclick ="return_value({{=i[0]}});change_text();$.web2py.component('{{=URL('default', 'load_stats.load',args=[request.args[0],i[0],sample_number,True])}};', 'stat');$.web2py.component('{{=URL('default', 'load_request.load',args=[request.args[0],i[0]])}};', 'graph-container');">
                      <a class="sv" id="sv" value="{{=i[0]}}" href="#{{=i[0]}}" data-toggle="tab">{{=i[1]}}</a></li>{{pass}}
             </ul>
           </li>
@@ -227,7 +227,7 @@ line.link {
         <li id="treemap_plot"><a href="#Treemap" data-toggle="tab" onclick="treemap_select();$.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap')">Treemap Plot</a></li>
         <li id="bubble_plot"><a href="#bubble" data-toggle="tab" onclick="bubble_select();$.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble')">Bubble Plot</a></li>
         <li id="wc_plot"><a href="#word" data-toggle="tab" onclick="word_cloud_select();$.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')">Word Cloud Plot</a></li>
-        <li class="disabled" id="hierarchy_plot"><a href="#hierarchy" data-toggle="tab" onclick="hierarchy_select();$.web2py.component('{{=URL('default','load_hierarchy.load',args=request.args[0].strip())}};','treemap')">Hierarchy Plot</a></li>
+        <li class="disabled" id="hierarchy_plot"><a href="#hierarchy" data-toggle="tab" onclick="hierarchy_select();$.web2py.component('{{=URL('default','load_hierarchy.load',args=request.args[0].strip())}};','hierarchy_tree')">Hierarchy Plot</a></li>
 
         <li class="divider"></li>
         <li id="display_plot"><a onclick="select_all();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord');
@@ -298,6 +298,7 @@ $("#R_h")
            $("#Orphanet").css("display","none")
             $("#Drug_bank").css("display","none")
     })
+
 $("#K_h")
 .mouseover(function() {
     if (menu_list[value]["K"].length==0)
@@ -418,13 +419,12 @@ $(".sv").click(function(){
     sample=$(this).attr("value");
     location.hash = sample;
    $(this).parents('.dropdown').find('.dropdown-toggle').html(selText+" ");
- 
     document.getElementById("chord").innerHTML=""
     document.getElementById("treemap").innerHTML=""
     document.getElementById("bubble").innerHTML=""
     document.getElementById("word").innerHTML=""
     document.getElementById("hierarchy_tree").innerHTML=""
-    document.getElementById("graph-container").style.height="800px";
+    document.getElementById("graph-container").style.height="1000px";
 })
 
 
@@ -443,6 +443,7 @@ $('.dbfa').click(function(){
     
     var folder= "{{=request.args[0]}}"
     var db_fa=($(this).attr('id'))
+    temp=db_fa.endsWith("_h")
     location.hash =sample+"#"+db_fa;
     db_fa=db_fa+"fisher.json"
     path= "/magneto/static/results/"+folder+"/"+values+"_graph/"+db_fa
@@ -456,9 +457,14 @@ $('.dbfa').click(function(){
     $("#wc_plot").removeClass('disabled');
     $("#treemap_plot").removeClass('disabled');
     $("#display_plot").removeClass('disabled');
-    $('#fa').html($(this)[0].innerText+" ");
+    
     $("#results_panel").css("visibility", "visible");
+    if (!temp)
+    { 
+        $('#fa').html($(this)[0].innerText+" ");
 document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="name" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+    }
+    
     if (document.getElementById("drawplot").text==="Chord") {
         $.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord')
    }
@@ -549,7 +555,7 @@ $('#Reactome').on('click','.test',function(event) {
     var folder= "{{=request.args[0]}}"
     $("#plot").removeClass('dropdown disabled disabledTab');
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
-
+    $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
@@ -573,6 +579,7 @@ $('#Orphanet').on('click','.test',function(event) {
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
     var folder= "{{=request.args[0]}}"
     event.preventDefault();
+        $('#fa li.active').removeClass('active')
     location.hash =sample+"#Or_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["Or"][$(this).attr('id')];
     path= "/magneto/static/results/"+folder+"/"+sample+"_graph/Or_hierarchy/"+$(this).attr('id')+"fisher.json"
     $('#fa').html("Orphanet: "+$(this)[0].innerText+" ");
@@ -602,6 +609,7 @@ $('#Kegg').on('click','.test',function(event) {
     location.hash =sample+"#K_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["K"][$(this).attr('id')];
         path= "/magneto/static/results/"+folder+"/"+sample+"_graph/K_hierarchy/"+$(this).attr('id')+"fisher.json"
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
+        $('#fa li.active').removeClass('active')
     $('#fa').html("Kegg: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
     $("#hierarchy_plot").removeClass('disabled');
@@ -626,7 +634,7 @@ $('#Kegg_disease').on('click','.test',function(event) {
     $('#fa').html("Kegg Disease: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
-
+    $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
@@ -653,7 +661,7 @@ $('#Kegg_drugs').on('click','.test',function(event) {
      $('#fa').html("Kegg Drugs: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
-
+    $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
@@ -672,14 +680,14 @@ $('#Kegg_drugs').on('click','.test',function(event) {
     document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="name" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
 });
     
-$('#Drug_bank').on('click','.test',function(event) { 
+$('#Drug_bank').on('click','.test',function(event) {
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
-    var folder= "{{=request.args[0]}}"    
+    var folder= "{{=request.args[0]}}"
     event.preventDefault();
     $('#fa').html("DrugBank: "+$(this)[0].innerText+" ");
     $("#plot").removeClass('dropdown disabled disabledTab');
    document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
-
+    $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
@@ -762,7 +770,7 @@ function select_all()
     function detailFormatter(index, row) {
        starting_nodes={{=XML(str(starting_nodes))}}
          values=mapping[document.getElementById("sample_sel").text.trim()]
-             console.log(values)
+             
 
          protein=starting_nodes[values]
          
