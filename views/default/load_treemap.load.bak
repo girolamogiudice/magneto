@@ -29,8 +29,7 @@
       <div class="panel-body">
 
     <div id="chart">Order By:
-      <button id="Amount" class="first active btn-primary">IC</button>
-      <button id="Relative" class="last btn-primary">P value</button>
+      <button id="Relative" class="first active  btn-primary">P value</button>
       <button id="number" class="last btn-primary">Protein Involved</button><br><br>
         <div id="_treemap">
           
@@ -65,7 +64,7 @@ var div = d3.select("#_treemap").append("div")
 
 var treemap = d3.layout.treemap()
     .size([width, height])
-    .value(function(d) {return d.ic; });
+    .value(function(d) {return d.p_value.substring(-4); });
 
 d3.tsv('{{=path}}', function(err, data) {
 
@@ -76,7 +75,7 @@ d3.tsv('{{=path}}', function(err, data) {
     .enter().append("div")
       .attr("class", "node")
       .call(position) 
-       .style("background-color", function(d) {return  d.id == '' ? '#fff' : color(d.ic)})
+       .style("background-color", function(d) {return  d.id == '' ? '#fff' : color(d.p_value)})
           .on("mouseover", function(d) { tooltip.html(d.id + ": " + d.description+"<br>protein involved: "+d.proteins);
         tooltip.style("visibility", "visible");
     })
@@ -87,30 +86,9 @@ d3.tsv('{{=path}}', function(err, data) {
     
        node.selectAll("text").remove()
         node.append("text")    .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
-      .html(function(d) { if (d.id!="") {return (d.id+"<br>"+"I.C.: ")}
-      
+      .html(function(d) { if (d.id!="") {console.log(typeof(d.p_value))
+            return (d.id+"<br>"+"P value.: "+parseFloat(d.p_value).toExponential(2))}
         })
-                        
-
-             
-     
-    d3.select("#Amount").on("click", function() {
-    div.selectAll("div")
-     .data(treemap.value(function(d) { return  d.ic; }))
-      
-      .transition()
-        .duration(1500)
-        .call(position);
-       node.selectAll("text").remove()
-        node.append("text")
-         .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
-      .html(function(d) { if (d.id!="") {return (d.id+"<br>"+"I.C.: " )}})
-     
-        
-    d3.select("#Amount").classed("active", true);
-    d3.select("#Relative").classed("active", false);
-    d3.select("#number").classed("active", false);
-  });
 
   d3.select("#Relative").on("click", function() {
     div.selectAll("div")
@@ -125,7 +103,6 @@ d3.tsv('{{=path}}', function(err, data) {
       .html(function(d) { if (d.id!="") { 
             return (d.id+"<br>"+"P-Value: " +d.p_value.substring(-4))}})
       
-    d3.select("#Amount").classed("active", false);
     d3.select("#Relative").classed("active", true);
     d3.select("#number").classed("active", false);
   });
@@ -142,7 +119,6 @@ d3.tsv('{{=path}}', function(err, data) {
       .html(function(d) {  if (d.id!="") {return (d.id+"<br>"+"Protein Involved: " +d.proteins_involved)}})
 
         
-    d3.select("#Amount").classed("active", false);
     d3.select("#Relative").classed("active", false);
     d3.select("#number").classed("active", true);
   });

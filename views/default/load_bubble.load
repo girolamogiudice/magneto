@@ -18,8 +18,7 @@ text {
    <div class="panel panel-primary">
       <div class="panel-heading">Bubble Plot</div><br>
        <div id="chart_bubble">Order By:
-      <button id="Amount_bubble" class="first active btn-primary">IC</button>
-      <button id="Relative_bubble" class="last btn-primary">P value</button>
+      <button id="Relative_bubble" class="first active btn-primary">P value</button>
       <button id="number_bubble" class="last btn-primary">Protein Involved</button>
       <div class="panel-body"><div id="_bubble">          </div>
     </div>
@@ -77,7 +76,7 @@ d3.tsv("{{=path}}", function(error, data) {
     node.append("title")
     
       .text(function(d) { 
-        return d.className + ": " + d.value; });
+        return d.className + ": " + d.pvalue; });
    
   node.append("circle")
       .attr("r", function(d) { console.log(d)
@@ -86,12 +85,6 @@ d3.tsv("{{=path}}", function(error, data) {
       .style("stroke-width",0)
       .style("background-color", function(d) {return color(d.value)})
 
-
-  //node.append("text").text(function(d) { return d.className; })
-    //  .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; })
-     // .attr("dy", ".35em")
-      //.attr("dy", ".2em")
-      //.style("text-anchor", "middle")
    node.selectAll("text").remove()
   node.append("text")
       .text(function(d) { return (d.className) ; })
@@ -101,7 +94,7 @@ d3.tsv("{{=path}}", function(error, data) {
       return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; }})
       .attr("dy", ".10em");
  node.append("text")
-      .text(function(d) { return ("I.C.: " +d.value) ; })
+      .text(function(d) { return ("P-Value: " +d.pvalue) ; })
       .style("text-anchor", "middle")
       .style("font-size", function(d) { if (d.value==0.01){return "1px"}
                                        else {
@@ -117,7 +110,7 @@ d3.select("#number_bubble").on("click", function() {
    node.select("circle")
        .transition().duration(1000)
        .attr("r", function(d) {  return (d.r); })
-       .style("fill", function(d) { return color(d.value); });
+       .style("fill", function(d) { return color(d.p_value); });
     
    node.transition()
       .duration(1000)
@@ -126,7 +119,6 @@ d3.select("#number_bubble").on("click", function() {
       .attr("r",function(d){return d.r;});
    
    
-    d3.select("#Amount_bubble").classed("active", false);
     d3.select("#Relative_bubble").classed("active", false);
     d3.select("#number_bubble").classed("active", true);
     node.selectAll("text").remove()
@@ -178,14 +170,13 @@ d3.select("#Relative_bubble").on("click", function() {
       .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 10) / this.getComputedTextLength() * 20) + "px"; })
       .attr("dy", "1.10em");
     
-    d3.select("#Amount_bubble").classed("active", false);
     d3.select("#Relative_bubble").classed("active", true);
     d3.select("#number_bubble").classed("active", false);
     
    function classes(data) {
   var classes = [];
   data.forEach(function(d) {
-      classes.push ({className: d.id,packageName: "Component",pvalue:d.p_value,value:parseFloat(Math.abs(Math.log10(d.p_value)).toFixed(3)), descr:d.description,proteins:d.proteins})
+      classes.push ({className: d.id,packageName: "Component",pvalue:parseFloat(d.p_value).toExponential(2),value:parseFloat(Math.abs(Math.log10(d.p_value)).toFixed(3)), descr:d.description,proteins:d.proteins})
   }
   )
   return {children:classes}
@@ -222,13 +213,12 @@ d3.select("#Relative_bubble").on("click", function() {
                                        else {
       return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; }})
       .attr("dy", "0.90em");
-    d3.select("#Amount_bubble").classed("active", true);
     d3.select("#Relative_bubble").classed("active", false);
     d3.select("#number_bubble").classed("active", false);
    function classes(data) {
   var classes = [];
   data.forEach(function(d) { 
-      classes.push ({className: d.id,packageName: "Component",value:parseFloat(d.ic).toFixed(3), descr:d.description,proteins:d.proteins})
+      classes.push ({className: d.id,packageName: "Component",pvalue:parseFloat(d.p_value).toExponential(2), descr:d.description,proteins:d.proteins})
   }
   )
   return {children:classes}
@@ -236,10 +226,10 @@ d3.select("#Relative_bubble").on("click", function() {
   });
 
   });
-function classes(data) {
+   function classes(data) {
   var classes = [];
   data.forEach(function(d) {
-      classes.push ({className: d.id,packageName: "Component",value:parseFloat(d.ic).toFixed(3), descr:d.description,proteins:d.proteins})
+      classes.push ({className: d.id,packageName: "Component",pvalue:parseFloat(d.p_value).toExponential(2),value:parseFloat(Math.abs(Math.log10(d.p_value)).toFixed(3)), descr:d.description,proteins:d.proteins})
   }
   )
   return {children:classes}
