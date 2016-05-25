@@ -464,6 +464,7 @@ def results_tsfa():
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet",
                 "T":"Toxins","HPi":"Virus"}
     #load controls
+    controls={}
     if control:
         f1=open(request.folder+"static/results/"+request.args[0]+"/controls.txt","r")
         seq=f1.readline()

@@ -14,6 +14,7 @@ def index():
 def test():
     return dict()
 def test_table():
+    print "ccc"
     return dict()
 
 def tsfa():
