@@ -439,8 +439,13 @@ def results_tsfa():
     seq=f1.readline()
     mapping_column=[]
     mapping={}
+    control=False
+    control_sample=[]
     while(seq!=""):
         seq=seq.strip().split("\t")
+        if seq[1][-1]=="*":
+            control=True
+            control_sample.append(seq[0])
         mapping_column.append((seq[0],seq[1].strip()))
         mapping[seq[1].strip()]=seq[0]
         seq=f1.readline()
@@ -458,6 +463,31 @@ def results_tsfa():
 
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet",
                 "T":"Toxins","HPi":"Virus"}
+    #load controls
+    controls={}
+    if control:
+        f1=open(request.folder+"static/results/"+request.args[0]+"/controls.txt","r")
+        seq=f1.readline()
+        controls={}
+        while(seq!=""):
+            seq=seq.strip().split("\t")
+            sample=seq[0][1:]
+            controls[sample]={}
+            for i in seq[1:]:
+                controls[sample][i]=""
+            seq=f1.readline()
+        f1.close()
+        f1=open(request.folder+"static/results/"+request.args[0]+"/controls_h.txt","r")
+        seq=f1.readline()
+        
+        while(seq!=""):
+            seq=seq.strip().split("\t")
+            sample=seq[0][1:]
+            controls[sample]={}
+            for i in seq[1:]:
+                controls[sample][i]=""
+            seq=f1.readline()
+        f1.close()
 
     menu_mapping={}
     for i in mapping_column:
@@ -486,7 +516,7 @@ def results_tsfa():
 
     alias_colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396","KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
     return dict(mapping_column=mapping_column,mapping=mapping,starting_nodes=starting_nodes,databases=databases,alias_colors=alias_colors,alias_dict=alias_dict,sample_number=sample_number,menu_list=menu_list,
-               menu_mapping=menu_mapping,count=count)
+               menu_mapping=menu_mapping,count=count,controls=controls,control_sample=control_sample)
 
 def load_request():
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet","T":"Toxins","HPi":"Virus"}

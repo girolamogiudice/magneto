@@ -38,7 +38,7 @@
     </div>
        </div></div>
 <script>
-var tooltip = d3.select("hierarchy_tree")
+var tooltip = d3.select("body")
     .append("div")
     .style("position", "absolute")
     .style("z-index", "10")
@@ -69,7 +69,7 @@ var treemap = d3.layout.treemap()
 
 d3.tsv('{{=path}}', function(err, data) {
 
-  var root = { "id": "","ic":"" , "p_value":"","proteins_involved":"","color":"white","children": data,"description":"","proteins":""};
+  var root = { "id": "" , "p_value":"","proteins_involved":"","color":"white","children": data,"description":"","proteins":""};
    
   var node = div.datum(root).selectAll(".node")
       .data(treemap.nodes)
@@ -87,7 +87,7 @@ d3.tsv('{{=path}}', function(err, data) {
     
        node.selectAll("text").remove()
         node.append("text")    .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
-      .html(function(d) { if (d.id!="") {return (d.id+"<br>"+"I.C.: " +d.ic.substring(0,5))}
+      .html(function(d) { if (d.id!="") {return (d.id+"<br>"+"I.C.: ")}
       
         })
                         
@@ -104,7 +104,7 @@ d3.tsv('{{=path}}', function(err, data) {
        node.selectAll("text").remove()
         node.append("text")
          .style("font-size",function(d) { return Math.min(d.dx/8,d.dy/2)+"px"})
-      .html(function(d) { if (d.id!="") {return (d.id+"<br>"+"I.C.: " +d.ic.substring(0,5))}})
+      .html(function(d) { if (d.id!="") {return (d.id+"<br>"+"I.C.: " )}})
      
         
     d3.select("#Amount").classed("active", true);

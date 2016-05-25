@@ -127,7 +127,6 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
                         count_annotation[ii][i]["sample"]=count_annotation[ii][i]["sample"]+" "+sample
                     else:
                         count_annotation[ii][i]={"name":i,"size":1,"description":descr[i],"proteins":" ".join(annotation_gene[i]),"sample":sample}
-                
                 domain_db[ii].append(i)
                 nmap[i]={"id":count,"name":i,"description":descr[i]}
                 count=count+1
@@ -137,44 +136,42 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         f2.write("id\tp_value\tproteins_involved\tdescription\tproteins\n")
       
         for i in fisher_value:
-            
-                
             if fisher_annotation[ii].has_key(i):
                 fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":1})
             else:
                 fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":0})
                 
-                f2.write(i+"\t"+str(fisher_value[i])+"\t"+str(len(annotation[i]))+"\t"+descr[i]+"\t"+" ".join(annotation_gene[i])+"\n")
-                f6.write(i+"\t"+descr[i]+"\n")
+            f2.write(i+"\t"+str(fisher_value[i])+"\t"+str(len(annotation[i]))+"\t"+descr[i]+"\t"+" ".join(annotation_gene[i])+"\n")
+            f6.write(i+"\t"+descr[i]+"\n")
                 
                 
-                for k in words[i]:
-                    if words_count_enriched.has_key(k):
-                        words_count_enriched[k]=words_count_enriched[k]+1
-                    else:
-                        words_count_enriched[k]=1
-               
-                for k in annotation[i]:
-                    prot_fisher.append(k)
-                    if clusterid.has_key(i):
-                        clusterid[i].append(k)
-                    else:
-                        clusterid[i]=[]
-                        clusterid[i].append(k)
-                    if clusterdb.has_key(k):
-                        clusterdb[k].append(i)
-                    else:
-                        nmap[k]={"id":count,"name":k+"("+protein_descr[k]+")","description":protein_descr[k],"descr":protein_descr[k][0]}
-                        count=count+1
-                        clusterdb[k]=[]
-                        clusterdb[k].append(i)
+            for k in words[i]:
+                if words_count_enriched.has_key(k):
+                    words_count_enriched[k]=words_count_enriched[k]+1
+                else:
+                    words_count_enriched[k]=1
 
-  
-                    if col.has_key(k):
-                        col[k].append(colors[ii])
-                    else:
-                        col[k]=[]
-                        col[k].append(colors[ii])
+            for k in annotation[i]:
+                prot_fisher.append(k)
+                if clusterid.has_key(i):
+                    clusterid[i].append(k)
+                else:
+                    clusterid[i]=[]
+                    clusterid[i].append(k)
+                if clusterdb.has_key(k):
+                    clusterdb[k].append(i)
+                else:
+                    nmap[k]={"id":count,"name":k+"("+protein_descr[k]+")","description":protein_descr[k],"descr":protein_descr[k][0]}
+                    count=count+1
+                    clusterdb[k]=[]
+                    clusterdb[k].append(i)
+
+
+                if col.has_key(k):
+                    col[k].append(colors[ii])
+                else:
+                    col[k]=[]
+                    col[k].append(colors[ii])
         f2.close()
         for i in fisher_annotation[ii]:
             if not fisher_value.has_key(i):
@@ -199,6 +196,7 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         matrix = [[0 for x in range(count)] for x in range(count)]
         f7.write(">"+ii+"\n")
         for i in clusterid:
+            
             clusterid[i]=list(set(clusterid[i]))
             f4.write(i+"\t"+" ".join(clusterid[i])+"\n")
             f7.write(i+"\t"+"\t".join(clusterid[i])+"\n")
@@ -207,6 +205,8 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         for i in clusterdb:
             row=[0]*count
             f5.write(i+"\t"+" ".join(clusterdb[i])+"\n")
+            if ii=="O":
+                print i,clusterdb[i]
             for j in clusterdb[i]:
                 row[nmap[j]["id"]]=nmap[i]["id"]
                 matrix[nmap[j]["id"]][nmap[i]["id"]]=matrix[nmap[j]["id"]][nmap[i]["id"]]+1

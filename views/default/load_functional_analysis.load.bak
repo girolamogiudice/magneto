@@ -1,9 +1,9 @@
 <table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url="{{=path}}" data-sort-name="name" data-sort-order="asc" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle" data-show-export="true" >
     <thead>
-            <th data-field="id" data-align="left" data-sortable="true">ID</th>
+            <th data-field="id" data-align="left" data-sortable="true" data-cell-style="cellStyle" data-detail-formatter="detailFormatter">ID</th>
+        <th data-field="control" data-align="left" data-sortable="true">In control</th>
             <th data-field="description" data-align="left" data-sortable="true">Description</th>
             <th data-field="p value" data-align="left" data-sortable="true">P-Value</th>
-            <th data-field="ic" data-align="left" data-sortable="true">Information Content</th>
             <th data-field="proteins involved" data-align="left" data-sortable="true">Proteins Involved</th>
     </tr>
     </thead>
