@@ -1,2 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-DB04014	4.39224278253e-05	3	Alsterpaullone	Q00535(CDK5) P06493(CDK1) P49841(GSK3B)

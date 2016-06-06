@@ -20,7 +20,6 @@ line.link {
 
 <script>
 document.getElementById("input_net_topology_ranking").disabled = true;
-   console.log(document.getElementById("input_net_topology_ranking").value)
 var score={0:"bwmod",1:"degree",2:"bw",3:"pagerank"}
 function addtext() {
     var values= parseInt(document.getElementById('input_net_score').value)

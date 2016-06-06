@@ -1,2 +1,0 @@
-[[0, 1, 1, 1, 1], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0]]
-{'P25788': {'description': 'PSMA3', 'id': 1, 'descr': 'P', 'name': 'P25788(PSMA3)'}, '568402': {'description': 'Human cytomegalovirus', 'id': 0, 'name': '568402'}, 'Q16531': {'description': 'DDB1', 'id': 3, 'descr': 'D', 'name': 'Q16531(DDB1)'}, 'P68400': {'description': 'CSNK2A1', 'id': 2, 'descr': 'C', 'name': 'P68400(CSNK2A1)'}, 'P63167': {'description': 'DYNLL1', 'id': 4, 'descr': 'D', 'name': 'P63167(DYNLL1)'}}

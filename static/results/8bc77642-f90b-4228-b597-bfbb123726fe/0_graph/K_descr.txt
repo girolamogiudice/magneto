@@ -1,5 +1,0 @@
-hsa04390	Hippo signaling pathway
-hsa04550	Signaling pathways regulating pluripotency of stem cells
-hsa04310	Wnt signaling pathway
-hsa05217	Basal cell carcinoma
-hsa05200	Pathways in cancer

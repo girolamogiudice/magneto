@@ -1,2 +1,0 @@
-[[0, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
-{'Q00535': {'description': 'CDK5', 'id': 1, 'descr': 'C', 'name': 'Q00535(CDK5)'}, 'P49841': {'description': 'GSK3B', 'id': 3, 'descr': 'G', 'name': 'P49841(GSK3B)'}, 'DB04014': {'description': 'Alsterpaullone', 'id': 0, 'name': 'DB04014'}, 'P06493': {'description': 'CDK1', 'id': 2, 'descr': 'C', 'name': 'P06493(CDK1)'}}

@@ -1,4 +1,0 @@
-H00845	0.000786874439702	Familial amyloidosis	P02647 P02652
-H00930	5.34088761804e-05	Hypoalphalipoproteinemia	P02647 O95477
-H00575	0.000317587947638	Renal tubular dysgenesis	P01019 P30556
-H00155	0.000317587947638	Hypercholesterolemia, including: Hypercholesterolemia, autosomal dominant; Hyperlipoproteinemia, type IIa; Hypercholesterolemia, autosomal recessive (ARH)	P01130 P04114

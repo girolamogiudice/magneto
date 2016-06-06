@@ -1,5 +1,0 @@
-D09690	Varlitinib tosylate (USAN)
-D10514	Dacomitinib hydrate (JAN)
-D09883	Dacomitinib (USAN/INN)
-D03350	Canertinib dihydrochloride (USAN)
-D09689	Varlitinib (USAN/INN)

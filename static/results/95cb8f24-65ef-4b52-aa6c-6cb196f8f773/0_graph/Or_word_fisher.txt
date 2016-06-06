@@ -1,1 +1,0 @@
-[{'text': 'susceptibility', 'size': 10.574166292521975}, {'text': 'simplex', 'size': 4.7370396800359647}, {'text': 'patient', 'size': 5.0081357352489375}, {'text': 'encephalitis', 'size': 7.7782114745059516}, {'text': 'herpes', 'size': 7.7782114745059516}]

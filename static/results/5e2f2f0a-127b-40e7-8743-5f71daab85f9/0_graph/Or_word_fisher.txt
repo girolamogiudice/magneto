@@ -1,1 +1,0 @@
-[{'text': 'ventricular', 'size': 4.0708322866767537}, {'text': 'tachycardia', 'size': 6.0570353218331725}, {'text': 'polymorphic', 'size': 8.0021921962324996}, {'text': 'catecholaminergic', 'size': 8.0021921962324996}]

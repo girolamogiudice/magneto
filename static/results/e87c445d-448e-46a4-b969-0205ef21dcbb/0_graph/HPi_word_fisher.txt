@@ -1,1 +1,0 @@
-[{'text': 'adeno-associated', 'size': 5.5180182025126152}, {'text': 'virus', 'size': 5.0949764425304238}, {'text': 'influenza', 'size': 3.2725770836586521}, {'text': 'human', 'size': 4.0012781538130708}]

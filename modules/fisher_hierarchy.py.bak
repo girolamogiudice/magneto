@@ -135,6 +135,7 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_alone_hi
 
                 
             if len(temp_table)>=1:
+                print ii,jj,temp_table
                 json.dump(temp_table,open(res_folder+"/"+ii+"_hierarchy/"+jj+"fisher.json","w"))
         
         if len(json_tree[ii]["children"])>0:
@@ -155,4 +156,4 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_alone_hi
         f2=open(res_folder+"/hierarchy_databases.txt","w")
         f2.write("\t".join(list(set(databases))))
         f2.close()
-    return fisher_hierarchy
+    return fisher_hierarchy,controls_h

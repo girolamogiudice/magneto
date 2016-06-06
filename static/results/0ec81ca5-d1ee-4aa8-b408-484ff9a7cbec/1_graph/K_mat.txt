@@ -1,2 +1,0 @@
-[[0, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
-{'P25054': {'description': 'APC', 'id': 1, 'descr': 'A', 'name': 'P25054(APC)'}, 'hsa05213': {'description': 'Endometrial cancer', 'id': 0, 'name': 'hsa05213'}, 'P62993': {'description': 'GRB2', 'id': 2, 'descr': 'G', 'name': 'P62993(GRB2)'}, 'P49841': {'description': 'GSK3B', 'id': 3, 'descr': 'G', 'name': 'P49841(GSK3B)'}}

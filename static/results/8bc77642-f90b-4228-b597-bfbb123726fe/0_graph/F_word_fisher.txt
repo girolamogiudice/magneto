@@ -1,1 +1,0 @@
-[{'text': 'hormone', 'size': 4.9589160588246077}, {'text': 'nuclear', 'size': 4.057140739347358}, {'text': 'binding', 'size': 5.9283870763704298}, {'text': 'kinase', 'size': 8.2391385951751843}, {'text': 'protein', 'size': 8.4922599248820916}, {'text': 'c-terminus', 'size': 14.779479902581546}]

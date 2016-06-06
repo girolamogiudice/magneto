@@ -1,1 +1,0 @@
-[{'text': 'fluciclatide', 'size': 9.5685042070108466}]

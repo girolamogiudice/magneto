@@ -1,1 +1,0 @@
-R-HSA-173107	5.26382885535e-05	Binding and entry of HIV virion	P51681 P61073 P01730

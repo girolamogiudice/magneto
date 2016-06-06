@@ -175,3 +175,20 @@ CREATE TABLE input_net(
     Kegg_weight CHAR(512)
 );
 success!
+timestamp: 2016-06-06T09:19:00.908607
+ALTER TABLE input_net ADD topology_ranking TEXT;
+timestamp: 2016-06-06T09:19:01.198921
+ALTER TABLE input_net ADD score CHAR(512);
+success!
+timestamp: 2016-06-06T09:39:27.589700
+ALTER TABLE input_net ADD compartments CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

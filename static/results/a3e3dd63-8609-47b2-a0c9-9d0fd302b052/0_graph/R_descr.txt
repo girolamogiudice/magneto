@@ -1,2 +1,0 @@
-R-HSA-400253	Circadian Clock
-R-HSA-201688	WNT mediated activation of DVL

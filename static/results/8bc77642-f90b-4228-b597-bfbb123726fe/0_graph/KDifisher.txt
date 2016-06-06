@@ -1,3 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-H00947	0.00197550375345	1	Pilomatricoma; Epithelioma calcificans of Malherbe	P35222(CTNNB1)
-H00018	0.000585027060345	2	Gastric cancer	P35222(CTNNB1) P25054(APC)

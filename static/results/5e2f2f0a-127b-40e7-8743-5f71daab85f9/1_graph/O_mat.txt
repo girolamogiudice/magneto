@@ -1,2 +1,0 @@
-[[0, 1, 1], [1, 0, 0], [1, 0, 0]]
-{'P25054': {'description': 'APC', 'id': 1, 'descr': 'A', 'name': 'P25054(APC)'}, '155255': {'description': 'MEDULLOBLASTOMA; MDB', 'id': 0, 'name': '155255'}, 'P35222': {'description': 'CTNNB1', 'id': 2, 'descr': 'C', 'name': 'P35222(CTNNB1)'}}

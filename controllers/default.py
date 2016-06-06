@@ -264,8 +264,6 @@ def wait_tsfa():
                            'Vesicle_mediated_transport']}
 
 
-        fisher_annotation={}
-        fisher_annotation_hierarchy={}
         domain_db={}
         temp_db={}
         children={}
@@ -274,24 +272,25 @@ def wait_tsfa():
         databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
         for i in ["C","P","F","R","K","O","KDr","KDi","DB","Or","HPi","T"]:
             controls[i]={}
-            fisher_annotation[i]=[]
             domain_db[i]=[]
             count_annotation[i]={}
         for i in ["R","DB","K","KDi","KDr","Or"]:
-            fisher_annotation_hierarchy[i]={}
             controls_h[i]={}
         nodes_in_the_graph={}
         f1=open(request.folder+"static/results/"+request.args[1]+"/nodes_present_in_graph.txt","r")
         seq=f1.readline()
-        while(seq!=""):
-            seq=seq.strip().split("\t")
-            nodes_in_the_graph[seq[0]]=seq[1:]
-            seq=f1.readline()
-
-        f1=open(request.folder+"static/results/"+request.args[1]+"/nodes.txt","r")
-        seq=f1.readline()
         fisher_alone={}
         fisher_alone_hierarchy={}
+        while(seq!=""):
+            seq=seq.strip().split("\t")
+            fisher_alone[seq[0]]=""
+            fisher_alone_hierarchy[seq[1]]=""
+            nodes_in_the_graph[seq[0]]=seq[1:]
+            seq=f1.readline()
+        
+        f1=open(request.folder+"static/results/"+request.args[1]+"/nodes.txt","r")
+        seq=f1.readline()
+
         fisher_h={}
         start_nodes={}
         protein_stats={}
@@ -301,17 +300,16 @@ def wait_tsfa():
         db_background=request.args[3] 
         while(seq!=""):
             seq=seq.strip().split("\t")
-            fisher_alone[seq[0]]={}
-            fisher_alone_hierarchy[seq[0]]={}
             fisher_h[seq[0]]={}
             start_nodes[seq[0]]=seq[1:]
             not_annotated[seq[0]]=[]
             proteome_annotated[seq[0]]=[]
             protein_stats[seq[0]]={}
             fisher_alone[seq[0]]=fisher_standalone.load(request.args[1],seq[1:],float(request.args[2]),["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"],request.folder,
-                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation)
+                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path)
             fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:],float(request.args[2]),db_hierarchy,request.folder,
-                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,fisher_annotation_hierarchy,db_background)
+                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,db_background)
+            
             seq=f1.readline()
         f1=open(request.folder+"static/results/"+request.args[1]+"/nodes_graph.txt","r")
         nodes_graph={}
@@ -639,15 +637,19 @@ def tfa():
     from types import NoneType
     from types import StringType
     from types import ListType
-    score={0:"bwmod",1:"degree",2:"bw",3:"pagerank"}
-    net_db={0:"intact",1:"intact_hc",2:"biogrid"}
+    score={0:"Betweenness Mod",1:"Degree",2:"Betweenness Centrality",3:"Pagerank"}
+    net_db={0:"intact",1:"intact_high_confidence",2:"biogrid"}
+    cc={"0":"Centrosome","1":"Cytoplasm","2":"Cytoplasmic vesicle","3":"Cytoskeleton","4":"Cytosol","5":"Endoplasmic reticulum","6":"Endosome","7":"Extracellular matrix","8":"Extracellular region","9":"Golgi apparatus",
+        "10":"Intracellular","11":"Lysosome","12":"Mitochondrion","13":"Nuclear membrane","14":"Nucleolus","15":"Nucleoplasm","16":"Nucleus","17":"Plasma membrane","18":"Protein complex","19":"Ribosome"}
     db.define_table('input_net',
         Field('upload','upload',uploadfolder=os.path.join(request.folder,'upload'),requires=IS_NOT_EMPTY()),
         Field("graph_db",requires=IS_EMPTY_OR(IS_IN_SET(net_db,multiple=False))),
-        Field("threshold","float",requires=IS_FLOAT_IN_RANGE(0.0,0.1)),
+        Field("Compartments",requires=IS_EMPTY_OR(IS_IN_SET(sorted(cc.values()),multiple=True))),
         Field('score',requires=IS_EMPTY_OR(IS_IN_SET(score,multiple=False))),
-        Field("topology_ranking","text",requires=IS_NOT_EMPTY()))
-    
+        Field("topology_ranking","text",requires=IS_NOT_EMPTY()),
+        Field('Show_advanced_options','boolean'),
+        Field("threshold","float",requires=IS_FLOAT_IN_RANGE(0.0,0.1)))
+    db.input_net.threshold.show_if = (db.input_net.Show_advanced_options==True)
     db.input_net.threshold.default = 0.05
     form = SQLFORM(db.input_net,_class="col-md-4 col-md-offset-2",_id="form_tfa",col3 = {'score':XML('<input type="button" class="btn btn-primary" value="Add filter" onClick="addtext();"><input type="button" class="btn btn-warning" value="Remove filters" onClick="removetext();">')}).process()
     submit = form.element("input",_type="submit")
@@ -660,8 +662,8 @@ def tfa():
         values=[uid,form.vars.upload,request.vars.graph_db,float(request.vars.threshold),form.vars.topology_ranking.split()]
         db.query_tfa.insert(uuid=uid,upload=request.vars.upload.value,upload_filename=form.vars.upload,threshold=form.vars.threshold,
                             graph_db=form.vars.graph_db,topology_ranking=form.vars.topology_ranking.split())
-        s=scheduler.queue_task(tfa,pargs=values,start_time=request.now,stop_time=request.now+timed(seconds=7200),timeout=240)
-        redirect(URL('wait_tfa',args=[s.uuid,uid]))
+        #s=scheduler.queue_task(tfa,pargs=values,start_time=request.now,stop_time=request.now+timed(seconds=7200),timeout=240)
+        #redirect(URL('wait_tfa',args=[s.uuid,uid]))
     return dict(form=form)
 
 def wait_tfa():

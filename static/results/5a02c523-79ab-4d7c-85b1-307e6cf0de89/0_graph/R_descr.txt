@@ -1,2 +1,0 @@
-R-HSA-201688	WNT mediated activation of DVL
-R-HSA-4641258	Degradation of DVL

@@ -1,2 +1,0 @@
-[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-{'DB04464': {'description': 'N-Formylmethionine', 'id': 1, 'name': 'DB04464'}, 'DB00157': {'description': 'NADH', 'id': 2, 'name': 'DB00157'}, 'DB02659': {'description': 'Cholic Acid', 'id': 0, 'name': 'DB02659'}}

@@ -1,2 +1,0 @@
-0	Adenocarcinoma
-1	Adenoma

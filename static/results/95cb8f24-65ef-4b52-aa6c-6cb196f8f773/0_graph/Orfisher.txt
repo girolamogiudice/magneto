@@ -1,2 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-1930	0.000145236481182	2	HERPES SIMPLEX ENCEPHALITIS SUSCEPTIBILITY TO 7 (1 patient)	Q13114(TRAF3) O15455(TLR3)

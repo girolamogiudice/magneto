@@ -1,5 +1,0 @@
-GO:0019901	protein kinase binding
-GO:0008022	protein C-terminus binding
-GO:0035257	nuclear hormone receptor binding
-GO:0043621	protein self-association
-GO:0005515	protein binding

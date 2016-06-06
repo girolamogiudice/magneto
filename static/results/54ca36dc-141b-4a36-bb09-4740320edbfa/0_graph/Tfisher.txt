@@ -1,2 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-T3D3755	0.000238938682703	2	Emodin	P68400(CSNK2A1) P05412(JUN)

@@ -1,1 +1,0 @@
-R-HSA-2151201	0.00101460842287	Transcriptional activation of mitochondrial biogenesis	P16220 P15336 Q04837 Q00059 Q92793 P13196

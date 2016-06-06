@@ -1,1 +1,0 @@
-[{'text': 'isolated', 'size': 8.0013550258299801}, {'text': 'reductase', 'size': 3.8980230429882323}]

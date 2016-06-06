@@ -1,1 +1,0 @@
-R-HSA-75035	1.72096804284e-05	Chk1/Chk2(Cds1) mediated inactivation of Cyclin B:Cdk1 complex	P61981 P14635 P63104 P31946 Q04917 P06493 P62258

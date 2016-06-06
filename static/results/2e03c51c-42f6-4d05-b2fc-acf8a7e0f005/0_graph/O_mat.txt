@@ -1,2 +1,0 @@
-[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
-{'252010': {'description': 'MITOCHONDRIAL COMPLEX I DEFICIENCY', 'id': 2, 'name': '252010'}, '256000': {'description': 'LEIGH SYNDROME; LS', 'id': 4, 'name': '256000'}, '220110': {'description': 'MITOCHONDRIAL COMPLEX IV DEFICIENCY', 'id': 1, 'name': '220110'}, '535000': {'description': 'LEBER OPTIC ATROPHY', 'id': 0, 'name': '535000'}, '540000': {'description': 'MITOCHONDRIAL MYOPATHY, ENCEPHALOPATHY, LACTIC ACIDOSIS, AND STROKE-LIKE EPISODES; MELAS', 'id': 3, 'name': '540000'}}

@@ -1,2 +1,0 @@
-[[0]]
-{'117': {'description': 'Behcet disease', 'id': 0, 'name': '117'}}

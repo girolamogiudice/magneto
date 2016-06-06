@@ -1,3 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-R-HSA-400253	0.000150153236346	3	Circadian Clock	Q92793(CREBBP) Q13616(CUL1) Q96EB6(SIRT1)
-R-HSA-201688	0.000129427546558	2	WNT mediated activation of DVL	P68400(CSNK2A1) O14641(DVL2)

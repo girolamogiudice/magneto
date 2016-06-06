@@ -1,1 +1,0 @@
-R-HSA-383280	1.33121906787e-05	Nuclear Receptor transcription pathway	P03372 Q07869 P37231

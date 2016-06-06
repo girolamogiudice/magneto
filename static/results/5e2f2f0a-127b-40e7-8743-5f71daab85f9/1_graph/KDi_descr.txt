@@ -1,3 +1,0 @@
-H01260	Glomerulopathy with fibronectin deposits (GFND)
-H00947	Pilomatricoma; Epithelioma calcificans of Malherbe
-H00018	Gastric cancer

@@ -1,1 +1,0 @@
-[{'text': 'thrombophilia', 'size': 7.2647301779361442}, {'text': 'disease', 'size': 7.2647301779361442}, {'text': 'lymphoma', 'size': 6.1667011950810604}, {'text': 'hodgkin', 'size': 5.8793107669711775}]

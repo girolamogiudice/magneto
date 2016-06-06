@@ -1,1 +1,0 @@
-R-HSA-1236382	2.27361975772e-05	Constitutive Signaling by Ligand-Responsive EGFR Cancer Variants	P07900 P00533 P29353 P62979 P0CG48 P19174

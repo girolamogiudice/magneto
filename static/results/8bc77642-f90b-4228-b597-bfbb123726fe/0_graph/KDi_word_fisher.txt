@@ -1,1 +1,0 @@
-[{'text': 'malherbe', 'size': 7.2650800117698964}, {'text': 'cancer', 'size': 7.2650800117698964}, {'text': 'calcificans', 'size': 4.1359986560202131}, {'text': 'pilomatricoma', 'size': 7.2650800117698964}, {'text': 'epithelioma', 'size': 7.2650800117698964}]

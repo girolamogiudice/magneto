@@ -1,1 +1,0 @@
-[{'text': 'clock', 'size': 6.2713823963464037}, {'text': 'activation', 'size': 6.9641356124266167}, {'text': 'mediated', 'size': 6.2713823963464037}]

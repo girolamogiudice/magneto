@@ -1,5 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-D09728	0.000125008333889	2	Bosutinib hydrate (JAN); Bosutinib monohydrate; Bosulif (TN)	P00519(ABL1) P12931(SRC)
-D03252	0.000125008333889	2	Bosutinib (USAN)	P00519(ABL1) P12931(SRC)
-D09665	0.000125008333889	2	Saracatinib difumarate (USAN)	P00519(ABL1) P12931(SRC)
-D09664	0.000125008333889	2	Saracatinib (USAN/INN)	P00519(ABL1) P12931(SRC)

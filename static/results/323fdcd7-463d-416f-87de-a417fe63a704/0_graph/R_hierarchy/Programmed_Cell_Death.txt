@@ -1,2 +1,0 @@
-R-HSA-140534	0.00198477805123	Ligand-dependent caspase activation	Q13546 O15455 Q12933
-R-HSA-5675482	0.000913121606313	Regulation of necroptotic cell death	Q13546 P0CG48 Q12933

@@ -1,1 +1,0 @@
-[{'text': 'genotype', 'size': 4.3498024413347594}, {'text': 'herpesvirus', 'size': 4.3065190821662327}, {'text': 'subtype', 'size': 4.3065190821662327}, {'text': 'human', 'size': 3.6195257671811856}, {'text': 'ayw', 'size': 4.3065190821662327}]

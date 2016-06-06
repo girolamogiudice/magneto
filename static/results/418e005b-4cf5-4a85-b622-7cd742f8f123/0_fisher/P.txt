@@ -1,4 +1,0 @@
-GO:0042483	0.000307632072049	negative regulation of odontogenesis	P25054
-GO:2000211	0.000307632072049	regulation of glutamate metabolic process	P25054
-GO:0051171	0.000307632072049	regulation of nitrogen compound metabolic process	P25054
-GO:0001942	8.83926421697e-05	hair follicle development	Q9NSB2 P25054

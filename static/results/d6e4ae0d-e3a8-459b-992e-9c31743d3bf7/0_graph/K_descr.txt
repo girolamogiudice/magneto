@@ -1,5 +1,0 @@
-hsa05206	MicroRNAs in cancer
-hsa04310	Wnt signaling pathway
-hsa05161	Hepatitis B
-hsa04068	FoxO signaling pathway
-hsa05200	Pathways in cancer

@@ -1,1 +1,0 @@
-R-HSA-1369062	7.57246044083e-05	ABC transporters in lipid homeostasis	P02647 P45844 Q9H172

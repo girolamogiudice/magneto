@@ -1,1 +1,0 @@
-[{'text': '4-4-chloro-2-methylphenoxybutanoic', 'size': 6.7403223346846062}, {'text': 'cadmium', 'size': 6.7403223346846062}, {'text': 'emodin', 'size': 7.6706276629165489}, {'text': 'acid', 'size': 6.7403223346846062}]

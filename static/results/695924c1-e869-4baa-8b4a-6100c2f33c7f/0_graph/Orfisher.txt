@@ -1,2 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-154	5.28444872182e-06	9	Familial isolated dilated cardiomyopathy	P35609(ACTN2) Q8WZ42(TTN) P63316(TNNC1) O15273(TCAP) P19429(TNNI3) P04049(RAF1) P50461(CSRP3) P18206(VCL) P49768(PSEN1)

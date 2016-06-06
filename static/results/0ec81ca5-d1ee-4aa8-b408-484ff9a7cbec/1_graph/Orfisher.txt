@@ -1,5 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-209341	0.000915017681865	1	Autosomal dominant childhood-onset proximal spinal muscular atrophy without contractures	Q14204(DYNC1H1)
-284232	0.000915017681865	1	Autosomal dominant Charcot-Marie-Tooth disease type 2O	Q14204(DYNC1H1)
-229	0.000915017681865	1	Familial aortic dissection	P35749(MYH11)
-178469	0.000748613384401	2	Autosomal dominant non-syndromic intellectual disability	Q14204(DYNC1H1) Q13627(DYRK1A)

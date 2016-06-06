@@ -1,1 +1,0 @@
-[{'text': 'murine', 'size': 3.6566552607764606}, {'text': 'influenza', 'size': 3.6598919172411115}, {'text': 'immunodeficiency', 'size': 3.6598919172411115}, {'text': 'human', 'size': 3.5005437536004753}, {'text': 'aeruginosa', 'size': 3.6598919172411115}, {'text': 'simian', 'size': 3.6598919172411115}, {'text': 'escherichia', 'size': 3.6598919172411115}]

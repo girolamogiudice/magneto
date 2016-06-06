@@ -205,8 +205,6 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         for i in clusterdb:
             row=[0]*count
             f5.write(i+"\t"+" ".join(clusterdb[i])+"\n")
-            if ii=="O":
-                print i,clusterdb[i]
             for j in clusterdb[i]:
                 row[nmap[j]["id"]]=nmap[i]["id"]
                 matrix[nmap[j]["id"]][nmap[i]["id"]]=matrix[nmap[j]["id"]][nmap[i]["id"]]+1

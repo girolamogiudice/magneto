@@ -1,1 +1,0 @@
-[{'text': 'endometrial', 'size': 9.0988242440366918}, {'text': 'ovarian', 'size': 9.7160629974855262}, {'text': 'cancer', 'size': 7.2739270497302142}]

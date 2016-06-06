@@ -1,2 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-146	0.000182342971486	6	Differentiated thyroid carcinoma	P14373(TRIM27) P04629(NTRK1) P37231(PPARG) Q15154(PCM1) P12270(TPR) P01116(KRAS)

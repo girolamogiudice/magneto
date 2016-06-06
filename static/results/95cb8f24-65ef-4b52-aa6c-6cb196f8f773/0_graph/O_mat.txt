@@ -1,2 +1,0 @@
-[[0]]
-{'535000': {'description': 'LEBER OPTIC ATROPHY', 'id': 0, 'name': '535000'}}

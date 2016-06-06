@@ -1,7 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-R-HSA-5358752	0.000220683973464	2	T41 mutants of beta-catenin aren't phosphorylated	P35222(CTNNB1) P25054(APC)
-R-HSA-5358751	0.000220683973464	2	S45 mutants of beta-catenin aren't phosphorylated	P35222(CTNNB1) P25054(APC)
-R-HSA-5358747	0.000220683973464	2	S33 mutants of beta-catenin aren't phosphorylated	P35222(CTNNB1) P25054(APC)
-R-HSA-5358749	0.000220683973464	2	S37 mutants of beta-catenin aren't phosphorylated	P35222(CTNNB1) P25054(APC)
-R-HSA-201688	5.92028709951e-05	2	WNT mediated activation of DVL	P68400(CSNK2A1) O14641(DVL2)
-R-HSA-4641262	1.19702388157e-05	3	Disassembly of the destruction complex and recruitment of AXIN to the membrane	P35222(CTNNB1) P25054(APC) O14641(DVL2)

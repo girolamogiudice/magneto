@@ -1,1 +1,0 @@
-[{'text': 'retardation', 'size': 3.8552929097540938}, {'text': 'autosomal', 'size': 4.7827987046133771}, {'text': 'dominant', 'size': 4.0390857606838813}, {'text': 'mental', 'size': 4.6291731575168917}]

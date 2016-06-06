@@ -3,10 +3,12 @@
 from gluon import *
 from scipy.stats import fisher_exact
 import sys,os,json
-def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotation,db_background):
+def load(uuid,protein,threshold,comp_list,folder,res_folder,path,db_background):
     databases=[]
     alias_dict={"K":"Kegg Pathway","R":"Reactome","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet"}
+    fisher_annotation_hierarchy={}
     for ii in comp_list:
+        fisher_annotation_hierarchy[ii]={}
         json_tree={}
         json_tree[ii]={"name":alias_dict[ii],"children":[]}
         if not os.path.exists(res_folder+"/"+ii+"_hierarchy"):
@@ -77,11 +79,11 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                 if fisher[i]<(threshold/lenfisherset):
                     flag=1
                     
-                    if fisher_annotation[ii].has_key(jj):
-                        fisher_annotation[ii][jj][i]="0"
+                    if fisher_annotation_hierarchy[ii].has_key(jj):
+                        fisher_annotation_hierarchy[ii][jj][i]="0"
                     else:
-                        fisher_annotation[ii][jj]={}
-                        fisher_annotation[ii][jj][i]="0"
+                        fisher_annotation_hierarchy[ii][jj]={}
+                        fisher_annotation_hierarchy[ii][jj][i]="0"
                     if fisher_value.has_key(fisher[i]):
                         fisher_value[fisher[i]].append(i)
                     else:
@@ -105,4 +107,4 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
         f2=open(res_folder+"/hierarchy_databases.txt","w")
         f2.write("\t".join(list(set(databases))))
         f2.close()
-    return fisher_annotation
+    return fisher_annotation_hierarchy

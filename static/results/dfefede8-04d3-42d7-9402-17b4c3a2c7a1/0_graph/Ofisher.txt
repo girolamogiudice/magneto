@@ -1,2 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-211980	3.4279601135e-05	3	LUNG CANCER	Q14790(CASP8) P00533(EGFR) P04626(ERBB2)

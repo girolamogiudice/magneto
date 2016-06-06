@@ -1,1 +1,0 @@
-[{'text': 'thyroid', 'size': 5.2836843426762972}, {'text': 'differentiated', 'size': 5.9880424923539008}, {'text': 'carcinoma', 'size': 7.5968107806382852}]

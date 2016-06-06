@@ -1,1 +1,0 @@
-[{'text': 'dihydrochloride', 'size': 8.4699618116719648}, {'text': 'tosylate', 'size': 4.4318025078246617}, {'text': 'dacomitinib', 'size': 5.3807540334189987}, {'text': 'hydrate', 'size': 17.122210234112572}]

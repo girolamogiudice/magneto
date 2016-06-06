@@ -1,2 +1,0 @@
-[[0, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
-{'Q14790': {'description': 'CASP8', 'id': 1, 'descr': 'C', 'name': 'Q14790(CASP8)'}, 'P00533': {'description': 'EGFR', 'id': 2, 'descr': 'E', 'name': 'P00533(EGFR)'}, '211980': {'description': 'LUNG CANCER', 'id': 0, 'name': '211980'}, 'P04626': {'description': 'ERBB2', 'id': 3, 'descr': 'E', 'name': 'P04626(ERBB2)'}}

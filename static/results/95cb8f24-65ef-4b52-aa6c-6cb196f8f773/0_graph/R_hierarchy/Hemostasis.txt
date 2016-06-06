@@ -1,1 +1,0 @@
-R-HSA-418359	0.00394190552965	Reduction of cytosolic Ca++ levels	P62158 P16615

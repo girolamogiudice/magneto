@@ -1,6 +1,0 @@
-1045383	Saccharomyces cerevisiae
-554348	Hepatitis C virus
-568611	Human immunodeficiency virus 1
-568819	Human papillomavirus type 16
-440185	Epstein-Barr virus
-764947	Molluscum contagiosum virus subtype 1

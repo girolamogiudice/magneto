@@ -1,8 +1,0 @@
-R-HSA-5358752	T41 mutants of beta-catenin aren't phosphorylated
-R-HSA-5358751	S45 mutants of beta-catenin aren't phosphorylated
-R-HSA-182971	EGFR downregulation
-R-HSA-5358747	S33 mutants of beta-catenin aren't phosphorylated
-R-HSA-5358749	S37 mutants of beta-catenin aren't phosphorylated
-R-HSA-111465	Apoptotic cleavage of cellular proteins
-R-HSA-3769402	Deactivation of the beta-catenin transactivating complex
-R-HSA-4641262	Disassembly of the destruction complex and recruitment of AXIN to the membrane

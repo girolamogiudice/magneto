@@ -1,4 +1,0 @@
-209341	Autosomal dominant childhood-onset proximal spinal muscular atrophy without contractures
-284232	Autosomal dominant Charcot-Marie-Tooth disease type 2O
-229	Familial aortic dissection
-178469	Autosomal dominant non-syndromic intellectual disability

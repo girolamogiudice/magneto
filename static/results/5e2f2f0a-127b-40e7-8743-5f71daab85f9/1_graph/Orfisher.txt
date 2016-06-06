@@ -1,3 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-84090	0.00205792619097	1	Fibronectin glomerulopathy	P02751(FN1)
-363972	0.000686394142764	1	Noonan syndrome-like disorder with juvenile myelomonocytic leukemia	P22681(CBL)

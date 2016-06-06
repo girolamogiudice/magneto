@@ -1,2 +1,0 @@
-[[0, 1, 1], [1, 0, 0], [1, 0, 0]]
-{'Q13627': {'description': 'DYRK1A', 'id': 2, 'descr': 'D', 'name': 'Q13627(DYRK1A)'}, 'H00773': {'description': 'Autosomal dominant mental retardation', 'id': 0, 'name': 'H00773'}, 'Q14204': {'description': 'DYNC1H1', 'id': 1, 'descr': 'D', 'name': 'Q14204(DYNC1H1)'}}

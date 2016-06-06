@@ -1,2 +1,0 @@
-hsa04310	Wnt signaling pathway
-hsa04068	FoxO signaling pathway

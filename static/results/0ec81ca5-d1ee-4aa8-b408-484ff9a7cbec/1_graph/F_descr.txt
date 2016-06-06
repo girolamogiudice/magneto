@@ -1,8 +1,0 @@
-GO:0048156	tau protein binding
-GO:0008134	transcription factor binding
-GO:0019899	enzyme binding
-GO:0019901	protein kinase binding
-GO:0004674	protein serine/threonine kinase activity
-GO:0019904	protein domain specific binding
-GO:0005515	protein binding
-GO:0042802	identical protein binding

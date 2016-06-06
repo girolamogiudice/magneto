@@ -1,2 +1,0 @@
-[[0, 0, 0, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 1], [0, 1, 0, 0, 0], [0, 0, 1, 0, 0]]
-{'P22681': {'description': 'CBL', 'id': 4, 'descr': 'C', 'name': 'P22681(CBL)'}, '84090': {'description': 'Fibronectin glomerulopathy', 'id': 1, 'name': '84090'}, '873': {'description': 'Desmoid tumor somatic', 'id': 0, 'name': '873'}, '363972': {'description': 'Noonan syndrome-like disorder with juvenile myelomonocytic leukemia', 'id': 2, 'name': '363972'}, 'P02751': {'description': 'FN1', 'id': 3, 'descr': 'F', 'name': 'P02751(FN1)'}}

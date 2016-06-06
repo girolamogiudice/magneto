@@ -6,8 +6,8 @@ import json
 from scipy.stats import fisher_exact
 import networkx as nx
 import sys,os
-def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotation):
-
+def load(uuid,protein,threshold,comp_list,folder,res_folder,path):
+    fisher_annotation={}
     for ii in comp_list:
         fisher_annotation[ii]={}
         clusterdb={}
@@ -53,7 +53,6 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                         annotation[j].append(i)
                         fisherset[j]=1
             else:
-                
                 fisherset_count.append(i)
         totalfisher=len(fisher)
         numberofproteins=len(protein)-len(list(set(fisherset_count)))
@@ -69,7 +68,6 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
             table=[[a,b],[c,d]]
             fisher[i]=fisher_exact(table,alternative ="greater")[1]
             if fisher[i]<(threshold/lenfisherset):
-                
                 fisher_annotation[ii][i]=""
                 if fisher_value.has_key(fisher[i]):
                     fisher_value[fisher[i]].append(i)
@@ -77,8 +75,8 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_annotati
                     fisher_value[fisher[i]]=[]
                     fisher_value[fisher[i]].append(i)
         f2=open(res_folder+"/"+ii+".txt","w")
-        
         for i in fisher_value:
             for j in fisher_value[i]:
                 f2.write(j+"\t"+str(i)+"\t"+descr[j]+"\t"+" ".join(annotation[j])+"\n")
+    
     return fisher_annotation

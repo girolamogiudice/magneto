@@ -1,2 +1,0 @@
-[[0, 0, 0, 1, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 1], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0]]
-{'353281': {'description': 'Rubinstein-Taybi syndrome due to 16p13.3 microdeletion', 'id': 0, 'name': '353281'}, 'P35749': {'description': 'MYH11', 'id': 4, 'descr': 'M', 'name': 'P35749(MYH11)'}, 'Q92793': {'description': 'CREBBP', 'id': 3, 'descr': 'C', 'name': 'Q92793(CREBBP)'}, '229': {'description': 'Familial aortic dissection', 'id': 2, 'name': '229'}, '353277': {'description': 'Rubinstein-Taybi syndrome due to CREBBP mutations', 'id': 1, 'name': '353277'}}

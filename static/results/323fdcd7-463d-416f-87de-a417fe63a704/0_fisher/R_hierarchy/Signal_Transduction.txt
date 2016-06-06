@@ -1,1 +1,0 @@
-R-HSA-380108	0.00298771906039	Chemokine receptors bind chemokines	P51681 P78556

@@ -1,4 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-H01260	0.00237060450415	1	Glomerulopathy with fibronectin deposits (GFND)	P02751(FN1)
-H00947	0.00237060450415	1	Pilomatricoma; Epithelioma calcificans of Malherbe	P35222(CTNNB1)
-H00018	0.000873380459421	2	Gastric cancer	P25054(APC) P35222(CTNNB1)

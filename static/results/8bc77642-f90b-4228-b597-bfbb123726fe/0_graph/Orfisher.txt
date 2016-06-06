@@ -1,4 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-404473	0.00266686836835	1	Severe intellectual disability-progressive spastic diplegia syndrome	P35222(CTNNB1)
-91414	0.00266686836835	1	Pilomatrixoma	P35222(CTNNB1)
-98755	0.000381330079316	1	Spinocerebellar ataxia type 1	P54253(ATXN1)

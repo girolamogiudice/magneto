@@ -1,3 +1,0 @@
-H00292	Hypertrophic cardiomyopathy (HCM)
-H00016	Oral cancer
-H00294	Dilated cardiomyopathy (DCM)

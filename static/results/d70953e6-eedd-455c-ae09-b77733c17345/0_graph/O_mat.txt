@@ -1,2 +1,0 @@
-[[0, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
-{'P60484': {'description': 'PTEN', 'id': 2, 'descr': 'P', 'name': 'P60484(PTEN)'}, 'P40692': {'description': 'MLH1', 'id': 1, 'descr': 'M', 'name': 'P40692(MLH1)'}, 'P43246': {'description': 'MSH2', 'id': 3, 'descr': 'M', 'name': 'P43246(MSH2)'}, '608089': {'description': 'ENDOMETRIAL CANCER', 'id': 0, 'name': '608089'}}

@@ -1,1 +1,0 @@
-R-HSA-427975	0.00670016750419	Proton/oligopeptide cotransporters	Q8IY34

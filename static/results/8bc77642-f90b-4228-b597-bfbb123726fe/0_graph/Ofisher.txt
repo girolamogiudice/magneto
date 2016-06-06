@@ -1,2 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-155255	1.58285995351e-05	2	MEDULLOBLASTOMA; MDB	P35222(CTNNB1) P25054(APC)

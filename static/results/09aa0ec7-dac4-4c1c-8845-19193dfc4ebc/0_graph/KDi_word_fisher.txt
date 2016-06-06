@@ -1,1 +1,0 @@
-[{'text': 'cancer', 'size': 3.0595071714072586}, {'text': "alzheimer's", 'size': 19.717073142176748}, {'text': 'ovarian', 'size': 6.9770481054874836}, {'text': 'disease', 'size': 5.5919786983601174}, {'text': 'breast', 'size': 6.9770481054874836}, {'text': 'cervical', 'size': 6.9770481054874836}, {'text': 'oral', 'size': 6.9770481054874836}]

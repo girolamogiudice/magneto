@@ -1,4 +1,0 @@
-GO:0006928	1.1982238679e-05	movement of cell or subcellular component	P33241 P52566 Q05682 P08670
-GO:0048251	5.40186997969e-05	elastic fiber assembly	P55083 Q9UBX5
-GO:0003229	2.57769713083e-05	ventricular cardiac muscle tissue development	P29966 Q05707
-GO:0030199	6.03316055777e-07	collagen fibril organization	P51884 P13674 Q05707 Q07507

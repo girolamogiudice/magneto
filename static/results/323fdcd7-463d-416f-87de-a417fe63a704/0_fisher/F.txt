@@ -1,6 +1,0 @@
-GO:0050512	0.000250507974503	lactosylceramide 4-alpha-galactosyltransferase activity	Q9NPC4
-GO:0019981	0.000250507974503	interleukin-6 binding	P08887
-GO:0070119	0.000250507974503	ciliary neurotrophic factor binding	P08887
-GO:0048039	0.00100169724283	ubiquinone binding	Q02127
-GO:0004152	0.00100169724283	dihydroorotate dehydrogenase activity	Q02127
-GO:0071791	0.00075135658512	chemokine (C-C motif) ligand 5 binding	P51681

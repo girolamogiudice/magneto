@@ -1,3 +1,0 @@
-id	p_value	ic	proteins_involved	description	proteins
-hsa04310	1.55653927746e-06	6	Wnt signaling pathway	Q92793(CREBBP) P25054(APC) P68400(CSNK2A1) O14641(DVL2) P05412(JUN) Q13616(CUL1)
-hsa04068	0.000445896808005	4	FoxO signaling pathway	Q92793(CREBBP) P53350(PLK1) P62993(GRB2) Q96EB6(SIRT1)
