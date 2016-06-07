@@ -251,7 +251,6 @@ def tsfa(uid,file,graph,threshold,db,tissue,coexpression,root_folder,c_w,f_w,p_w
     net_db={"0":"intact","1":"intact_high_confidence","2":"biogrid"}
     start_nodes,mapping=load_input_list(file)
     f1=open(root_folder+"static/results/"+uid+"/mapping_column.txt","w")
-    common_proteins={}
     for i in mapping:
         f1.write(str(i)+"\t"+mapping[i]+"\n")
     graph_net=net_db[graph]
@@ -298,7 +297,8 @@ def tsfa(uid,file,graph,threshold,db,tissue,coexpression,root_folder,c_w,f_w,p_w
         f2.write(stats)
         f2.close()
     
-def tfa(uid,file,graph_db,threshold,topology_ranking):
+def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments):
+    #values=[uid,form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments]
     test={}
 
 def order_res(order,bw):

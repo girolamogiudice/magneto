@@ -47,7 +47,8 @@ db.define_table('query_tfsa',
     Field('humanproteomemap_adult','string'),
     Field('humanproteomemap_fetal','string'),
     Field('PaxDb_integrated','string'),
-    Field('proteomicsdb','string'))
+    Field('proteomicsdb','string'),
+    Field('peptideatlas','string'))
 
 db.define_table('query_tfa',
     Field('uuid','string'),

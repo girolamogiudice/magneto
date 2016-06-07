@@ -633,24 +633,33 @@ def load_hierarchy():
     return dict(path=path)
 
 def tfa():
-    import types,os
+    import types,os,mcn.py
     from types import NoneType
     from types import StringType
     from types import ListType
-    score={0:"Betweenness Mod",1:"Degree",2:"Betweenness Centrality",3:"Pagerank"}
+    score={0:"Betweenness_Mod",1:"Degree",2:"Betweenness_Centrality",3:"Pagerank"}
+    score_reverse={"Betweenness_Mod":0,"Degree":1,"Betweenness_Centrality":2,"Pagerank":3}
+
     net_db={0:"intact",1:"intact_high_confidence",2:"biogrid"}
     cc={"0":"Centrosome","1":"Cytoplasm","2":"Cytoplasmic vesicle","3":"Cytoskeleton","4":"Cytosol","5":"Endoplasmic reticulum","6":"Endosome","7":"Extracellular matrix","8":"Extracellular region","9":"Golgi apparatus",
         "10":"Intracellular","11":"Lysosome","12":"Mitochondrion","13":"Nuclear membrane","14":"Nucleolus","15":"Nucleoplasm","16":"Nucleus","17":"Plasma membrane","18":"Protein complex","19":"Ribosome"}
+    cc_reverse={"Centrosome":"GO:0005813","Cytoplasm":"GO:0005737","Cytoplasmic vesicle":"GO:0031410","Cytoskeleton":"GO:0005856","Cytosol":"GO:0005829","Endoplasmic reticulum":"GO:0005783","Endosome":"GO:0005768",
+                "Extracellular matrix":"GO:0031012","Extracellular region":"GO:0005576","Golgi apparatus":"GO:0005794","Intracellular":"GO:0005622","Lysosome":"GO:0005764","Mitochondrion":"GO:0005739",
+                "Nuclear membrane":"GO:0031965","Nucleolus":"GO:0005730","Nucleoplasm":"GO:0005654","Nucleus":"GO:0005634","Plasma membrane":"GO:0005886","Protein complex":"GO:0043234","Ribosome":"GO:0005840"}
+
     db.define_table('input_net',
         Field('upload','upload',uploadfolder=os.path.join(request.folder,'upload'),requires=IS_NOT_EMPTY()),
         Field("graph_db",requires=IS_EMPTY_OR(IS_IN_SET(net_db,multiple=False))),
         Field("Compartments",requires=IS_EMPTY_OR(IS_IN_SET(sorted(cc.values()),multiple=True))),
         Field('score',requires=IS_EMPTY_OR(IS_IN_SET(score,multiple=False))),
         Field("topology_ranking","text",requires=IS_NOT_EMPTY()),
+        Field("background","string",requires=IS_IN_SET(["proteome","uniprot"],multiple=False)),
         Field('Show_advanced_options','boolean'),
         Field("threshold","float",requires=IS_FLOAT_IN_RANGE(0.0,0.1)))
     db.input_net.threshold.show_if = (db.input_net.Show_advanced_options==True)
     db.input_net.threshold.default = 0.05
+    db.input_net.background.default = "Proteome"
+    db.input_net.background.widget = lambda field,value: SQLFORM.widgets.radio.widget(field,value,_style="text-align:left")
     form = SQLFORM(db.input_net,_class="col-md-4 col-md-offset-2",_id="form_tfa",col3 = {'score':XML('<input type="button" class="btn btn-primary" value="Add filter" onClick="addtext();"><input type="button" class="btn btn-warning" value="Remove filters" onClick="removetext();">')}).process()
     submit = form.element("input",_type="submit")
     submit["_onclick"] = 'document.getElementById("input_net_topology_ranking").disabled = false;'
@@ -659,10 +668,19 @@ def tfa():
         import uuid,time
         #import filter.py
         uid=str(uuid.uuid4())
-        values=[uid,form.vars.upload,request.vars.graph_db,float(request.vars.threshold),form.vars.topology_ranking.split()]
+        if not os.path.exists(request.folder+"/static/results/"+uid):
+            os.makedirs(request.folder+"/static/results/"+uid)
+        cellular_compartments=[]
+        for i in form.vars.Compartments:
+            cellular_compartments.append(cc_reverse[i])
+        score_rank=[]
+        for i in form.vars.topology_ranking.split():
+            score_rank.append(score_reverse[i])
+        values=[uid,request.folder+"/upload/"+form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments]
         db.query_tfa.insert(uuid=uid,upload=request.vars.upload.value,upload_filename=form.vars.upload,threshold=form.vars.threshold,
-                            graph_db=form.vars.graph_db,topology_ranking=form.vars.topology_ranking.split())
-        #s=scheduler.queue_task(tfa,pargs=values,start_time=request.now,stop_time=request.now+timed(seconds=7200),timeout=240)
+                            graph_db=form.vars.graph_db,topology_ranking=form.vars.topology_ranking.split(),compartments=form.vars.Compartments)
+        mcn.tfa(uid,request.folder+"/upload/"+form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments,root_folder=request.folder,background=form.vars.background)
+        #s=scheduler.queue_task(tfa,pargs=values,start_time=request.now,stop_time=request.now+timed(seconds=7200),timeout=3600)
         #redirect(URL('wait_tfa',args=[s.uuid,uid]))
     return dict(form=form)
 

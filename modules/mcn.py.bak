@@ -62,8 +62,7 @@ def expression(folder,tissue):
     return tissue_expr
 
 def mcn(nodes,graph_nodes,graph,tissue_expr,graph_choice,coexpression,folder,db_values,annotation):
-    for i in tissue_expr:
-        print i,"skkss",tissue_expr[i]
+
     path_mean={}
     path_count={}
     seek={}
@@ -301,8 +300,106 @@ def tsfa(uid,file,graph,threshold,db,tissue,coexpression,root_folder,c_w,f_w,p_w
         f2.write(stats)
         f2.close()
     
-def tfa(uid,file,graph_db,threshold,topology_ranking):
-    test={}
+def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder,background):
+    #values=[uid,form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments]
+    net_db={"0":"intact","1":"intact_high_confidence","2":"biogrid"}
+    start_nodes,mapping=load_input_list(file)
+    f1=open(root_folder+"static/results/"+uid+"/mapping_column.txt","w")
+    for i in mapping:
+        f1.write(str(i)+"\t"+mapping[i]+"\n")
+    graph_net=net_db[graph_db]
+    nodes_graph={}
+    graph=nx.read_gpickle(root_folder+"/data/graph/"+graph_net)
+    graph.graph['name']=graph_net
+    graph_nodes=graph.nodes()
+    f1=open(root_folder+"static/results/"+uid+"/nodes.txt","w")
+    for i in start_nodes:
+        if not os.path.exists(root_folder+"/static/results/"+uid+"/"+str(i)+"_fisher/"):
+            os.makedirs(root_folder+"/static/results/"+uid+"/"+str(i)+"_fisher")
+        if not os.path.exists(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/"):
+            os.makedirs(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph")
+        f1.write(str(i)+"\t"+"\t".join(start_nodes[i])+"\n")
+        nodes=list(set(start_nodes[i]).intersection(set(graph_nodes)))
+        if len(nodes)>1:
+            nodes_graph[i],path_count=mcn_component(nodes,graph.nodes(),graph,graph_net,root_folder,score_rank,cellular_compartments,background)
+            graph_mcn=graph.subgraph(nodes_graph[i])
+            removable=list(set(nodes_graph[i]).difference(set(start_nodes)))
+            degree=graph_mcn.degree(nodes_graph[i])
+            bw=nx.betweenness_centrality(graph_mcn)
+            degree_sorted=sorted(degree, key=degree.get)[::-1]
+            to_order={}
+            for j in degree_sorted:
+                if to_order.has_key(degree[j]):
+                    to_order[degree[j]].append(j)
+                else:
+                    to_order[degree[j]]=[]
+                    to_order[degree[j]].append(j)
+            print to_order[4]
+            remov=sorted(to_order[4], key=bw.get)
+            print remov
+            #print order_res(to_order,bw)
+
+def component_annotation(folder,cellular_compartments):
+    mapping_files={"GO:0005813":"0","GO:0005737":"1","GO:0031410":"2","GO:0005856":"3","GO:0005829":"4","GO:0005783":"5","GO:0005768":"6","GO:0031012":"7","GO:0005576":"8","GO:0005794":"9","GO:0005622":"10",
+                   "GO:0005764":"11","GO:0005739":"12","GO:0031965":"13","GO:0005730":"14","GO:0005654":"15","GO:0005634":"16","GO:0005886":"17","GO:0043234":"18","GO:0005840":"19"}
+    annotation={}
+    for i in cellular_compartments:
+        annotation_temp={}
+        f1=open(folder+mapping_files[i]+".txt","r")
+        seq=f1.readline()
+        seq=seq.strip().split("\t")
+        for j in seq[1:]:
+            annotation_temp[j]=""
+        annotation[mapping_files[i]]=annotation_temp
+    return annotation
+
+def mcn_component(nodes,graph_nodes,graph,graph_choice,folder,score_rank,cellular_compartments,background):
+    component=component_annotation(folder+"data/annotation/"+background+"/slim/",cellular_compartments)
+    path_count={}
+    seek={}
+    path_selection=[]
+    combination=list(itertools.combinations((list(set(graph_nodes).intersection(set(nodes)))),2))
+    for i in nodes:
+        seek[i]={}
+    for i in combination:
+        path_count[i]={}
+        path_count[i][0]=[]
+        f1=open(folder+"data/path/"+graph_choice+"/index/"+i[0]+".txt","r")
+        seq=f1.readline()
+        while(seq!=""):
+            seq= seq.strip().split("\t")
+            if seq[0]==i[1]:
+				seek[i[0]][seq[0]]=int(seq[1])
+            seq=f1.readline()
+    for i in seek:
+        if len(seek[i])>0:
+            for j in seek[i]:
+                f1=open(folder+"data/path/"+graph_choice+"/"+i+".txt")
+                f1.seek(seek[i][j])
+                seq=f1.readline()
+                key_start=seq.split("|")[0][1:].strip()
+                key_end=seq.split("|")[1].strip()
+                key=(key_start,key_end)
+                seq=f1.readline()
+                count=0
+                while(seq[0]!=">"):
+                    seq=seq.strip().split()
+                    node_list=seq
+                    for k in range(len(node_list[1:-1])):
+                        component_score=0
+                        for s in component:
+                            if node_list[k+1] in component[s]:
+                                component_score=component_score+1
+                    if component_score>max(path_count[key]):
+                        del path_count[key]
+                        path_count[key]={}
+                        path_count[key][component_score]=[]
+                        path_count[key][component_score].append(node_list)
+                    elif component_score==max(path_count[key]):
+                         path_count[key][component_score].append(node_list)
+                    seq=f1.readline()
+            path_selection.append(sum(path_count[key][max(path_count[key])],[]))
+    return list(set(sum(path_selection,[]))),path_count
 
 def order_res(order,bw):
     r={}

@@ -20,7 +20,8 @@ line.link {
 
 <script>
 document.getElementById("input_net_topology_ranking").disabled = true;
-var score={0:"bwmod",1:"degree",2:"bw",3:"pagerank"}
+var score={0:"Betweenness_Mod",1:"Degree",2:"Betweenness_Centrality",3:"Pagerank"}
+
 function addtext() {
     var values= parseInt(document.getElementById('input_net_score').value)
     if (score[values]!==undefined )

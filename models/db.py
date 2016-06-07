@@ -57,7 +57,8 @@ db.define_table('query_tfa',
     Field('graph_db','string'),
     Field('topology_ranking','string'),
     Field('threshold','double'),
-    Field('background','boolean'))
+    Field('background','string'),
+    Field('compartments','string'))
 ## by default give a view/generic.extension to all actions from localhost
 ## none otherwise. a pattern can be 'controller/function.extension'
 response.generic_patterns = ['*'] if request.is_local else []
