@@ -1,4 +1,4 @@
-<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url="{{=path}}" data-sort-name="name" data-sort-order="asc" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle" data-show-export="true" >
+<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-show-export="true" data-url="{{=path}}" data-sort-name="name" data-sort-order="asc" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle" data-show-export="true" >
     <thead>
             <th data-field="id" data-align="left" data-sortable="true" data-cell-style="cellStyle" data-detail-formatter="detailFormatter">ID</th>
         
@@ -8,3 +8,5 @@
     </tr>
     </thead>
 </table>
+<script>
+$('#table').tableExport({type:'csv'});</script>

@@ -47,16 +47,46 @@
                 return;
             }
 
+            var editableOptions = {}, editableDataMarkup = [], editableDataPrefix = 'editable-';
+
+            var processDataOptions = function(key, value) {
+              // Replace camel case with dashes.
+              var dashKey = key.replace(/([A-Z])/g, function($1){return "-"+$1.toLowerCase();});
+              if (dashKey.slice(0, editableDataPrefix.length) == editableDataPrefix) {
+                var dataKey = dashKey.replace(editableDataPrefix, 'data-');
+                editableOptions[dataKey] = value;
+              }
+            };
+
+            $.each(that.options, processDataOptions);
+
             var _formatter = column.formatter;
             column.formatter = function (value, row, index) {
                 var result = _formatter ? _formatter(value, row, index) : value;
 
-                return ['<a href="javascript:void(0)"',
-                    ' data-name="' + column.field + '"',
-                    ' data-pk="' + row[that.options.idField] + '"',
-                    ' data-value="' + result + '"',
-                    '>' + '</a>'
-                ].join('');
+                $.each(column, processDataOptions);
+
+                $.each(editableOptions, function (key, value) {
+                    editableDataMarkup.push(' ' + key + '="' + value + '"');
+                });
+                
+                var _dont_edit_formatter = false;
+                if (column.editable.hasOwnProperty('noeditFormatter')) {
+                    _dont_edit_formatter = column.editable.noeditFormatter(value, row, index);
+                }
+  
+                if (_dont_edit_formatter === false) {
+                    return ['<a href="javascript:void(0)"',
+                        ' data-name="' + column.field + '"',
+                        ' data-pk="' + row[that.options.idField] + '"',
+                        ' data-value="' + result + '"',
+                        editableDataMarkup.join(''),
+                        '>' + '</a>'
+                    ].join('');
+                } else {
+                    return _dont_edit_formatter;
+                }
+
             };
         });
     };
@@ -81,8 +111,10 @@
                         row = data[index],
                         oldValue = row[column.field];
 
+                    $(this).data('value', params.submitValue);
                     row[column.field] = params.submitValue;
                     that.trigger('editable-save', column.field, row, oldValue, $(this));
+                    that.resetFooter();
                 });
             that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
                 .off('shown').on('shown', function (e, editable) {

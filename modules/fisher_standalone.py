@@ -6,7 +6,7 @@ import json
 from scipy.stats import fisher_exact
 import networkx as nx
 import sys,os
-def load(uuid,protein,threshold,comp_list,folder,res_folder,path):
+def load(uuid,ids,protein,threshold,comp_list,folder,res_folder,path):
     fisher_annotation={}
     for ii in comp_list:
         fisher_annotation[ii]={}
@@ -60,6 +60,7 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path):
         fisher_value={}
         count=0
         lenfisherset=len(list(set(fisherset)))
+        fisher_json=[]
         for i in fisherset:
             a=fisherset[i]
             b=numberofproteins-a
@@ -75,8 +76,10 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path):
                     fisher_value[fisher[i]]=[]
                     fisher_value[fisher[i]].append(i)
         f2=open(res_folder+"/"+ii+".txt","w")
+        f2.write("id\tp_value\tproteins_involved\tdescription\tproteins\n")
         for i in fisher_value:
             for j in fisher_value[i]:
-                f2.write(j+"\t"+str(i)+"\t"+descr[j]+"\t"+" ".join(annotation[j])+"\n")
-    
+                f2.write(j+"\t"+str(i)+"\t"+str(len(annotation[j]))+"\t"+descr[j]+"\t"+" ".join(annotation[j])+"\n")
+                fisher_json.append({"id":j,"p value":str(i),"proteins involved":str(len(annotation[j])),"description":descr[j],"proteins":annotation[j],"common":2})
+        json.dump(fisher_json,open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_fisher/"+ii+"fisher.json","w"))
     return fisher_annotation

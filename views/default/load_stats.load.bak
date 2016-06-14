@@ -45,7 +45,6 @@
 
 
 <script>
-    console.log(document.getElementById("circle_packing").outerHTML)
     var color = d3.scale.category10();
     var tooltip = d3.select("body")
     .append("div")

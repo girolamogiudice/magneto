@@ -2,6 +2,20 @@
 
 ---
 
+To use event syntax:
+
+```js
+$('#table').bootstrapTable({
+    onEventName: function (arg1, arg2, ...) {
+        // ...
+    }
+});
+
+$('#table').on('event-name.bs.table', function (e, arg1, arg2, ...) {
+    // ...
+});
+```
+
 <table class="table"
        id="e"
        data-search="true"
@@ -34,7 +48,8 @@
         <td>
         Fires when user click a row, the parameters contain: <br>
         row: the record corresponding to the clicked row, <br>
-        $element: the tr element.
+        $element: the tr element, <br>
+        field: the field name corresponding to the clicked cell.
         </td>
     </tr>
     <tr>
@@ -44,7 +59,8 @@
         <td>
         Fires when user double click a row, the parameters contain: <br>
         row: the record corresponding to the clicked row, <br>
-        $element: the tr element.
+        $element: the tr element, <br>
+        field: the field name corresponding to the clicked cell.
         </td>
     </tr>
     <tr>
@@ -190,7 +206,7 @@
     <tr>
         <td>onPostBody</td>
         <td>post-body.bs.table</td>
-        <td>none</td>
+        <td>data</td>
         <td>Fires after the table body is rendered and available in the DOM</td>
     </tr>
     <tr>
@@ -222,6 +238,12 @@
         <td>reset-view.bs.table</td>
         <td></td>
         <td>Fires when reset view of the table.</td>
+    </tr>
+    <tr>
+       <td>onRefresh</td>
+       <td>refresh.bs.table</td>
+       <td>params</td>
+       <td>Fires after the click the refresh button.</td>
     </tr>
     </tbody>
 </table>

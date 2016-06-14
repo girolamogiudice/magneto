@@ -27,6 +27,8 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
     path=folder+"data/annotation/"+choice+"/"
     children={}
     f7=open(folder+"/static/results/"+uuid+"/"+ids+"_graph/cluster_id.txt","w")
+    f8=open(folder+"/static/results/"+uuid+"/"+ids+"_bar.txt","w")
+    f8.write("db\tstandard\tcommon\tmagneto\n")
     temp_db={}
     for ii in comp_list:
         f3=open(folder+"/static/results/"+uuid+"/"+ids+"_graph/"+ii+"_word_fisher.txt","w")
@@ -134,13 +136,16 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
 
         f2=open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_graph/"+ii+"fisher.txt","w")
         f2.write("id\tp_value\tproteins_involved\tdescription\tproteins\n")
-      
+        common=0
+        magneto=0
+        standard=0
         for i in fisher_value:
-            if fisher_annotation[ii].has_key(i):
+            if i in fisher_annotation[ii]:
                 fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":1})
+                common=common+1
             else:
                 fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":0})
-                
+                magneto=magneto+1
             f2.write(i+"\t"+str(fisher_value[i])+"\t"+str(len(annotation[i]))+"\t"+descr[i]+"\t"+" ".join(annotation_gene[i])+"\n")
             f6.write(i+"\t"+descr[i]+"\n")
                 
@@ -175,15 +180,21 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         f2.close()
         for i in fisher_annotation[ii]:
             if not fisher_value.has_key(i):
-                fisher_json.append({"id":i,"p value":"-1","proteins involved":str(len(fisher_annotation[ii][i])),"description":descr[i],"common":2})
+                fisher_json.append({"id":i,"p value":"-1","proteins involved":str(len(fisher_annotation[ii][i])),"description":descr[i],"proteins":annotation_gene[i],"common":2})
+                standard=standard+1
+        if (standard!=0 and common!=0 and magneto!=0):
+            f8.write(ii+"\t"+str(standard)+"\t"+str(common)+"\t"+str(magneto)+"\n")
         json.dump(fisher_json,open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_graph/"+ii+"fisher.json","w"))
-        
         number_of_word=len(words_count_enriched)
         total_word=len(words_count)
         word_fisher=[]
         for i in words_count_enriched:
             a=words_count_enriched[i]
-            b=number_of_word-a
+            #############################################
+            ##DEvo fare un recheck di questa funzione####
+            #############################################
+            #print i,words_count_enriched[i]
+            b=words_count_enriched[i]-a
             c=words_count[i]-a
             d=sum(words_count.values())-a-b-c
             fisher[i]=fisher_exact(table,alternative ="greater")[1]
@@ -196,7 +207,6 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         matrix = [[0 for x in range(count)] for x in range(count)]
         f7.write(">"+ii+"\n")
         for i in clusterid:
-            
             clusterid[i]=list(set(clusterid[i]))
             f4.write(i+"\t"+" ".join(clusterid[i])+"\n")
             f7.write(i+"\t"+"\t".join(clusterid[i])+"\n")
@@ -219,4 +229,5 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
     f5.close()
     f6.close()
     f7.close()
+    f8.close()
     return col,nmap,domain_db,count_annotation,root_second_level,controls

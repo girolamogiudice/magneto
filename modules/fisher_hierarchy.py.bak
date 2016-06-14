@@ -135,7 +135,6 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_alone_hi
 
                 
             if len(temp_table)>=1:
-                print ii,jj,temp_table
                 json.dump(temp_table,open(res_folder+"/"+ii+"_hierarchy/"+jj+"fisher.json","w"))
         
         if len(json_tree[ii]["children"])>0:

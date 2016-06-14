@@ -249,7 +249,6 @@ PaxDb_integrated={0: 'brain', 2: 'COLON', 3: 'esophagus', 4: 'female_gonad', 5: 
             12: 'plasma', 13: 'platelet', 14: 'prostate_gland', 15: 'rectum', 16: 'saliva', 17: 'skin', 18: 'testis', 19: 'urine', 20: 'uterus', 21: 'whole_organism'}
 
 def tsfa(uid,file,graph,threshold,db,tissue,coexpression,root_folder,c_w,f_w,p_w,r_w,k_w,background):
-    
     expr={"0":"protein_atlas_basal","1":"protein_atlas_cancer","2":"human_proteome_map_adult","3":"human_proteome_map_fetal","4":"PaxDb_integrated","5":"PeptideAatlas","6":"ProteomicsDB"}
     net_db={"0":"intact","1":"intact_high_confidence","2":"biogrid"}
     start_nodes,mapping=load_input_list(file)
@@ -321,9 +320,36 @@ def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder
         f1.write(str(i)+"\t"+"\t".join(start_nodes[i])+"\n")
         nodes=list(set(start_nodes[i]).intersection(set(graph_nodes)))
         if len(nodes)>1:
-            nodes_graph[i],path_count=mcn_component(nodes,graph.nodes(),graph,graph_net,root_folder,score_rank,cellular_compartments,background)
+            nodes_graph[i],path_count,nodes_path=mcn_component(nodes,graph.nodes(),graph,graph_net,root_folder,score_rank,cellular_compartments,background)
             graph_mcn=graph.subgraph(nodes_graph[i])
-            removable=list(set(nodes_graph[i]).difference(set(start_nodes)))
+            removable=sum(nodes_path.values(),[])
+            score={0:"Betweenness_Mod",1:"Degree",2:"Betweenness_Centrality",3:"Pagerank"}
+            if score_rank[0]==0:
+                count={}
+                for j in removable:
+                    if j in count:
+                        count[j]=count[j]+1
+                    else:
+                        count[j]=1
+                order,flag=are_ordered(count)
+                ranking={}
+                for j in order:
+                    if len(order[j])==1:
+                        ranking[j]=order[j]
+                    else:
+                        degree=graph_mcn.degree(order[j])
+                        order_2_level={}
+                        for k in degree:
+                            if degree[k] in order_2_level:
+                                order_2_level[degree[k]].append(k)
+                            else:
+                                order_2_level[degree[k]]=[]
+                                order_2_level[degree[k]].append(k)
+                        print order_2_level
+
+                    print j,degree_sorted
+                    print ranking
+                
             degree=graph_mcn.degree(nodes_graph[i])
             bw=nx.betweenness_centrality(graph_mcn)
             degree_sorted=sorted(degree, key=degree.get)[::-1]
@@ -334,11 +360,21 @@ def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder
                 else:
                     to_order[degree[j]]=[]
                     to_order[degree[j]].append(j)
-            print to_order[4]
-            remov=sorted(to_order[4], key=bw.get)
-            print remov
+       
+            remov=sorted(to_order[5], key=bw.get)
+            #print remov
             #print order_res(to_order,bw)
-
+def are_ordered(count):
+    order={}
+    flag=0
+    for i in count:
+        if count[i] in order:
+            order[count[i]].append(i)
+            flag=1
+        else:
+            order[count[i]]=[]
+            order[count[i]].append(i)
+    return order,flag
 def component_annotation(folder,cellular_compartments):
     mapping_files={"GO:0005813":"0","GO:0005737":"1","GO:0031410":"2","GO:0005856":"3","GO:0005829":"4","GO:0005783":"5","GO:0005768":"6","GO:0031012":"7","GO:0005576":"8","GO:0005794":"9","GO:0005622":"10",
                    "GO:0005764":"11","GO:0005739":"12","GO:0031965":"13","GO:0005730":"14","GO:0005654":"15","GO:0005634":"16","GO:0005886":"17","GO:0043234":"18","GO:0005840":"19"}
@@ -358,11 +394,14 @@ def mcn_component(nodes,graph_nodes,graph,graph_choice,folder,score_rank,cellula
     path_count={}
     seek={}
     path_selection=[]
+    nodes_path={}
     combination=list(itertools.combinations((list(set(graph_nodes).intersection(set(nodes)))),2))
     for i in nodes:
         seek[i]={}
+        
     for i in combination:
         path_count[i]={}
+        nodes_path[i]=[]
         path_count[i][0]=[]
         f1=open(folder+"data/path/"+graph_choice+"/index/"+i[0]+".txt","r")
         seq=f1.readline()
@@ -382,6 +421,7 @@ def mcn_component(nodes,graph_nodes,graph,graph_choice,folder,score_rank,cellula
                 key=(key_start,key_end)
                 seq=f1.readline()
                 count=0
+                nodes_key=[]
                 while(seq[0]!=">"):
                     seq=seq.strip().split()
                     node_list=seq
@@ -392,14 +432,19 @@ def mcn_component(nodes,graph_nodes,graph,graph_choice,folder,score_rank,cellula
                                 component_score=component_score+1
                     if component_score>max(path_count[key]):
                         del path_count[key]
+                        nodes_key=[]
+                        nodes_key.append(node_list[1:-1])
                         path_count[key]={}
                         path_count[key][component_score]=[]
                         path_count[key][component_score].append(node_list)
                     elif component_score==max(path_count[key]):
                          path_count[key][component_score].append(node_list)
+                         nodes_key.append(node_list[1:-1])
                     seq=f1.readline()
-            path_selection.append(sum(path_count[key][max(path_count[key])],[]))
-    return list(set(sum(path_selection,[]))),path_count
+                nodes_key=set(sum(nodes_key,[]))
+                nodes_path[key]=list(nodes_key.difference(set(nodes)))
+                path_selection.append(sum(path_count[key][max(path_count[key])],[]))
+    return list(set(sum(path_selection,[]))),path_count,nodes_path
 
 def order_res(order,bw):
     r={}

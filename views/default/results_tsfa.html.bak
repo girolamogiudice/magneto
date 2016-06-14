@@ -1,4 +1,6 @@
 {{extend 'layout.html'}}
+<div class="export btn-group"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div>
+
 <script src="/magneto/static/js/linkurious/src/sigma.core.js"></script>
 <script src="/magneto/static/js/linkurious/src/conrad.js"></script>
 <script src="/magneto/static/js/linkurious/src/utils/sigma.utils.js"></script>
@@ -159,13 +161,14 @@ line.link {
     }
  .disabled{
  cursor: not-allowed; 
+
 }
+    
 
 .disabled > a{
  pointer-events: none;
 }
 </style>
-
 {{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
 {{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
   <ul class="nav nav-pills nav-justified" role="tablist">
@@ -176,7 +179,15 @@ line.link {
                      <a class="sv" id="sv" value="{{=i[0]}}" href="#{{=i[0]}}" data-toggle="tab">{{=i[1]}}</a></li>{{pass}}
             </ul>
           </li>
-    <li role="presentation" id="statistics" class="disabled disabledTab" ><a href="#Statistics" aria-controls="Statistics" role="tab" data-toggle="tab">Statistics</a></li>
+    <li role="presentation" id="statistics" class="disabled disabledTab" ><a href="#Statistics" aria-controls="Statistics" role="tab" data-toggle="tab">Statistics</a>
+      <ul id="statistic_menu" class="dropdown-menu">
+                <li id="s_li"><a class="stats" id="s" onclick="change_text_stats('Network statistics')" data-toggle="tab">Network statistics</a></li>
+          {{if len(mapping_column)>0:}}
+                <li id="cp_li"><a href="#circle_plot" id="cp" data-toggle="tab" onclick="change_text_stats('Terms statistic');$.web2py.component('{{=URL('default', 'load_circle.load',args=[request.args[0]])}};', 'circle_plot');">Terms statistic</a></li>
+          {{pass}}
+                <li id="bp_li"><a class="bar_plot" id="bp" onclick="change_text_stats('Comparison standard vs MAGNETO')" data-toggle="tab">Comparison standard vs MAGNETO</a></li>
+        </ul>
+      </li>
     <li role="presentation" id="network" class="disabled disabledTab"><a href="#network" aria-controls="network" role="tab" data-toggle="tab">Network</a></li>
     <li id="func_anal" role="presentation" class="dropdown disabled disabledTab"><a class="dropdown-toggle" href="#functional" aria-controls="functional" id="fa" role="tab" data-toggle="dropdown">Functional Analysis</a>
             <ul id="fa" class="dropdown-menu">
@@ -240,7 +251,8 @@ line.link {
 <br>
   <div id="stats_panel" class="panel panel-primary" >
       <div class="panel-heading">Statistics</div>
-      <div class="panel-body"><div id="stat"></div></div></div>
+      <div class="panel-body"><div id="stat"></div>
+      <div id="circle_plot"></div></div></div>
 
    <div id="network_panel" class="panel panel-primary" >
       <div class="panel-heading">Network</div>
@@ -264,7 +276,10 @@ line.link {
   <div id="results_panel" class="panel panel-primary" >
       <div class="panel-heading">Functional Analysis</div>
       <div class="panel-body">
-          <div id="results"><link rel="stylesheet" href="/magneto/static/js/bootstrap-table/dist/bootstrap-table.css"></div></div></div>
+          <div id="results">
+              <link rel="stylesheet" href="/magneto/static/js/bootstrap-table/dist/bootstrap-table.css">
+
+      </div></div></div>
 
 <div id="chord"></div>
 <div id="treemap"></div>
@@ -278,6 +293,9 @@ menu_list={{=XML(menu_list)}}
 menu_mapping={{=XML(menu_mapping)}}
 controls={{=XML(controls)}}
 control_sample={{=XML(control_sample)}}
+menu_mapping_reverse={{=XML(menu_mapping_reverse)}}
+db_not_present={{=XML(db_not_present)}}
+no_fisher_magneto={{=XML(no_fisher_magneto)}}
 $(document).ready(function(){
     
 $('.dropdown-submenu a')
@@ -407,7 +425,7 @@ function return_value(elem){
      document.getElementById("results").innerHTML=""
 }
     var sample=""
-$(".sv").click(function(){
+$(".sv").click(function(event){
     $("#legend").css("visibility", "visible");
     $("#network_panel").css("visibility", "visible");
     $("#stats_panel").css("visibility", "visible");
@@ -417,8 +435,21 @@ $(".sv").click(function(){
     $("#network").removeClass('disabled disabledTab');
     $("#plot").addClass('disabled disabledTab');
     $("#legend").css("visibility", "visible");
-   var selText = $(this).text();
+    var selText = $(this).text();
     sample=$(this).attr("value");
+    db=["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"]
+    for (var i in db) {
+        $("#"+db[i]).removeClass('disabled')
+        
+    }
+    for (i in no_fisher_magneto[sample]){
+        
+        $("#"+no_fisher_magneto[sample][i]).addClass('bg-danger')
+    }
+    for (i = 0; i < db_not_present[sample].length; i++){
+        $("#"+db_not_present[sample][i]).addClass('disabled')
+        
+    }
     location.hash = sample;
    $(this).parents('.dropdown').find('.dropdown-toggle').html(selText+" ");
     document.getElementById("chord").innerHTML=""
@@ -431,35 +462,48 @@ $(".sv").click(function(){
 
 
 mapping={{=XML(str(mapping))}}
-
 $('.stats').click(function(){
     var db_fa=($(this).attr('id'))
     location.hash = db_fa;
 })
+
     //locate_cluster
-$('.dbfa').click(function(){
+$('.dbfa').click(function(event){
+
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
-    //loadScript("/magneto/static/js/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js");
-    //loadScript("/magneto/static/js/tableExport.min.js");
+   
     values=mapping[document.getElementById("sample_sel").innerHTML.trim()]
     
     var folder= "{{=request.args[0]}}"
     var db_fa=($(this).attr('id'))
     temp=db_fa.endsWith("_h")
     location.hash =sample+"#"+db_fa;
+    ids=db_fa
     db_fa=db_fa+"fisher.json"
-    path= "/magneto/static/results/"+folder+"/"+values+"_graph/"+db_fa
+   if(no_fisher_magneto[sample].indexOf(ids)== -1){
+       
+       path= "/magneto/static/results/"+folder+"/"+values+"_graph/"+db_fa
+       }
+   else{
+      
+    path= "/magneto/static/results/"+folder+"/"+values+"_fisher/"+db_fa
+   }
         document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
-
+        
     $("#plot").removeClass('dropdown disabled disabledTab');
     $("#hierarchy_plot").addClass('disabled');
     $("#hierarchy_plot").removeClass('active');
     $("#chord_plot").removeClass('disabled');
+    $("#chord_plot").removeClass('active');
+    $("#wc_plot").removeClass('active');
     $("#bubble_plot").removeClass('disabled');
     $("#wc_plot").removeClass('disabled');
     $("#treemap_plot").removeClass('disabled');
     $("#display_plot").removeClass('disabled');
-    $("#results_panel").css("visibility", "visible");
+    if(!$(this).hasClass('disabled')){
+        $("#results_panel").css("visibility", "visible");
+
+    }
     document.getElementById("chord").innerHTML=""
     document.getElementById("treemap").innerHTML=""
     document.getElementById("bubble").innerHTML=""
@@ -469,13 +513,36 @@ $('.dbfa').click(function(){
     { 
         $('#fa').html($(this)[0].innerText+" ");
         is_control=control_sample.indexOf(location.hash.split("#")[1])
+
         if (Object.keys(controls).length!=0 && is_control)
+            
         {
+             if($(this).hasClass('disabled'))
+            {
+                
+                $("#results_panel").css("visibility", "hidden");
+                $('#fa li.active').removeClass('active')
+                $('#func_anal').removeClass('active')
+                document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
+                $("#plot").addClass('dropdown disabled disabledTab');
+                return false
+            }
 document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+            if($(this).hasClass('disabled'))
+            {
+                
+                $("#results_panel").css("visibility", "hidden");
+                $('#fa li.active').removeClass('active')
+                $('#func_anal').removeClass('active')
+                document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
+                $("#plot").addClass('dropdown disabled disabledTab');
+                return false
+            }
+           
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toolbar="#toolbar" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
     }
     
@@ -498,7 +565,39 @@ document.getElementById("results").innerHTML = '<table id="table" class="table t
         $.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')
    }
 });
+function download_magneto(){
+    value=location.hash.split("#")
+    sample=value[1]
+    db=value[2]
+    var folder= "{{=request.args[0]}}"
+    if (value.length==3){
+    window.location.href = '/magneto/static/results/'+folder+'/'+sample+'_graph/'+db+'fisher.txt';
+    }
+     if (value.length==4){
+         db=db.split("_")[0]
+         db_h=value[3]
+         window.location.href = '/magneto/static/results/'+folder+'/'+sample+'_graph/'+db+'_hierarchy/'+menu_mapping_reverse[sample][db][db_h]+".txt"
+    }
+}
+function download_standard(){
+    sample=location.hash.split("#")[1]
+    db=location.hash.split("#")[2]
+    var folder= "{{=request.args[0]}}"
+    if (value.length==3){
+    window.location.href = '/magneto/static/results/'+folder+'/'+sample+'_fisher/'+db+'fisher.txt';
+    }
+     if (value.length==4){
+         db=db.split("_")[0]
+         db_h=value[3]
+         window.location.href = '/magneto/static/results/'+folder+'/'+sample+'_fisher/'+db+'_hierarchy/'+menu_mapping_reverse[sample][db][db_h]+".txt"
+    }
+}
+function change_text_stats(value_menu){
+ $('#s_li').removeClass('active')   
+$('#bp_li').removeClass('active')
+$('#cp_li').removeClass('active')
 
+}
 function change_text() 
     {
     document.getElementById("DB_h").className=""
@@ -507,8 +606,8 @@ function change_text()
     document.getElementById("KDr_h").className=""
     document.getElementById("Or_h").className=""
     document.getElementById("R_h").className=""
-    
-    //document.getElementById("statistics").innerHTML="Statistics<span class='caret'></span>"
+
+
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
     value=location.hash.substring(1)
@@ -564,9 +663,12 @@ function change_text()
     }
      
     }
+
 $('#Reactome').on('click','.test',function(event) { 
     event.preventDefault();
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
+
+
     var folder= "{{=request.args[0]}}"
     $("#plot").removeClass('dropdown disabled disabledTab');
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
@@ -606,6 +708,7 @@ document.getElementById("results").innerHTML = '<table id="table" class="table t
 
 $('#Orphanet').on('click','.test',function(event) { 
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
+
     var folder= "{{=request.args[0]}}"
     event.preventDefault();
         $('#fa li.active').removeClass('active')
@@ -647,6 +750,7 @@ document.getElementById("results").innerHTML = '<table id="table" class="table t
     
 $('#Kegg').on('click','.test',function(event) { 
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
+
     var folder= "{{=request.args[0]}}"    
     event.preventDefault();
     location.hash =sample+"#K_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["K"][$(this).attr('id')];
@@ -682,13 +786,13 @@ document.getElementById("results").innerHTML = '<table id="table" class="table t
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered"  data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
     
 $('#Kegg_disease').on('click','.test',function(event) { 
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
-    var folder= "{{=request.args[0]}}"    
+       var folder= "{{=request.args[0]}}"    
         document.getElementById("chord").innerHTML=""
     document.getElementById("treemap").innerHTML=""
     document.getElementById("bubble").innerHTML=""
@@ -877,13 +981,15 @@ function select_all()
        var html = ['<span><b> proteins involved: </b></span>'];
        for (i = 0; i < row.proteins.length; i++) { 
             var index= protein.indexOf(row.proteins[i].split("(")[0])
+            
             if (index!=-1)
             {
                 html.push('<font color="red"> ' + row.proteins[i] + ' </font>');
             }
             else
-            {
+            { if (row.common!=2){
                 html.push(" "+row.proteins[i] );
+            }
             }
         }
         return html.join('');
@@ -914,8 +1020,7 @@ function select_all()
         }
         return {};
     }
-
-function controlsorter(a, b){
-    console.log(a,b)
-}
+$('.disabled').click(function(e) {
+    e.preventDefault() ;
+}) ;
 </script>

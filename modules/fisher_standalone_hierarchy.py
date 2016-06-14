@@ -91,13 +91,14 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,db_background):
                         fisher_value[fisher[i]].append(i)
             if flag==1:
                 f2=open(res_folder+"/"+ii+"_hierarchy/"+jj+".txt","w")
+                f2.write("id\tp_value\tproteins_involved\tdescription\tproteins\n")
                 databases.append(ii)
                 sub_categories[ii]=sub_categories[ii]+jj+"\t"
                 temp=[]
                 for i in fisher_value:
                     if len(fisher_value)>0:
                         for j in fisher_value[i]:
-                            f2.write(j+"\t"+str(i)+"\t"+descr[j]+"\t"+" ".join(annotation[j])+"\n")
+                            f2.write(j+"\t"+str(i)+"\t"+str(len(annotation[j]))+"\t"+descr[j]+"\t"+" ".join(annotation[j])+"\n")
                 f2.close()
 
 
