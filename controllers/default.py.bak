@@ -306,9 +306,9 @@ def wait_tsfa():
             proteome_annotated[seq[0]]=[]
             protein_stats[seq[0]]={}
             fisher_alone[seq[0]]=fisher_standalone.load(request.args[1],seq[0],seq[1:],float(request.args[2]),["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"],request.folder,
-                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path)
+                               request.folder+"static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path)
             fisher_alone_hierarchy[seq[0]]=fisher_standalone_hierarchy.load(request.args[1],seq[1:],float(request.args[2]),db_hierarchy,request.folder,
-                               request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,db_background)
+                               request.folder+"static/results/"+request.args[1]+"/"+seq[0]+"_fisher",path,db_background)
             
             seq=f1.readline()
         f1=open(request.folder+"static/results/"+request.args[1]+"/nodes_graph.txt","r")
@@ -322,8 +322,8 @@ def wait_tsfa():
             not_present_in_network=f2.readline().strip().split("\t")
             f2.close()
             seq=seq.strip().split("\t")
-
-            for j in seq[1:]:
+            proteins_to_test=list(set(seq[1:]+start_nodes[seq[0]]))
+            for j in proteins_to_test:
                 if proteome_descr.has_key(j):
                     protein_descr[j]=proteome_descr[j]
                     
@@ -351,11 +351,11 @@ def wait_tsfa():
             else:
                 control=False
             
-            col,nmap,domain_db,count_annotation,root_second_level,controls=fishertest.load(request.args[1],seq[0],seq[1:]+proteome_annotated[seq[0]],
-                                                                                       float(request.args[2]),["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"],
+            col,nmap,domain_db,count_annotation,root_second_level,controls=fishertest.load(request.args[1],seq[0],proteins_to_test,
+                                                                                       float(request.args[2]),["C","P","F","R","K","O","KDi","Or","KDr","DB","T","HPi"],
                             request.args[3],request.folder,start_nodes[seq[0]],domain_db,protein_descr,count_annotation,root_second_level,fisher_alone[seq[0]],sample,sample_number,control,controls)
 
-            fisher_h[seq[0]],controls_h=fisher_hierarchy.load(request.args[1],seq[1:]+proteome_annotated[seq[0]],float(request.args[2]),db_hierarchy,request.folder,
+            fisher_h[seq[0]],controls_h=fisher_hierarchy.load(request.args[1],proteins_to_test,float(request.args[2]),db_hierarchy,request.folder,
                                request.folder+"/static/results/"+request.args[1]+"/"+seq[0]+"_graph",path,fisher_alone_hierarchy[seq[0]],db_background,control,controls_h)
             nodes_graph[seq[0]]=seq[1:]
             graph_mcn=nx.read_gpickle(request.folder+"static/results/"+request.args[1]+"/"+seq[0]+"_graph/graph_mcn.gpickle")
@@ -517,6 +517,7 @@ def results_tsfa():
             if len(seq)==1:
                 continue
             count=0
+            
             for k in seq:
                 if k[-1]=="*":
                     k=k[0:-1]
@@ -593,8 +594,7 @@ def load_circle():
     path="/magneto/static/results/"+request.args[0][0:-1]+"/stats.json"
     return dict(path=path)
 def load_bar_plot():
-    /media/girolamo/SAMSUNG/web2py/applications/magneto/static/results/528e81e8-2bf0-4da7-bc5b-f2c31dfe7eaa
-    path="/magneto/static/results/528e81e8-2bf0-4da7-bc5b-f2c31dfe7eaa/0_bar.txt"
+    path="/magneto/static/results/a6d623d8-21ba-4fba-abb4-9effadee2225/1_bar.txt"
     return dict(path=path)
 def load_chord():
     values=request.env.http_web2py_component_location.split("#")

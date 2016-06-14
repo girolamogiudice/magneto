@@ -28,7 +28,7 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
     children={}
     f7=open(folder+"/static/results/"+uuid+"/"+ids+"_graph/cluster_id.txt","w")
     f8=open(folder+"/static/results/"+uuid+"/"+ids+"_bar.txt","w")
-    f8.write("db\tstandard\tcommon\tmagneto\n")
+    f8.write("db\tStandard\tCommon\tMAGNETO\tTotal\n")
     temp_db={}
     for ii in comp_list:
         f3=open(folder+"/static/results/"+uuid+"/"+ids+"_graph/"+ii+"_word_fisher.txt","w")
@@ -87,9 +87,9 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         annotation={}
         annotation_gene={}
         for i in protein:
-            if fisher.has_key(i):
+            if i in fisher:
                 for j in fisher[i]:
-                    if fisherset.has_key(j):
+                    if j in fisherset:
                         annotation_gene[j].append(i+"("+protein_descr[i]+")")
                         annotation[j].append(i)
                         fisherset[j]=fisherset[j]+1
@@ -158,12 +158,12 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
 
             for k in annotation[i]:
                 prot_fisher.append(k)
-                if clusterid.has_key(i):
+                if i in clusterid:
                     clusterid[i].append(k)
                 else:
                     clusterid[i]=[]
                     clusterid[i].append(k)
-                if clusterdb.has_key(k):
+                if k in clusterdb:
                     clusterdb[k].append(i)
                 else:
                     nmap[k]={"id":count,"name":k+"("+protein_descr[k]+")","description":protein_descr[k],"descr":protein_descr[k][0]}
@@ -172,18 +172,18 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
                     clusterdb[k].append(i)
 
 
-                if col.has_key(k):
+                if k in col:
                     col[k].append(colors[ii])
                 else:
                     col[k]=[]
                     col[k].append(colors[ii])
         f2.close()
         for i in fisher_annotation[ii]:
-            if not fisher_value.has_key(i):
-                fisher_json.append({"id":i,"p value":"-1","proteins involved":str(len(fisher_annotation[ii][i])),"description":descr[i],"proteins":annotation_gene[i],"common":2})
+            if not i in fisher_value:
+                fisher_json.append({"id":i,"p value":"-1","proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":2})
                 standard=standard+1
-        if (standard!=0 and common!=0 and magneto!=0):
-            f8.write(ii+"\t"+str(standard)+"\t"+str(common)+"\t"+str(magneto)+"\n")
+        if not (standard==0 and common==0 and magneto==0):
+            f8.write(alias_dict[ii]+"\t"+str(standard)+"\t"+str(common)+"\t"+str(magneto)+"\t"+str(common+magneto)+"\n")
         json.dump(fisher_json,open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_graph/"+ii+"fisher.json","w"))
         number_of_word=len(words_count_enriched)
         total_word=len(words_count)

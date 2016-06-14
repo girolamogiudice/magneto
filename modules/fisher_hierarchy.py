@@ -25,7 +25,7 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_alone_hi
             descr[seq[0]]=seq[1]
             seq=f1.readline()
         f1.close()
-
+        
         for jj in comp_list[ii]:
             temp_table=[]
             controls_h[ii][jj]={}
@@ -132,11 +132,12 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_alone_hi
                     json_tree[ii]["children"].append({"name":jj,"children":temp})
 
                 for i in fisher_alone_hierarchy[ii][jj]:
-                    temp_table.append({"id":i,"description":descr[i],"proteins":"","common":"2","p value":"-1","proteins involved":"0"})
+                    temp_table.append({"id":i,"description":descr[i],"proteins":annotation[i],"common":"2","p value":"-1","proteins involved":str(len(annotation[j]))})
 
-                
+            
             if len(temp_table)>=1:
-                json.dump(temp_table,open(res_folder+"/"+ii+"_hierarchy/"+jj+"fisher.json","w"))
+
+                json.dump(temp_table,open(res_folder+"/"+ii+"_hierarchy/"+jj+"_fisher.json","w"))
         
         if len(json_tree[ii]["children"])>0:
             json.dump(json_tree[ii],open(res_folder+"/"+ii+"_hierarchy/json.txt","w"))
