@@ -12,7 +12,14 @@ def index():
     return dict()
 
 def test():
-    return dict()
+    f1=open(request.folder+"static/results/83470cb3-061a-4cbc-9c70-af3abe77965d/0_bar.txt")
+    seq=f1.readline()
+    table=[]
+    while(seq!=""):
+        seq=seq.strip().split("\t")
+        table.append(seq)
+        seq=f1.readline()
+    return dict(table=table)
 def test_table():
     print "ccc"
     return dict()
@@ -592,9 +599,11 @@ def load_stats():
 def load_circle():
     path="/magneto/static/results/"+request.args[0][0:-1]+"/stats.json"
     return dict(path=path)
+
 def load_bar_plot():
-    path="/magneto/static/results/a6d623d8-21ba-4fba-abb4-9effadee2225/1_bar.txt"
+    path="/magneto/static/results/"+request.args[0]+"/"+request.args[1]+"bar.txt"
     return dict(path=path)
+
 def load_chord():
     values=request.env.http_web2py_component_location.split("#")
     ids=values[1]

@@ -47,9 +47,9 @@ display:flex;
 {{alias=["Component","Function","Process","Kegg","Reactome","Omim","Kegg Disease","Kegg Drug","Drug bank","Orphanet","Toxins","Virus"]}}
 {{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
 {{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
-<div id="sel" class="selection">
-<select id="locate_cluster" class="form-control" onclick="rem()">
-<option value="0" placeholder="Select a cluster">Select a cluster</option>
+<div id="sel" class="selection" onclick="filter.undo().apply();locate.center(1);restore();change_text()">
+<select id="locate_cluster" class="form-control" onchange="filter.undo().apply();locate.center(1);restore();rem()">
+    <option value="">Locate Enriched clusters</option>
     {{for i in files_id:}}
     {{if len(clusterid[i])>0:}}
     <optgroup label="{{=alias_dict[i]}}" id="db" value="{{=i}}">{{=alias_dict[i]}}
@@ -60,16 +60,16 @@ display:flex;
     </optgroup>
     {{pass}}
 </select>
-<select id="locate_prot" placeholder="Localize a protein" class="form-control" onclick="search_nodes()">
- <option value="0">Localize a protein</option>
+<select id="locate_prot" placeholder="Localize a protein or a gene" class="form-control" onchange="filter.undo().apply();locate.center(1);restore();search_nodes()">
+ <option value="">Localize a protein or a gene</option>
 
   {{for i in sorted(neigh):}}
     <option value="{{=i}}">{{=i}}({{=protein_descr[i]}})</option>
   {{pass}}
 </select>
 
-<select id="neigh"  placeholder="Show neighbor" class="form-control" onclick="neigh()">
-    <option value="0">Show Neighbors</option>
+<select id="neigh"  placeholder="Show neighbor" class="form-control" onchange="filter.undo().apply();locate.center(1);restore();neigh()">
+    <option value="" default selected>Show Neighbors</option>
   {{for i in sorted(neigh):}}
     <option value="{{=i}}">{{=i}}({{=protein_descr[i]}})</option>
   {{pass}}
@@ -79,9 +79,10 @@ display:flex;
 <br>
 
 <script>
-    $('#locate_cluster').selectize({
-        sortField: 'text'
-    });
+    $('#locate_cluster').selectize();
+    $('#locate_prot').selectize();
+    $('#neigh').selectize();
+    
     cluster_id={{=XML(clusterid)}}
 
     s = new sigma({ 
@@ -115,12 +116,11 @@ function rem() {
     }
     else {
     filter.undo().apply()
-    restore()
+    
     }
 }
 function neigh(){
-    console.log($("#neigh").val())
-    if ($("#neigh").val() === "0") {
+    if ($("#neigh").val() === "0"){
         filter.undo().apply()
         restore()
        locate.center(1);
@@ -154,27 +154,32 @@ var conf = {
     sigma.utils.zoomTo(s.camera, 3, 3, conf.zoomDef);
     
 function search_nodes() {
-   if ($("#locate_prot").val() === "0") {
+   if ($("#locate_prot").val() === "0" ) {
         filter.undo().apply()
         restore()
        locate.center(1);
     }
+    
     else{
-locate.nodes(($("#locate_prot").val())).id
-locate.center(10);}
-}
+        locate.nodes(($("#locate_prot").val())).id
+        locate.center(10);}
+    }
 function clear_graph() {
     s.graph.clear();
     s.graph.kill();
 };
 
 function restore() {
+    console.log("sono qui")
     $('#locate_cluster').prop('selectedIndex',0);
     $('#neigh').prop('selectedIndex',0);
     $('#locate_prot').prop('selectedIndex',0);
 };
 
+function change_text(){
 
+
+}
     
 
 </script>

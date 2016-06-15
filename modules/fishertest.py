@@ -16,6 +16,7 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
     col={}
     mat={}
     neigh={}
+    fisher_json_table=[]
     databases={"C":"Gene Ontology","F":"Gene Ontology","P":"Gene Ontology","R":"Pathway","K":"Pathway","O":"Disease","Or":"Disease","KDi":"Disease","DB":"Drugs","KDr":"Drugs","HPi":"Virus","T":"Toxins"}
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet","HPi":"Virus","T":"Toxins"}
     graph_mcn = nx.read_gpickle(folder+"static/results/"+uuid+"/"+ids+"_graph/graph_mcn.gpickle")
@@ -183,8 +184,10 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
                 fisher_json.append({"id":i,"p value":"-1","proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":2})
                 standard=standard+1
         if not (standard==0 and common==0 and magneto==0):
+            fisher_json_table.append({"database":alias_dict[ii],"Standard":str(standard),"Shared":str(common),"MAGNETO":str(magneto),"Total":str(common+magneto)})
             f8.write(alias_dict[ii]+"\t"+str(standard)+"\t"+str(common)+"\t"+str(magneto)+"\t"+str(common+magneto)+"\n")
         json.dump(fisher_json,open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_graph/"+ii+"fisher.json","w"))
+        json.dump(fisher_json_table,open(folder+"/static/results/"+uuid+"/"+ids+"_bar.json","w"))
         number_of_word=len(words_count_enriched)
         total_word=len(words_count)
         word_fisher=[]

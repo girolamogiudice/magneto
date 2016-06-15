@@ -1,6 +1,9 @@
 {{extend 'layout.html'}}
 <div class="export btn-group"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div>
 
+<button class="btn"><a href = "/magneto/static/results/83470cb3-061a-4cbc-9c70-af3abe77965d/0_bar.json" download><i class="glyphicon glyphicon-download-alt"></i></a></button>
+
+
 <script src="/magneto/static/js/linkurious/src/sigma.core.js"></script>
 <script src="/magneto/static/js/linkurious/src/conrad.js"></script>
 <script src="/magneto/static/js/linkurious/src/utils/sigma.utils.js"></script>
@@ -50,8 +53,11 @@
 <script src="{{=URL('static','js/d3.layout.cloud.js')}}"></script>
 <script src="/magneto/static/js/mapper.js"></script>
 <script src="/magneto/static/js/underscore.js"></script>
+<script src="/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js"></script>
+
+
 <script src="{{=URL('static','js/selectize.min.js')}}"></script>
-<link rel="stylesheet" href="/magneto/static/js/bootstrap-table/dist/bootstrap-table.css">
+<link rel="stylesheet" href="/magneto/static/css/selectize.bootstrap3.css">
 <style>
 
 .dropdown-submenu {
@@ -170,7 +176,6 @@ line.link {
  pointer-events: none;
 }
 </style>
-{{=request.args}}
 {{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
 {{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
   <ul class="nav nav-pills nav-justified" role="tablist">
@@ -178,7 +183,7 @@ line.link {
             <ul id="sample" class="dropdown-menu">
                 {{for i in mapping_column:}}
                  <li id="sample_value" value="{{=i[0]}}" onclick="$.web2py.component('{{=URL('default','load_bar_plot.load',args=[request.args[0].strip(),i[0]])}};','bar_plot');
-                                                           return_value({{=i[0]}});change_text();
+                                                           return_value({{=i[0]}});change_text();load_db_table();
                                                            $.web2py.component('{{=URL('default', 'load_stats.load',args=[request.args[0],i[0],sample_number,True])}};', 'stat');
                                                            $.web2py.component('{{=URL('default', 'load_request.load',args=[request.args[0],i[0]])}};','graph-container');">
                      <a class="sv" id="sv" value="{{=i[0]}}" href="#{{=i[0]}}" data-toggle="tab">{{=i[1]}}</a></li>{{pass}}
@@ -188,9 +193,8 @@ line.link {
       <ul id="statistic_menu" class="dropdown-menu">
                 <li id="s_li"><a class="stats" id="s" onclick="change_text_stats('Network statistics')" data-toggle="tab">Network statistics</a></li>
           {{if len(mapping_column)>0:}}
-                <li id="cp_li"><a href="#circle_plot" id="cp" data-toggle="tab" onclick="change_text_stats('Terms statistic');$.web2py.component('{{=URL('default', 'load_circle.load',args=[request.args[0]])}};', 'circle_plot');">Terms statistic</a></li>
+                <li id="cp_li"><a id="cp" data-toggle="tab" onclick="$.web2py.component('{{=URL('default', 'load_circle.load',args=[request.args[0]])}};', 'circle_plot');">Enriched terms statistic</a></li>
           {{pass}}
-                <li id="bp_li"><a class="bar_plot" id="bp" onclick="change_text_stats('Comparison standard vs MAGNETO');" data-toggle="tab">Comparison standard vs MAGNETO</a></li>
         </ul>
       </li>
     <li role="presentation" id="network" class="disabled disabledTab"><a href="#network" aria-controls="network" role="tab" data-toggle="tab">Network</a></li>
@@ -258,7 +262,10 @@ line.link {
       <div class="panel-heading">Statistics</div>
       <div class="panel-body">
           <div id="stat"></div>
-          <div id="bar_plot"></div>
+          <div class="row">
+              <div class="col-md-6" id="bar_plot"></div>
+              <div class="col-md-6" id="db_stats"></div>
+          </div>
           <div id="circle_plot"></div>
       </div>
 </div>
@@ -536,7 +543,7 @@ $('.dbfa').click(function(event){
                 $("#plot").addClass('dropdown disabled disabledTab');
                 return false
             }
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
@@ -551,7 +558,7 @@ document.getElementById("results").innerHTML = '<table id="table" class="table t
                 return false
             }
            
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toolbar="#toolbar" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
     }
     
@@ -708,11 +715,11 @@ $('#Reactome').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
 
@@ -749,11 +756,11 @@ $('#Orphanet').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
     
@@ -792,11 +799,11 @@ $('#Kegg').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered"  data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered"  data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
     
@@ -833,11 +840,11 @@ $('#Kegg_disease').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
     
@@ -874,11 +881,11 @@ $('#Kegg_drugs').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
     
@@ -916,11 +923,11 @@ $('#Drug_bank').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
 function hierarchy_select()
@@ -1034,4 +1041,15 @@ function select_all()
 $('.disabled').click(function(e) {
     e.preventDefault() ;
 }) ;
+ function load_db_table(){
+     sample=location.hash.split("#")[1]
+     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
+path_table="/magneto/static/results/{{=XML(request.args[0])}}/"+sample+"_bar.json"
+path_download="/magneto/static/results/{{=XML(request.args[0])}}/"+sample+"_bar.zip"
+document.getElementById("db_stats").innerHTML = '<div id="toolbar" class="export btn-group"><button class="btn btn-default dropdown-toggle" onclick="download_table(path_download)" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i></button></div><table id="table_db" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path_table+'><thead><th data-field="database" data-align="left" data-sortable="true">Database</th><th data-field="Standard" data-align="left" data-sortable="true">Standard</th><th data-field="Shared" data-align="left" data-sortable="true">Shared</th><th data-field="MAGNETO" data-align="left" data-sortable="true">MAGNETO</th><th data-field="Total" data-align="left" data-sortable="true">Total</th></tr></thead></table>';
+}
+    
+    function download_table(path){
+        window.location.assign(path);
+    }
 </script>
