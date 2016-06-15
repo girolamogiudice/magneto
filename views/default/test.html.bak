@@ -1,42 +1,34 @@
 {{extend 'layout.html'}}
-<!DOCTYPE html>
+<script src="{{=URL('static','js/selectize.min.js')}}"></script>
+<link rel="stylesheet" href="/magneto/static/css/selectize.bootstrap3.css">
 
-<style>
-circle.node {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-
-line.link {
-  stroke: #999;
-  stroke-opacity: .6;
-}
-</style>
-<script src="{{=URL('static','js/d3.min.js')}}"></script>
-<script src="{{=URL('static','js/logo.js')}}"></script>
-<h1>Questo è il template default/test.html</h1>
-
-
-<table style="width:100%">
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>		
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>		
-    <td>94</td>
-  </tr>
-  <tr>
-    <td>John</td>
-    <td>Doe</td>		
-    <td>80</td>
-  </tr>
-</table>
-
-<ul>
-
-    <li><a href="https://sourceforge.net/projects/finesplice/">Finesplice </a>Enhanced splice junction detection and estimation from RNA-Seq data (<a href="http://nar.oxfordjournals.org/content/42/8/e71">Article </a>)</li>
-    <li><a href="https://sourceforge.net/projects/finesplice/"><font color="#fc0082">ATtR</font><font color="#3399cc">ACT</font></a><font color="#fc0082">A</font> da<font color="#fc0082">T</font>abase  of <font color="#fc0082">R</font>NA binding proteins and <font color="#3399cc">A</font>sso<font color="#3399cc">C</font>iated mo<font color="#3399cc">T</font>ifs (<a href="http://database.oxfordjournals.org/content/2016/baw035.full">Article </a>)</li>
-</ul>
+<div class="demo">
+				<h2>Optgroups (basic)</h2>
+				<div class="control-group">
+					<label for="select-gear">Gear:</label>
+					<select id="select-gear" class="demo-default" placeholder="Select gear..." onclick="search()">
+						<option value="">Select gear...</option>
+						<optgroup label="Climbing">
+							<option value="pitons">Pitons</option>
+							<option value="cams">Cams</option>
+							<option value="nuts">Nuts</option>
+							<option value="bolts">Bolts</option>
+							<option value="stoppers">Stoppers</option>
+							<option value="sling">Sling</option>
+						</optgroup>
+						<optgroup label="Skiing">
+							<option value="skis">Skis</option>
+							<option value="skins">Skins</option>
+							<option value="poles">Poles</option>
+						</optgroup>
+					</select>
+				</div>
+				<script>
+				$('#select-gear').selectize({
+					sortField: 'text'
+				});
+                function search(){
+               console.log("sono1ui")
+                }
+				</script>
+			</div>

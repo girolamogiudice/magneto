@@ -44,7 +44,7 @@ display:flex;
     </button></div>
 <br>
 <br>
-{{alias=["Component","Function","Process","Kegg","Reactome","Omim","Kegg Disease","Kegg Drug","Drug bank","Orphanet","Toxins","Host pathogen interaction"]}}
+{{alias=["Component","Function","Process","Kegg","Reactome","Omim","Kegg Disease","Kegg Drug","Drug bank","Orphanet","Toxins","Virus"]}}
 {{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
 {{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
 <div id="sel" class="selection">
@@ -52,11 +52,12 @@ display:flex;
 <option value="0" placeholder="Select a cluster">Select a cluster</option>
     {{for i in files_id:}}
     {{if len(clusterid[i])>0:}}
-    <option id="db" value="{{=i}}" disabled>{{=alias_dict[i]}}</option>
+    <optgroup label="{{=alias_dict[i]}}" id="db" value="{{=i}}">{{=alias_dict[i]}}
     {{for j in clusterid[i]:}}
     <option value="{{=i}} {{=j}}">{{=j}} : {{=descr[i][j]}}</option>
     {{pass}}
   {{pass}}
+    </optgroup>
     {{pass}}
 </select>
 <select id="locate_prot" placeholder="Localize a protein" class="form-control" onclick="search_nodes()">
@@ -78,7 +79,9 @@ display:flex;
 <br>
 
 <script>
-   // console.log(document.getElementById("sel")) 
+    $('#locate_cluster').selectize({
+        sortField: 'text'
+    });
     cluster_id={{=XML(clusterid)}}
 
     s = new sigma({ 
