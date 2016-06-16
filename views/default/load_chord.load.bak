@@ -43,7 +43,7 @@ var tooltip = d3.select("body")
         matrix={{=XML(mat)}}
         mmap={{=XML(mmap)}}
         cluster={{=XML(cluster)}}
-       var w = 1170, h = 980, r1 = h / 2, r0 = r1 - 100;
+       var w = 3200, h = 1800, r1 = h / 2, r0 = r1 - 100;
         var fill=d3.scale.ordinal().range(["#9ACD32","#377DB8","#F5DEB3","#EE82EE","#40E0D0","#FF6347","#D8BFD8","#D2B48C","#999999","#4682B4","#00FF7F","#FFFAFA"
                                            ,"#708090","#708090","#6A5ACD","#87CEEB","#F781BF","#A0522D","#FFF5EE","#2E8B57","#F4A460","#FA8072","#E41A1C","#A65628","#FF7F00","#FFFF33","#984EA3"])
         //d3.scale.ordinal().range(['#c7b570','#c6cdc7','#335c64','#768935','#507282','#5c4a56','#aa7455','#574109','#837722','#73342d','#0a5564','#9c8f57','#7895a4','#4a5456','#b0a690','#0a3542',]);
@@ -85,10 +85,7 @@ var tooltip = d3.select("body")
                 svg.selectAll("path.chord").attr("class", "chord").style("opacity",0.8) 
                 tooltip.style("visibility", "hidden") 
             });
-      function mouseover(d,i) {
-          console.log(d)
-          
-          }
+
         g.append("svg:path")
             .style("fill", function(d) { return fill(rdr(d).gname); })
             .attr("d", arc);
@@ -101,7 +98,7 @@ var tooltip = d3.select("body")
             .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
             .attr("transform", function(d) {
               return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
-                  + "translate(" + (r0 + 40) + ")"
+                  + "translate(" + (r0 + 20) + ")"
                   + (d.angle > Math.PI ? "rotate(180)" : "");
             })
             .text(function(d) {  return rdr(d).gname; });

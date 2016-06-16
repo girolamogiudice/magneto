@@ -1,8 +1,4 @@
 {{extend 'layout.html'}}
-<div class="export btn-group"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div>
-
-<button class="btn"><a href = "/magneto/static/results/83470cb3-061a-4cbc-9c70-af3abe77965d/0_bar.json" download><i class="glyphicon glyphicon-download-alt"></i></a></button>
-
 
 <script src="/magneto/static/js/linkurious/src/sigma.core.js"></script>
 <script src="/magneto/static/js/linkurious/src/conrad.js"></script>
@@ -59,6 +55,7 @@
 <script src="{{=URL('static','js/selectize.min.js')}}"></script>
 <link rel="stylesheet" href="/magneto/static/css/selectize.bootstrap3.css">
 <style>
+
 
 .dropdown-submenu {
     position: relative;
@@ -171,11 +168,12 @@ line.link {
 
 }
     
-
+    #res {padding-top:-250px;}
 .disabled > a{
  pointer-events: none;
 }
 </style>
+
 {{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
 {{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
   <ul class="nav nav-pills nav-justified" role="tablist">
@@ -189,15 +187,16 @@ line.link {
                      <a class="sv" id="sv" value="{{=i[0]}}" href="#{{=i[0]}}" data-toggle="tab">{{=i[1]}}</a></li>{{pass}}
             </ul>
           </li>
-    <li role="presentation" id="statistics" class="disabled disabledTab" ><a href="#Statistics" aria-controls="Statistics" role="tab" data-toggle="tab">Statistics</a>
+    <li role="presentation" id="statistics" class="disabled disabledTab" ><a aria-controls="Statistics">Statistics</a>
       <ul id="statistic_menu" class="dropdown-menu">
-                <li id="s_li"><a class="stats" id="s" onclick="change_text_stats('Network statistics')" data-toggle="tab">Network statistics</a></li>
+                <li><a id="s_li" onclick="remove_active();" data-toggle="tab">Network statistics</a></li>
+
           {{if len(mapping_column)>0:}}
-                <li id="cp_li"><a id="cp" data-toggle="tab" onclick="$.web2py.component('{{=URL('default', 'load_circle.load',args=[request.args[0]])}};', 'circle_plot');">Enriched terms statistic</a></li>
+                <li><a id="cp_li" data-toggle="tab" onclick="remove_active();$.web2py.component('{{=URL('default', 'load_circle.load',args=[request.args[0]])}};', 'circle_plot');">Enriched terms statistic</a></li>
           {{pass}}
         </ul>
       </li>
-    <li role="presentation" id="network" class="disabled disabledTab"><a href="#network" aria-controls="network" role="tab" data-toggle="tab">Network</a></li>
+    <li role="presentation" id="network" class="disabled disabledTab"><a id="net" aria-controls="network" role="tab" data-toggle="tab">Network</a></li>
     <li id="func_anal" role="presentation" class="dropdown disabled disabledTab"><a class="dropdown-toggle" href="#functional" aria-controls="functional" id="fa" role="tab" data-toggle="dropdown">Functional Analysis</a>
             <ul id="fa" class="dropdown-menu">
                 <li><a class="dbfa" id="C" data-toggle="tab">GO Component</a></li>
@@ -212,8 +211,8 @@ line.link {
                 <li><a class="dbfa" id="DB" data-toggle="tab">Drug Bank</a></li>
                 <li><a class="dbfa" id="T" data-toggle="tab">Toxins</a></li>
                 <li><a class="dbfa" id="HPi" data-toggle="tab">Virus</a></li>
-                 <li class="divider">Hierarchy enrichment</li>
-                <li  id="sub" class="dropdown-submenu">
+                <li class="divider">Hierarchy enrichment</li>
+                <li id="sub" class="dropdown-submenu">
                     <a class="dbfa" tabindex="-1" id="R_h" href="#">Reactome hierarchy<span class="caret"></span></a>
                         <ul class="dropdown-menu dm" id="Reactome" style="position:absolute;display: none;left:100%;top:0px;margin-top: 0px;margin-left:-5px;margin:-1px; padding:0;">
                     </ul>
@@ -243,17 +242,12 @@ line.link {
           </li>
     <li class="dropdown disabled disabledTab" id="plot"><a class="dropdown-toggle" href="#plot" aria-controls="plot" id="drawplot" role="tab" data-toggle="dropdown">Plot</a>
        <ul class="dropdown-menu">
-        <li id="chord_plot"><a  href="#Chord" data-toggle="tab" onclick="chord_select();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord')">Chord Plot</a></li>
-        <li id="treemap_plot"><a href="#Treemap" data-toggle="tab" onclick="treemap_select();$.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap')">Treemap Plot</a></li>
-        <li id="bubble_plot"><a href="#bubble" data-toggle="tab" onclick="bubble_select();$.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble')">Bubble Plot</a></li>
-        <li id="wc_plot"><a href="#word" data-toggle="tab" onclick="word_cloud_select();$.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')">Word Cloud Plot</a></li>
-        <li class="disabled" id="hierarchy_plot"><a href="#hierarchy" data-toggle="tab" onclick="hierarchy_select();$.web2py.component('{{=URL('default','load_hierarchy.load',args=request.args[0].strip())}};','hierarchy_tree')">Hierarchy Plot</a></li>
+        <li id="chord_plot"><a id="cplot" data-toggle="tab" onclick="chord_select();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord');">Chord Plot</a></li>
+        <li id="treemap_plot"><a id="tp" href="#Treemap" data-toggle="tab" onclick="treemap_select();$.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap');">Treemap Plot</a></li>
+        <li id="bubble_plot"><a id="bp" href="#bubble" data-toggle="tab" onclick="bubble_select();$.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble');">Bubble Plot</a></li>
+        <li id="wc_plot"><a id="wcp" href="#word" data-toggle="tab" onclick="word_cloud_select();$.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word');">Word Cloud Plot</a></li>
+        <li class="disabled" id="hierarchy_plot"><a id="hp" data-toggle="tab" onclick="hierarchy_select();$.web2py.component('{{=URL('default','load_hierarchy.load',args=request.args[0].strip())}};','hierarchy_tree');">Hierarchy Plot</a></li>
 
-        <li class="divider"></li>
-        <li id="display_plot"><a onclick="select_all();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord');
-            $.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap');
-            $.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble');
-            $.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')">Display All Plots</a></li>
             </ul>
    </li>
 </ul>
@@ -305,6 +299,64 @@ line.link {
 
 
 <script>
+function remove_active(){
+ $('#statistics li.active').removeClass('active')
+
+}
+$(".dbfa").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#results_panel").offset().top
+    }, 1000);
+});
+    
+$("#s_li").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#stats_panel").offset().top
+    }, 1000);
+});
+    
+$("#cp_li").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#circle_plot").offset().top
+    }, 1000);
+});
+
+$("#net").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#network_panel").offset().top
+    }, 1000);
+});
+    
+    
+$("#cplot").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#chord").offset().top
+    }, 1000);
+});
+$("#tp").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#treemap").offset().top
+    }, 1000);
+});
+$("#bp").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#bubble").offset().top
+    }, 1000);
+});
+$("#wcp").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#word").offset().top
+    }, 1000);
+});
+$("#hp").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#hierarchy_tree").offset().top
+    }, 1000);
+});
+    
+    
+    
+mapping_column={{=XML(mapping_column)}}
 menu_list={{=XML(menu_list)}}
 menu_mapping={{=XML(menu_mapping)}}
 controls={{=XML(controls)}}
@@ -313,7 +365,6 @@ menu_mapping_reverse={{=XML(menu_mapping_reverse)}}
 db_not_present={{=XML(db_not_present)}}
 no_fisher_magneto={{=XML(no_fisher_magneto)}}
 $(document).ready(function(){
-    
 $('.dropdown-submenu a')
 .mouseover(function() {
         $(this).next('ul').show()
@@ -426,13 +477,11 @@ $('#sub')
       $("#Drug_bank").hide()
       $("#Orphanet").hide()
     })
-
 })
 
     function loadScript(url)
 {
     document.body.appendChild(document.createElement("script")).src = url;
-
 }
 
 value=""
@@ -543,7 +592,8 @@ $('.dbfa').click(function(event){
                 $("#plot").addClass('dropdown disabled disabledTab');
                 return false
             }
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+
+document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
@@ -558,11 +608,12 @@ document.getElementById("results").innerHTML = '<table id="table" class="table t
                 return false
             }
            
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
     }
     
     if (document.getElementById("drawplot").text==="Chord") {
+        
         $.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord')
    }
        if (document.getElementById("drawplot").text==="Treemap") {
@@ -574,47 +625,23 @@ document.getElementById("results").innerHTML = '<table id="table" class="table t
        if (document.getElementById("drawplot").text==="Word Cloud") {
         $.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')
    }
-     if (document.getElementById("drawplot").text==="Plots") {
-        $.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord')
-        $.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap')
-        $.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble')
-        $.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word')
-   }
 });
 function download_magneto(){
     value=location.hash.split("#")
-    sample=value[1]
-    db=value[2]
+    sample=mapping_column[value[1]]
     var folder= "{{=request.args[0]}}"
-    if (value.length==3){
-    window.location.href = '/magneto/static/results/'+folder+'/'+sample+'_graph/'+db+'fisher.txt';
-    }
-     if (value.length==4){
-         db=db.split("_")[0]
-         db_h=value[3]
-         window.location.href = '/magneto/static/results/'+folder+'/'+sample+'_graph/'+db+'_hierarchy/'+menu_mapping_reverse[sample][db][db_h]+".txt"
-    }
+    path_download="/magneto/static/results/"+folder+"/"+sample+"_magneto.zip"
+    window.location.assign(path_download)
 }
 function download_standard(){
-    sample=location.hash.split("#")[1]
-    db=location.hash.split("#")[2]
-    var folder= "{{=request.args[0]}}"
-    if (value.length==3){
-    window.location.href = '/magneto/static/results/'+folder+'/'+sample+'_fisher/'+db+'fisher.txt';
-    }
-     if (value.length==4){
-         db=db.split("_")[0]
-         db_h=value[3]
-         window.location.href = '/magneto/static/results/'+folder+'/'+sample+'_fisher/'+db+'_hierarchy/'+menu_mapping_reverse[sample][db][db_h]+".txt"
-    }
-}
+    value=location.hash.split("#")
+    sample=mapping_column[value[1]]
     
-function change_text_stats(value_menu){
- $('#s_li').removeClass('active')   
-$('#bp_li').removeClass('active')
-$('#cp_li').removeClass('active')
-
+    var folder= "{{=request.args[0]}}"
+    path_download="/magneto/static/results/"+folder+"/"+sample+"_standard.zip"
+    window.location.assign(path_download)
 }
+
 function change_text() 
     {
     document.getElementById("DB_h").className=""
@@ -623,7 +650,6 @@ function change_text()
     document.getElementById("KDr_h").className=""
     document.getElementById("Or_h").className=""
     document.getElementById("R_h").className=""
-
 
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
@@ -678,7 +704,6 @@ function change_text()
         d=document.getElementById("Or_h")
         d.className += "disabled";
     }
-     
     }
 
 $('#Reactome').on('click','.test',function(event) { 
@@ -692,7 +717,6 @@ $('#Reactome').on('click','.test',function(event) {
     $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
     $("#hierarchy_plot").removeClass('active');
-
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
     $("#wc_plot").addClass('disabled');
@@ -715,11 +739,11 @@ $('#Reactome').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
 
@@ -728,7 +752,7 @@ $('#Orphanet').on('click','.test',function(event) {
 
     var folder= "{{=request.args[0]}}"
     event.preventDefault();
-        $('#fa li.active').removeClass('active')
+    $('#fa li.active').removeClass('active')
     location.hash =sample+"#Or_h#"+menu_mapping[mapping[document.getElementById("sample_sel").innerHTML.trim()]]["Or"][$(this).attr('id')];
     path= "/magneto/static/results/"+folder+"/"+sample+"_graph/Or_hierarchy/"+$(this).attr('id')+"_fisher.json"
     $('#fa').html("Orphanet: "+$(this)[0].innerText+" ");
@@ -756,11 +780,11 @@ $('#Orphanet').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
     
@@ -799,11 +823,11 @@ $('#Kegg').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered"  data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered"  data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
     
@@ -840,11 +864,11 @@ $('#Kegg_disease').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
     
@@ -862,7 +886,7 @@ $('#Kegg_drugs').on('click','.test',function(event) {
     document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
     $('#fa li.active').removeClass('active')
     $("#hierarchy_plot").removeClass('disabled');
-        $("#hierarchy_plot").removeClass('active');
+    $("#hierarchy_plot").removeClass('active');
 
     $("#chord_plot").addClass('disabled');
     $("#bubble_plot").addClass('disabled');
@@ -881,14 +905,14 @@ $('#Kegg_drugs').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
-    
+
 $('#Drug_bank').on('click','.test',function(event) {
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
     var folder= "{{=request.args[0]}}"
@@ -923,11 +947,11 @@ $('#Drug_bank').on('click','.test',function(event) {
        is_control=control_sample.indexOf(location.hash.split("#")[1])
         if (Object.keys(controls).length!=0 && is_control)
         {
-document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="control" data-align="center" data-sortable="true" data-formatter="data_formatter_control" data-sorter="controlsorter">In Control</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true" data-order="asc">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
         else
         {
-        document.getElementById("results").innerHTML = '<table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
+        document.getElementById("results").innerHTML = '<div class="export btn-group pull-right"><button class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li data-type="txt"><a onclick="download_standard()">Standard</a></li><li data-type="txt"><a onclick="download_magneto()">MAGNETO</a></li></ul></div><table id="table" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path+' data-sort-name="p value" data-sort-order="asc" data-search="true" data-select-item-name="toolbar1"  data-pagination="true" data-detail-formatter="detailFormatter" data-detail-view="true" data-row-style="rowStyle"><thead><th data-field="id" data-align="left" data-sortable="true">ID</th><th data-field="description" data-align="left" data-sortable="true">Description</th><th data-field="p value" data-align="left" data-sortable="true">P-Value</th><th data-field="proteins involved" data-align="left" data-sortable="true">#Proteins Involved</th></tr></thead></table>';
         }
 });
 function hierarchy_select()
@@ -936,6 +960,7 @@ document.getElementById("drawplot").innerHTML="Hierarchy plot<span class='caret'
 }
 function chord_select() 
     {
+       
     $("#treemap_plot").removeClass('active')
      $("#bubble_plot").removeClass('active')
       $("#wc_plot").removeClass('active')
@@ -978,20 +1003,7 @@ function word_cloud_select()
         loadScript("/magneto/static/js/d3.layout.cloud.js")
     document.getElementById("drawplot").innerHTML="Word Cloud<span class='caret'></span>"
     }
-function select_all() 
-    {
-          document.getElementById("chord").innerHTML=""
-      document.getElementById("treemap").innerHTML=""
-      document.getElementById("bubble").innerHTML=""
-      document.getElementById("word").innerHTML=""    
-     $("#chord_plot").removeClass('active')
-     $("#treemap_plot").removeClass('active')
-     $("#bubble_plot").removeClass('active')
-     $("#wc_plot").removeClass('active')
 
-      loadScript("/magneto/static/js/d3.layout.cloud.js")
-    document.getElementById("drawplot").innerHTML="Plots<span class='caret'></span>"
-    }
     function detailFormatter(index, row) {
        starting_nodes={{=XML(str(starting_nodes))}}
        values=mapping[document.getElementById("sample_sel").text.trim()]
@@ -1045,8 +1057,8 @@ $('.disabled').click(function(e) {
      sample=location.hash.split("#")[1]
      loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
 path_table="/magneto/static/results/{{=XML(request.args[0])}}/"+sample+"_bar.json"
-path_download="/magneto/static/results/{{=XML(request.args[0])}}/"+sample+"_bar.txt"
-document.getElementById("db_stats").innerHTML = '<div id="toolbar" class="export btn-group"><button class="btn btn-default dropdown-toggle" onclick="download_table(path_download)" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i></button></div><table id="table_db" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path_table+'><thead><th data-field="database" data-align="left" data-sortable="true">Database</th><th data-field="Standard" data-align="left" data-sortable="true">Standard</th><th data-field="Shared" data-align="left" data-sortable="true">Shared</th><th data-field="MAGNETO" data-align="left" data-sortable="true">MAGNETO</th><th data-field="Total" data-align="left" data-sortable="true">Total</th></tr></thead></table>';
+path_download="/magneto/static/results/{{=XML(request.args[0])}}/"+mapping_column[sample]+"_statistics.zip"
+document.getElementById("db_stats").innerHTML = '<div id="toolbar" class="export btn pull-right"><button class="btn btn-success" onclick="download_table(path_download)" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-download-alt"></i> Download</button></div><table id="table_db" class="table table-hover table-no-bordered" data-toggle="table" data-url='+path_table+'><thead><th data-field="database" data-align="left" data-sortable="true">Database</th><th data-field="Standard" data-align="left" data-sortable="true">Standard</th><th data-field="Shared" data-align="left" data-sortable="true">Shared</th><th data-field="MAGNETO" data-align="left" data-sortable="true">MAGNETO</th><th data-field="Total" data-align="left" data-sortable="true">Total</th></tr></thead></table>';
 }
     
     function download_table(path){

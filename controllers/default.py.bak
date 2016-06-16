@@ -441,7 +441,9 @@ def wait_tsfa():
 
 def results_tsfa():
     import os,zipfile
-
+    from os.path import basename
+    alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet",
+                "T":"Toxins","HPi":"Virus"}
     count=False
     f1=open(request.folder+"static/results/"+request.args[0]+"/mapping_column.txt","r")
     seq=f1.readline()
@@ -453,18 +455,23 @@ def results_tsfa():
     control_sample=[]
     while(seq!=""):
         seq=seq.strip().split("\t")
-        
         if seq[1][-1]=="*":
             control=True
             control_sample.append(seq[0])
         mapping_column.append((seq[0],seq[1].strip()))
         db_not_present[seq[0]]=[]
         no_fisher_magneto[seq[0]]=[]
-        zf_standard = zipfile.ZipFile(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"standard.zip", 'w', zipfile.ZIP_DEFLATED)
-        zf_magneto = zipfile.ZipFile(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"magneto.zip",  'w', zipfile.ZIP_DEFLATED)
+        zf = zipfile.ZipFile(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"_statistics.zip", 'w', zipfile.ZIP_DEFLATED)
+        root=request.folder+"static/results/"+request.args[0]
+        zf.write(root+"/"+seq[0]+"_bar.txt",basename(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"_statistics.txt"))
+        zf.close()
+        
+        zf_standard = zipfile.ZipFile(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"_standard.zip", 'w', zipfile.ZIP_DEFLATED)
+        zf_magneto = zipfile.ZipFile(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"_magneto.zip",  'w', zipfile.ZIP_DEFLATED)
+        root_path=request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_graph/"
+        root_path_fisher=request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"
         for i in ["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"]:
-            root_path=request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_graph/"
-            root_path_fisher=request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"
+
             size_graph=os.path.getsize(root_path+i+"_descr.txt")
             size_fisher=os.path.getsize(root_path_fisher+i+".txt")
             if size_graph==0:
@@ -472,9 +479,32 @@ def results_tsfa():
                     db_not_present[seq[0]].append(i)
                 if size_fisher>50:
                     no_fisher_magneto[seq[0]].append(i)
-                    #zf_standard.write(root_path_fisher)
-            #else:
-                #zf_magneto.write(root_path+i+"fisher.txt")
+            
+            zf_magneto.write(root_path+i+"fisher.txt",basename(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"/"+alias_dict[i]))
+            zf_standard.write(root_path_fisher+i+".txt",basename(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"/"+alias_dict[i]))
+        for i in ["R","DB","K","KDi","KDr","Or"]:
+            zf_magneto.write(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_graph/"+i+"_hierarchy",basename(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"/"+alias_dict[i]+"_hierarchy"))
+            zf_standard.write(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"+i+"_hierarchy"
+                              ,basename(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"/"+alias_dict[i]+"_hierarchy"))
+
+            hierarchy_path=request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_graph/"+i+"_hierarchy/"
+            hierarchy_path_fisher=request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"+i+"_hierarchy/"
+            f2=open(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_graph/"+i+"_hierarchy/files_domain.txt","r")
+            lista_files_heirarchy_magneto=f2.readline().strip().split("\t")
+            f2.close()
+            f2=open(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"+i+"_hierarchy/files_domain.txt","r")
+            lista_files_heirarchy_standard=f2.readline().strip().split("\t")
+            f2.close()
+            if len(lista_files_heirarchy_magneto)>1:
+                for j in lista_files_heirarchy_magneto:
+                    if j[-1]!="*":
+                  
+                        zf_magneto.write(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_graph/"+i+"_hierarchy/"+j+".txt",alias_dict[i]+"_hierarchy/"+j)
+            if len(lista_files_heirarchy_standard)>1:
+                for j in lista_files_heirarchy_standard:
+                    if j[-1]=="*":
+                        j=j[0:-1]
+                    zf_standard.write(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"+i+"_hierarchy/"+j+".txt",alias_dict[i]+"_hierarchy/"+j)
         mapping[seq[1].strip()]=seq[0]
         seq=f1.readline()
         zf_standard.close()
@@ -491,8 +521,7 @@ def results_tsfa():
     f1.close()
     menu_list={}
 
-    alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet",
-                "T":"Toxins","HPi":"Virus"}
+
     #load controls
     controls={}
     if control:
@@ -536,17 +565,18 @@ def results_tsfa():
                 continue
             count=0
             for k in seq:
+                
                 if k[-1]=="*":
                     k=k[0:-1]
-                    menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="test list-group-item-danger" id="'+k+'"><a class="danger" tabindex="-1" href="#">'+k.replace("_"," ")+'</a><li>'
+                    menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="test list-group-item-danger" onckick="location.hash=chord" id="'+k+'"><a class="danger"  tabindex="-1" href="#">'+k.replace("_"," ")+'</a><li>'
                 else:
-                    menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="test" id="'+k+'"><a tabindex="-1" href="#">'+k.replace("_"," ")+'</a><li>'
+                    menu_list[i[0]][j]=  menu_list[i[0]][j]+ '<li class="test" onckick="location.hash=chord" id="'+k+'"><a tabindex="-1" "location.hash=chord" href="#">'+k.replace("_"," ")+'</a><li>'
                 menu_mapping[i[0]][j][k]=str(count)
                 menu_mapping_reverse[i[0]][j][str(count)]=k
                 count=count+1
+      
     databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
     alias_colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396","KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
-
     return dict(mapping_column=mapping_column,mapping=mapping,starting_nodes=starting_nodes,databases=databases,alias_colors=alias_colors,alias_dict=alias_dict,sample_number=sample_number,menu_list=menu_list,
                menu_mapping=menu_mapping,menu_mapping_reverse=menu_mapping_reverse,count=count,controls=controls,control_sample=control_sample,db_not_present=db_not_present,no_fisher_magneto=no_fisher_magneto)
 
