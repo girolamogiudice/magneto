@@ -440,7 +440,8 @@ def wait_tsfa():
     return dict(sched_var=sched_var)
 
 def results_tsfa():
-    import os
+    import os,zipfile
+
     count=False
     f1=open(request.folder+"static/results/"+request.args[0]+"/mapping_column.txt","r")
     seq=f1.readline()
@@ -452,22 +453,32 @@ def results_tsfa():
     control_sample=[]
     while(seq!=""):
         seq=seq.strip().split("\t")
+        
         if seq[1][-1]=="*":
             control=True
             control_sample.append(seq[0])
         mapping_column.append((seq[0],seq[1].strip()))
         db_not_present[seq[0]]=[]
         no_fisher_magneto[seq[0]]=[]
+        zf_standard = zipfile.ZipFile(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"standard.zip", 'w', zipfile.ZIP_DEFLATED)
+        zf_magneto = zipfile.ZipFile(request.folder+"static/results/"+request.args[0]+"/"+seq[1]+"magneto.zip",  'w', zipfile.ZIP_DEFLATED)
         for i in ["C","P","F","R","K","O","KDr","KDi","DB","Or","T","HPi"]:
-            size_graph=os.path.getsize(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_graph/"+i+"_descr.txt")
-            size_fisher=os.path.getsize(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"+i+".txt")
+            root_path=request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_graph/"
+            root_path_fisher=request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"
+            size_graph=os.path.getsize(root_path+i+"_descr.txt")
+            size_fisher=os.path.getsize(root_path_fisher+i+".txt")
             if size_graph==0:
                 if size_fisher==50:
                     db_not_present[seq[0]].append(i)
                 if size_fisher>50:
                     no_fisher_magneto[seq[0]].append(i)
+                    zf_standard.write(root_path_fisher)
+            else:
+                zf_magneto.write(root_path+i+"fisher.txt")
         mapping[seq[1].strip()]=seq[0]
         seq=f1.readline()
+        zf_standard.close()
+        zf_magneto.close()
     sample_number=len(mapping)
     f1.close()
     f1=open(request.folder+"static/results/"+request.args[0]+"/nodes.txt","r")
@@ -535,6 +546,7 @@ def results_tsfa():
                 count=count+1
     databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
     alias_colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396","KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
+
     return dict(mapping_column=mapping_column,mapping=mapping,starting_nodes=starting_nodes,databases=databases,alias_colors=alias_colors,alias_dict=alias_dict,sample_number=sample_number,menu_list=menu_list,
                menu_mapping=menu_mapping,menu_mapping_reverse=menu_mapping_reverse,count=count,controls=controls,control_sample=control_sample,db_not_present=db_not_present,no_fisher_magneto=no_fisher_magneto)
 
