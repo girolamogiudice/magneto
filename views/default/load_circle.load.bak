@@ -20,8 +20,8 @@
 }
 
 </style>
-{{if int(sample_number)>1:}}
 
+<div id="circle_packing"></div>
 
 <script>
     var color = d3.scale.category10();
@@ -76,7 +76,6 @@ d3.json("{{=path}}", function(error, root) {
             .on("click", function(d) {if (d.depth!=3){ 
                 if (focus !== d) zoom(d), d3.event.stopPropagation(); }})
 
-            
 	      function mouseover(d) { if (d.depth==3) { 
            tooltip
                .style("visibility", "visible")
@@ -128,23 +127,18 @@ d3.json("{{=path}}", function(error, root) {
 		var focus0 = focus; focus = d;
 
 		var transition = d3.transition()
-				.duration(d3.event.altKey ? 7500 : 750)
-        
+				.duration(d3.event.altKey ? 6500 : 650)
 				.tween("zoom", function(d) {
 					var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
 					return function(t) { zoomTo(i(t)); };
 				});
 
-		transition.selectAll("text")
-			.filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
+		transition.select("#circle_packing").selectAll("text")
+			.filter(function(d) {
+            return d.parent === focus || this.style.display === "inline"; })
 				.style("fill-opacity", function(d) { return d.parent === focus ? 0.6 : 0; })
-                //.style("display", function(d) {return d.parent === root ? null : "none"; })
 				.each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
 				.each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; })   
-
-        
-
-
 	}
 
 	function zoomTo(v) {
@@ -160,6 +154,3 @@ d3.json("{{=path}}", function(error, root) {
 
 
 </script>
-
-{{pass}}
-<div id="circle_packing"></div>

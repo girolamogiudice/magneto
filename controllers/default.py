@@ -453,8 +453,10 @@ def results_tsfa():
     no_fisher_magneto={}
     control=False
     control_sample=[]
+    chord_plot={}
     while(seq!=""):
         seq=seq.strip().split("\t")
+        chord_plot[seq[0]]={}
         if seq[1][-1]=="*":
             control=True
             control_sample.append(seq[0])
@@ -505,6 +507,7 @@ def results_tsfa():
                     if j[-1]=="*":
                         j=j[0:-1]
                     zf_standard.write(request.folder+"static/results/"+request.args[0]+"/"+seq[0]+"_fisher/"+i+"_hierarchy/"+j+".txt",alias_dict[i]+"_hierarchy/"+j)
+
         mapping[seq[1].strip()]=seq[0]
         seq=f1.readline()
         zf_standard.close()
@@ -577,8 +580,16 @@ def results_tsfa():
       
     databases={"Gene Ontology":["C","F","P"],"Pathway":["R","K"],"Disease":["O","Or","KDi"],"Drugs":["DB","KDr"],"Toxins":["T"],"Virus":["HPi"]}
     alias_colors={"C":"#d5f0f4","P":"#2171b5","F":"#6baed6","R":"#abe16c","K":"#5f8726","O":"#7d6396","KDr":"#b23131","KDi":"#ffcdff","DB":"#ff0000","Or":"#c19bce","HPi":"#A9A9A9","T":"#b56b19"}
+    for i in chord_plot:
+        f2=open(request.folder+"static/results/"+request.args[0]+"/"+i+"_chord_plot.txt","r")
+        seq=f2.readline()
+        while(seq!=""):
+            seq=seq.strip().split("\t")
+            chord_plot[i][seq[0]]=int(seq[1])
+            seq=f2.readline()
+        f2.close()
     return dict(mapping_column=mapping_column,mapping=mapping,starting_nodes=starting_nodes,databases=databases,alias_colors=alias_colors,alias_dict=alias_dict,sample_number=sample_number,menu_list=menu_list,
-               menu_mapping=menu_mapping,menu_mapping_reverse=menu_mapping_reverse,count=count,controls=controls,control_sample=control_sample,db_not_present=db_not_present,no_fisher_magneto=no_fisher_magneto)
+               menu_mapping=menu_mapping,menu_mapping_reverse=menu_mapping_reverse,count=count,controls=controls,control_sample=control_sample,db_not_present=db_not_present,no_fisher_magneto=no_fisher_magneto,chord_plot=chord_plot)
 
 def load_request():
     alias_dict={"C":"Component","F":"Function","P":"Process","K":"Kegg Pathway","R":"Reactome","O":"Omim","KDi":"Kegg Disease","KDr":"Kegg Drug","DB":"Drugbank","Or":"Orphanet","T":"Toxins","HPi":"Virus"}
@@ -621,7 +632,7 @@ def load_request():
     seq=f2.readline()
     while(seq!=""):
         seq=seq.strip().split("\t")
-       
+         
         protein_descr[seq[0]]=seq[1]
         seq=f2.readline()
     return dict(directory=directory,data=data,clusterid=clusterid,neigh=neigh,descr=descr,protein_descr=protein_descr,alias_dict=alias_dict,not_present=not_present)
@@ -635,8 +646,8 @@ def load_stats():
     while(seq!=""):
         stats.append(seq.strip())
         seq=f1.readline()
-    path="/magneto/static/results/"+request.args[0]+"/stats.json"
-    return dict(stats=stats,path=path,sample_number=sample_number)
+
+    return dict(stats=stats,sample_number=sample_number)
 
 def load_circle():
     path="/magneto/static/results/"+request.args[0][0:-1]+"/stats.json"

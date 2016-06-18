@@ -30,6 +30,7 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
     f7=open(folder+"/static/results/"+uuid+"/"+ids+"_graph/cluster_id.txt","w")
     f8=open(folder+"/static/results/"+uuid+"/"+ids+"_bar.txt","w")
     f8.write("db\tStandard\tCommon\tMAGNETO\tTotal\n")
+    f9=open(folder+"/static/results/"+uuid+"/"+ids+"_chord_plot.txt","w")
     temp_db={}
     for ii in comp_list:
         f3=open(folder+"/static/results/"+uuid+"/"+ids+"_graph/"+ii+"_word_fisher.txt","w")
@@ -121,9 +122,9 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
             table=[[a,b],[c,d]]
             fisher[i]=fisher_exact(table,alternative ="greater")[1]
             if fisher[i]<(threshold/lenfisherset):
+                root_second_level[ii]={"name":databases[ii],"children":[{"name":alias_dict[ii],"children":[]}]}
                 if control:
                     controls[ii][i]=""
-                root_second_level[ii]={"name":databases[ii],"children":[{"name":alias_dict[ii],"children":[]}]}
                 if sample_number>1:
                     if count_annotation[ii].has_key(i):
                         count_annotation[ii][i]["size"]=count_annotation[ii][i]["size"]+1
@@ -226,6 +227,7 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         f2=open(folder+"/static/results/"+uuid+"/"+ids+"_graph/"+i+"_mat.txt","w")
         f2.write(str(mat[i][0])+"\n")
         f2.write(str(mat[i][1])+"\n")
+        f9.write(i+"\t"+str(len(mat[i][1]))+"\n")
     f2.close()
     f3.close()
     f4.close()
@@ -233,4 +235,5 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
     f6.close()
     f7.close()
     f8.close()
+    f9.close()
     return col,nmap,domain_db,count_annotation,root_second_level,controls

@@ -79,7 +79,7 @@ d3.tsv("{{=path}}", function(error, data) {
         return d.className + ": " + d.pvalue; });
    
   node.append("circle")
-      .attr("r", function(d) { console.log(d)
+      .attr("r", function(d) { 
   return (d.r); })
       .style("fill", function(d) { return color(d.value); })
       .style("stroke-width",0)

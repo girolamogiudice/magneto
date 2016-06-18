@@ -9,6 +9,7 @@
   shape-rendering: crispEdges;
 }
 </style>
+
 <form>
     <label><input type="radio" name="mode" value="grouped"> Grouped</label>
     <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
@@ -173,7 +174,7 @@ var yaxis = d3.svg.axis()
           .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
         .transition()
           .attr("x", function(d) { return xScale(d.x); })
-          .attr("width", -xScale.rangeBand());
+          .attr("width", xScale.rangeBand());
 
 
     };

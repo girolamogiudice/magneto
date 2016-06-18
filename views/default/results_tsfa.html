@@ -50,8 +50,6 @@
 <script src="/magneto/static/js/mapper.js"></script>
 <script src="/magneto/static/js/underscore.js"></script>
 <script src="/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js"></script>
-
-
 <script src="{{=URL('static','js/selectize.min.js')}}"></script>
 <link rel="stylesheet" href="/magneto/static/css/selectize.bootstrap3.css">
 <style>
@@ -178,12 +176,12 @@ line.link {
 {{files_id=["C","F","P","K","R","O","KDi","KDr","DB","Or","T","HPi"]}}
   <ul class="nav nav-pills nav-justified" role="tablist">
       <li role="presentation" class="dropdown" ><a href="#functional" aria-controls="functional" role="tab" data-toggle="dropdown" id="sample_sel">Select a sample</a>
-            <ul id="sample" class="dropdown-menu">
+            <ul id="sample" class="dropdown-menu" >
                 {{for i in mapping_column:}}
                  <li id="sample_value" value="{{=i[0]}}" onclick="$.web2py.component('{{=URL('default','load_bar_plot.load',args=[request.args[0].strip(),i[0]])}};','bar_plot');
-                                                           return_value({{=i[0]}});change_text();load_db_table();
+                                                           return_value({{=i[0]}});load_db_table();
                                                            $.web2py.component('{{=URL('default', 'load_stats.load',args=[request.args[0],i[0],sample_number,True])}};', 'stat');
-                                                           $.web2py.component('{{=URL('default', 'load_request.load',args=[request.args[0],i[0]])}};','graph-container');">
+                                                           $.web2py.component('{{=URL('default', 'load_request.load',args=[request.args[0],i[0]])}};','graph-container');change_text();">
                      <a class="sv" id="sv" value="{{=i[0]}}" href="#{{=i[0]}}" data-toggle="tab">{{=i[1]}}</a></li>{{pass}}
             </ul>
           </li>
@@ -192,7 +190,7 @@ line.link {
                 <li><a id="s_li" onclick="remove_active();" data-toggle="tab">Network statistics</a></li>
 
           {{if len(mapping_column)>0:}}
-                <li><a id="cp_li" data-toggle="tab" onclick="remove_active();$.web2py.component('{{=URL('default', 'load_circle.load',args=[request.args[0]])}};', 'circle_plot');">Enriched terms statistic</a></li>
+                <li><a id="cp_li" data-toggle="tab" onclick="remove_active();$.web2py.component('{{=URL('default', 'load_circle.load',args=[request.args[0]])}};', 'cp');">Enriched terms statistic</a></li>
           {{pass}}
         </ul>
       </li>
@@ -242,7 +240,7 @@ line.link {
           </li>
     <li class="dropdown disabled disabledTab" id="plot"><a class="dropdown-toggle" href="#plot" aria-controls="plot" id="drawplot" role="tab" data-toggle="dropdown">Plot</a>
        <ul class="dropdown-menu">
-        <li id="chord_plot"><a id="cplot" data-toggle="tab" onclick="chord_select();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord');">Chord Plot</a></li>
+        <li id="chord_plot" class="test"><a id="cplot" data-toggle="tab" onclick="chord_select();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord');">Chord Plot</a></li>
         <li id="treemap_plot"><a id="tp" href="#Treemap" data-toggle="tab" onclick="treemap_select();$.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap');">Treemap Plot</a></li>
         <li id="bubble_plot"><a id="bp" href="#bubble" data-toggle="tab" onclick="bubble_select();$.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble');">Bubble Plot</a></li>
         <li id="wc_plot"><a id="wcp" href="#word" data-toggle="tab" onclick="word_cloud_select();$.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word');">Word Cloud Plot</a></li>
@@ -260,7 +258,10 @@ line.link {
               <div class="col-md-6" id="bar_plot"></div>
               <div class="col-md-6" id="db_stats"></div>
           </div>
-          <div id="circle_plot"></div>
+          <p>
+                <div id="cp"></div>
+          </p>
+
       </div>
 </div>
 
@@ -314,10 +315,15 @@ $("#s_li").click(function() {
         scrollTop: $("#stats_panel").offset().top
     }, 1000);
 });
+$("#sub").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#results_panel").offset().top
+    }, 1000);
+});
     
 $("#cp_li").click(function() {
     $('html, body').animate({
-        scrollTop: $("#circle_plot").offset().top
+        scrollTop: $("#cp").offset().top
     }, 1000);
 });
 
@@ -355,7 +361,7 @@ $("#hp").click(function() {
 });
     
     
-    
+chord_plot_value={{=XML(chord_plot)}}
 mapping_column={{=XML(mapping_column)}}
 menu_list={{=XML(menu_list)}}
 menu_mapping={{=XML(menu_mapping)}}
@@ -507,6 +513,8 @@ $(".sv").click(function(event){
         $("#"+db[i]).removeClass('disabled')
         
     }
+        document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
+    document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
     for (i in no_fisher_magneto[sample]){
         
         $("#"+no_fisher_magneto[sample][i]).addClass('bg-danger')
@@ -531,12 +539,14 @@ $('.stats').click(function(){
     var db_fa=($(this).attr('id'))
     location.hash = db_fa;
 })
-
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
     //locate_cluster
 $('.dbfa').click(function(event){
-
     loadScript("/magneto/static/js/bootstrap-table/dist/bootstrap-table.min.js");
-   
+          
+
     values=mapping[document.getElementById("sample_sel").innerHTML.trim()]
     
     var folder= "{{=request.args[0]}}"
@@ -545,6 +555,14 @@ $('.dbfa').click(function(event){
     location.hash =sample+"#"+db_fa;
     ids=db_fa
     db_fa=db_fa+"fisher.json"
+    
+    $("#chord_plot").removeClass('disabled');
+    $("#chord_plot").removeClass('active');
+    
+    if (chord_plot_value[sample][ids]>300)
+    {
+        $("#chord_plot").addClass('disabled');
+    }
    if(no_fisher_magneto[sample].indexOf(ids)== -1){
        
        path= "/magneto/static/results/"+folder+"/"+values+"_graph/"+db_fa
@@ -558,8 +576,7 @@ $('.dbfa').click(function(event){
     $("#plot").removeClass('dropdown disabled disabledTab');
     $("#hierarchy_plot").addClass('disabled');
     $("#hierarchy_plot").removeClass('active');
-    $("#chord_plot").removeClass('disabled');
-    $("#chord_plot").removeClass('active');
+
     $("#wc_plot").removeClass('active');
     $("#bubble_plot").removeClass('disabled');
     $("#wc_plot").removeClass('disabled');
@@ -644,15 +661,13 @@ function download_standard(){
 
 function change_text() 
     {
+    
     document.getElementById("DB_h").className=""
     document.getElementById("K_h").className=""
     document.getElementById("KDi_h").className=""
     document.getElementById("KDr_h").className=""
     document.getElementById("Or_h").className=""
     document.getElementById("R_h").className=""
-
-    document.getElementById("drawplot").innerHTML="Plot<span class='caret'></span>"
-    document.getElementById("fa").innerHTML="Functional Analysis<span class='caret'></span>"
     value=location.hash.substring(1)
     if (menu_list[value]["R"].length!=0)
     {
@@ -960,7 +975,6 @@ document.getElementById("drawplot").innerHTML="Hierarchy plot<span class='caret'
 }
 function chord_select() 
     {
-       
     $("#treemap_plot").removeClass('active')
      $("#bubble_plot").removeClass('active')
       $("#wc_plot").removeClass('active')
