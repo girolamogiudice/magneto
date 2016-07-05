@@ -300,14 +300,18 @@ line.link {
 
 
 <script>
+db_not_present={{=XML(db_not_present)}}
+no_fisher_magneto={{=XML(no_fisher_magneto)}}
 function remove_active(){
  $('#statistics li.active').removeClass('active')
 
 }
-$(".dbfa").click(function() {
+$(".dbfa").click(function(event) {
+    if (event.currentTarget.className.indexOf("disabled")==-1){
     $('html, body').animate({
         scrollTop: $("#results_panel").offset().top
     }, 1000);
+    }
 });
     
 $("#s_li").click(function() {
@@ -368,8 +372,7 @@ menu_mapping={{=XML(menu_mapping)}}
 controls={{=XML(controls)}}
 control_sample={{=XML(control_sample)}}
 menu_mapping_reverse={{=XML(menu_mapping_reverse)}}
-db_not_present={{=XML(db_not_present)}}
-no_fisher_magneto={{=XML(no_fisher_magneto)}}
+
 $(document).ready(function(){
 $('.dropdown-submenu a')
 .mouseover(function() {

@@ -122,7 +122,7 @@ var yaxis = d3.svg.axis()
         .data(headers.slice().reverse())
             .enter().append("g")
             .attr("class", "legend")
-            .attr("transform", function(d, i) { return "translate(120," + i * 20 + ")"; });
+            .attr("transform", function(d, i) { return "translate(20," + i * 20 + ")"; });
        
         legend.append("rect")
             .attr("x", width - 18)

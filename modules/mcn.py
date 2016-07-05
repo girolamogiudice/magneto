@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from gluon import *
-# -*- coding: utf-8 -*-
 import networkx as nx
 from networkx.readwrite import json_graph
 import json
@@ -312,7 +311,9 @@ def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder
     graph.graph['name']=graph_net
     graph_nodes=graph.nodes()
     f1=open(root_folder+"static/results/"+uid+"/nodes.txt","w")
+    
     for i in start_nodes:
+        initial_nodes=start_nodes[i]
         if not os.path.exists(root_folder+"/static/results/"+uid+"/"+str(i)+"_fisher/"):
             os.makedirs(root_folder+"/static/results/"+uid+"/"+str(i)+"_fisher")
         if not os.path.exists(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/"):
@@ -320,53 +321,121 @@ def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder
         f1.write(str(i)+"\t"+"\t".join(start_nodes[i])+"\n")
         nodes=list(set(start_nodes[i]).intersection(set(graph_nodes)))
         if len(nodes)>1:
-            nodes_graph[i],path_count,nodes_path=mcn_component(nodes,graph.nodes(),graph,graph_net,root_folder,score_rank,cellular_compartments,background)
+            nodes_graph[i],path_count,nodes_path,path=mcn_component(nodes,graph.nodes(),graph,graph_net,root_folder,score_rank,cellular_compartments,background)
             graph_mcn=graph.subgraph(nodes_graph[i])
             removable=sum(nodes_path.values(),[])
             score={0:"Betweenness_Mod",1:"Degree",2:"Betweenness_Centrality",3:"Pagerank"}
+            dg={}
+            bw={}
+            pg={}
+            bw_mod={}
+            ranking=[]
+            first={}
+            second={}
+            third={}
             if score_rank[0]==0:
-                count={}
-                for j in removable:
-                    if j in count:
-                        count[j]=count[j]+1
-                    else:
-                        count[j]=1
-                order,flag=are_ordered(count)
-                ranking={}
-                for j in order:
-                    if len(order[j])==1:
-                        ranking[j]=order[j]
-                    degree=graph_mcn.degree(order[j])
-                    degree_sorted=sorted(degree, key=degree.get)[::-1]
+                to_order=mod_bw(removable)
+                order=are_ordered(to_order,[])
+            if score_rank[0]==1:
+                to_order=graph_mcn.degree()
+                order=are_ordered(to_order,nodes)
+            if score_rank[0]==2:
+                to_order=nx.betweenness_centrality(graph_mcn)
+                order=are_ordered(to_order,nodes)
+            if score_rank[0]==3:
+                to_order=nx.pagerank(graph_mcn)
+                order=are_ordered(to_order,nodes)
 
-                    print j,degree_sorted
-                    print ranking
-                
-            degree=graph_mcn.degree(nodes_graph[i])
-            bw=nx.betweenness_centrality(graph_mcn)
-            degree_sorted=sorted(degree, key=degree.get)[::-1]
-            to_order={}
-            for j in degree_sorted:
-                if to_order.has_key(degree[j]):
-                    to_order[degree[j]].append(j)
+            if len(score_rank)>=2:
+                if score_rank[1]==0:
+                    first=mod_bw(removable)
+                if score_rank[1]==1:
+                    first=graph_mcn.degree()
+                if score_rank[1]==2:
+                    first=nx.betweenness_centrality(graph_mcn)
+                if score_rank[1]==3:
+                    first=nx.pagerank(graph_mcn)
+            if len(score_rank)>=3:
+                if score_rank[2]==0:
+                    second=mod_bw(removable)
+                if score_rank[2]==1:
+                    second=graph_mcn.degree()
+                if score_rank[2]==2:
+                    second=nx.betweenness_centrality(graph_mcn)
+                if score_rank[2]==3:
+                    second=nx.pagerank(graph_mcn)
+            if len(score_rank)>=4:
+                if score_rank[3]==0:
+                    third=mod_bw(removable)
+                if score_rank[3]==1:
+                    third=graph_mcn.degree()
+                if score_rank[3]==2:
+                    third=nx.betweenness_centrality(graph_mcn)
+                if score_rank[3]==3:
+                    third=nx.pagerank(graph_mcn)
+
+            for i in sorted(order.keys()):
+                if len(order[i])>1 and len(score_rank)>=2:
+                    order_2_pass=second_order(order[i],first)
+                    for j in sorted(order_2_pass):
+                        #print "second",i,j,order_2_pass[j]
+                        if len(order_2_pass[j])==1 or len(score_rank)<3:
+                            for ii in order_2_pass[j]:
+                                ranking.append(ii)
+                        elif len(score_rank)>=3:
+                            order_3_pass=second_order(order_2_pass[j],second)
+                            for k in sorted(order_3_pass):
+                        #		print "third",i,j,order_2_pass[j],k,order_3_pass[k]
+                                if len(order_3_pass[k])==1 or len(score_rank)<4:
+                                    for ii in order_3_pass[k]:
+                                        ranking.append(ii)	
+                                elif len(score_rank)>=4:
+                                    order_4_pass=second_order(order_3_pass[k],third)
+                                    for s in sorted(order_4_pass):
+                        #				print "fourth",i,j,order_2_pass[j],k,order_3_pass[k],s,order_4_pass[s]
+                                        for t in order_4_pass[s]:
+                                            ranking.append(t)
+
                 else:
-                    to_order[degree[j]]=[]
-                    to_order[degree[j]].append(j)
-       
-            remov=sorted(to_order[5], key=bw.get)
-            #print remov
-            #print order_res(to_order,bw)
-def are_ordered(count):
-    order={}
-    flag=0
-    for i in count:
-        if count[i] in order:
-            order[count[i]].append(i)
-            flag=1
-        else:
-            order[count[i]]=[]
-            order[count[i]].append(i)
-    return order,flag
+                    for ii in order[i]:
+                        ranking.append(ii) 
+            protein_list=check(path,ranking,initial_nodes)
+            print len(ranking)
+            print len(protein_list)
+            print protein_list
+
+def mod_bw(removable):
+	count={}
+	for j in removable:
+		if j in count:
+			count[j]=count[j]+1
+		else:
+			count[j]=1
+	return count
+	
+def second_order(nodes,rankings):
+	order={}
+	for i in nodes:
+		if rankings[i] in order:
+			order[rankings[i]].append(i)
+		else:
+			order[rankings[i]]=[]
+			order[rankings[i]].append(i)
+	return order
+	
+def are_ordered(count,start_nodes):
+	order={}
+	
+	for i in start_nodes:
+		del count[i]
+	for i in count:
+		if count[i] in order:
+			order[count[i]].append(i)
+		else:
+			order[count[i]]=[]
+			order[count[i]].append(i)
+	return order
+
 def component_annotation(folder,cellular_compartments):
     mapping_files={"GO:0005813":"0","GO:0005737":"1","GO:0031410":"2","GO:0005856":"3","GO:0005829":"4","GO:0005783":"5","GO:0005768":"6","GO:0031012":"7","GO:0005576":"8","GO:0005794":"9","GO:0005622":"10",
                    "GO:0005764":"11","GO:0005739":"12","GO:0031965":"13","GO:0005730":"14","GO:0005654":"15","GO:0005634":"16","GO:0005886":"17","GO:0043234":"18","GO:0005840":"19"}
@@ -436,7 +505,10 @@ def mcn_component(nodes,graph_nodes,graph,graph_choice,folder,score_rank,cellula
                 nodes_key=set(sum(nodes_key,[]))
                 nodes_path[key]=list(nodes_key.difference(set(nodes)))
                 path_selection.append(sum(path_count[key][max(path_count[key])],[]))
-    return list(set(sum(path_selection,[]))),path_count,nodes_path
+    path={}
+    for i in path_count:
+		path[i]=path_count[i][max(path_count[i])]
+    return list(set(sum(path_selection,[]))),path_count,nodes_path,path
 
 def order_res(order,bw):
     r={}
@@ -452,16 +524,16 @@ def order_res(order,bw):
     return removable
 
 def check(path,removable,nodes_list):
-	temp_rem={}
-	rem_path={}
-	path_lenght={}
-	rem=[]
-	ess=[]
-	for j in path:
+    temp_rem={}
+    rem_path={}
+    path_lenght={}
+    rem=[]
+    ess=[]
+    for j in path:
 		temp_rem[j]=[]
 		rem_path[j]=[]
 		path_lenght[j]=len(path[j])		
-	for i in removable:
+    for i in removable:
 		for j in path:
 			for k in range(path_lenght[j]):
 				if i in path[j][k] and k not in rem_path[j]:
@@ -482,6 +554,6 @@ def check(path,removable,nodes_list):
 			ess.append(i)
 			for j in path:
 				temp_rem[j]=[]
-	protein_list=ess+nodes_list
-	protein_list=list(set(protein_list))
-	return protein_list
+    protein_list=ess+nodes_list
+    protein_list=list(set(protein_list))
+    return protein_list

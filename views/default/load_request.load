@@ -31,7 +31,8 @@ display:flex;
   <h4>Nodes not preset because absent in the network</h4>
 {{=not_present}}<br>{{pass}}
 </div>
-
+<div class="text-center">
+<div class="btn-group">
 
 <div id=button  style="text-align: center;"><button type="button" class="btn btn-primary" onclick="sigma.layouts.startForceAtlas2(s, {worker: true});">
   <span class=" icon-play" aria-hidden="true"></span>start
@@ -40,8 +41,19 @@ display:flex;
   <span class=" icon-pause" aria-hidden="true"></span>pause
 </button>
 <button type="button" class="btn btn-primary" onclick="filter.undo().apply();locate.center(1);restore()";>
-  <span class="icon-backward" aria-hidden="true"></span>restore
-    </button></div>
+  <span class="icon-backward" aria-hidden="true"></span>restore</button>
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Download network <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="#" onclick="download_graph('txt')">Edge list format</a></li>
+      <li><a href="#" onclick="download_graph('json')">Json format</a></li>
+      <li><a href="#" onclick="download_graph('gml')">GML format</a></li>
+    </ul>
+  </div>
+    </div>
+    </div>
+</div>
 <br>
 <br>
 {{alias=["Component","Function","Process","Kegg","Reactome","Omim","Kegg Disease","Kegg Drug","Drug bank","Orphanet","Toxins","Virus"]}}
@@ -84,7 +96,7 @@ display:flex;
     $('#neigh').selectize();
     
     cluster_id={{=XML(clusterid)}}
-
+console.log( {{=XML(data)}})
     s = new sigma({ 
         graph: {{=XML(data)}},
     renderer: {
@@ -170,7 +182,6 @@ function clear_graph() {
 };
 
 function restore() {
-    console.log("sono qui")
     $('#locate_cluster').prop('selectedIndex',0);
     $('#neigh').prop('selectedIndex',0);
     $('#locate_prot').prop('selectedIndex',0);
@@ -181,5 +192,8 @@ function change_text(){
 
 }
     
-
+function download_graph(ext){
+    path_download="/magneto/static/results/{{=XML(request.args[0])}}/"+sample+"_graph/"+mapping_column[sample]+"."+ext
+    window.location.assign(path_download)
+}
 </script>

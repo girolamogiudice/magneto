@@ -151,6 +151,7 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_alone_hi
                 fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":0})
         
         json.dump(fisher_json,open(res_folder+"/"+ii+"_hierarchy/"+jj+"fisher.json","w"))
+
         f2=open(res_folder+"/"+ii+"_hierarchy/files_domain.txt","w")
         f2.write(sub_categories[ii].strip())
         f2.close()

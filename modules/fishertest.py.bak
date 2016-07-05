@@ -187,8 +187,8 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         if not (standard==0 and common==0 and magneto==0):
             fisher_json_table.append({"database":alias_dict[ii],"Standard":str(standard),"Shared":str(common),"MAGNETO":str(magneto),"Total":str(common+magneto)})
             f8.write(alias_dict[ii]+"\t"+str(standard)+"\t"+str(common)+"\t"+str(magneto)+"\t"+str(common+magneto)+"\n")
-        json.dump(fisher_json,open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_graph/"+ii+"fisher.json","w"))
-        json.dump(fisher_json_table,open(folder+"/static/results/"+uuid+"/"+ids+"_bar.json","w"))
+        json.dumps(fisher_json,open(folder+"/static/results/"+uuid+"/"+"/"+ids+"_graph/"+ii+"fisher.json","w"))
+        json.dumps(fisher_json_table,open(folder+"/static/results/"+uuid+"/"+ids+"_bar.json","w"))
         number_of_word=len(words_count_enriched)
         total_word=len(words_count)
         word_fisher=[]
@@ -227,7 +227,7 @@ def load(uuid,ids,protein,threshold,comp_list,choice,folder,start_nodes,domain_d
         f2=open(folder+"/static/results/"+uuid+"/"+ids+"_graph/"+i+"_mat.txt","w")
         f2.write(str(mat[i][0])+"\n")
         f2.write(str(mat[i][1])+"\n")
-        f9.write(ii+"\t"+str(len(mat[i][1]))+"\n")
+        f9.write(i+"\t"+str(len(mat[i][1]))+"\n")
     f2.close()
     f3.close()
     f4.close()

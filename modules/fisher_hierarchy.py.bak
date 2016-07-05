@@ -132,15 +132,15 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_alone_hi
                     json_tree[ii]["children"].append({"name":jj,"children":temp})
 
                 for i in fisher_alone_hierarchy[ii][jj]:
-                    temp_table.append({"id":i,"description":descr[i],"proteins":annotation[i],"common":"2","p value":"-1","proteins involved":str(len(annotation[j])})
+                    temp_table.append({"id":i,"description":descr[i],"proteins":annotation[i],"common":"2","p value":"-1","proteins involved":str(len(annotation[j]))})
 
             
             if len(temp_table)>=1:
 
-                json.dump(temp_table,open(res_folder+"/"+ii+"_hierarchy/"+jj+"_fisher.json","w"))
+                json.dumps(temp_table,open(res_folder+"/"+ii+"_hierarchy/"+jj+"_fisher.json","w"))
         
         if len(json_tree[ii]["children"])>0:
-            json.dump(json_tree[ii],open(res_folder+"/"+ii+"_hierarchy/json.txt","w"))
+            json.dumps(json_tree[ii],open(res_folder+"/"+ii+"_hierarchy/json.txt","w"))
 
         for i in fisher_hierarchy[jj]:
             if fisher_annotation[ii].has_key(i):
@@ -150,7 +150,8 @@ def load(uuid,protein,threshold,comp_list,folder,res_folder,path,fisher_alone_hi
             else:
                 fisher_json.append({"id":i,"p value":str(fisher_value[i]),"proteins involved":str(len(annotation[i])),"description":descr[i],"proteins":annotation_gene[i],"common":0})
         
-        json.dump(fisher_json,open(res_folder+"/"+ii+"_hierarchy/"+jj+"fisher.json","w"))
+        json.dumps(fisher_json,open(res_folder+"/"+ii+"_hierarchy/"+jj+"fisher.json","w"))
+
         f2=open(res_folder+"/"+ii+"_hierarchy/files_domain.txt","w")
         f2.write(sub_categories[ii].strip())
         f2.close()

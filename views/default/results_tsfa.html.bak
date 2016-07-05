@@ -170,20 +170,6 @@ line.link {
 .disabled > a{
  pointer-events: none;
 }
-    .tooltip-wrapper {
-  display: inline-block; /* display: block works as well */
-  margin: 50px; /* make some space so the tooltip is visible */
-}
-
-.tooltip-wrapper .btn[disabled] {
-  /* don't let button block mouse events from reaching wrapper */
-  pointer-events: none;
-}
-
-.tooltip-wrapper.disabled {
-  /* OPTIONAL pointer-events setting above blocks cursor setting, so set it here */
-  cursor: not-allowed;
-}
 </style>
 
 {{files=["Cfisher","Ffisher","Pfisher","Kfisher","Rfisher","Ofisher","KDifisher","KDrfisher","DBfisher","Orfisher","Tfisher","HPifisher"]}}
@@ -254,7 +240,7 @@ line.link {
           </li>
     <li class="dropdown disabled disabledTab" id="plot"><a class="dropdown-toggle" href="#plot" aria-controls="plot" id="drawplot" role="tab" data-toggle="dropdown">Plot</a>
        <ul class="dropdown-menu">
-        <li id="chord_plot" class="tooltip-wrapper" data-title="Dieser Link führt zu Google"><a id="cplot" data-toggle="tab" onclick="chord_select();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord');">Chord Plot</a></li>
+        <li id="chord_plot" class="test"><a id="cplot" data-toggle="tab" onclick="chord_select();$.web2py.component('{{=URL('default','load_chord.load',args=request.args[0].strip())}};','chord');">Chord Plot</a></li>
         <li id="treemap_plot"><a id="tp" href="#Treemap" data-toggle="tab" onclick="treemap_select();$.web2py.component('{{=URL('default','load_treemap.load',args=request.args[0].strip())}};','treemap');">Treemap Plot</a></li>
         <li id="bubble_plot"><a id="bp" href="#bubble" data-toggle="tab" onclick="bubble_select();$.web2py.component('{{=URL('default','load_bubble.load',args=request.args[0].strip())}};','bubble');">Bubble Plot</a></li>
         <li id="wc_plot"><a id="wcp" href="#word" data-toggle="tab" onclick="word_cloud_select();$.web2py.component('{{=URL('default','load_word_cloud.load',args=request.args[0].strip())}};','word');">Word Cloud Plot</a></li>
@@ -314,14 +300,18 @@ line.link {
 
 
 <script>
+db_not_present={{=XML(db_not_present)}}
+no_fisher_magneto={{=XML(no_fisher_magneto)}}
 function remove_active(){
  $('#statistics li.active').removeClass('active')
 
 }
-$(".dbfa").click(function() {
+$(".dbfa").click(function(event) {
+    if (event.currentTarget.className.indexOf("disabled")!=-1){
     $('html, body').animate({
         scrollTop: $("#results_panel").offset().top
     }, 1000);
+    }
 });
     
 $("#s_li").click(function() {
@@ -382,8 +372,7 @@ menu_mapping={{=XML(menu_mapping)}}
 controls={{=XML(controls)}}
 control_sample={{=XML(control_sample)}}
 menu_mapping_reverse={{=XML(menu_mapping_reverse)}}
-db_not_present={{=XML(db_not_present)}}
-no_fisher_magneto={{=XML(no_fisher_magneto)}}
+
 $(document).ready(function(){
 $('.dropdown-submenu a')
 .mouseover(function() {
