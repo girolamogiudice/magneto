@@ -338,7 +338,6 @@ def wait_tsfa():
             for j in proteins_to_test:
                 if proteome_descr.has_key(j):
                     protein_descr[j]=proteome_descr[j]
-                    
                 else:
                     protein_descr[j]="N/A"
                 if protein_stats[seq[0]].has_key(j):
@@ -362,7 +361,6 @@ def wait_tsfa():
                 control=True
             else:
                 control=False
-            
             col,nmap,domain_db,count_annotation,root_second_level,controls=fishertest.load(request.args[1],seq[0],proteins_to_test,
                                                                                        float(request.args[2]),["C","P","F","R","K","O","KDi","Or","KDr","DB","T","HPi"],
                             request.args[3],request.folder,start_nodes[seq[0]],domain_db,protein_descr,count_annotation,root_second_level,fisher_alone[seq[0]],sample,sample_number,control,controls)
@@ -639,7 +637,6 @@ def load_request():
     seq=f2.readline()
     while(seq!=""):
         seq=seq.strip().split("\t")
-         
         protein_descr[seq[0]]=seq[1]
         seq=f2.readline()
     return dict(directory=directory,data=data,clusterid=clusterid,neigh=neigh,descr=descr,protein_descr=protein_descr,alias_dict=alias_dict,not_present=not_present)
@@ -724,7 +721,7 @@ def tfa():
     from types import ListType
     score={0:"Betweenness_Mod",1:"Degree",2:"Betweenness_Centrality",3:"Pagerank"}
     score_reverse={"Betweenness_Mod":0,"Degree":1,"Betweenness_Centrality":2,"Pagerank":3}
-
+    bg={"Proteome":"proteome","Human_uniprot":"uniprot"}
     net_db={0:"intact",1:"intact_high_confidence",2:"biogrid"}
     cc={"0":"Centrosome","1":"Cytoplasm","2":"Cytoplasmic vesicle","3":"Cytoskeleton","4":"Cytosol","5":"Endoplasmic reticulum","6":"Endosome","7":"Extracellular matrix","8":"Extracellular region","9":"Golgi apparatus",
         "10":"Intracellular","11":"Lysosome","12":"Mitochondrion","13":"Nuclear membrane","14":"Nucleolus","15":"Nucleoplasm","16":"Nucleus","17":"Plasma membrane","18":"Protein complex","19":"Ribosome"}
@@ -738,7 +735,7 @@ def tfa():
         Field("Compartments",requires=IS_EMPTY_OR(IS_IN_SET(sorted(cc.values()),multiple=True))),
         Field('score',requires=IS_EMPTY_OR(IS_IN_SET(score,multiple=False))),
         Field("topology_ranking","text",requires=IS_NOT_EMPTY()),
-        Field("background","string",requires=IS_IN_SET(["proteome","uniprot"],multiple=False)),
+        Field("background","string",requires=IS_IN_SET(["Proteome","Human_uniprot"],multiple=False)),
         Field('Show_advanced_options','boolean'),
         Field("threshold","float",requires=IS_FLOAT_IN_RANGE(0.0,0.1)))
     db.input_net.threshold.show_if = (db.input_net.Show_advanced_options==True)
@@ -761,11 +758,20 @@ def tfa():
         score_rank=[]
         for i in form.vars.topology_ranking.split():
             score_rank.append(score_reverse[i])
-        values=[uid,request.folder+"/upload/"+form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments]
+        values=[uid,request.folder+"/upload/"+form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments,request.folder,bg[form.vars.background]]
         db.query_tfa.insert(uuid=uid,upload=request.vars.upload.value,upload_filename=form.vars.upload,threshold=form.vars.threshold,
                             graph_db=form.vars.graph_db,topology_ranking=form.vars.topology_ranking.split(),compartments=form.vars.Compartments)
-        mcn.tfa(uid,request.folder+"/upload/"+form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments,root_folder=request.folder,background=form.vars.background)
+        #mcn.tfa(uid,request.folder+"/upload/"+form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments,root_folder=request.folder,background=form.vars.background)
+
+        #import mcn
+        #mcn.tsfa(uid,request.folder+"/upload/"+form.vars.upload,request.vars.graph_db,float(request.vars.threshold),request.vars.expr_db,
+        #       tissue_files,form.vars.Coexpression,request.folder,float(request.vars.Component_weight),float(request.vars.Function_weight),float(request.vars.Process_weight),
+        #      float(request.vars.Reactome_weight),float(request.vars.Kegg_weight),bg[form.vars.background])
+        s=scheduler.queue_task(tfa,pargs=values,start_time=request.now,stop_time=request.now+timed(seconds=7200),timeout=3600)
+        
+        #redirect(URL('wait_tsfa',args=[s.uuid,uid,request.vars.threshold,bg[form.vars.background],form.vars.graph_db]))
         #s=scheduler.queue_task(tfa,pargs=values,start_time=request.now,stop_time=request.now+timed(seconds=7200),timeout=3600)
+        redirect(URL('wait_tsfa',args=[s.uuid,uid,request.vars.threshold,bg[form.vars.background],form.vars.graph_db]))
         #redirect(URL('wait_tfa',args=[s.uuid,uid]))
     return dict(form=form)
 
@@ -793,13 +799,13 @@ def help():
 
 def retrieve():
     db.define_table('retrieve',
-        Field("ids",requires = IS_ALPHANUMERIC(error_message='must be alphanumeric!')))
+        Field("ids"))
     form = SQLFORM(db.retrieve,_class="col-md-4 col-md-offset-2",_id="form_tfa").process()
     if form.accepted:
         if len(form.vars.ids)!=16:
             form.errors.ids = "The id should be 16 characters long, please check!"
             response.flash = "error!"
-        redirect(URL('results_tfa',args=form.vars.ids))
+        redirect(URL('results_tsfa',args=form.vars.ids))
     return dict(form=form)
 
 def team():

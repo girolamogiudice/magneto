@@ -297,9 +297,82 @@ def tsfa(uid,file,graph,threshold,db,tissue,coexpression,root_folder,c_w,f_w,p_w
         f2=open(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/stats.txt",'w')
         f2.write(stats)
         f2.close()
-    
+
+def removable_ranking(graph_mcn,removable,score_rank,nodes):
+    dg={}
+    bw={}
+    pg={}
+    bw_mod={}
+    ranking=[]
+    first={}
+    second={}
+    third={}
+    if score_rank[0]==0:
+        to_order=mod_bw(removable)
+        order=are_ordered(to_order,[])
+    if score_rank[0]==1:
+        to_order=graph_mcn.degree()
+        order=are_ordered(to_order,nodes)
+    if score_rank[0]==2:
+        to_order=nx.betweenness_centrality(graph_mcn)
+        order=are_ordered(to_order,nodes)
+    if score_rank[0]==3:
+        to_order=nx.pagerank(graph_mcn)
+        order=are_ordered(to_order,nodes)
+
+    if len(score_rank)>=2:
+        if score_rank[1]==0:
+            first=mod_bw(removable)
+        if score_rank[1]==1:
+            first=graph_mcn.degree()
+        if score_rank[1]==2:
+            first=nx.betweenness_centrality(graph_mcn)
+        if score_rank[1]==3:
+            first=nx.pagerank(graph_mcn)
+    if len(score_rank)>=3:
+        if score_rank[2]==0:
+            second=mod_bw(removable)
+        if score_rank[2]==1:
+            second=graph_mcn.degree()
+        if score_rank[2]==2:
+            second=nx.betweenness_centrality(graph_mcn)
+        if score_rank[2]==3:
+            second=nx.pagerank(graph_mcn)
+    if len(score_rank)>=4:
+        if score_rank[3]==0:
+            third=mod_bw(removable)
+        if score_rank[3]==1:
+            third=graph_mcn.degree()
+        if score_rank[3]==2:
+            third=nx.betweenness_centrality(graph_mcn)
+        if score_rank[3]==3:
+            third=nx.pagerank(graph_mcn)
+
+    for i in sorted(order.keys()):
+        if len(order[i])>1 and len(score_rank)>=2:
+            order_2_pass=second_order(order[i],first)
+            for j in sorted(order_2_pass):
+                if len(order_2_pass[j])==1 or len(score_rank)<3:
+                    for ii in order_2_pass[j]:
+                        ranking.append(ii)
+                elif len(score_rank)>=3:
+                    order_3_pass=second_order(order_2_pass[j],second)
+                    for k in sorted(order_3_pass):
+                        if len(order_3_pass[k])==1 or len(score_rank)<4:
+                            for ii in order_3_pass[k]:
+                                ranking.append(ii)	
+                        elif len(score_rank)>=4:
+                            order_4_pass=second_order(order_3_pass[k],third)
+                            for s in sorted(order_4_pass):
+                                for t in order_4_pass[s]:
+                                    ranking.append(t)
+
+        else:
+            for ii in order[i]:
+                ranking.append(ii)
+    return ranking
+
 def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder,background):
-    #values=[uid,form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments]
     net_db={"0":"intact","1":"intact_high_confidence","2":"biogrid"}
     start_nodes,mapping=load_input_list(file)
     f1=open(root_folder+"static/results/"+uid+"/mapping_column.txt","w")
@@ -311,7 +384,7 @@ def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder
     graph.graph['name']=graph_net
     graph_nodes=graph.nodes()
     f1=open(root_folder+"static/results/"+uid+"/nodes.txt","w")
-    
+    f2=open(root_folder+"static/results/"+uid+"/nodes_present_in_graph.txt","w")
     for i in start_nodes:
         initial_nodes=start_nodes[i]
         if not os.path.exists(root_folder+"/static/results/"+uid+"/"+str(i)+"_fisher/"):
@@ -324,85 +397,25 @@ def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder
             nodes_graph[i],path_count,nodes_path,path=mcn_component(nodes,graph.nodes(),graph,graph_net,root_folder,score_rank,cellular_compartments,background)
             graph_mcn=graph.subgraph(nodes_graph[i])
             removable=sum(nodes_path.values(),[])
-            score={0:"Betweenness_Mod",1:"Degree",2:"Betweenness_Centrality",3:"Pagerank"}
-            dg={}
-            bw={}
-            pg={}
-            bw_mod={}
-            ranking=[]
-            first={}
-            second={}
-            third={}
-            if score_rank[0]==0:
-                to_order=mod_bw(removable)
-                order=are_ordered(to_order,[])
-            if score_rank[0]==1:
-                to_order=graph_mcn.degree()
-                order=are_ordered(to_order,nodes)
-            if score_rank[0]==2:
-                to_order=nx.betweenness_centrality(graph_mcn)
-                order=are_ordered(to_order,nodes)
-            if score_rank[0]==3:
-                to_order=nx.pagerank(graph_mcn)
-                order=are_ordered(to_order,nodes)
-
-            if len(score_rank)>=2:
-                if score_rank[1]==0:
-                    first=mod_bw(removable)
-                if score_rank[1]==1:
-                    first=graph_mcn.degree()
-                if score_rank[1]==2:
-                    first=nx.betweenness_centrality(graph_mcn)
-                if score_rank[1]==3:
-                    first=nx.pagerank(graph_mcn)
-            if len(score_rank)>=3:
-                if score_rank[2]==0:
-                    second=mod_bw(removable)
-                if score_rank[2]==1:
-                    second=graph_mcn.degree()
-                if score_rank[2]==2:
-                    second=nx.betweenness_centrality(graph_mcn)
-                if score_rank[2]==3:
-                    second=nx.pagerank(graph_mcn)
-            if len(score_rank)>=4:
-                if score_rank[3]==0:
-                    third=mod_bw(removable)
-                if score_rank[3]==1:
-                    third=graph_mcn.degree()
-                if score_rank[3]==2:
-                    third=nx.betweenness_centrality(graph_mcn)
-                if score_rank[3]==3:
-                    third=nx.pagerank(graph_mcn)
-
-            for i in sorted(order.keys()):
-                if len(order[i])>1 and len(score_rank)>=2:
-                    order_2_pass=second_order(order[i],first)
-                    for j in sorted(order_2_pass):
-                        #print "second",i,j,order_2_pass[j]
-                        if len(order_2_pass[j])==1 or len(score_rank)<3:
-                            for ii in order_2_pass[j]:
-                                ranking.append(ii)
-                        elif len(score_rank)>=3:
-                            order_3_pass=second_order(order_2_pass[j],second)
-                            for k in sorted(order_3_pass):
-                        #		print "third",i,j,order_2_pass[j],k,order_3_pass[k]
-                                if len(order_3_pass[k])==1 or len(score_rank)<4:
-                                    for ii in order_3_pass[k]:
-                                        ranking.append(ii)	
-                                elif len(score_rank)>=4:
-                                    order_4_pass=second_order(order_3_pass[k],third)
-                                    for s in sorted(order_4_pass):
-                        #				print "fourth",i,j,order_2_pass[j],k,order_3_pass[k],s,order_4_pass[s]
-                                        for t in order_4_pass[s]:
-                                            ranking.append(t)
-
-                else:
-                    for ii in order[i]:
-                        ranking.append(ii) 
-            protein_list=check(path,ranking,initial_nodes)
-            print len(ranking)
-            print len(protein_list)
-            print protein_list
+            ranking=removable_ranking(graph_mcn,removable,score_rank,nodes)
+            protein_list=check(path,ranking,start_nodes[i])
+            f2.write(str(i)+"\t"+"\t".join(protein_list)+"\n")
+    f1=open(root_folder+"static/results/"+uid+"/nodes_graph.txt","w")
+    for i in nodes_graph:
+        stats=""
+        graph.graph['name']=graph_net
+        stats=stats+nx.info(graph)+"\n"
+        graph_mcn=graph.subgraph(nodes_graph[i])
+        graph_mcn.graph['name']="Final Network"
+        stats=stats+nx.info(graph_mcn)
+        nx.write_gpickle(graph_mcn,root_folder+"static/results/"+uid+"/"+str(i)+"_graph"+"/graph_mcn.gpickle")
+        f1.write(str(i)+"\t"+"\t".join(list(set(nodes_graph[i])))+"\n")
+        f2=open(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/not_present.txt",'w')
+        f2.write("\t".join(list(set(start_nodes[i]).difference(set(graph_mcn.nodes())))))
+        f2.close()
+        f2=open(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/stats.txt",'w')
+        f2.write(stats)
+        f2.close()
 
 def mod_bw(removable):
 	count={}
@@ -554,7 +567,6 @@ def check(path,removable,nodes_list):
 			ess.append(i)
 			for j in path:
 				temp_rem[j]=[]
-    print ess,nodes_list
     protein_list=ess+nodes_list
     protein_list=list(set(protein_list))
     return protein_list

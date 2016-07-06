@@ -296,35 +296,250 @@ def tsfa(uid,file,graph,threshold,db,tissue,coexpression,root_folder,c_w,f_w,p_w
         f2=open(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/stats.txt",'w')
         f2.write(stats)
         f2.close()
-    
-def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments):
-    #values=[uid,form.vars.upload,request.vars.graph_db,float(request.vars.threshold),score_rank,cellular_compartments]
-    test={}
 
-def order_res(order,bw):
-    r={}
-    removable=[]
-    for i in order:
-        if r.has_key(order[i]):
-            r[order[i]].append(i)
+
+def removable_ranking(graph_mcn,removable,score_rank,nodes):
+    dg={}
+    bw={}
+    pg={}
+    bw_mod={}
+    ranking=[]
+    first={}
+    second={}
+    third={}
+    if score_rank[0]==0:
+        to_order=mod_bw(removable)
+        order=are_ordered(to_order,[])
+    if score_rank[0]==1:
+        to_order=graph_mcn.degree()
+        order=are_ordered(to_order,nodes)
+    if score_rank[0]==2:
+        to_order=nx.betweenness_centrality(graph_mcn)
+        order=are_ordered(to_order,nodes)
+    if score_rank[0]==3:
+        to_order=nx.pagerank(graph_mcn)
+        order=are_ordered(to_order,nodes)
+
+    if len(score_rank)>=2:
+        if score_rank[1]==0:
+            first=mod_bw(removable)
+        if score_rank[1]==1:
+            first=graph_mcn.degree()
+        if score_rank[1]==2:
+            first=nx.betweenness_centrality(graph_mcn)
+        if score_rank[1]==3:
+            first=nx.pagerank(graph_mcn)
+    if len(score_rank)>=3:
+        if score_rank[2]==0:
+            second=mod_bw(removable)
+        if score_rank[2]==1:
+            second=graph_mcn.degree()
+        if score_rank[2]==2:
+            second=nx.betweenness_centrality(graph_mcn)
+        if score_rank[2]==3:
+            second=nx.pagerank(graph_mcn)
+    if len(score_rank)>=4:
+        if score_rank[3]==0:
+            third=mod_bw(removable)
+        if score_rank[3]==1:
+            third=graph_mcn.degree()
+        if score_rank[3]==2:
+            third=nx.betweenness_centrality(graph_mcn)
+        if score_rank[3]==3:
+            third=nx.pagerank(graph_mcn)
+
+    for i in sorted(order.keys()):
+        if len(order[i])>1 and len(score_rank)>=2:
+            order_2_pass=second_order(order[i],first)
+            for j in sorted(order_2_pass):
+                if len(order_2_pass[j])==1 or len(score_rank)<3:
+                    for ii in order_2_pass[j]:
+                        ranking.append(ii)
+                elif len(score_rank)>=3:
+                    order_3_pass=second_order(order_2_pass[j],second)
+                    for k in sorted(order_3_pass):
+                        if len(order_3_pass[k])==1 or len(score_rank)<4:
+                            for ii in order_3_pass[k]:
+                                ranking.append(ii)	
+                        elif len(score_rank)>=4:
+                            order_4_pass=second_order(order_3_pass[k],third)
+                            for s in sorted(order_4_pass):
+                                for t in order_4_pass[s]:
+                                    ranking.append(t)
+
         else:
-            r[order[i]]=[]
-            r[order[i]].append(i)
-    for i in r:
-        removable=removable+sorted(r[i], key=bw.get)
-    return removable
+            for ii in order[i]:
+                ranking.append(ii)
+    return ranking
+
+def tfa(uid,file,graph_db,threshold,score_rank,cellular_compartments,root_folder,background):
+    net_db={"0":"intact","1":"intact_high_confidence","2":"biogrid"}
+    start_nodes,mapping=load_input_list(file)
+    f1=open(root_folder+"static/results/"+uid+"/mapping_column.txt","w")
+    for i in mapping:
+        f1.write(str(i)+"\t"+mapping[i]+"\n")
+    graph_net=net_db[graph_db]
+    nodes_graph={}
+    protein_list={}
+    graph=nx.read_gpickle(root_folder+"/data/graph/"+graph_net)
+    graph.graph['name']=graph_net
+    graph_nodes=graph.nodes()
+    f1=open(root_folder+"static/results/"+uid+"/nodes.txt","w")
+    f2=open(root_folder+"static/results/"+uid+"/nodes_present_in_graph.txt","w")
+    for i in start_nodes:
+        protein_list[i]=[]
+        initial_nodes=start_nodes[i]
+        if not os.path.exists(root_folder+"/static/results/"+uid+"/"+str(i)+"_fisher/"):
+            os.makedirs(root_folder+"/static/results/"+uid+"/"+str(i)+"_fisher")
+        if not os.path.exists(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/"):
+            os.makedirs(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph")
+        f1.write(str(i)+"\t"+"\t".join(start_nodes[i])+"\n")
+        nodes=list(set(start_nodes[i]).intersection(set(graph_nodes)))
+        if len(nodes)>1:
+            nodes_graph[i],path_count,nodes_path,path=mcn_component(nodes,graph.nodes(),graph,graph_net,root_folder,score_rank,cellular_compartments,background)
+            graph_mcn=graph.subgraph(nodes_graph[i])
+            removable=sum(nodes_path.values(),[])
+            ranking=removable_ranking(graph_mcn,removable,score_rank,nodes)
+            protein_list[i]=check(path,ranking,nodes)
+            f2.write(str(i)+"\t"+"\t".join(list(set(start_nodes[i]).intersection(set(graph_mcn.nodes()))))+"\n")
+
+            #f2.write(str(i)+"\t"+"\t".join(protein_list[i])+"\n")
+            
+    f1=open(root_folder+"static/results/"+uid+"/nodes_graph.txt","w")
+    for i in nodes_graph:
+        stats=""
+        graph.graph['name']=graph_net
+        stats=stats+nx.info(graph)+"\n"
+        graph_mcn=graph.subgraph(protein_list[i])
+        graph_mcn.graph['name']="Final Network"
+        stats=stats+nx.info(graph_mcn)
+        nx.write_gpickle(graph_mcn,root_folder+"static/results/"+uid+"/"+str(i)+"_graph"+"/graph_mcn.gpickle")
+        f1.write(str(i)+"\t"+"\t".join(list(set(protein_list[i])))+"\n")
+        f2=open(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/not_present.txt",'w')
+        f2.write("\t".join(list(set(start_nodes[i]).difference(set(graph_mcn.nodes())))))
+        f2.close()
+        f2=open(root_folder+"/static/results/"+uid+"/"+str(i)+"_graph/stats.txt",'w')
+        f2.write(stats)
+        f2.close()
+        
+def mod_bw(removable):
+	count={}
+	for j in removable:
+		if j in count:
+			count[j]=count[j]+1
+		else:
+			count[j]=1
+	return count
+	
+def second_order(nodes,rankings):
+	order={}
+	for i in nodes:
+		if rankings[i] in order:
+			order[rankings[i]].append(i)
+		else:
+			order[rankings[i]]=[]
+			order[rankings[i]].append(i)
+	return order
+	
+def are_ordered(count,start_nodes):
+	order={}
+	
+	for i in start_nodes:
+		del count[i]
+	for i in count:
+		if count[i] in order:
+			order[count[i]].append(i)
+		else:
+			order[count[i]]=[]
+			order[count[i]].append(i)
+	return order
+
+def component_annotation(folder,cellular_compartments):
+    mapping_files={"GO:0005813":"0","GO:0005737":"1","GO:0031410":"2","GO:0005856":"3","GO:0005829":"4","GO:0005783":"5","GO:0005768":"6","GO:0031012":"7","GO:0005576":"8","GO:0005794":"9","GO:0005622":"10",
+                   "GO:0005764":"11","GO:0005739":"12","GO:0031965":"13","GO:0005730":"14","GO:0005654":"15","GO:0005634":"16","GO:0005886":"17","GO:0043234":"18","GO:0005840":"19"}
+    annotation={}
+    for i in cellular_compartments:
+        annotation_temp={}
+        f1=open(folder+mapping_files[i]+".txt","r")
+        seq=f1.readline()
+        seq=seq.strip().split("\t")
+        for j in seq[1:]:
+            annotation_temp[j]=""
+        annotation[mapping_files[i]]=annotation_temp
+    return annotation
+
+def mcn_component(nodes,graph_nodes,graph,graph_choice,folder,score_rank,cellular_compartments,background):
+    component=component_annotation(folder+"data/annotation/"+background+"/slim/",cellular_compartments)
+    path_count={}
+    seek={}
+    path_selection=[]
+    nodes_path={}
+    combination=list(itertools.combinations((list(set(graph_nodes).intersection(set(nodes)))),2))
+    for i in nodes:
+        seek[i]={}
+    component_score=0
+    for i in combination:
+        path_count[i]={}
+        nodes_path[i]=[]
+        path_count[i][0]=[]
+        f1=open(folder+"data/path/"+graph_choice+"/index/"+i[0]+".txt","r")
+        seq=f1.readline()
+        while(seq!=""):
+            seq= seq.strip().split("\t")
+            if seq[0]==i[1]:
+				seek[i[0]][seq[0]]=int(seq[1])
+            seq=f1.readline()
+    for i in seek:
+        if len(seek[i])>0:
+            for j in seek[i]:
+                f1=open(folder+"data/path/"+graph_choice+"/"+i+".txt")
+                f1.seek(seek[i][j])
+                seq=f1.readline()
+                key_start=seq.split("|")[0][1:].strip()
+                key_end=seq.split("|")[1].strip()
+                key=(key_start,key_end)
+                seq=f1.readline()
+                count=0
+                nodes_key=[]
+                while(seq[0]!=">"):
+                    seq=seq.strip().split()
+                    node_list=seq
+                    for k in range(len(node_list[1:-1])):
+                        component_score=0
+                        for s in component:
+                            if node_list[k+1] in component[s]:
+                                component_score=component_score+1
+                    if component_score>max(path_count[key]):
+                        del path_count[key]
+                        nodes_key=[]
+                        nodes_key.append(node_list[1:-1])
+                        path_count[key]={}
+                        path_count[key][component_score]=[]
+                        path_count[key][component_score].append(node_list)
+                    elif component_score==max(path_count[key]):
+                         path_count[key][component_score].append(node_list)
+                         nodes_key.append(node_list[1:-1])
+                    seq=f1.readline()
+                nodes_key=set(sum(nodes_key,[]))
+                nodes_path[key]=list(nodes_key.difference(set(nodes)))
+                path_selection.append(sum(path_count[key][max(path_count[key])],[]))
+    path={}
+    for i in path_count:
+		path[i]=path_count[i][max(path_count[i])]
+    return list(set(sum(path_selection,[]))),path_count,nodes_path,path
+
 
 def check(path,removable,nodes_list):
-	temp_rem={}
-	rem_path={}
-	path_lenght={}
-	rem=[]
-	ess=[]
-	for j in path:
+    temp_rem={}
+    rem_path={}
+    path_lenght={}
+    rem=[]
+    ess=[]
+    for j in path:
 		temp_rem[j]=[]
 		rem_path[j]=[]
 		path_lenght[j]=len(path[j])		
-	for i in removable:
+    for i in removable:
 		for j in path:
 			for k in range(path_lenght[j]):
 				if i in path[j][k] and k not in rem_path[j]:
@@ -345,6 +560,6 @@ def check(path,removable,nodes_list):
 			ess.append(i)
 			for j in path:
 				temp_rem[j]=[]
-	protein_list=ess+nodes_list
-	protein_list=list(set(protein_list))
-	return protein_list
+    protein_list=ess+nodes_list
+    protein_list=list(set(protein_list))
+    return protein_list
